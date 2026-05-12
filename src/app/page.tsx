@@ -39,13 +39,13 @@ const tools = [
     title: 'Word Counter',
     description: 'Count words, characters, sentences, and paragraphs in any text.',
     icon: '📝',
-    href: '#',
+    href: '/tools/word-counter',
   },
   {
     title: 'JSON Formatter',
     description: 'Format, validate, and beautify JSON data. Works offline in your browser.',
     icon: '{}',
-    href: '#',
+    href: '/tools/json-formatter',
   },
   {
     title: 'Base64 Encoder',

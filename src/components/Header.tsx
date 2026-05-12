@@ -22,7 +22,13 @@ export default function Header() {
               All Tools
             </Link>
             <Link href="/tools/image-compress" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
-              Image Compress
+              Image
+            </Link>
+            <Link href="/tools/word-counter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
+              Word Count
+            </Link>
+            <Link href="/tools/json-formatter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
+              JSON
             </Link>
           </nav>
 
@@ -45,6 +51,8 @@ export default function Header() {
           <div className="md:hidden pb-4">
             <Link href="/" className="block py-2 text-sm text-gray-600">All Tools</Link>
             <Link href="/tools/image-compress" className="block py-2 text-sm text-gray-600">Image Compress</Link>
+            <Link href="/tools/word-counter" className="block py-2 text-sm text-gray-600">Word Counter</Link>
+            <Link href="/tools/json-formatter" className="block py-2 text-sm text-gray-600">JSON Formatter</Link>
           </div>
         )}
       </div>
