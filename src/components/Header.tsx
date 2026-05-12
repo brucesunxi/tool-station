@@ -17,15 +17,24 @@ export default function Header() {
             <span className="font-bold text-xl">ToolStation</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4">
             <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
               All Tools
             </Link>
             <Link href="/tools/image-compress" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
               Image
             </Link>
+            <Link href="/tools/format-converter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
+              Convert
+            </Link>
+            <Link href="/tools/pdf-merge" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
+              PDF
+            </Link>
+            <Link href="/tools/ai-summary" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
+              AI
+            </Link>
             <Link href="/tools/word-counter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
-              Word Count
+              Words
             </Link>
             <Link href="/tools/json-formatter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
               JSON
@@ -48,9 +57,12 @@ export default function Header() {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden pb-4">
+          <div className="md:hidden pb-4 space-y-1">
             <Link href="/" className="block py-2 text-sm text-gray-600">All Tools</Link>
             <Link href="/tools/image-compress" className="block py-2 text-sm text-gray-600">Image Compress</Link>
+            <Link href="/tools/format-converter" className="block py-2 text-sm text-gray-600">Format Converter</Link>
+            <Link href="/tools/pdf-merge" className="block py-2 text-sm text-gray-600">PDF Merger</Link>
+            <Link href="/tools/ai-summary" className="block py-2 text-sm text-gray-600">AI Summary</Link>
             <Link href="/tools/word-counter" className="block py-2 text-sm text-gray-600">Word Counter</Link>
             <Link href="/tools/json-formatter" className="block py-2 text-sm text-gray-600">JSON Formatter</Link>
           </div>

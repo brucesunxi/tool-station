@@ -18,22 +18,21 @@ const tools = [
   },
   {
     title: 'Format Converter',
-    description: 'Convert images between JPG, PNG, WebP, GIF, and SVG formats instantly.',
+    description: 'Convert images between JPG, PNG, WebP, GIF, and AVIF formats instantly.',
     icon: '🔄',
-    href: '#',
+    href: '/tools/format-converter',
   },
   {
     title: 'PDF Merge',
     description: 'Combine multiple PDF files into one document. Fast and free.',
     icon: '📄',
-    href: '#',
+    href: '/tools/pdf-merge',
   },
   {
     title: 'AI Text Summary',
     description: 'Summarize long articles and documents with AI. Get key points in seconds.',
     icon: '🤖',
-    href: '#',
-    isPremium: true,
+    href: '/tools/ai-summary',
   },
   {
     title: 'Word Counter',
