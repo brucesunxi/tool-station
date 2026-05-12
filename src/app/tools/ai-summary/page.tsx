@@ -169,7 +169,7 @@ export default function AiSummaryPage() {
         <div className="text-sm text-gray-500 space-y-3">
           <p>
             Use AI to instantly summarize long articles, research papers, and documents.
-            Powered by Claude, our AI text summarizer extracts the key points so you can read less and understand more.
+            Powered by DeepSeek AI, our text summarizer extracts the key points so you can read less and understand more.
           </p>
           <ul className="list-disc pl-5 space-y-1">
             <li>Summarize articles, essays, reports, and more</li>

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,9 +10,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Please provide text to summarize' }, { status: 400 })
     }
 
-    if (!ANTHROPIC_API_KEY) {
+    if (!DEEPSEEK_API_KEY) {
       return NextResponse.json(
-        { error: 'AI API key not configured. Please set ANTHROPIC_API_KEY in environment variables.' },
+        { error: 'AI API key not configured. Please set DEEPSEEK_API_KEY in Vercel environment variables.' },
         { status: 500 }
       )
     }
@@ -25,17 +25,20 @@ export async function POST(request: NextRequest) {
       : style === 'bullet' ? 'Write as bullet points.'
       : 'Write in one concise sentence.'
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('https://api.deepseek.com/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
+        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'deepseek-chat',
         max_tokens: 1024,
         messages: [
+          {
+            role: 'system',
+            content: 'You are a text summarization assistant. Provide clear, accurate summaries.',
+          },
           {
             role: 'user',
             content: `Summarize the following text in ${lengthInstruction}. ${styleInstruction}\n\nText:\n${text}`,
@@ -46,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const error = await response.text()
-      console.error('Anthropic API error:', error)
+      console.error('DeepSeek API error:', error)
       return NextResponse.json(
         { error: 'AI service error. Please try again later.' },
         { status: 502 }
@@ -54,9 +57,8 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await response.json()
-    const summary = data.content?.[0]?.text || ''
+    const summary = data.choices?.[0]?.message?.content || ''
 
-    // Count words
     const wordCount = summary.trim() ? summary.trim().split(/\s+/).length : 0
 
     return NextResponse.json({
