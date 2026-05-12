@@ -21,6 +21,9 @@ export default function Header() {
             <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
               All Tools
             </Link>
+            <Link href="/tools/image-crop" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
+              Crop
+            </Link>
             <Link href="/tools/image-compress" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">
               Image
             </Link>
@@ -59,6 +62,7 @@ export default function Header() {
         {menuOpen && (
           <div className="md:hidden pb-4 space-y-1">
             <Link href="/" className="block py-2 text-sm text-gray-600">All Tools</Link>
+            <Link href="/tools/image-crop" className="block py-2 text-sm text-gray-600">Image Resize</Link>
             <Link href="/tools/image-compress" className="block py-2 text-sm text-gray-600">Image Compress</Link>
             <Link href="/tools/format-converter" className="block py-2 text-sm text-gray-600">Format Converter</Link>
             <Link href="/tools/pdf-merge" className="block py-2 text-sm text-gray-600">PDF Merger</Link>
