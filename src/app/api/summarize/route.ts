@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 
     if (!DEEPSEEK_API_KEY) {
       return NextResponse.json(
-        { error: 'AI API key not configured. Please set DEEPSEEK_API_KEY in Vercel environment variables.' },
+        { error: 'DEEPSEEK_API_KEY not configured. Go to Vercel → Settings → Environment Variables to add it, then Redeploy.' },
         { status: 500 }
       )
     }
@@ -25,33 +25,43 @@ export async function POST(request: NextRequest) {
       : style === 'bullet' ? 'Write as bullet points.'
       : 'Write in one concise sentence.'
 
-    const response = await fetch('https://api.deepseek.com/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'deepseek-chat',
-        max_tokens: 1024,
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a text summarization assistant. Provide clear, accurate summaries.',
-          },
-          {
-            role: 'user',
-            content: `Summarize the following text in ${lengthInstruction}. ${styleInstruction}\n\nText:\n${text}`,
-          },
-        ],
-      }),
-    })
+    // Create an AbortController with 15s timeout
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000)
+
+    let response
+    try {
+      response = await fetch('https://api.deepseek.com/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: 'deepseek-chat',
+          max_tokens: 1024,
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a text summarization assistant. Provide clear, accurate summaries.',
+            },
+            {
+              role: 'user',
+              content: `Summarize the following text in ${lengthInstruction}. ${styleInstruction}\n\nText:\n${text}`,
+            },
+          ],
+        }),
+        signal: controller.signal,
+      })
+    } finally {
+      clearTimeout(timeoutId)
+    }
 
     if (!response.ok) {
       const error = await response.text()
-      console.error('DeepSeek API error:', error)
+      console.error('DeepSeek API error:', response.status, error)
       return NextResponse.json(
-        { error: 'AI service error. Please try again later.' },
+        { error: `AI service returned status ${response.status}. Check your API key and quota.` },
         { status: 502 }
       )
     }
@@ -68,11 +78,21 @@ export async function POST(request: NextRequest) {
       length,
       style,
     })
-  } catch (error) {
-    console.error('Summarize error:', error)
+  } catch (error: any) {
+    console.error('Summarize error:', error?.message || error)
+
+    if (error?.name === 'AbortError') {
+      return NextResponse.json(
+        { error: 'AI service timed out. DeepSeek API may be slow from your region. Try again or use shorter text.' },
+        { status: 504 }
+      )
+    }
+
     return NextResponse.json(
-      { error: 'Failed to generate summary. Please try again.' },
+      { error: `Failed to generate summary: ${error?.message || 'Unknown error'}` },
       { status: 500 }
     )
   }
 }
+
+export const maxDuration = 30

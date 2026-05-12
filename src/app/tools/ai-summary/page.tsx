@@ -35,7 +35,13 @@ export default function AiSummaryPage() {
       if (!res.ok) throw new Error(data.error || 'Summarization failed')
       setResult(data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      const msg = err instanceof Error ? err.message : ''
+      // "Failed to fetch" usually means the serverless function timed out
+      if (msg === 'Failed to fetch') {
+        setError('Request timed out. The AI service may be slow — please try shorter text or try again.')
+      } else {
+        setError(msg || 'Something went wrong')
+      }
     } finally {
       setLoading(false)
     }
