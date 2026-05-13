@@ -15,6 +15,7 @@ const tools = [
   { title: 'Image Resize', description: 'Resize and crop images to exact dimensions', icon: '📐', href: '/tools/image-crop', isNew: false, category: 'image' },
   { title: 'Format Converter', description: 'Convert between JPG, PNG, WebP, GIF, AVIF', icon: '🔄', href: '/tools/format-converter', isNew: false, category: 'image' },
   { title: 'PDF Merge', description: 'Combine multiple PDFs into one document', icon: '📑', href: '/tools/pdf-merge', isNew: false, category: 'pdf' },
+  { title: 'PDF to PPT', description: 'Convert PDF pages into PowerPoint slides', icon: '📽️', href: '/tools/pdf-to-ppt', isNew: true, category: 'pdf' },
   { title: 'Doc Converter', description: 'Convert Word ↔ PDF with images preserved', icon: '📄', href: '/tools/doc-converter', isNew: true, category: 'pdf' },
   { title: 'AI Text Summary', description: 'Summarize articles with AI in seconds', icon: '🤖', href: '/tools/ai-summary', isNew: false, category: 'ai' },
   { title: 'JSON Formatter', description: 'Format, validate & minify JSON data', icon: '{}', href: '/tools/json-formatter', isNew: false, category: 'dev' },

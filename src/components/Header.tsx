@@ -24,6 +24,7 @@ export default function Header() {
             <Link href="/tools/doc-converter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Doc</Link>
             <Link href="/tools/format-converter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Convert</Link>
             <Link href="/tools/pdf-merge" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">PDF</Link>
+            <Link href="/tools/pdf-to-ppt" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">PPT</Link>
             <Link href="/tools/ai-summary" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">AI</Link>
             <Link href="/tools/word-counter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Words</Link>
             <Link href="/tools/uuid-generator" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">UUID</Link>
@@ -54,6 +55,7 @@ export default function Header() {
               <Link href="/tools/doc-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📄 Doc Convert</Link>
               <Link href="/tools/format-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔄 Format Convert</Link>
               <Link href="/tools/pdf-merge" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📄 PDF Merger</Link>
+              <Link href="/tools/pdf-to-ppt" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📽️ PDF to PPT</Link>
               <Link href="/tools/ai-summary" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🤖 AI Summary</Link>
               <Link href="/tools/word-counter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 Word Counter</Link>
               <Link href="/tools/json-formatter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">{ } JSON</Link>
