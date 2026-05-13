@@ -18,6 +18,9 @@ const tools = [
   { title: 'PDF to PPT', description: 'Convert PDF pages into PowerPoint slides', icon: '📽️', href: '/tools/pdf-to-ppt', isNew: true, category: 'pdf' },
   { title: 'Doc Converter', description: 'Convert Word ↔ PDF with images preserved', icon: '📄', href: '/tools/doc-converter', isNew: true, category: 'pdf' },
   { title: 'AI Text Summary', description: 'Summarize articles with AI in seconds', icon: '🤖', href: '/tools/ai-summary', isNew: false, category: 'ai' },
+  { title: 'AI Translator', description: 'Translate text between 20+ languages', icon: '🌐', href: '/tools/ai-translator', isNew: true, category: 'ai' },
+  { title: 'AI Rewriter', description: 'Rewrite text in formal, casual, or marketing tone', icon: '✍️', href: '/tools/ai-rewriter', isNew: true, category: 'ai' },
+  { title: 'AI Chat', description: 'Chat with AI for help with any task', icon: '💬', href: '/tools/ai-assistant', isNew: true, category: 'ai' },
   { title: 'JSON Formatter', description: 'Format, validate & minify JSON data', icon: '{}', href: '/tools/json-formatter', isNew: false, category: 'dev' },
   { title: 'Base64 Encoder', description: 'Encode text/files or decode Base64', icon: '🔐', href: '/tools/base64', isNew: false, category: 'dev' },
   { title: 'URL Encoder', description: 'Encode & decode URLs and query params', icon: '🌐', href: '/tools/url-encode', isNew: false, category: 'dev' },
@@ -46,7 +49,7 @@ const categories: CategoryGroup[] = [
   {
     name: 'AI Tools',
     icon: '🤖',
-    description: 'Powered by AI for smart text processing',
+    description: 'Summarize, translate, rewrite, and chat with AI',
     color: 'border-l-purple-500',
     tools: tools.filter(t => t.category === 'ai'),
   },
