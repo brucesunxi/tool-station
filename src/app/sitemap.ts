@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://tools-station-three.vercel.app'
+const BASE_URL = 'https://toolstation.top'
 
 const tools = [
   '/tools/image-compress',
