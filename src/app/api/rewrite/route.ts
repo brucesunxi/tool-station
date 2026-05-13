@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { checkRateLimit } from '@/lib/rate-limit'
 
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY
 
@@ -24,6 +25,12 @@ const stylePrompts: Record<string, { label: string; instruction: string }> = {
 export async function POST(request: NextRequest) {
   try {
     const { text, style = 'formal' } = await request.json()
+
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+    const { allowed } = checkRateLimit(`rewrite:${ip}`, { interval: 60_000, maxRequests: 20 })
+    if (!allowed) {
+      return NextResponse.json({ error: 'Too many requests. Please wait a moment before trying again.' }, { status: 429 })
+    }
 
     if (!text || text.trim().length === 0) {
       return NextResponse.json({ error: 'Please provide text to rewrite' }, { status: 400 })
