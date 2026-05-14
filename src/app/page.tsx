@@ -15,8 +15,11 @@ const tools = [
   { title: 'Image Compress', description: 'Reduce image file size while keeping quality', icon: '🗜️', href: '/tools/image-compress', isNew: false, category: 'image' },
   { title: 'Image Resize', description: 'Resize and crop images to exact dimensions', icon: '📐', href: '/tools/image-crop', isNew: false, category: 'image' },
   { title: 'Format Converter', description: 'Convert between JPG, PNG, WebP, GIF, AVIF', icon: '🔄', href: '/tools/format-converter', isNew: false, category: 'image' },
+  { title: 'Image OCR', description: 'Extract text from images (browser-based)', icon: '🖼️', href: '/tools/image-ocr', isNew: true, category: 'image' },
+  { title: 'QR Code Generator', description: 'Generate QR codes with custom colors', icon: '▣', href: '/tools/qr-code', isNew: true, category: 'image' },
   { title: 'PDF Merge', description: 'Combine multiple PDFs into one document', icon: '📑', href: '/tools/pdf-merge', isNew: false, category: 'pdf' },
   { title: 'PDF to PPT', description: 'Convert PDF pages into PowerPoint slides', icon: '📽️', href: '/tools/pdf-to-ppt', isNew: true, category: 'pdf' },
+  { title: 'PDF Compress', description: 'Reduce PDF file size online', icon: '📦', href: '/tools/pdf-compress', isNew: true, category: 'pdf' },
   { title: 'Doc Converter', description: 'Convert Word ↔ PDF with images preserved', icon: '📄', href: '/tools/doc-converter', isNew: true, category: 'pdf' },
   { title: 'AI Text Summary', description: 'Summarize articles with AI in seconds', icon: '🤖', href: '/tools/ai-summary', isNew: false, category: 'ai' },
   { title: 'AI Translator', description: 'Translate text between 20+ languages', icon: '🌐', href: '/tools/ai-translator', isNew: true, category: 'ai' },
@@ -41,6 +44,13 @@ const tools = [
   { title: 'Base64 Encoder', description: 'Encode text/files or decode Base64', icon: '🔐', href: '/tools/base64', isNew: false, category: 'dev' },
   { title: 'URL Encoder', description: 'Encode & decode URLs and query params', icon: '🌐', href: '/tools/url-encode', isNew: false, category: 'dev' },
   { title: 'UUID Generator', description: 'Generate UUID v4/v7 in bulk', icon: '🔢', href: '/tools/uuid-generator', isNew: false, category: 'dev' },
+  { title: 'Password Generator', description: 'Generate strong, secure passwords', icon: '🔑', href: '/tools/password-generator', isNew: true, category: 'dev' },
+  { title: 'Diff Checker', description: 'Compare text and code differences', icon: '⇔', href: '/tools/diff-checker', isNew: true, category: 'dev' },
+  { title: 'Data Converter', description: 'Convert between JSON and YAML', icon: '⇄', href: '/tools/data-converter', isNew: true, category: 'dev' },
+  { title: 'Case Converter', description: 'Convert text between 11 case formats', icon: 'Aa', href: '/tools/case-converter', isNew: true, category: 'dev' },
+  { title: 'Markdown Editor', description: 'Write Markdown with live preview', icon: '📝', href: '/tools/markdown-editor', isNew: true, category: 'dev' },
+  { title: 'Random Tools', description: 'Number, dice, coin, lottery, choices', icon: '🎲', href: '/tools/random-tools', isNew: true, category: 'dev' },
+  { title: 'Unit Converter', description: 'Length, weight, temp, area, volume, more', icon: '📏', href: '/tools/unit-converter', isNew: true, category: 'dev' },
   { title: 'Regex Tester', description: 'Test regex patterns with live highlighting', icon: '🔍', href: '/tools/regex-tester', isNew: false, category: 'dev' },
   { title: 'Code Beautifier', description: 'Format & minify HTML, CSS, JavaScript', icon: '✨', href: '/tools/code-beautifier', isNew: false, category: 'dev' },
   { title: 'Word Counter', description: 'Count words, chars, sentences & reading time', icon: '📝', href: '/tools/word-counter', isNew: false, category: 'text' },
@@ -72,7 +82,7 @@ const categories: CategoryGroup[] = [
   {
     name: 'Developer Utilities',
     icon: '⚙️',
-    description: 'Format, encode, test & generate code',
+    description: 'Format, encode, convert, compare & generate code',
     color: 'border-l-green-500',
     tools: tools.filter(t => t.category === 'dev'),
   },
@@ -160,7 +170,7 @@ export default function HomePage() {
           <p className="text-xs text-gray-500 mt-0.5">Free Tools</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/10 rounded-xl border border-green-200/50 dark:border-green-800/30">
-          <p className="text-2xl font-bold text-green-600">22</p>
+          <p className="text-2xl font-bold text-green-600">23</p>
           <p className="text-xs text-gray-500 mt-0.5">API Endpoints</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-900/20 dark:to-purple-800/10 rounded-xl border border-purple-200/50 dark:border-purple-800/30">

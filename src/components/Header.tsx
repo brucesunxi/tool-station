@@ -9,12 +9,15 @@ const imageTools = [
   { label: 'Image Compress', href: '/tools/image-compress', icon: '🗜️' },
   { label: 'Image Resize', href: '/tools/image-crop', icon: '📐' },
   { label: 'Format Converter', href: '/tools/format-converter', icon: '🔄' },
+  { label: 'Image OCR', href: '/tools/image-ocr', icon: '🖼️' },
+  { label: 'QR Code', href: '/tools/qr-code', icon: '▣' },
 ]
 
 const pdfTools = [
   { label: 'PDF Merge', href: '/tools/pdf-merge', icon: '📑' },
   { label: 'PDF to PPT', href: '/tools/pdf-to-ppt', icon: '📽️' },
   { label: 'Doc Converter', href: '/tools/doc-converter', icon: '📄' },
+  { label: 'PDF Compress', href: '/tools/pdf-compress', icon: '📦' },
 ]
 
 const aiTools = [
@@ -29,7 +32,6 @@ const aiTools = [
   { label: 'AI Copywriter', href: '/tools/ai-copy', icon: '✍️' },
   { label: 'AI Hashtags', href: '/tools/ai-hashtags', icon: '#' },
   { label: 'AI Blog', href: '/tools/ai-blog', icon: '📝' },
-  { label: 'AI Titles', href: '/tools/ai-title', icon: '🏷️' },
   { label: 'AI Pros & Cons', href: '/tools/ai-pros-cons', icon: '⚖️' },
   { label: 'AI Readability', href: '/tools/ai-readability', icon: '📊' },
   { label: 'AI Interview', href: '/tools/ai-interview', icon: '💼' },
@@ -41,11 +43,18 @@ const devTools = [
   { label: 'AI SQL', href: '/tools/ai-sql', icon: '💾' },
   { label: 'AI Code Convert', href: '/tools/ai-code-convert', icon: '🔄' },
   { label: 'JSON Formatter', href: '/tools/json-formatter', icon: '{}' },
+  { label: 'YAML/JSON Converter', href: '/tools/data-converter', icon: '⇄' },
+  { label: 'Diff Checker', href: '/tools/diff-checker', icon: '⇔' },
   { label: 'Base64', href: '/tools/base64', icon: '🔐' },
   { label: 'URL Encode', href: '/tools/url-encode', icon: '🌐' },
   { label: 'UUID Generator', href: '/tools/uuid-generator', icon: '🔢' },
   { label: 'Regex Tester', href: '/tools/regex-tester', icon: '🔍' },
   { label: 'Code Beautifier', href: '/tools/code-beautifier', icon: '✨' },
+  { label: 'Case Converter', href: '/tools/case-converter', icon: 'Aa' },
+  { label: 'Markdown Editor', href: '/tools/markdown-editor', icon: '📝' },
+  { label: 'Password Generator', href: '/tools/password-generator', icon: '🔑' },
+  { label: 'QR Code Generator', href: '/tools/qr-code', icon: '▣' },
+  { label: 'Random Tools', href: '/tools/random-tools', icon: '🎲' },
   { label: 'Word Counter', href: '/tools/word-counter', icon: '📝' },
   { label: 'Color Converter', href: '/tools/color-converter', icon: '🎨' },
 ]
@@ -130,9 +139,16 @@ export default function Header() {
               <Link href="/tools/code-beautifier" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✨ Code Beauty</Link>
               <Link href="/tools/word-counter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 Word Counter</Link>
               <Link href="/tools/color-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🎨 Color Convert</Link>
-              <Link href="/tools/ai-blog" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 AI Blog</Link>
-              <Link href="/tools/ai-regex" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔍 AI Regex</Link>
-              <Link href="/tools/ai-pros-cons" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">⚖️ AI Pros/Cons</Link>
+              <Link href="/tools/qr-code" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">▣ QR Code</Link>
+              <Link href="/tools/password-generator" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔑 Password Gen</Link>
+              <Link href="/tools/unit-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📏 Unit Converter</Link>
+              <Link href="/tools/diff-checker" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">⇔ Diff Checker</Link>
+              <Link href="/tools/data-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">⇄ Data Converter</Link>
+              <Link href="/tools/case-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">Aa Case Converter</Link>
+              <Link href="/tools/markdown-editor" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 Markdown Edit</Link>
+              <Link href="/tools/image-ocr" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🖼️ Image OCR</Link>
+              <Link href="/tools/random-tools" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🎲 Random Tools</Link>
+              <Link href="/tools/pdf-compress" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📦 PDF Compress</Link>
             </div>
           </div>
         )}
