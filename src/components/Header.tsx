@@ -25,13 +25,21 @@ const aiTools = [
   { label: 'AI Grammar', href: '/tools/ai-grammar', icon: '✓' },
   { label: 'AI Email', href: '/tools/ai-email', icon: '✉️' },
   { label: 'AI Titles', href: '/tools/ai-title', icon: '🏷️' },
-  { label: 'AI Keywords', href: '/tools/ai-keywords', icon: '🔑' },
+  { label: 'AI Bio', href: '/tools/ai-bio', icon: '👤' },
+  { label: 'AI Copywriter', href: '/tools/ai-copy', icon: '✍️' },
+  { label: 'AI Hashtags', href: '/tools/ai-hashtags', icon: '#' },
   { label: 'AI Blog', href: '/tools/ai-blog', icon: '📝' },
+  { label: 'AI Titles', href: '/tools/ai-title', icon: '🏷️' },
   { label: 'AI Pros & Cons', href: '/tools/ai-pros-cons', icon: '⚖️' },
+  { label: 'AI Readability', href: '/tools/ai-readability', icon: '📊' },
+  { label: 'AI Interview', href: '/tools/ai-interview', icon: '💼' },
+  { label: 'AI Flashcards', href: '/tools/ai-flashcards', icon: '📇' },
 ]
 
 const devTools = [
   { label: 'AI Regex', href: '/tools/ai-regex', icon: '🔍' },
+  { label: 'AI SQL', href: '/tools/ai-sql', icon: '💾' },
+  { label: 'AI Code Convert', href: '/tools/ai-code-convert', icon: '🔄' },
   { label: 'JSON Formatter', href: '/tools/json-formatter', icon: '{}' },
   { label: 'Base64', href: '/tools/base64', icon: '🔐' },
   { label: 'URL Encode', href: '/tools/url-encode', icon: '🌐' },
@@ -105,6 +113,15 @@ export default function Header() {
               <Link href="/tools/ai-email" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✉️ AI Email</Link>
               <Link href="/tools/ai-title" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🏷️ AI Titles</Link>
               <Link href="/tools/ai-keywords" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔑 AI Keywords</Link>
+              <Link href="/tools/ai-bio" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">👤 AI Bio</Link>
+              <Link href="/tools/ai-copy" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✍️ AI Copywriter</Link>
+              <Link href="/tools/ai-hashtags" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300"># AI Hashtags</Link>
+              <Link href="/tools/ai-blog" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 AI Blog</Link>
+              <Link href="/tools/ai-readability" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📊 AI Readability</Link>
+              <Link href="/tools/ai-interview" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">💼 AI Interview</Link>
+              <Link href="/tools/ai-flashcards" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📇 AI Flashcards</Link>
+              <Link href="/tools/ai-sql" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">💾 AI SQL</Link>
+              <Link href="/tools/ai-code-convert" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔄 AI Code Convert</Link>
               <Link href="/tools/json-formatter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">{ } JSON</Link>
               <Link href="/tools/base64" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔐 Base64</Link>
               <Link href="/tools/url-encode" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🌐 URL Encode</Link>

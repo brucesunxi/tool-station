@@ -29,6 +29,14 @@ const tools = [
   { title: 'AI Blog Generator', description: 'Generate blog outlines and full posts', icon: '📝', href: '/tools/ai-blog', isNew: true, category: 'ai' },
   { title: 'AI Pros & Cons', description: 'Get balanced analysis of any decision', icon: '⚖️', href: '/tools/ai-pros-cons', isNew: true, category: 'ai' },
   { title: 'AI Regex Generator', description: 'Generate regex from plain English', icon: '🔍', href: '/tools/ai-regex', isNew: true, category: 'dev' },
+  { title: 'AI SQL Generator', description: 'Natural language to SQL queries', icon: '💾', href: '/tools/ai-sql', isNew: true, category: 'dev' },
+  { title: 'AI Code Converter', description: 'Convert code between 19 languages', icon: '🔄', href: '/tools/ai-code-convert', isNew: true, category: 'dev' },
+  { title: 'AI Hashtag Generator', description: 'Generate hashtags for social media', icon: '#', href: '/tools/ai-hashtags', isNew: true, category: 'ai' },
+  { title: 'AI Bio Generator', description: 'Generate bios for any platform', icon: '👤', href: '/tools/ai-bio', isNew: true, category: 'ai' },
+  { title: 'AI Copywriter', description: 'Generate ad copy and descriptions', icon: '✍️', href: '/tools/ai-copy', isNew: true, category: 'ai' },
+  { title: 'AI Readability Checker', description: 'Analyze and improve text readability', icon: '📊', href: '/tools/ai-readability', isNew: true, category: 'ai' },
+  { title: 'AI Interview Questions', description: 'Generate questions for any role', icon: '💼', href: '/tools/ai-interview', isNew: true, category: 'ai' },
+  { title: 'AI Flashcard Generator', description: 'Turn text into study flashcards', icon: '📇', href: '/tools/ai-flashcards', isNew: true, category: 'ai' },
   { title: 'JSON Formatter', description: 'Format, validate & minify JSON data', icon: '{}', href: '/tools/json-formatter', isNew: false, category: 'dev' },
   { title: 'Base64 Encoder', description: 'Encode text/files or decode Base64', icon: '🔐', href: '/tools/base64', isNew: false, category: 'dev' },
   { title: 'URL Encoder', description: 'Encode & decode URLs and query params', icon: '🌐', href: '/tools/url-encode', isNew: false, category: 'dev' },
@@ -57,7 +65,7 @@ const categories: CategoryGroup[] = [
   {
     name: 'AI Tools',
     icon: '🤖',
-    description: 'Summarize, translate, write, analyze, and generate content with AI',
+    description: 'Summarize, translate, write, code, generate, and analyze with AI',
     color: 'border-l-purple-500',
     tools: tools.filter(t => t.category === 'ai'),
   },
@@ -152,7 +160,7 @@ export default function HomePage() {
           <p className="text-xs text-gray-500 mt-0.5">Free Tools</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/10 rounded-xl border border-green-200/50 dark:border-green-800/30">
-          <p className="text-2xl font-bold text-green-600">14</p>
+          <p className="text-2xl font-bold text-green-600">22</p>
           <p className="text-xs text-gray-500 mt-0.5">API Endpoints</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-900/20 dark:to-purple-800/10 rounded-xl border border-purple-200/50 dark:border-purple-800/30">
