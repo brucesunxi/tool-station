@@ -56,6 +56,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/apple-icon.svg" />
         <meta name="google-site-verification" content="chpRNsaxkKZhXmUrEObpCpQwVmXNeIrg6Abr-0cvOgY" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9711589934416529" crossOrigin="anonymous"></script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -98,7 +99,6 @@ export default function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-31H909PX6R');`}
         </Script>
-        <Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9711589934416529" strategy="afterInteractive" crossOrigin="anonymous" />
       </body>
     </html>
   )
