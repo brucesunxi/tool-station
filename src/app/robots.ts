@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/api/',
       },
     ],
-    sitemap: 'https://tools-station-three.vercel.app/sitemap.xml',
+    sitemap: 'https://toolstation.top/sitemap.xml',
   }
 }

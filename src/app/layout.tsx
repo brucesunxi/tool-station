@@ -33,7 +33,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'ToolStation',
-  url: 'https://tools-station-three.vercel.app',
+  url: 'https://toolstation.top',
   description: 'Free online tools for image compression, PDF processing, format conversion and more. Powered by AI.',
   potentialAction: {
     '@type': 'SearchAction',
