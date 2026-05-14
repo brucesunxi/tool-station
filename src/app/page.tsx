@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import ToolCard from '@/components/ToolCard'
+import ToolSearch from '@/components/ToolSearch'
 import AdBanner from '@/components/AdBanner'
 
 interface CategoryGroup {
@@ -111,6 +112,8 @@ export default function HomePage() {
       </section>
 
       <AdBanner className="mb-10 h-20" />
+
+      <ToolSearch tools={tools} />
 
       {/* Categories */}
       <div className="space-y-8">

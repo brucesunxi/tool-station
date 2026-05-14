@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   },
   description: 'Free online tools for image compression, PDF processing, AI text processing, format conversion and more. No sign-up required.',
   keywords: ['image compressor', 'online tools', 'free tools', 'compress image', 'AI tools', 'PDF tools', 'text summarizer', 'translator'],
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/apple-icon.svg',
+  },
   openGraph: {
     title: 'ToolStation - Free Online Tools',
     description: 'Free online tools for image compression, PDF processing, format conversion, and AI-powered text tools.',
@@ -48,6 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-icon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -57,11 +63,21 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (dark) document.documentElement.classList.add('dark');
+                  var saved = localStorage.getItem('toolstation-theme');
+                  if (saved === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else if (saved === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    if (prefersDark) document.documentElement.classList.add('dark');
+                  }
                   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                    if (e.matches) document.documentElement.classList.add('dark');
-                    else document.documentElement.classList.remove('dark');
+                    var saved = localStorage.getItem('toolstation-theme');
+                    if (!saved || saved === 'system') {
+                      if (e.matches) document.documentElement.classList.add('dark');
+                      else document.documentElement.classList.remove('dark');
+                    }
                   });
                 } catch(e) {}
               })();
