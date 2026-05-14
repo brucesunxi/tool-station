@@ -26,9 +26,12 @@ const aiTools = [
   { label: 'AI Email', href: '/tools/ai-email', icon: '✉️' },
   { label: 'AI Titles', href: '/tools/ai-title', icon: '🏷️' },
   { label: 'AI Keywords', href: '/tools/ai-keywords', icon: '🔑' },
+  { label: 'AI Blog', href: '/tools/ai-blog', icon: '📝' },
+  { label: 'AI Pros & Cons', href: '/tools/ai-pros-cons', icon: '⚖️' },
 ]
 
 const devTools = [
+  { label: 'AI Regex', href: '/tools/ai-regex', icon: '🔍' },
   { label: 'JSON Formatter', href: '/tools/json-formatter', icon: '{}' },
   { label: 'Base64', href: '/tools/base64', icon: '🔐' },
   { label: 'URL Encode', href: '/tools/url-encode', icon: '🌐' },
@@ -110,6 +113,9 @@ export default function Header() {
               <Link href="/tools/code-beautifier" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✨ Code Beauty</Link>
               <Link href="/tools/word-counter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 Word Counter</Link>
               <Link href="/tools/color-converter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🎨 Color Convert</Link>
+              <Link href="/tools/ai-blog" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 AI Blog</Link>
+              <Link href="/tools/ai-regex" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔍 AI Regex</Link>
+              <Link href="/tools/ai-pros-cons" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">⚖️ AI Pros/Cons</Link>
             </div>
           </div>
         )}

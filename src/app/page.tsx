@@ -26,6 +26,9 @@ const tools = [
   { title: 'AI Email Generator', description: 'Generate professional emails instantly', icon: '✉️', href: '/tools/ai-email', isNew: true, category: 'ai' },
   { title: 'AI Title Generator', description: 'Generate catchy titles for blogs & videos', icon: '🏷️', href: '/tools/ai-title', isNew: true, category: 'ai' },
   { title: 'AI Keyword Extractor', description: 'Extract keywords for SEO optimization', icon: '🔑', href: '/tools/ai-keywords', isNew: true, category: 'ai' },
+  { title: 'AI Blog Generator', description: 'Generate blog outlines and full posts', icon: '📝', href: '/tools/ai-blog', isNew: true, category: 'ai' },
+  { title: 'AI Pros & Cons', description: 'Get balanced analysis of any decision', icon: '⚖️', href: '/tools/ai-pros-cons', isNew: true, category: 'ai' },
+  { title: 'AI Regex Generator', description: 'Generate regex from plain English', icon: '🔍', href: '/tools/ai-regex', isNew: true, category: 'dev' },
   { title: 'JSON Formatter', description: 'Format, validate & minify JSON data', icon: '{}', href: '/tools/json-formatter', isNew: false, category: 'dev' },
   { title: 'Base64 Encoder', description: 'Encode text/files or decode Base64', icon: '🔐', href: '/tools/base64', isNew: false, category: 'dev' },
   { title: 'URL Encoder', description: 'Encode & decode URLs and query params', icon: '🌐', href: '/tools/url-encode', isNew: false, category: 'dev' },
@@ -54,7 +57,7 @@ const categories: CategoryGroup[] = [
   {
     name: 'AI Tools',
     icon: '🤖',
-    description: 'Summarize, translate, rewrite, and chat with AI',
+    description: 'Summarize, translate, write, analyze, and generate content with AI',
     color: 'border-l-purple-500',
     tools: tools.filter(t => t.category === 'ai'),
   },
@@ -149,7 +152,7 @@ export default function HomePage() {
           <p className="text-xs text-gray-500 mt-0.5">Free Tools</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/10 rounded-xl border border-green-200/50 dark:border-green-800/30">
-          <p className="text-2xl font-bold text-green-600">7</p>
+          <p className="text-2xl font-bold text-green-600">14</p>
           <p className="text-xs text-gray-500 mt-0.5">API Endpoints</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-900/20 dark:to-purple-800/10 rounded-xl border border-purple-200/50 dark:border-purple-800/30">
