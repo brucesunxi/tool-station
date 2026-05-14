@@ -79,9 +79,8 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-5">
-            <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-              All Tools
-            </Link>
+            <Link href="/search" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Search</Link>
+            <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">All Tools</Link>
             <NavDropdown label="Image" items={imageTools} />
             <NavDropdown label="PDF" items={pdfTools} />
             <NavDropdown label="AI" items={aiTools} />
@@ -111,6 +110,7 @@ export default function Header() {
 
         {menuOpen && (
           <div className="md:hidden pb-4 space-y-1">
+            <Link href="/search" className="block py-2 text-sm font-semibold text-blue-600">🔍 Search Tools</Link>
             <Link href="/" className="block py-2 text-sm font-semibold">All Tools</Link>
             <div className="grid grid-cols-2 gap-1">
               <Link href="/tools/image-compress" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🗜️ Image Compress</Link>
