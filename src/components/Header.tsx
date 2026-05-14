@@ -30,6 +30,9 @@ export default function Header() {
             <Link href="/tools/ai-translator" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Translate</Link>
             <Link href="/tools/ai-rewriter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Rewrite</Link>
             <Link href="/tools/ai-assistant" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Chat</Link>
+            <Link href="/tools/ai-grammar" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Grammar</Link>
+            <Link href="/tools/ai-email" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Email</Link>
+            <Link href="/tools/ai-title" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Titles</Link>
             <Link href="/tools/word-counter" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Words</Link>
             <Link href="/tools/uuid-generator" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">UUID</Link>
             <Link href="/tools/regex-tester" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300">Regex</Link>
@@ -72,6 +75,10 @@ export default function Header() {
               <Link href="/tools/ai-translator" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🌐 AI Translate</Link>
               <Link href="/tools/ai-rewriter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✍️ AI Rewriter</Link>
               <Link href="/tools/ai-assistant" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">💬 AI Chat</Link>
+              <Link href="/tools/ai-grammar" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✓ AI Grammar</Link>
+              <Link href="/tools/ai-email" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✉️ AI Email</Link>
+              <Link href="/tools/ai-title" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🏷️ AI Titles</Link>
+              <Link href="/tools/ai-keywords" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔑 AI Keywords</Link>
               <Link href="/tools/word-counter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📝 Word Counter</Link>
               <Link href="/tools/json-formatter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">{ } JSON</Link>
               <Link href="/tools/base64" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🔐 Base64</Link>
