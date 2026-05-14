@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 interface DropdownItem {
   label: string
@@ -17,17 +17,41 @@ interface NavDropdownProps {
 export default function NavDropdown({ label, items }: NavDropdownProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const timerRef = useRef<ReturnType<typeof setTimeout>>()
+
+  const cancelClose = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+      timerRef.current = undefined
+    }
+  }, [])
+
+  const delayedClose = useCallback(() => {
+    cancelClose()
+    timerRef.current = setTimeout(() => setOpen(false), 200)
+  }, [cancelClose])
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        cancelClose()
+        setOpen(false)
+      }
     }
     document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
-  }, [])
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+      cancelClose()
+    }
+  }, [cancelClose])
 
   return (
-    <div ref={ref} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={() => { cancelClose(); setOpen(true) }}
+      onMouseLeave={delayedClose}
+    >
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
@@ -39,7 +63,11 @@ export default function NavDropdown({ label, items }: NavDropdownProps) {
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1 w-52 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-lg py-2 z-50">
+        <div
+          onMouseEnter={cancelClose}
+          onMouseLeave={delayedClose}
+          className="absolute top-full left-0 mt-1 w-52 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-lg py-2 z-50"
+        >
           {items.map(item => (
             <Link
               key={item.href}

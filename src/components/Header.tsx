@@ -36,6 +36,9 @@ const aiTools = [
   { label: 'AI Readability', href: '/tools/ai-readability', icon: '📊' },
   { label: 'AI Interview', href: '/tools/ai-interview', icon: '💼' },
   { label: 'AI Flashcards', href: '/tools/ai-flashcards', icon: '📇' },
+  { label: 'Resume Builder', href: '/tools/resume-builder', icon: '📄' },
+  { label: 'Cover Letter', href: '/tools/cover-letter', icon: '✉️' },
+  { label: 'Citation Generator', href: '/tools/citation-generator', icon: '📚' },
 ]
 
 const devTools = [
@@ -55,6 +58,8 @@ const devTools = [
   { label: 'Password Generator', href: '/tools/password-generator', icon: '🔑' },
   { label: 'QR Code Generator', href: '/tools/qr-code', icon: '▣' },
   { label: 'Random Tools', href: '/tools/random-tools', icon: '🎲' },
+  { label: 'Loan Calculator', href: '/tools/loan-calculator', icon: '🏠' },
+  { label: 'Invoice Generator', href: '/tools/invoice-generator', icon: '📋' },
   { label: 'Word Counter', href: '/tools/word-counter', icon: '📝' },
   { label: 'Color Converter', href: '/tools/color-converter', icon: '🎨' },
 ]
@@ -149,6 +154,11 @@ export default function Header() {
               <Link href="/tools/image-ocr" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🖼️ Image OCR</Link>
               <Link href="/tools/random-tools" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🎲 Random Tools</Link>
               <Link href="/tools/pdf-compress" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📦 PDF Compress</Link>
+              <Link href="/tools/resume-builder" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📄 Resume Builder</Link>
+              <Link href="/tools/cover-letter" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">✉️ Cover Letter</Link>
+              <Link href="/tools/citation-generator" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📚 Citation Generator</Link>
+              <Link href="/tools/loan-calculator" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">🏠 Loan Calculator</Link>
+              <Link href="/tools/invoice-generator" className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">📋 Invoice Generator</Link>
             </div>
           </div>
         )}
