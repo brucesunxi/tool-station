@@ -55,6 +55,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/apple-icon.svg" />
+        <meta name="google-site-verification" content="chpRNsaxkKZhXmUrEObpCpQwVmXNeIrg6Abr-0cvOgY" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
