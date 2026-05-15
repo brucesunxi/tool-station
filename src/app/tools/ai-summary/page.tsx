@@ -169,25 +169,32 @@ export default function AiSummaryPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      {/* SEO */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Text Summarizer</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>
-            Use AI to instantly summarize long articles, research papers, and documents.
-            Powered by DeepSeek AI, our text summarizer extracts the key points so you can read less and understand more.
-          </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Summarize articles, essays, reports, and more</li>
-            <li>Choose from short, medium, or detailed summaries</li>
-            <li>Select paragraph format or bullet points</li>
-            <li>Get a one-sentence TL;DR for quick overviews</li>
-          </ul>
-          <p className="text-xs text-gray-400 mt-4">
-            Note: Requires ANTHROPIC_API_KEY environment variable to be set. Your text is sent securely to the AI API for processing.
-          </p>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Text Summarizer</h2>
+        <ol>
+          <li>Paste or type the article, document, or text you want to summarize into the input field.</li>
+          <li>Choose your preferred summary length &mdash; Short (2-3 sentences), Medium (paragraph), or Long (detailed).</li>
+          <li>Select the output style &mdash; Paragraph, Bullet Points, or One Sentence for a quick TL;DR.</li>
+          <li>Click &quot;Summarize with AI&quot; and wait for the AI to process your text. Copy the result with one click.</li>
+          <li>Review the word count and reduction percentage to gauge how condensed the summary is.</li>
+        </ol>
+
+        <h2>Tips for Better Summaries</h2>
+        <ul>
+          <li>For the best results, paste the full article or document rather than just a snippet &mdash; context helps the AI produce a more accurate summary.</li>
+          <li>Use Bullet Points style for research papers and reports when you need distinct key takeaways.</li>
+          <li>Start with Medium length and adjust up or down based on how much detail you need.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Is the AI text summarizer free to use?</h3><p>Yes, this AI text summarizer is completely free to use. There are no usage limits or hidden charges.</p></div>
+          <div><h3 className="font-semibold">How does the AI summarize text?</h3><p>The AI analyzes the full text, identifies the most important sentences and concepts, and generates a concise summary that captures the key points while preserving the original meaning.</p></div>
+          <div><h3 className="font-semibold">Is my text secure when I use the summarizer?</h3><p>Your text is sent securely to the AI API for processing. We do not store or share your content. For sensitive information, avoid including personal or confidential details.</p></div>
+          <div><h3 className="font-semibold">What makes a good text to summarize?</h3><p>Any well-written text works well &mdash; news articles, blog posts, academic papers, reports, or long emails. Clear and structured content produces the most coherent summaries.</p></div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

@@ -156,10 +156,32 @@ export default function CodeBeautifierPage() {
         <button onClick={() => { setInput(''); setOutput('') }} className="px-6 py-2.5 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Clear</button>
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Code Beautifier</h2>
-        <p className="text-sm text-gray-500">Format and minify HTML, CSS, and JavaScript code. Works entirely in your browser.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the Code Beautifier</h2>
+        <ol>
+          <li>Select the language of your code by clicking the HTML, CSS, or JavaScript button at the top of the tool.</li>
+          <li>Paste your unformatted or minified code into the left text area. The input panel accepts raw code that needs cleanup.</li>
+          <li>Click &ldquo;Beautify&rdquo; to format the code with proper indentation, line breaks, and spacing for improved readability.</li>
+          <li>Click &ldquo;Minify&rdquo; to strip all unnecessary whitespace, comments, and line breaks &mdash; useful for reducing file size in production.</li>
+          <li>Review the formatted or minified output in the right panel and use the Copy button to save it.</li>
+          <li>Toggle between Beautify and Minify to compare the readable and compressed versions of your code.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Always verify that your input code is syntactically valid before beautifying &mdash; malformed code may not format correctly.</li>
+          <li>Use Minify before deploying to production to reduce file sizes and improve page load times.</li>
+          <li>For CSS, the beautifier expands shorthand properties and adds consistent indentation for nested selectors.</li>
+          <li>All processing is done client-side in your browser, so no code is ever uploaded to a server &mdash; safe for proprietary or sensitive code.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What languages does the beautifier support?</h3><p>The tool supports HTML, CSS, and JavaScript. Each language has its own formatting rules optimized for that syntax &mdash; proper tag nesting for HTML, selector indentation for CSS, and brace alignment for JavaScript.</p></div>
+          <div><h3 className="font-semibold">What is the difference between Beautify and Minify?</h3><p>Beautify adds indentation, line breaks, and spacing to make code readable. Minify removes all non-essential whitespace and comments to reduce file size for faster loading in production.</p></div>
+          <div><h3 className="font-semibold">Can I minify code that was originally formatted?</h3><p>Yes, paste formatted code and click &ldquo;Minify&rdquo; to compress it. Similarly, you can paste minified code and click &ldquo;Beautify&rdquo; to make it readable again.</p></div>
+          <div><h3 className="font-semibold">Is my code uploaded to any server?</h3><p>No, all formatting and minification happens entirely in your browser using JavaScript. Your code never leaves your device, making it safe for proprietary or confidential codebases.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

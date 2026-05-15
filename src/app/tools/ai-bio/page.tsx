@@ -80,10 +80,31 @@ export default function AiBioPage() {
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed">{result}</div>
         </div>
       )}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Bio Generator</h2>
-        <p className="text-sm text-gray-500">Generate professional bios for any platform. Choose from professional, creative, or casual tones.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Bio Generator</h2>
+        <ol>
+          <li>Enter your current role or title (e.g., &quot;Senior Software Engineer,&quot; &quot;Freelance Designer&quot;).</li>
+          <li>Optionally add key details about your skills, achievements, interests, or career highlights.</li>
+          <li>Choose your preferred tone — Professional, Creative, or Fun &amp; Casual.</li>
+          <li>Select the target platform — LinkedIn, Twitter/X, Instagram, or Personal Website — for platform-optimized bios.</li>
+          <li>Click &quot;Generate Bio&quot; and the AI will produce a polished bio tailored to your platform and tone.</li>
+        </ol>
+
+        <h2>Tips for Standout Bios</h2>
+        <ul>
+          <li>Include specific achievements and numbers — &quot;Led a team of 10 engineers&quot; is more impactful than &quot;Led teams.&quot;</li>
+          <li>Use the Professional tone for LinkedIn and Personal Website, Creative for Instagram, and Fun &amp; Casual for Twitter/X.</li>
+          <li>Keep your bio concise — LinkedIn bios work best at 150-200 words, while Twitter bios should be under 160 characters.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Can I generate bios for multiple platforms at once?</h3><p>The bio generator creates one bio at a time for your selected platform. You can switch platforms and regenerate to get platform-specific versions.</p></div>
+          <div><h3 className="font-semibold">What information should I include in the details field?</h3><p>Include your top skills, notable achievements, years of experience, industry keywords, personal interests, and anything that makes your profile unique.</p></div>
+          <div><h3 className="font-semibold">Will the bio fit character limits on different platforms?</h3><p>Yes, the AI generates bios appropriate for the selected platform&apos;s typical length and character limits, so you do not have to worry about truncation.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

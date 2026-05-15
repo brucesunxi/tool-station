@@ -80,10 +80,32 @@ export default function AiCopyPage() {
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed">{result}</div>
         </div>
       )}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Copywriter</h2>
-        <p className="text-sm text-gray-500">Generate compelling marketing copy, product descriptions, and social posts with AI. Choose the format and tone that fits your brand.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Copywriter</h2>
+        <ol>
+          <li>Describe your product or service in detail &mdash; include key features, benefits, and unique selling points that set it apart from competitors.</li>
+          <li>Optionally enter your target audience (e.g., &ldquo;small business owners,&rdquo; &ldquo;tech professionals,&rdquo; &ldquo;new parents&rdquo;) to tailor the copy to their interests.</li>
+          <li>Choose the copy type: Ad Copy, Product Description, or Social Media Post &mdash; each follows a different structure and length.</li>
+          <li>Select a tone that matches your brand voice: Professional, Persuasive, Friendly, or Luxury.</li>
+          <li>Click &ldquo;Generate Copy&rdquo; and review the AI-written marketing text in the result panel.</li>
+          <li>Use the Copy button to move the generated copy to your clipboard and paste it into your ad platform, website, or social media scheduler.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Include specific data points, pricing, or testimonials in your product description so the AI can incorporate concrete selling points.</li>
+          <li>For social media posts, mention the platform (Instagram, LinkedIn, Twitter, Facebook) so the AI adjusts length and format accordingly.</li>
+          <li>Generate multiple variations with different tones to A/B test which messaging resonates best with your audience.</li>
+          <li>Edit the generated copy to add your brand&rsquo;s unique voice and adjust any claims for accuracy before publishing.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What types of copy can I generate?</h3><p>You can generate ad copy, product descriptions, and social media posts. Each type follows best practices for its format &mdash; ads are concise and action-oriented, descriptions are detailed, and social posts are engaging and platform-appropriate.</p></div>
+          <div><h3 className="font-semibold">Can I choose the tone of the generated copy?</h3><p>Yes, the tool offers four tones: Professional (formal and credible), Persuasive (benefit-driven with calls to action), Friendly (approachable and conversational), and Luxury (sophisticated and premium).</p></div>
+          <div><h3 className="font-semibold">How long should my product description be?</h3><p>Aim for 2&ndash;4 sentences covering what the product is, its key benefit, and what makes it unique. You can provide more detail for longer-form content like landing pages.</p></div>
+          <div><h3 className="font-semibold">Is the generated copy original?</h3><p>Yes, the AI generates original text based on your inputs. However, you should always review for brand alignment, factual accuracy, and compliance with advertising guidelines before publishing.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -286,27 +286,43 @@ export default function ImageCompressPage() {
       )}
 
       {/* SEO Content */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">About Online Image Compression</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>
-            Our image compression tool uses advanced algorithms to reduce the file size of your images
-            without sacrificing visual quality. Whether you need to optimize images for your website,
-            save storage space, or prepare images for email, our tool delivers optimal results.
-          </p>
-          <h3 className="font-semibold text-gray-700 dark:text-gray-300">Why compress images?</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Faster website loading times &mdash; compressed images load up to 80% faster</li>
-            <li>Save bandwidth and storage costs</li>
-            <li>Better user experience and higher SEO rankings</li>
-            <li>Easier to share via email and messaging apps</li>
-          </ul>
-          <p>
-            Supports JPEG, PNG, WebP, and GIF formats. All processing happens server-side with
-            industry-standard compression algorithms. Your files are never stored permanently.
-          </p>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Upload an image by clicking the upload area or dragging and dropping a file onto it.</li>
+          <li>Adjust the quality slider to control compression level &mdash; lower values produce smaller files.</li>
+          <li>Select the output format: keep Auto (same as original) or choose JPEG, PNG, or WebP.</li>
+          <li>Click <strong>Compress Image</strong> to process your image.</li>
+          <li>Compare the before and after sizes and preview quality side by side.</li>
+          <li>Download the compressed image directly to your device.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>For web images, 70&ndash;80% quality offers the best balance between file size and visual fidelity.</li>
+          <li>WebP format achieves significantly smaller files than JPEG at the same quality level.</li>
+          <li>Use higher quality settings (90%+) for images containing text or graphics with sharp edges.</li>
+          <li>Always keep the original file in case you need to re-compress with different settings later.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Is there a file size limit?</h3>
+            <p>Yes, the maximum upload size is 20MB per image.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Does compression reduce image dimensions?</h3>
+            <p>No, compression only reduces file size by optimizing data encoding. Pixel dimensions remain unchanged.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Which format offers the best compression?</h3>
+            <p>WebP typically offers the best compression-to-quality ratio, followed by JPEG. PNG is best for images that need transparency.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are my images stored on your server?</h3>
+            <p>No, all images are processed temporarily and never stored permanently on our servers.</p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

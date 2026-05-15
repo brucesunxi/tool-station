@@ -233,18 +233,43 @@ export default function PdfMergePage() {
       )}
 
       {/* SEO */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online PDF Merger</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>Combine multiple PDF files into a single document. No limits, no watermarks, no sign-ups.</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Merge unlimited PDF files (max 50MB each)</li>
-            <li>Drag and drop to reorder pages before merging</li>
-            <li>All processing is secure and private</li>
-            <li>Works on any device with a modern browser</li>
-          </ul>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Click the upload area or drag and drop PDF files into it.</li>
+          <li>Add more files using the <strong>Add More</strong> button if needed.</li>
+          <li>Reorder files with the up and down arrow buttons beside each file entry.</li>
+          <li>Remove unwanted files by clicking the X button.</li>
+          <li>Click <strong>Merge PDFs</strong> once you have selected at least two files.</li>
+          <li>Download the merged PDF document to your device.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Reorder your files before merging &mdash; the final document follows the order shown in the list.</li>
+          <li>Each PDF must be 50MB or smaller. Files exceeding this limit will be rejected.</li>
+          <li>You can merge PDFs with different page sizes &mdash; each page retains its original dimensions.</li>
+          <li>All processing is done in memory; your files are never stored on disk.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Is there a limit on how many PDFs I can merge?</h3>
+            <p>There is no hard limit on the number of files, but each file must be under 50MB and the total request size is subject to server capacity.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Will the merged PDF maintain the quality of the originals?</h3>
+            <p>Yes, merging combines pages without recompressing them, so original quality is fully preserved.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are my files stored on your servers?</h3>
+            <p>No, all processing happens in memory and files are never permanently stored.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I merge PDFs of different page sizes?</h3>
+            <p>Yes, pages retain their original dimensions in the merged document regardless of size differences.</p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

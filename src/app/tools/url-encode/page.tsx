@@ -13,19 +13,27 @@ export default function UrlEncodePage() {
     try {
       const result = encodeWhole ? encodeURI(input) : encodeURIComponent(input)
       setOutput(result)
-    } catch { setOutput('Error') }
+    } catch {
+      setOutput('Error')
+    }
   }, [input, encodeWhole])
 
   const handleDecode = useCallback(() => {
     try {
       const result = encodeWhole ? decodeURI(input) : decodeURIComponent(input)
       setOutput(result)
-    } catch { setOutput('Error: Invalid URL encoding') }
+    } catch {
+      setOutput('Error: Invalid URL encoding')
+    }
   }, [input, encodeWhole])
 
   const handleCopy = async () => {
     if (!output) return
-    try { await navigator.clipboard.writeText(output); setCopyText('Copied!'); setTimeout(() => setCopyText('Copy'), 2000) } catch { /* */ }
+    try {
+      await navigator.clipboard.writeText(output)
+      setCopyText('Copied!')
+      setTimeout(() => setCopyText('Copy'), 2000)
+    } catch { /* */ }
   }
 
   return (
@@ -36,44 +44,60 @@ export default function UrlEncodePage() {
       </div>
       <AdBanner className="mb-8 h-20" />
 
-      <div className="flex gap-4 mb-4">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input type="radio" checked={encodeWhole} onChange={() => setEncodeWhole(true)} className="accent-blue-600" />
-          <span className="text-sm">encodeURI / decodeURI <span className="text-gray-400">(whole URL)</span></span>
-        </label>
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input type="radio" checked={!encodeWhole} onChange={() => setEncodeWhole(false)} className="accent-blue-600" />
-          <span className="text-sm">encodeURIComponent / decodeURIComponent <span className="text-gray-400">(query params)</span></span>
-        </label>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div>
-          <label className="text-sm font-medium mb-2 block">Input</label>
-          <textarea value={input} onChange={e => setInput(e.target.value)} rows={10}
-            placeholder="Enter URL or text to encode/decode..."
-            className="w-full p-4 border rounded-xl resize-y text-sm font-mono dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8 space-y-4">
+        <textarea
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          placeholder="Enter URL or text to encode/decode..."
+          className="w-full p-3 border rounded-lg text-sm min-h-[100px] dark:bg-gray-700 dark:border-gray-600"
+        />
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={encodeWhole} onChange={e => setEncodeWhole(e.target.checked)} className="rounded" />
+            Whole URL
+          </label>
+          <button onClick={handleEncode} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">Encode</button>
+          <button onClick={handleDecode} className="px-4 py-2 bg-gray-600 text-white rounded-lg text-sm hover:bg-gray-700">Decode</button>
+          <button onClick={() => { setInput(''); setOutput('') }} className="px-4 py-2 border rounded-lg text-sm">Clear</button>
         </div>
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium">Output</label>
-            {output && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{copyText}</button>}
-          </div>
-          <textarea value={output} readOnly rows={10}
-            className="w-full p-4 border rounded-xl resize-y text-sm font-mono bg-gray-50 dark:bg-gray-800 dark:border-gray-700" placeholder="Result..." />
+        <div className="relative">
+          <textarea
+            value={output}
+            readOnly
+            placeholder="Result will appear here..."
+            className="w-full p-3 border rounded-lg text-sm min-h-[80px] bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+          />
+          {output && (
+            <button onClick={handleCopy} className="absolute top-2 right-2 px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded text-xs hover:bg-gray-300 dark:hover:bg-gray-500">
+              {copyText}
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="flex gap-3 mt-4">
-        <button onClick={handleEncode} className="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Encode →</button>
-        <button onClick={handleDecode} className="px-6 py-2.5 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">← Decode</button>
-        <button onClick={() => { setInput(''); setOutput('') }} className="px-6 py-2.5 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Clear</button>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Type or paste the URL or text you want to encode or decode into the input field.</li>
+          <li>Toggle "Whole URL" on to encode/decode the full URL, or off to encode/decode only URL components (query parameters).</li>
+          <li>Click "Encode" to percent-encode special characters, or "Decode" to convert encoded sequences back to readable text.</li>
+          <li>Use the copy button to copy the result to your clipboard, or click "Clear" to start over.</li>
+        </ol>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online URL Encoder / Decoder</h2>
-        <p className="text-sm text-gray-500">Encode URLs for web use, or decode percent-encoded URLs back to readable text. Two modes for whole URLs and query parameters.</p>
-      </div>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use "Whole URL" mode for encoding complete URLs — it preserves the URL structure while encoding necessary characters.</li>
+          <li>Use component mode for encoding query parameter values — it encodes more characters including /, ?, &, and #.</li>
+          <li>All processing happens in your browser using JavaScript's built-in URL encoding functions — your data stays private.</li>
+        </ul>
+
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What is URL encoding?</h3><p>URL encoding converts characters that are not allowed in URLs into a format that can be safely transmitted. For example, a space becomes %20 and an ampersand becomes %26.</p></div>
+          <div><h3 className="font-semibold">What&apos;s the difference between encodeURI and encodeURIComponent?</h3><p>encodeURI encodes a complete URI while preserving structural characters like /, ?, &amp;, #, and :. encodeURIComponent encodes a query string value and also encodes those special characters — use it for parameter values.</p></div>
+          <div><h3 className="font-semibold">Is my data sent to a server?</h3><p>No. All encoding and decoding happens in your browser using JavaScript&apos;s built-in functions. Your data never leaves your device.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

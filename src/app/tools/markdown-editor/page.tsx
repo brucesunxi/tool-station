@@ -94,10 +94,43 @@ export default function MarkdownEditorPage() {
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Markdown Editor</h2>
-        <p className="text-sm text-gray-500">Write Markdown with live preview. Supports GFM (tables, code blocks, strikethrough). All rendering happens in your browser.</p>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Type or paste Markdown syntax in the left editor panel &mdash; a sample document is provided to get started.</li>
+          <li>Watch the live HTML preview update in the right panel as you type.</li>
+          <li>Use standard Markdown elements: headings, bold, italic, lists, links, and images.</li>
+          <li>Try GFM features: tables, fenced code blocks, strikethrough, and blockquotes.</li>
+          <li>Click <strong>Copy HTML</strong> above the preview panel to copy the rendered HTML to your clipboard.</li>
+          <li>Paste your Markdown source into a .md file or the HTML into your CMS or website.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>The sample text demonstrates all major Markdown features &mdash; use it as a reference for syntax.</li>
+          <li>Tables must have header rows separated by dashes (<code>| --- |</code>) to render correctly.</li>
+          <li>Code blocks with a language identifier (e.g., <code>```javascript</code>) receive syntax highlighting in the preview.</li>
+          <li>Strikethrough text is created by wrapping words in double tildes: <code>~~text~~</code>.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">What is GFM?</h3>
+            <p>GFM stands for GitHub Flavored Markdown. It extends standard Markdown with tables, task lists, strikethrough, and automatic URL linking.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I copy the HTML output?</h3>
+            <p>Yes, click the <strong>Copy HTML</strong> button above the preview panel to copy the rendered HTML to your clipboard.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is the rendering done server-side?</h3>
+            <p>No, Markdown is rendered entirely in your browser using the marked.js library. No data is sent to any server.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I save my work?</h3>
+            <p>The editor does not include built-in save functionality. Copy the Markdown source from the left panel and save it as a .md file on your computer.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

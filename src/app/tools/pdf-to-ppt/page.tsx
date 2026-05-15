@@ -234,13 +234,43 @@ export default function PdfToPptPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online PDF to PowerPoint Converter</h2>
-        <p className="text-sm text-gray-500">
-          Convert PDF documents to editable PowerPoint presentations. Text content is extracted with positioning
-          and recreated as editable text boxes in each slide. Images from the original PDF are also preserved.
-        </p>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Upload a PDF file by clicking the upload area or dragging it onto the drop zone.</li>
+          <li>Review the file details and click <strong>Convert to Editable PowerPoint</strong>.</li>
+          <li>Wait for the progress bar to complete &mdash; the tool extracts text from each page.</li>
+          <li>Download the resulting PPTX file once processing finishes.</li>
+          <li>Open the file in Microsoft PowerPoint, Google Slides, or LibreOffice.</li>
+          <li>Edit the text, adjust formatting, and add your own styling as needed.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Text-heavy PDFs with simple layouts produce the best conversion results.</li>
+          <li>Each PDF page becomes a separate slide in the PowerPoint presentation.</li>
+          <li>Embedded fonts are mapped to commonly available alternatives such as Calibri or Consolas.</li>
+          <li>Complex layouts with tables, columns, or overlapping elements may need manual adjustment after conversion.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Does the conversion preserve images?</h3>
+            <p>This tool primarily extracts and recreates text content as editable text boxes. Complex graphics and embedded images may not transfer perfectly.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I convert a scanned PDF?</h3>
+            <p>This tool extracts text content from the PDF directly. For scanned documents (image-based PDFs), use our OCR tool first to extract the text, then paste it into PowerPoint.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What PowerPoint format is used?</h3>
+            <p>The output is PPTX format, compatible with Microsoft PowerPoint 2007 and later, plus Google Slides and LibreOffice.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Will my formatting be preserved?</h3>
+            <p>Text positioning, font faces, and bold/italic styling are preserved. Complex layouts may require some manual adjustment in PowerPoint.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

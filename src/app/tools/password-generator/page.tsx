@@ -117,10 +117,42 @@ export default function PasswordGeneratorPage() {
         )}
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Password Generator</h2>
-        <p className="text-sm text-gray-500">Generate secure passwords with customizable character sets and length. Strength indicator included.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Adjust the length slider -- longer passwords (16 characters or more) provide the best security.</li>
+          <li>Select which character types to include: uppercase letters, lowercase letters, digits, and symbols.</li>
+          <li>Set the number of passwords to generate at once using the Count slider, up to 10 at a time.</li>
+          <li>Click "Generate Passwords" to create your secure passwords instantly.</li>
+          <li>Click "Copy" next to any password to copy it to your clipboard, and check the strength meter to assess its security.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use passwords of at least 16 characters with all four character types enabled for maximum security.</li>
+          <li>Never reuse passwords across different accounts -- generate a unique password for each service you use.</li>
+          <li>Use a password manager to store generated passwords securely instead of saving them in your browser or a text file.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">How does the password strength indicator work?</h3>
+            <p>It scores passwords based on length, character variety, and use of mixed case, digits, and symbols. Scores range from Weak to Very Strong based on five criteria.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are the generated passwords truly random?</h3>
+            <p>Yes. The generator uses JavaScript's random number generator to select characters uniformly from your chosen character sets.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I generate multiple passwords at once?</h3>
+            <p>Yes. Use the Count slider to generate up to 10 passwords simultaneously, each with the same length and character settings.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are passwords saved or transmitted anywhere?</h3>
+            <p>No. All passwords are generated locally in your browser and never sent to any server. Copy them to your clipboard and store them securely in a password manager.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

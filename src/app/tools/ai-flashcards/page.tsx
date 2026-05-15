@@ -67,10 +67,32 @@ export default function AiFlashcardsPage() {
         {loading ? '🤖 Generating...' : '📇 Generate Flashcards'}
       </button>
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Flashcard Generator</h2>
-        <p className="text-sm text-gray-500">Transform any text into Q&A study flashcards. AI identifies key concepts and creates clear question-answer pairs.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Flashcard Generator</h2>
+        <ol>
+          <li>Paste your study material into the text area &mdash; this can be textbook content, lecture notes, articles, documentation, or any educational text.</li>
+          <li>Adjust the number of flashcards using the slider (5 to 20 cards) to control how many concepts the AI extracts.</li>
+          <li>Click &ldquo;Generate Flashcards&rdquo; to submit the text. The AI identifies key concepts and creates question-and-answer pairs.</li>
+          <li>Review the generated flashcards in the right panel. Each card has a clear question on one side and a concise answer on the other.</li>
+          <li>Use the Copy button to transfer all cards to your clipboard and paste them into your preferred flashcard app (Anki, Quizlet, etc.).</li>
+          <li>Study the cards and generate new sets from different sections of your material for comprehensive exam preparation.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Paste focused text on a single topic rather than a broad chapter &mdash; this helps the AI generate more specific, high-quality question-answer pairs.</li>
+          <li>For technical subjects, include code snippets, formulas, or definitions in the source text so the flashcards capture precise technical knowledge.</li>
+          <li>Use 10&ndash;15 cards per study session for optimal retention. Too many cards at once reduces recall effectiveness.</li>
+          <li>Combine multiple shorter flashcard sets from different topics rather than one large set for better spaced repetition learning.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What types of source material work best?</h3><p>Textbook chapters, lecture notes, research papers, technical documentation, and article summaries all work well. The AI extracts concepts, definitions, processes, and key facts.</p></div>
+          <div><h3 className="font-semibold">Can I export these flashcards to other apps?</h3><p>Yes, use the Copy button to copy all question-answer pairs as formatted text. You can then paste them into Anki, Quizlet, Notion, or any study tool that supports Q&amp;A import.</p></div>
+          <div><h3 className="font-semibold">How does the AI decide what to turn into a flashcard?</h3><p>The AI identifies key concepts, definitions, important facts, processes, and relationships in the text, then formulates each as a question with a clear, concise answer.</p></div>
+          <div><h3 className="font-semibold">Is there a limit on how much text I can submit?</h3><p>The tool handles paragraphs to several pages of text. For very long documents, split the content into logical sections and generate separate flashcard sets for each section.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

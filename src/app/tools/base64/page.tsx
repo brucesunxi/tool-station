@@ -84,10 +84,32 @@ export default function Base64Page() {
         )}
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Base64 Encoder &amp; Decoder</h2>
-        <p className="text-sm text-gray-500">Encode text to Base64, decode Base64 strings, or convert files to data URLs. All processing is done in your browser.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the Base64 Encoder / Decoder</h2>
+        <ol>
+          <li>Type or paste your input text into the left text area &mdash; this can be plain text to encode or a Base64 string to decode.</li>
+          <li>Click &ldquo;Encode&rdquo; to convert text to a Base64-encoded string, or click &ldquo;Decode&rdquo; to convert a Base64 string back to readable text.</li>
+          <li>Upload a file using the &ldquo;Upload File&rdquo; button to convert it to a Base64 data URL &mdash; useful for embedding images in HTML or CSS.</li>
+          <li>View the output in the right panel. For file uploads, a download link appears to save the decoded content.</li>
+          <li>Use the Copy button to copy the result to your clipboard, or click &ldquo;Download&rdquo; for file data URLs.</li>
+          <li>Click &ldquo;Clear&rdquo; to reset both input and output fields and start a new conversion.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Use the file upload feature for binary files like images, PDFs, or audio files &mdash; the tool converts them to Base64 data URLs that work directly in HTML src attributes.</li>
+          <li>When decoding, ensure the input contains only valid Base64 characters (A&ndash;Z, a&ndash;z, 0&ndash;9, +, /, =) to avoid errors.</li>
+          <li>For large files, Base64 encoding increases size by approximately 33% &mdash; consider this when embedding data URLs in web pages.</li>
+          <li>All processing happens entirely in your browser &mdash; no data is uploaded to any server, making it safe for sensitive content.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What is Base64 used for?</h3><p>Base64 encoding is commonly used to transmit binary data over text-based protocols like HTTP and SMTP. Web developers use it for data URLs in HTML and CSS, email attachments, and API payloads.</p></div>
+          <div><h3 className="font-semibold">Does the tool handle file encoding?</h3><p>Yes, use the &ldquo;Upload File&rdquo; button to select any file (image, PDF, audio, etc.). The tool converts it to a Base64 data URL that can be used directly in HTML, CSS, or JavaScript.</p></div>
+          <div><h3 className="font-semibold">Is my data safe when using this tool?</h3><p>Yes, all encoding and decoding operations run entirely in your browser using JavaScript&rsquo;s built-in btoa() and atob() functions. No data is sent to any server.</p></div>
+          <div><h3 className="font-semibold">What does the error &ldquo;Invalid Base64 string&rdquo; mean?</h3><p>This means the input contains characters that aren&rsquo;t valid in Base64 encoding. Base64 strings should only contain A&ndash;Z, a&ndash;z, 0&ndash;9, +, /, and = characters.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

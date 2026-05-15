@@ -91,13 +91,31 @@ export default function AiProsConsPage() {
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Pros & Cons Analyzer</h2>
-        <p className="text-sm text-gray-500">
-          Make better decisions with AI-powered pros and cons analysis. Get balanced, objective evaluations
-          of any decision, product, or idea with actionable recommendations.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Pros &amp; Cons Analyzer</h2>
+        <ol>
+          <li>Describe the decision, product, or idea you want to analyze in the text area.</li>
+          <li>Choose a focus area — All Aspects, Cost, or Practical — to tailor the analysis.</li>
+          <li>Click &quot;Analyze&quot; and the AI will evaluate both sides of your topic objectively.</li>
+          <li>Review the structured pros and cons along with any actionable recommendations.</li>
+          <li>Copy the analysis with one click to save or share it with your team.</li>
+        </ol>
+
+        <h2>Tips for Better Decision Analysis</h2>
+        <ul>
+          <li>Provide specific context in your topic description — include relevant details like budget, timeline, and stakeholders for more actionable insights.</li>
+          <li>Use the Cost focus for financial decisions like purchasing software, hiring, or investment choices.</li>
+          <li>Run the same topic through different focus areas to get a well-rounded perspective before making your decision.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What kinds of topics can I analyze with this tool?</h3><p>You can analyze any decision, product comparison, idea, or situation — from career moves and business strategies to product purchases and lifestyle changes.</p></div>
+          <div><h3 className="font-semibold">Is the analysis biased toward one side?</h3><p>No, the AI is designed to provide balanced, objective analysis. It evaluates both pros and cons fairly and highlights considerations you might not have thought of.</p></div>
+          <div><h3 className="font-semibold">Does the tool provide recommendations?</h3><p>Yes, beyond listing pros and cons, the AI offers actionable recommendations based on the analysis to help you make a more informed decision.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

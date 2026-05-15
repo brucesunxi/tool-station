@@ -74,13 +74,32 @@ export default function AiRegexPage() {
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Regex Generator</h2>
-        <p className="text-sm text-gray-500">
-          Describe your pattern matching needs in plain English and get the perfect regex.
-          Includes explanation, examples, and flags. Supports all major regex flavors.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Regex Generator</h2>
+        <ol>
+          <li>Type a plain English description of the text pattern you want to match into the text area &mdash; for example, &ldquo;Match email addresses&rdquo; or &ldquo;Extract all URLs from text.&rdquo;</li>
+          <li>Click the &ldquo;Generate Regex&rdquo; button to submit your description to the AI and receive a complete regular expression.</li>
+          <li>Review the generated pattern, which includes the regex itself, a plain English explanation, and example matches.</li>
+          <li>Click the Copy button to copy the regex to your clipboard for use in your code, editor, or command line.</li>
+          <li>Test the generated regex against your actual text samples using the built-in Regex Tester to verify it matches as expected.</li>
+          <li>Refine your description and regenerate if the result doesn&rsquo;t capture all desired matches or misses edge cases.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Be as specific as possible &mdash; include details about character types (digits, letters, whitespace) and whether matching should be case-sensitive.</li>
+          <li>Mention which regex flavor you use (PCRE, JavaScript, Python, etc.) so the generated pattern uses compatible syntax and features.</li>
+          <li>Describe edge cases explicitly, such as optional characters, repeating patterns, empty strings, or nested structures you need to handle.</li>
+          <li>Always test AI-generated regex against representative sample data before using it in production systems.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What regex flavors does the AI support?</h3><p>The AI generates regex compatible with PCRE, JavaScript, Python, Java, .NET, and most other major regex engines. Specify your preferred flavor in the description for best results.</p></div>
+          <div><h3 className="font-semibold">Can the AI explain what each part of the regex does?</h3><p>Yes, along with the pattern the AI provides a plain English breakdown of each component &mdash; anchors, character classes, quantifiers, groups, and flags &mdash; so you understand how it works.</p></div>
+          <div><h3 className="font-semibold">How accurate is AI-generated regex?</h3><p>The AI produces functional patterns for most common use cases. Complex nested patterns or those with many overlapping conditions should always be tested thoroughly before deployment.</p></div>
+          <div><h3 className="font-semibold">Is my data sent to a server when generating regex?</h3><p>Yes, your description is sent to the AI API to generate the regex. Avoid submitting sensitive or proprietary pattern descriptions.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -189,13 +189,43 @@ export default function DocConverterPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm whitespace-pre-wrap">{error}</div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Document Converter</h2>
-        <p className="text-sm text-gray-500">
-          Convert Word to PDF and PDF to Word documents. PDF → Word preserves text and images by rendering pages as images.
-          All PDF rendering happens in your browser &mdash; your document stays private.
-        </p>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Choose your conversion direction: <strong>Word to PDF</strong> or <strong>PDF to Word</strong> using the toggle buttons at the top.</li>
+          <li>Upload your file &mdash; a .docx file for Word to PDF, or a .pdf file for PDF to Word.</li>
+          <li>Click the <strong>Convert</strong> button to start processing.</li>
+          <li>For Word to PDF: preview the result HTML and download the PDF.</li>
+          <li>For PDF to Word: download the generated .docx file directly.</li>
+          <li>Use <strong>Convert Another</strong> to process additional files.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Word to PDF conversion produces a true PDF with selectable, searchable text &mdash; not scanned images.</li>
+          <li>PDF to Word conversion renders each PDF page as an image embedded in the Word document for visual fidelity.</li>
+          <li>For best results, ensure your source document has clean, well-structured formatting.</li>
+          <li>Each file must be 30MB or smaller.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Is the PDF to Word conversion editable?</h3>
+            <p>PDF to Word creates a document with rendered page images. Text is not directly editable, but the visual layout is preserved.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What Word format is supported for Word to PDF?</h3>
+            <p>Only .docx files are accepted for Word to PDF conversion. Older .doc format is not supported.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are my documents stored on your servers?</h3>
+            <p>No, all processing is done in memory and files are never permanently stored.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I convert scanned PDFs to Word?</h3>
+            <p>Yes, scanned PDFs are supported &mdash; each page is rendered as an image in the resulting Word document.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -210,10 +210,42 @@ export default function InvoiceGeneratorPage() {
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Invoice Generator</h2>
-        <p className="text-sm text-gray-500">Create professional invoices for your business. Add items, tax, and notes. Download as PDF. No sign-up required.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Fill in your business details -- name, email, and address -- in the "From (Your Business)" section.</li>
+          <li>Enter the client's name, email, and address in the "Bill To" section to specify the recipient.</li>
+          <li>Set the invoice number, date, and due date in the invoice details section.</li>
+          <li>Add line items with descriptions, quantities, and rates. Optionally set a tax rate percentage and add payment notes.</li>
+          <li>Click "Preview Invoice" to review the full invoice, then click "Download PDF" to print or save as a PDF file.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Always set a clear due date to encourage prompt payment -- 30 days from the invoice date is standard for most industries.</li>
+          <li>Use descriptive item names and include quantities and rates so clients understand exactly what they are being charged for.</li>
+          <li>Add payment terms and accepted payment methods in the Notes section to reduce follow-up questions.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Can I add tax to my invoice?</h3>
+            <p>Yes. Enter your tax rate percentage in the Tax field, and the subtotal, tax amount, and total will update automatically.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my invoice data stored or sent anywhere?</h3>
+            <p>No. All invoice data remains in your browser. Nothing is uploaded to any server or stored externally.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">How do I download the invoice as a PDF?</h3>
+            <p>Click "Preview Invoice" to review it, then click "Download PDF." This opens your browser's print dialog where you can choose "Save as PDF" as the destination.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I add more than one line item?</h3>
+            <p>Yes. Click the "+ Add Row" button to add as many line items as needed. Each item can have its own description, quantity, and rate.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

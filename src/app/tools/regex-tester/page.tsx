@@ -151,10 +151,32 @@ export default function RegexTesterPage() {
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Regex Tester</h2>
-        <p className="text-sm text-gray-500">Test and debug regular expressions in real-time with syntax highlighting and match details. All processing in your browser.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the Regex Tester</h2>
+        <ol>
+          <li>Type or paste your regular expression pattern in the input field between the two slashes. The tool provides a default pattern to get started.</li>
+          <li>Add flags (g for global, i for case-insensitive, m for multiline, s for dotall) by toggling the buttons below the pattern field.</li>
+          <li>Enter your test text in the left text area &mdash; the tool highlights all matches in real time as you type the pattern or change the flags.</li>
+          <li>View the highlighted matches in the right panel, where matched portions are shown with a yellow background.</li>
+          <li>Review the match details table below showing each match&rsquo;s position in the text and any captured groups.</li>
+          <li>Use the common pattern presets (Email, URL, Phone, IP Address, Date, HTML Tag) to load predefined regex patterns for quick testing.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Use the &ldquo;g&rdquo; (global) flag when you want to find all matches in the text. Without it, the tester stops after the first match.</li>
+          <li>The match details table shows captured groups (text matched by parts of the pattern inside parentheses) &mdash; use groups to extract specific portions of each match.</li>
+          <li>Start with simple patterns and gradually add complexity &mdash; test each addition to isolate which part of the regex causes unexpected behavior.</li>
+          <li>Use the common pattern presets as a starting point and customize them for your specific use case.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What regex engine does this tester use?</h3><p>The tester uses JavaScript&rsquo;s built-in RegExp engine. While most standard patterns work across languages, some features like lookbehinds may behave differently in JavaScript than in PCRE or Python.</p></div>
+          <div><h3 className="font-semibold">What do the flag buttons (g, i, m, s) do?</h3><p>g (global) finds all matches, i (ignore case) makes matching case-insensitive, m (multiline) changes ^ and $ to match line boundaries, and s (dotall) makes the dot match newline characters.</p></div>
+          <div><h3 className="font-semibold">How do I extract part of a match using capture groups?</h3><p>Wrap the portion you want to extract in parentheses in your pattern. For example, (\w+)@(\w+\.\w+) captures the username and domain separately from an email address.</p></div>
+          <div><h3 className="font-semibold">Is my data safe when using this tool?</h3><p>Yes, all regex testing happens entirely in your browser. Your patterns and test text are never sent to any server.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

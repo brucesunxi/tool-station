@@ -217,18 +217,43 @@ export default function FormatConverterPage() {
       )}
 
       {/* SEO */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Image Format Converter</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>Convert images between all major formats instantly in your browser. No uploads to external servers, no sign-ups required.</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Convert JPEG to PNG, PNG to WebP, and any combination</li>
-            <li>AVIF support for next-generation compression</li>
-            <li>Maintain original quality with optimized conversion settings</li>
-            <li>Batch ready for Pro users (coming soon)</li>
-          </ul>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Upload an image in JPEG, PNG, WebP, or GIF format.</li>
+          <li>Select your target format from the grid &mdash; each card shows a brief description of when to use it.</li>
+          <li>Click <strong>Convert</strong> to process your image into the new format.</li>
+          <li>Compare the original and converted file sizes.</li>
+          <li>Download the converted image to your device.</li>
+          <li>Use <strong>Convert Another</strong> to start over with a new file.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use <strong>PNG</strong> for images that need transparency, such as logos and icons.</li>
+          <li><strong>JPEG</strong> is ideal for photographs where smaller file size is more important than perfect fidelity.</li>
+          <li><strong>WebP</strong> offers excellent compression for the web and is supported by all modern browsers.</li>
+          <li><strong>AVIF</strong> provides the best compression ratios but has limited browser compatibility &mdash; check your audience first.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Does conversion affect image quality?</h3>
+            <p>Converting between lossy formats (JPEG to WebP) may introduce slight quality loss. Converting from a lossless format like PNG to a lossy format will reduce file size but can produce artifacts.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I convert a GIF animation?</h3>
+            <p>This tool converts single images. Animated GIFs are converted as a single static frame.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What is AVIF?</h3>
+            <p>AVIF is a next-generation image format that offers superior compression compared to JPEG and WebP. It is not yet supported by all browsers, so check compatibility for your use case.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is there a file size limit?</h3>
+            <p>Yes, the maximum upload size is 20MB per image.</p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

@@ -75,10 +75,31 @@ export default function AiHashtagsPage() {
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed">{result}</div>
         </div>
       )}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Hashtag Generator</h2>
-        <p className="text-sm text-gray-500">Generate optimized hashtags for social media. Categorized by popularity and niche relevance.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Hashtag Generator</h2>
+        <ol>
+          <li>Describe your post, topic, or content in the text area — the more detail you provide, the more relevant the hashtags.</li>
+          <li>Select your target platform — Instagram, Twitter/X, TikTok, or LinkedIn — for platform-specific hashtag suggestions.</li>
+          <li>Adjust the number of hashtags using the slider (5 to 20 hashtags).</li>
+          <li>Click &quot;Generate Hashtags&quot; and the AI will produce a curated list of relevant hashtags.</li>
+          <li>Copy the generated hashtags and paste them directly into your social media post.</li>
+        </ol>
+
+        <h2>Tips for Better Hashtag Strategy</h2>
+        <ul>
+          <li>Use a mix of broad and niche hashtags — broad ones for reach, niche ones for targeted engagement.</li>
+          <li>Select a specific platform to get hashtags optimized for that platform&apos;s algorithm and audience behavior.</li>
+          <li>Aim for 10-15 hashtags per post on Instagram and 3-5 on LinkedIn for optimal engagement.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Are the hashtags specific to each social media platform?</h3><p>Yes, when you select a platform, the AI generates hashtags that are relevant and popular on that specific platform. Different platforms have different hashtag cultures and best practices.</p></div>
+          <div><h3 className="font-semibold">How many hashtags should I use for each platform?</h3><p>For Instagram, 10-15 hashtags work well. For TikTok, 3-5 focused hashtags are effective. For LinkedIn, 3-5 professional hashtags. For Twitter/X, 1-3 hashtags is the sweet spot.</p></div>
+          <div><h3 className="font-semibold">Does the tool categorize hashtags by popularity?</h3><p>Yes, the generated hashtags are typically categorized to show which are trending or high-volume versus niche or community-specific tags.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

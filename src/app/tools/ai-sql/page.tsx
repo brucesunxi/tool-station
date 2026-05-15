@@ -64,10 +64,32 @@ export default function AiSqlPage() {
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed font-mono">{result}</div>
         </div>
       )}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI SQL Generator</h2>
-        <p className="text-sm text-gray-500">Convert natural language to SQL queries. Supports PostgreSQL, MySQL, SQLite, SQL Server, and more.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI SQL Generator</h2>
+        <ol>
+          <li>Describe the data you need in plain English &mdash; for example, &ldquo;Find all customers who made a purchase in the last 30 days&rdquo; or &ldquo;Get the top 10 products by revenue this year.&rdquo;</li>
+          <li>Select your SQL dialect from the dropdown (Standard SQL, PostgreSQL, MySQL, SQLite, or SQL Server) to ensure dialect-specific syntax.</li>
+          <li>Click &ldquo;Generate SQL&rdquo; to submit your request to the AI.</li>
+          <li>Review the generated query, including table aliases, JOIN conditions, aggregations, and filtering logic.</li>
+          <li>Use the Copy button to copy the query and paste it into your database client or application code.</li>
+          <li>Test the query against your actual database schema and adjust the description if column or table names don&rsquo;t match your schema.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Include your actual table and column names in the description so the generated query references real schema objects.</li>
+          <li>Specify whether you need JOINs, subqueries, CTEs, window functions, or aggregations like GROUP BY and HAVING.</li>
+          <li>Mention any performance considerations such as the expected data volume or required indexes.</li>
+          <li>Always review generated queries for correctness, especially DELETE, UPDATE, and DROP statements, before running them on production databases.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Does the generator support specific SQL dialects?</h3><p>Yes, you can choose from Standard SQL, PostgreSQL, MySQL, SQLite, and SQL Server. The AI tailors syntax, functions, and data types to the selected dialect.</p></div>
+          <div><h3 className="font-semibold">Can it generate complex queries with JOINs and subqueries?</h3><p>Absolutely. Describe the relationships between tables and the data you need &mdash; the AI can produce multi-table JOINs, nested subqueries, CTEs, window functions, and more.</p></div>
+          <div><h3 className="font-semibold">How should I provide table and column names?</h3><p>Include your actual schema names in the description. For example, &ldquo;From the orders table with columns id, customer_id, and total_amount&hellip;&rdquo; produces more accurate results.</p></div>
+          <div><h3 className="font-semibold">Is the generated query guaranteed to be correct?</h3><p>The AI produces syntactically valid SQL, but correctness depends on your schema. Always review and test generated queries against your database before using them in production.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

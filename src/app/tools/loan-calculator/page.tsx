@@ -181,10 +181,42 @@ export default function LoanCalculatorPage() {
         </>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Loan & Compound Interest Calculator</h2>
-        <p className="text-sm text-gray-500">Calculate loan payments, total interest, amortization schedules, and compound investment growth. All calculations run in your browser.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Select "Loan Calculator" mode to calculate monthly payments and view amortization schedules for a fixed-rate loan.</li>
+          <li>Enter the loan amount, annual interest rate, and loan term in years, then click "Calculate."</li>
+          <li>Review your monthly payment, total payment, and total interest displayed in the result cards.</li>
+          <li>Expand the "Amortization Schedule" section to see a month-by-month breakdown of principal and interest payments.</li>
+          <li>Switch to "Compound Interest" mode to calculate how an investment grows over time with regular contributions and compounding.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use the amortization schedule to understand how much of each early payment goes toward interest -- this is helpful for deciding whether to refinance.</li>
+          <li>For the compound interest calculator, more frequent compounding (monthly or daily) results in slightly higher total returns over the same period.</li>
+          <li>Try adjusting the loan term -- shorter terms have higher monthly payments but significantly lower total interest costs.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">What is the difference between the Loan Calculator and Compound Interest modes?</h3>
+            <p>The Loan Calculator determines monthly payments and total interest for a fixed-rate loan. Compound Interest calculates how an investment grows over time with compounding returns and optional contributions.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">How is the monthly payment calculated?</h3>
+            <p>The monthly payment is calculated using the standard amortization formula: M = P[r(1+r)^n] / [(1+r)^n - 1], where P is the principal, r is the monthly interest rate, and n is the total number of months.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What does the amortization schedule show?</h3>
+            <p>It shows each monthly payment broken down into principal and interest portions along with the remaining loan balance after each payment, typically for the full loan term.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are these calculations accurate for real financial planning?</h3>
+            <p>The calculations use standard financial formulas and are accurate for fixed-rate loans and compound interest. For personalized advice, consult a financial professional.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

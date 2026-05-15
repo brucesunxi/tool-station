@@ -194,10 +194,42 @@ export default function UnitConverterPage() {
         )}
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Unit Converter</h2>
-        <p className="text-sm text-gray-500">Convert between 50+ units across 8 categories. All conversions happen in your browser — nothing is sent to a server.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Select a category by clicking one of the pill buttons -- Length, Weight, Temperature, Area, Volume, Speed, Data, or Time.</li>
+          <li>Enter the numeric value you want to convert in the "Value" input field.</li>
+          <li>Choose the source unit from the "From" dropdown menu.</li>
+          <li>Choose the target unit from the "To" dropdown menu -- the converted result updates automatically in real time.</li>
+          <li>Click the swap button between the two dropdowns to quickly reverse the conversion direction.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>The converter updates results in real time as you type -- there is no "Convert" button to click for most actions.</li>
+          <li>Use the swap button to quickly invert the conversion, such as switching from miles to kilometers instead of kilometers to miles.</li>
+          <li>For temperature conversions, remember that Celsius and Kelvin use the same step size -- a change of 1 degree Celsius equals a change of 1 Kelvin.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">How many units are supported?</h3>
+            <p>Over 50 units across 8 categories including length, weight, temperature, area, volume, speed, data storage, and time.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are temperature conversions handled differently from other categories?</h3>
+            <p>Yes. Temperature conversions use offset formulas (F = C x 9/5 + 32) rather than simple multiplication factors used for other unit types.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Does the converter handle large numbers correctly?</h3>
+            <p>Yes. It uses standard JavaScript number precision. Results are displayed with up to 6 decimal places, with trailing zeros removed for readability.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my data sent to any server?</h3>
+            <p>No. All conversions are calculated in your browser. Nothing is uploaded to any server.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

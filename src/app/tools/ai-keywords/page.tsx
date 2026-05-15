@@ -73,13 +73,31 @@ export default function AiKeywordsPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Keyword Extractor</h2>
-        <p className="text-sm text-gray-500">
-          Analyze any text to extract primary keywords, secondary keywords, and long-tail phrases.
-          Ideal for SEO research, content optimization, and topic discovery.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Keyword Extractor</h2>
+        <ol>
+          <li>Paste your article, blog post, product description, or any content into the text input area.</li>
+          <li>Click &quot;Extract Keywords&quot; to start the AI analysis of your content.</li>
+          <li>Review the extracted keywords, which include primary terms, secondary keywords, and long-tail phrases.</li>
+          <li>Copy the keyword list with one click for use in your SEO strategy, content planning, or ad targeting.</li>
+          <li>Refine your input text and re-extract to discover different keyword angles for the same topic.</li>
+        </ol>
+
+        <h2>Tips for SEO Keyword Extraction</h2>
+        <ul>
+          <li>Use longer content (300+ words) for more comprehensive and accurate keyword extraction results.</li>
+          <li>Review the extracted keywords against your target audience&apos;s search intent — prioritize terms that match what users actually search for.</li>
+          <li>Combine extracted keywords into topic clusters to build a more effective content strategy.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What types of keywords does the AI extract?</h3><p>The AI extracts primary keywords (main topics), secondary keywords (supporting terms), and long-tail phrases (specific multi-word queries) from your content.</p></div>
+          <div><h3 className="font-semibold">Can I use these keywords for SEO optimization?</h3><p>Yes, the extracted keywords are ideal for SEO. Use them in meta descriptions, heading tags, image alt text, and throughout your content to improve search rankings.</p></div>
+          <div><h3 className="font-semibold">How accurate is the keyword extraction?</h3><p>The AI uses advanced natural language processing to identify the most relevant terms and phrases. Accuracy improves with well-written, focused content on a specific topic.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

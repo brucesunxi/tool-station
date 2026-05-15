@@ -90,10 +90,42 @@ export default function CoverLetterPage() {
 
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Cover Letter Generator</h2>
-        <p className="text-sm text-gray-500">Generate professional cover letters for any job application. Highlight your skills and experience with AI-powered writing tailored to each company.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Enter the job title you are applying for in the first input field.</li>
+          <li>Type the company name to personalize the cover letter for the specific organization.</li>
+          <li>Describe your relevant skills, experience, and key achievements in the skills text area for the best results.</li>
+          <li>Choose a tone -- Professional, Enthusiastic, or Direct and Concise -- to match the company culture and role.</li>
+          <li>Click "Generate Cover Letter" and wait for the AI to write your letter, then copy the result using the Copy button.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Be specific in your skills section -- mention concrete achievements like "increased sales by 20 percent" rather than vague statements.</li>
+          <li>Match the tone to the industry: Professional for corporate roles, Enthusiastic for startups and creative positions, and Direct for executive applications.</li>
+          <li>Always review and customize the generated letter before sending it -- AI outputs work best as a strong starting point.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">How does the AI generate the cover letter?</h3>
+            <p>The AI uses your job title, company name, skills, and selected tone to craft a tailored cover letter through our server-side API.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is there a limit on how many cover letters I can generate?</h3>
+            <p>No. You can generate unlimited cover letters for different job applications and companies.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I customize the generated letter before using it?</h3>
+            <p>Yes. The generated letter appears in an editable text area where you can copy it and then paste it into any word processor for further editing.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What information should I include in the skills section for the best results?</h3>
+            <p>Include your years of experience, key technical skills, notable achievements with metrics, and any relevant certifications or education.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -125,13 +125,31 @@ export default function AiEmailPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Email Generator</h2>
-        <p className="text-sm text-gray-500">
-          Generate professional emails for any business scenario. Choose from 8 scenarios, customize the tone,
-          and add your key points. AI writes a complete draft with subject line, salutation, and closing.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Email Generator</h2>
+        <ol>
+          <li>Select an email scenario from the available options &mdash; Inquiry, Complaint, Follow-up, Thank You, Proposal, Apology, Introduction, or Reminder.</li>
+          <li>Choose the desired tone &mdash; Professional, Friendly, or Direct.</li>
+          <li>Optionally enter the recipient name or title (e.g., &quot;Hiring Manager,&quot; &quot;Support Team&quot;).</li>
+          <li>Describe the key points and details your email should cover in the text area.</li>
+          <li>Click &quot;Generate Email&quot; and the AI will produce a complete draft with subject line, salutation, body, and closing.</li>
+        </ol>
+
+        <h2>Tips for Great Emails</h2>
+        <ul>
+          <li>Provide specific details in the key points field &mdash; names, dates, order numbers, and relevant context produce more accurate emails.</li>
+          <li>Use the Friendly tone for internal team communication and the Professional tone for external clients and formal correspondence.</li>
+          <li>Review and personalize the generated email before sending &mdash; small tweaks make it sound authentically like you.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Can I generate emails in different languages?</h3><p>The email generator works best for English, but you can describe your key points in other languages and the AI will produce an email accordingly.</p></div>
+          <div><h3 className="font-semibold">Does the generated email include a subject line?</h3><p>Yes, every generated email includes a complete draft with a subject line, salutation, body paragraphs, and a professional closing.</p></div>
+          <div><h3 className="font-semibold">What if I need to adjust the generated email?</h3><p>Simply modify the key points and regenerate, or copy the draft and edit it manually. You can also change the scenario or tone and try again.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

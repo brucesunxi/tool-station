@@ -73,13 +73,31 @@ export default function AiGrammarPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Grammar Checker</h2>
-        <p className="text-sm text-gray-500">
-          AI-powered grammar and spell checker for English text. Get detailed corrections with explanations
-          for each issue found, plus a fully corrected version of your text.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Grammar Checker</h2>
+        <ol>
+          <li>Paste or type the English text you want to check into the input text area.</li>
+          <li>Click &quot;Check Grammar&quot; to start the AI analysis of your text.</li>
+          <li>Review the corrected version that appears in the results panel on the right.</li>
+          <li>Read through the explanations provided for each correction to understand the grammar rules.</li>
+          <li>Copy the corrected text with one click and use it in your document or message.</li>
+        </ol>
+
+        <h2>Tips for Better Grammar Checks</h2>
+        <ul>
+          <li>Write naturally first &mdash; do not worry about perfection. The AI catches mistakes and suggests improvements.</li>
+          <li>Run longer documents through the checker section by section for more thorough analysis.</li>
+          <li>Pay attention to the corrections you see frequently &mdash; these are areas where you can improve your writing skills.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What types of errors does the AI grammar checker catch?</h3><p>It catches spelling mistakes, punctuation errors, grammatical issues (subject-verb agreement, tense, articles), awkward phrasing, and style improvements.</p></div>
+          <div><h3 className="font-semibold">Does the grammar checker work for non-native English speakers?</h3><p>Yes, it is especially helpful for non-native speakers. The AI provides corrected text along with explanations that help you learn from your mistakes.</p></div>
+          <div><h3 className="font-semibold">Can I check grammar for languages other than English?</h3><p>Currently, the grammar checker is optimized for English text. It may work for other languages, but results are best for English content.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

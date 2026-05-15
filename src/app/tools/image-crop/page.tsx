@@ -208,18 +208,43 @@ export default function ImageCropPage() {
 
       {error && <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Image Resizer</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>Resize images to exact dimensions for social media, websites, print, and more.</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Set custom width and height in pixels</li>
-            <li>Choose fit mode: cover, contain, fill, or fit inside</li>
-            <li>Maintain quality with optimized processing</li>
-            <li>Works for all major image formats</li>
-          </ul>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Upload an image by clicking the upload area or dragging and dropping a file.</li>
+          <li>Enter your desired width and height in pixels.</li>
+          <li>Choose a fit mode: <strong>Cover</strong> fills the area (may crop), <strong>Contain</strong> fits entirely (may add bars), <strong>Fill</strong> stretches exactly, or <strong>Inside</strong> shrinks to fit.</li>
+          <li>Click the resize button to process your image.</li>
+          <li>Review the before-and-after comparison and dimension changes.</li>
+          <li>Download the resized image to your device.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use <strong>Cover</strong> mode for social media profile pictures that require exact pixel dimensions.</li>
+          <li><strong>Contain</strong> preserves the original aspect ratio, adding letterbox or pillarbox bars when needed.</li>
+          <li>For thumbnail grids with uniform cell sizes, <strong>Fill</strong> forces the exact dimensions you specify.</li>
+          <li>Always resize down rather than up &mdash; enlarging an image reduces sharpness and introduces pixelation.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">What is the difference between Cover and Contain?</h3>
+            <p>Cover fills the entire target area by cropping edges if the aspect ratio differs. Contain fits the whole image inside the target dimensions, leaving bars if aspect ratios do not match.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Does resizing reduce image quality?</h3>
+            <p>Resizing down (making the image smaller) maintains good quality and can even improve perceived sharpness. Resizing up causes blurriness or pixelation.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What is the maximum file size?</h3>
+            <p>The maximum upload size is 20MB per image.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I resize multiple images at once?</h3>
+            <p>Currently this tool processes one image at a time. Batch processing is planned for a future update.</p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

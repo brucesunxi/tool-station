@@ -97,10 +97,42 @@ export default function DataConverterPage() {
 
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free JSON YAML Converter</h2>
-        <p className="text-sm text-gray-500">Convert between JSON and YAML formats instantly. All processing happens in your browser — nothing is uploaded.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Select the input format (JSON or YAML) from the left dropdown menu.</li>
+          <li>Select the output format (YAML or JSON) from the right dropdown menu.</li>
+          <li>Paste your input data into the text area on the left side of the screen.</li>
+          <li>Click "Convert to [format]" to transform your data into the selected output format.</li>
+          <li>Use the "Copy" button to copy the converted output, or click the swap button to reverse the conversion direction.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Validate your JSON with a linter before converting if the conversion fails -- common issues include trailing commas and missing quotes.</li>
+          <li>YAML is more readable for human-edited configuration files, while JSON is better for API data exchange and programmatic processing.</li>
+          <li>Use the swap button to quickly toggle between conversion directions instead of manually changing both dropdowns.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Does the converter support nested objects and arrays?</h3>
+            <p>Yes. The converter handles deeply nested structures including objects, arrays, and mixed data types of any complexity.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What happens if my input data has comments?</h3>
+            <p>JSON does not support comments, so they will cause a parse error. YAML supports comments, and they will be preserved during conversion.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my data uploaded to any server?</h3>
+            <p>No. All conversion happens in your browser using client-side libraries. Your data never leaves your computer.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Why does my JSON conversion fail?</h3>
+            <p>Common causes include trailing commas, unquoted keys, single quotes instead of double quotes, or missing brackets. Use a JSON validator to check your input.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

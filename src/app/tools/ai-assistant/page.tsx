@@ -136,14 +136,31 @@ export default function AiAssistantPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      {/* SEO */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Chat Assistant</h2>
-        <p className="text-sm text-gray-500">
-          Chat with a powerful AI assistant. Get help with writing, coding, research,
-          analysis, problem-solving, and creative tasks. No sign-up required, completely free.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Chat Assistant</h2>
+        <ol>
+          <li>Type your question or request in the chat input field at the bottom of the chat container.</li>
+          <li>Press Enter to send your message (use Shift+Enter for a new line).</li>
+          <li>Read the AI&apos;s response, then ask follow-up questions to refine the answer.</li>
+          <li>Use the &quot;Clear chat&quot; button to start a fresh conversation at any time.</li>
+          <li>Review your message count to track your conversation history.</li>
+        </ol>
+
+        <h2>Tips for Getting the Best Responses</h2>
+        <ul>
+          <li>Be specific in your questions &mdash; instead of &quot;write code,&quot; try &quot;write a Python function to sort a list of dictionaries by a key.&quot;</li>
+          <li>Use follow-up questions to refine answers. The AI remembers the conversation context.</li>
+          <li>For complex tasks, break them into smaller steps and ask one at a time for more thorough responses.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What can the AI assistant help me with?</h3><p>The AI assistant can help with writing, coding, analysis, research, brainstorming, problem-solving, creative tasks, and general questions. It is a versatile tool for almost any task.</p></div>
+          <div><h3 className="font-semibold">Does the AI assistant remember previous messages?</h3><p>Yes, the assistant maintains the conversation context within a single chat session, so it remembers what you discussed earlier in the conversation.</p></div>
+          <div><h3 className="font-semibold">Is there a limit to how many messages I can send?</h3><p>No, there are no message limits. The AI assistant is completely free to use for unlimited conversations.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

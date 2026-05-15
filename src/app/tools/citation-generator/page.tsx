@@ -244,10 +244,41 @@ export default function CitationGeneratorPage() {
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Citation Generator</h2>
-        <p className="text-sm text-gray-500">Generate accurate MLA, APA, and Chicago citations for books, websites, journal articles, and videos. All formatting is done in your browser.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Select your citation style -- MLA, APA, or Chicago -- using the toggle buttons at the top of the page.</li>
+          <li>Choose the source type: Book, Website, Journal Article, or Video.</li>
+          <li>Fill in the source details such as author, title, publisher, year, and URL as applicable to your source.</li>
+          <li>Copy the formatted citation using the "Copy Citation" button or copy individual style variants displayed below the main citation.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Always double-check auto-generated citations against your source's title page for accuracy before submitting academic work.</li>
+          <li>For websites, the access date is required in MLA and Chicago styles but optional in APA.</li>
+          <li>Use the DOI (Digital Object Identifier) for journal articles whenever possible -- it is the most reliable and stable identifier.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Which citation style should I use?</h3>
+            <p>MLA is commonly used in humanities, APA in psychology and education, and Chicago in history and some social sciences. Check with your instructor or publisher for their preferred style.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I generate citations for sources other than books, websites, articles, and videos?</h3>
+            <p>Currently, the tool supports these four source types. For other sources like conference papers or interviews, consult your style guide for the correct format.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my data sent to a server?</h3>
+            <p>No. All citation generation happens entirely in your browser -- no data is uploaded anywhere.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Do I need to include page numbers for book citations?</h3>
+            <p>Page numbers are included if you enter them but are optional in the citation. They are often required for in-text citations and footnotes referencing specific content.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

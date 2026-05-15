@@ -92,10 +92,43 @@ export default function CaseConverterPage() {
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Case Converter</h2>
-        <p className="text-sm text-gray-500">Convert text to any case format instantly. All processing happens in your browser.</p>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Type or paste your text into the input text area.</li>
+          <li>Click any case format button to apply it &mdash; the result appears instantly below.</li>
+          <li>Review the converted text in the green result box.</li>
+          <li>Click <strong>Copy</strong> to copy the result to your clipboard.</li>
+          <li>Continue editing your text and switching between cases as needed.</li>
+          <li>Paste the result into your document, code editor, or application.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li><strong>camelCase</strong> and <strong>PascalCase</strong> are commonly used for programming variable and class names.</li>
+          <li><strong>snake_case</strong> and <strong>CONSTANT_CASE</strong> are popular in Python and database column naming conventions.</li>
+          <li><strong>Title Case</strong> is ideal for headlines, article titles, and document headings.</li>
+          <li><strong>Alternating</strong> and <strong>Inverse</strong> cases are primarily decorative &mdash; use them sparingly.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Does the tool work with special characters and numbers?</h3>
+            <p>Yes, special characters and numbers are preserved in most case modes. camelCase and PascalCase strip non-alphanumeric characters during conversion.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my text sent to a server?</h3>
+            <p>No, all text processing happens locally in your browser. Nothing is transmitted over the network.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What is the difference between camelCase and PascalCase?</h3>
+            <p>camelCase starts with a lowercase letter (e.g., &quot;myVariable&quot;), while PascalCase starts with an uppercase letter (e.g., &quot;MyVariable&quot;).</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is there a character limit?</h3>
+            <p>There is no character limit &mdash; the tool runs entirely in your browser with no restrictions on text length.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -204,10 +204,42 @@ export default function ResumeBuilderPage() {
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Resume Builder</h2>
-        <p className="text-sm text-gray-500">Build a professional resume with our easy-to-use builder. Print-ready formatting, multiple sections, and PDF export. No sign-up required.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Fill in your personal details including name, professional title, email, phone, and location in the Personal Details section.</li>
+          <li>Write a professional summary that highlights your key qualifications, career objectives, and what you bring to a role.</li>
+          <li>Add your work experience entries with company names, roles, employment dates, and descriptions of your responsibilities and achievements.</li>
+          <li>List your education history including schools, degrees, fields of study, and graduation dates.</li>
+          <li>Enter your skills as a comma-separated list, then click Preview and Download to review and export your resume as a print-ready PDF.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Tailor your professional summary to the specific job you are applying for rather than using a generic overview.</li>
+          <li>Use action verbs like "led," "developed," and "implemented" in your experience descriptions to make achievements stand out.</li>
+          <li>Keep your resume to one page if you have less than 10 years of experience -- hiring managers typically spend only seconds scanning each resume.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Can I download my resume as a PDF?</h3>
+            <p>Yes. Click "Preview and Download" to see a print-ready preview, then click "Download PDF" to open your browser's print dialog and save as a PDF.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my data stored or shared with anyone?</h3>
+            <p>No. All data stays in your browser. Nothing is sent to a server or stored online.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I add multiple work experiences and education entries?</h3>
+            <p>Yes. Use the "+ Add" button to add as many entries as you need. You can also remove entries using the "Remove" button on each entry.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What if I don't fill out all sections?</h3>
+            <p>Any empty sections are automatically hidden in the preview. You only need to fill in what is relevant to your resume.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

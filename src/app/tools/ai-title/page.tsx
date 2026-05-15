@@ -111,13 +111,31 @@ export default function AiTitlePage() {
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Title Generator</h2>
-        <p className="text-sm text-gray-500">
-          Generate attention-grabbing titles for blog posts, YouTube videos, social media, ads, and more.
-          Choose from 5 styles and generate 3-10 titles at a time.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Title Generator</h2>
+        <ol>
+          <li>Enter your topic or subject in the input field — be as specific as possible for better results.</li>
+          <li>Choose a title style from the available options: Professional, Click-Worthy, How-to, Question, or Creative.</li>
+          <li>Adjust the number of titles you want using the slider (3 to 10 titles).</li>
+          <li>Click &quot;Generate Titles&quot; and the AI will produce a list of unique, catchy titles.</li>
+          <li>Copy individual titles with the &quot;Copy&quot; button next to each, or use &quot;Copy all&quot; to grab the entire list.</li>
+        </ol>
+
+        <h2>Tips for Catchy Titles</h2>
+        <ul>
+          <li>Use the Question style for educational content — curiosity-driven titles get higher click-through rates.</li>
+          <li>Try the Click-Worthy style for YouTube videos and social media posts where engagement matters most.</li>
+          <li>Generate 10 titles at once to give yourself more options to choose from and combine ideas.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What types of content can I generate titles for?</h3><p>The title generator works for blog posts, YouTube videos, social media content, ads, newsletters, podcasts, presentations, and more.</p></div>
+          <div><h3 className="font-semibold">Can I generate titles in different languages?</h3><p>The tool works best for English titles, but you can enter your topic in another language and the AI will generate matching titles.</p></div>
+          <div><h3 className="font-semibold">How does the Click-Worthy style differ from Professional?</h3><p>Click-Worthy titles use curiosity gaps, power words, and emotional triggers designed for high engagement. Professional titles are authoritative, clear, and suitable for business contexts.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

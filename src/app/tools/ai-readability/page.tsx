@@ -60,10 +60,32 @@ export default function AiReadabilityPage() {
         {loading ? '🤖 Analyzing...' : '📊 Analyze Readability'}
       </button>
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Readability Checker</h2>
-        <p className="text-sm text-gray-500">Analyze text readability with AI. Get a readability score, statistics, improvement suggestions, and a simplified version.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Readability Checker</h2>
+        <ol>
+          <li>Paste or type the text you want to analyze into the left text area. This can be a blog post, article, email, documentation, or any written content.</li>
+          <li>Click &ldquo;Analyze Readability&rdquo; to submit your text to the AI for evaluation.</li>
+          <li>Review the readability score and detailed statistics including sentence length, word complexity, and grade-level estimates.</li>
+          <li>Read the AI&rsquo;s suggestions for improving clarity &mdash; these may include shorter sentences, simpler vocabulary, or better paragraph structure.</li>
+          <li>Check the simplified version provided by the AI to see how your text reads at a lower grade level.</li>
+          <li>Apply the suggestions to your original text and re-analyze to track improvement in readability scores.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>For the most accurate analysis, submit complete paragraphs rather than isolated sentences &mdash; context helps the AI assess flow and coherence.</li>
+          <li>If writing for a general audience, aim for a readability level around grade 6&ndash;8 (Flesch-Kincaid). Technical documentation can target a higher level.</li>
+          <li>Pay attention to suggestions about passive voice and complex vocabulary &mdash; these are common culprits in hard-to-read text.</li>
+          <li>Compare the original and simplified versions side by side to learn how specific changes affect readability.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">What readability metrics does the tool provide?</h3><p>The AI provides a comprehensive analysis including estimated grade level, sentence length distribution, word complexity analysis, passive voice detection, and specific improvement suggestions.</p></div>
+          <div><h3 className="font-semibold">What is a good readability score for my content?</h3><p>For general audiences, aim for a grade 6&ndash;8 reading level. Academic content can target grade 10&ndash;12, while technical documentation is acceptable at grade 10&ndash;14 depending on the audience.</p></div>
+          <div><h3 className="font-semibold">Can the tool help me simplify complex text?</h3><p>Yes, along with analysis the AI generates a simplified version of your text that uses shorter sentences and simpler vocabulary while preserving the original meaning.</p></div>
+          <div><h3 className="font-semibold">Does the tool work with non-English text?</h3><p>The analysis is optimized for English text. For other languages, the score estimates may be less reliable, but the general suggestions about clarity and structure can still be helpful.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

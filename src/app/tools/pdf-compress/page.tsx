@@ -96,10 +96,43 @@ export default function PdfCompressPage() {
 
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free PDF Compressor</h2>
-        <p className="text-sm text-gray-500">Reduce PDF file size by optimizing internal structure and removing unused objects.</p>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Drop a PDF file onto the upload area or click to browse and select one.</li>
+          <li>Review the file name and size displayed on screen.</li>
+          <li>Click <strong>Compress PDF</strong> to start the compression process.</li>
+          <li>Wait for processing to complete &mdash; larger files take longer.</li>
+          <li>Review the compression results showing original versus compressed size.</li>
+          <li>Download the compressed PDF or use <strong>Compress Another</strong> for additional files.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Compression works best on PDFs with embedded images and heavy metadata.</li>
+          <li>Text-only PDFs typically see minimal size reduction since there is little redundant data to remove.</li>
+          <li>All processing happens in memory &mdash; your files are never written to disk on our servers.</li>
+          <li>The maximum file size is 50MB.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">How much can PDF compression reduce file size?</h3>
+            <p>Reduction varies by content. PDFs with large images can be reduced by 50&ndash;80%. Text-only PDFs may see only 5&ndash;15% compression.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Does compression affect text quality?</h3>
+            <p>No, text content is not re-encoded during compression. The optimization focuses on removing unused data and redundant objects from the PDF structure.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is the compression lossless?</h3>
+            <p>Yes, this tool uses lossless compression techniques. No content is removed, only redundant or unused data is cleaned up.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I compress password-protected PDFs?</h3>
+            <p>Password-protected PDFs are not supported. Please remove protection before uploading.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

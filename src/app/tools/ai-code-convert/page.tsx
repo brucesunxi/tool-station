@@ -87,10 +87,32 @@ export default function AiCodeConvertPage() {
         {loading ? '🤖 Converting...' : '🔄 Convert Code'}
       </button>
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Code Converter</h2>
-        <p className="text-sm text-gray-500">Convert code between 19 programming languages. Preserves logic, comments, and structure.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Code Converter</h2>
+        <ol>
+          <li>Select the source language of your code from the &ldquo;From&rdquo; dropdown &mdash; supports 19 languages including Python, JavaScript, TypeScript, Java, Go, and Rust.</li>
+          <li>Paste your source code into the left text area. The converter preserves comments, variable names, and overall structure.</li>
+          <li>Select the target language from the &ldquo;To&rdquo; dropdown. Use the swap button to quickly reverse the conversion direction.</li>
+          <li>Click &ldquo;Convert Code&rdquo; to submit your code to the AI and receive the translated version in the right panel.</li>
+          <li>Review the converted code for any language-specific idioms or library equivalents that may need manual adjustment.</li>
+          <li>Use the Copy button to copy the converted code to your clipboard, then paste it into your project.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Clean up your source code before converting &mdash; remove syntax errors and ensure the code compiles or runs correctly in the source language.</li>
+          <li>Include necessary import statements and type annotations in the source so the converter can generate appropriate equivalents in the target language.</li>
+          <li>For language pairs with very different paradigms (e.g., Python to Rust), expect structural differences and review the output carefully for correct memory management and type handling.</li>
+          <li>Use the swap button to convert code back and forth when migrating a project incrementally between languages.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Which programming languages are supported?</h3><p>The tool supports 19 languages: Python, JavaScript, TypeScript, Java, Go, Rust, C, C++, C#, Ruby, PHP, Swift, Kotlin, Scala, R, Dart, Lua, Perl, and Haskell.</p></div>
+          <div><h3 className="font-semibold">Does the converter preserve comments and formatting?</h3><p>Yes, the AI preserves inline and block comments and attempts to maintain the original code structure and naming conventions as much as possible.</p></div>
+          <div><h3 className="font-semibold">How accurate is the code conversion?</h3><p>The converter handles most syntax and control flow constructs accurately. Standard library calls and framework-specific APIs may need manual adjustment in the target language.</p></div>
+          <div><h3 className="font-semibold">Can I convert large code files?</h3><p>The tool works best with individual functions or moderate-sized files (up to a few hundred lines). For large codebases, convert one function or module at a time for best results.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

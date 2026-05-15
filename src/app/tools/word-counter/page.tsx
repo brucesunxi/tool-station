@@ -150,22 +150,43 @@ export default function WordCounterPage() {
       )}
 
       {/* SEO Content */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online Word Counter Tool</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>
-            Our word counter is a free online tool that instantly provides accurate word and character counts
-            for any text. Perfect for writers, students, content creators, and SEO professionals who need to
-            track text length requirements.
-          </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Check word count for essays, articles, and blog posts</li>
-            <li>Monitor character limits for social media posts and meta descriptions</li>
-            <li>Estimate reading time for better content planning</li>
-            <li>Track keyword density for SEO optimization</li>
-          </ul>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Type or paste your text into the text area &mdash; statistics update in real time as you type.</li>
+          <li>Review the stats panel showing word count, character count, sentences, and paragraphs.</li>
+          <li>Check the estimated reading time and speaking time for your content.</li>
+          <li>Scroll down to the Word Frequency table to see your most commonly used words.</li>
+          <li>Click <strong>Clear</strong> to reset the text area and start fresh.</li>
+          <li>Copy your text elsewhere when you are done &mdash; all analysis is instant and client-side.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use the word frequency analysis to identify overused words and improve your writing variety.</li>
+          <li>Reading time estimates help you plan blog posts and articles to match your audience's attention span.</li>
+          <li>Character count (no spaces) is useful for SMS messages, tweet drafts, and form fields with strict limits.</li>
+          <li>Paragraph count helps you evaluate whether your text is properly structured with adequate breaks.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">What is the difference between Characters and Characters (no spaces)?</h3>
+            <p>Characters includes every character including spaces. Characters (no spaces) excludes all whitespace, which is useful for SMS character limits and certain platform constraints.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">How are reading time and speaking time calculated?</h3>
+            <p>Reading time is based on an average reading speed of 200 words per minute. Speaking time uses 150 words per minute, a standard pace for conversational delivery.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is there a character limit for the text area?</h3>
+            <p>No, there is no limit &mdash; the tool processes text entirely in your browser with no server-side constraints.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I use this for SEO content analysis?</h3>
+            <p>Yes, the Word Frequency table helps you track keyword density to avoid over-optimization and ensure natural keyword usage in your content.</p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

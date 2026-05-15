@@ -69,10 +69,32 @@ export default function AiInterviewPage() {
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed">{result}</div>
         </div>
       )}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Interview Question Generator</h2>
-        <p className="text-sm text-gray-500">Generate technical, behavioral, or mixed interview questions for any role. Each question includes what interviewers look for and answering tips.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Interview Question Generator</h2>
+        <ol>
+          <li>Enter the job role you&rsquo;re hiring for &mdash; for example, &ldquo;Frontend Developer,&rdquo; &ldquo;Product Manager,&rdquo; &ldquo;Data Scientist,&rdquo; or &ldquo;Marketing Lead.&rdquo;</li>
+          <li>Choose the type of questions: Technical/Skills to assess hard skills, Behavioral to evaluate soft skills and past experience, or Mixed for a balanced set.</li>
+          <li>Adjust the number of questions using the slider &mdash; anywhere from 3 to 15 questions per set.</li>
+          <li>Click &ldquo;Generate Questions&rdquo; to receive a curated list of interview questions tailored to the role.</li>
+          <li>Review each question along with what interviewers look for in a strong answer and tips for candidates preparing responses.</li>
+          <li>Use the Copy button to save the question set for your interview panel or share it with your hiring team.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Be specific about the role level &mdash; include &ldquo;junior,&rdquo; &ldquo;senior,&rdquo; or &ldquo;lead&rdquo; in the role description to get questions calibrated to experience level.</li>
+          <li>For technical roles, mention specific technologies or frameworks (e.g., &ldquo;React + Node.js developer&rdquo; instead of just &ldquo;web developer&rdquo;) for more relevant questions.</li>
+          <li>Use Mixed mode to create well-rounded interviews that assess both technical competence and cultural fit.</li>
+          <li>Generate multiple sets for different interview stages &mdash; phone screen, technical round, and final panel &mdash; each with different focus areas.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Can I generate questions for non-technical roles?</h3><p>Yes, the generator works for any role. Enter the job title and select Behavioral or Mixed question types. It covers everything from marketing and sales to HR and operations.</p></div>
+          <div><h3 className="font-semibold">What information is included with each question?</h3><p>Every question includes context about what the interviewer should look for in a good answer, common pitfalls to watch for, and tips for candidates on how to structure their response.</p></div>
+          <div><h3 className="font-semibold">How many questions should I generate for an interview?</h3><p>For a 45&ndash;60 minute interview, 5&ndash;8 questions is ideal. For phone screens, 3&ndash;5 questions work well. Use the slider to find the right quantity for your format.</p></div>
+          <div><h3 className="font-semibold">Can I use these questions for self-practice?</h3><p>Absolutely. Candidates can use this tool to practice answering role-specific questions, review what interviewers look for, and prepare stronger responses before the actual interview.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

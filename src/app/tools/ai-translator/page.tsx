@@ -142,14 +142,31 @@ export default function AiTranslatorPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      {/* SEO */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Translator — 20+ Languages</h2>
-        <p className="text-sm text-gray-500">
-          Translate text between English, Chinese, Japanese, Korean, French, German, Spanish, and more.
-          AI-powered natural translations that preserve formatting and meaning.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Translator</h2>
+        <ol>
+          <li>Select the source language or choose &quot;Auto Detect&quot; to let the AI identify the language automatically.</li>
+          <li>Choose your target language from the list of 20+ supported languages.</li>
+          <li>Type or paste the text you want to translate into the source text area.</li>
+          <li>Click &quot;Translate with AI&quot; and the translated text will appear instantly on the right.</li>
+          <li>Use the swap button to switch source and target languages for a quick reverse translation.</li>
+        </ol>
+
+        <h2>Tips for Accurate Translations</h2>
+        <ul>
+          <li>Use complete sentences rather than fragmented phrases — full sentences give the AI more context for natural translations.</li>
+          <li>When translating between languages with different scripts (e.g., English to Japanese), review the result for proper name preservation.</li>
+          <li>For business or professional content, consider translating and then reviewing with a native speaker for cultural nuances.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">How many languages does the AI translator support?</h3><p>The translator supports 20+ languages including English, Chinese, Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, Hindi, Italian, Vietnamese, Thai, Indonesian, Turkish, Dutch, and Polish.</p></div>
+          <div><h3 className="font-semibold">How accurate is the AI translation?</h3><p>The AI produces natural-sounding translations that preserve meaning, tone, and formatting. It handles idioms and context better than traditional machine translation tools.</p></div>
+          <div><h3 className="font-semibold">Can I use Auto Detect for all translations?</h3><p>Yes, Auto Detect works well for most languages. If you know the source language, selecting it manually can improve accuracy slightly for less common language pairs.</p></div>
+        </div>
+      </section>
     </div>
   )
 }

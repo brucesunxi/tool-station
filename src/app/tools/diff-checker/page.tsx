@@ -73,10 +73,41 @@ export default function DiffCheckerPage() {
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Diff Checker</h2>
-        <p className="text-sm text-gray-500">Compare text differences with line-level highlighting. Perfect for code reviews, document comparisons, and configuration file diffs.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Paste the original text into the left text area labeled "Original."</li>
+          <li>Paste the modified or updated text into the right text area labeled "Modified."</li>
+          <li>Click the "Compare" button to compute the differences between the two texts.</li>
+          <li>Review the highlighted output -- green for added lines, red for removed lines, and unhighlighted for unchanged text.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use the diff checker to compare code changes before committing to catch unintended modifications.</li>
+          <li>Compare configuration files when troubleshooting to quickly spot what changed between working and broken setups.</li>
+          <li>Click "Copy All" to copy the complete diff output for pasting into pull request descriptions or code review comments.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">What types of differences does the tool detect?</h3>
+            <p>It detects line-level differences -- lines that were added (highlighted green), removed (highlighted red), or unchanged between the two texts.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What algorithm is used for text comparison?</h3>
+            <p>The tool uses the popular diff library, which implements a line-level diff algorithm similar to the Unix diff command.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is there a limit on text size?</h3>
+            <p>The tool works with standard text sizes. For extremely large files, consider splitting the content into smaller sections for comparison.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is my text uploaded to any server?</h3>
+            <p>No. All diff computation happens entirely within your browser using client-side JavaScript. Your text never leaves your computer.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

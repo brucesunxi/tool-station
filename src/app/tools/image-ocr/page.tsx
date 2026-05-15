@@ -100,10 +100,43 @@ export default function ImageOcrPage() {
 
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Image to Text Converter (OCR)</h2>
-        <p className="text-sm text-gray-500">Extract text from images using Tesseract.js OCR. All processing happens in your browser — nothing is uploaded to a server.</p>
-      </div>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Upload an image containing text by clicking the upload area or dragging a file onto it.</li>
+          <li>Click <strong>Extract Text</strong> to run the OCR engine on your image.</li>
+          <li>Wait for the progress indicator to reach 100% &mdash; processing time depends on image size and content.</li>
+          <li>Review the extracted text in the right panel.</li>
+          <li>Click <strong>Copy</strong> to copy the text to your clipboard for use in other applications.</li>
+          <li>Use <strong>Remove</strong> to clear the current image and start over with a new one.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>High-resolution images with clear, well-lit text produce the most accurate results.</li>
+          <li>Printed text (documents, receipts, signs) works significantly better than handwriting.</li>
+          <li>Ensure text is horizontally oriented &mdash; rotated or skewed text reduces recognition accuracy.</li>
+          <li>High contrast between text and background (e.g., black text on white paper) improves OCR quality.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Is my data sent to a server?</h3>
+            <p>No, all OCR processing happens entirely in your browser using Tesseract.js. Nothing is uploaded to any server.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What languages are supported?</h3>
+            <p>Currently English (eng) is supported. Additional languages will be added in future updates.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">What image formats are accepted?</h3>
+            <p>We support JPG, PNG, and WebP images up to 10MB.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">How accurate is the OCR?</h3>
+            <p>Accuracy depends on image quality. Clear, high-resolution images with standard fonts typically achieve 90% or higher accuracy.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

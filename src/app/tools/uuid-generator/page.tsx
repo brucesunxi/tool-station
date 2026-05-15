@@ -89,10 +89,42 @@ export default function UuidGeneratorPage() {
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Online UUID Generator</h2>
-        <p className="text-sm text-gray-500">Generate UUID v4 (random) and v7 (time-ordered) identifiers for databases, APIs, and software development. Supports batch generation up to 100 at once. All processing in your browser.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Select UUID v4 (random) or UUID v7 (time-based) using the toggle buttons at the top of the page.</li>
+          <li>Set the number of UUIDs to generate using the Count input, up to 100 at once.</li>
+          <li>Optionally enable "Uppercase" to generate UUIDs in uppercase format instead of the default lowercase.</li>
+          <li>Click the "Generate" button to create the requested number of UUID identifiers.</li>
+          <li>Hover over any UUID and click its "Copy" button, or click "Copy All" to copy all generated UUIDs to your clipboard.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>Use UUID v7 for database primary keys when you want time-ordered identifiers that improve B-tree index performance.</li>
+          <li>Use UUID v4 when you need purely random identifiers with no discernible ordering or timestamp information.</li>
+          <li>Generate UUIDs in lowercase by default, as that is the conventional format specified in RFC 4122.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">What is the difference between UUID v4 and UUID v7?</h3>
+            <p>UUID v4 is randomly generated. UUID v7 includes a timestamp prefix, making them sortable by creation time, which improves database index performance.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are the UUIDs cryptographically secure?</h3>
+            <p>They use JavaScript's random number generator. For most applications this is sufficient, but for cryptographic contexts consider using the Web Crypto API.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I generate UUIDs for use in a database?</h3>
+            <p>Yes. UUIDs are commonly used as primary keys. UUID v7 is particularly well-suited for databases because time-ordered values reduce index fragmentation.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is there a limit on how many UUIDs I can generate?</h3>
+            <p>You can generate up to 100 UUIDs at once. You can click the Generate button repeatedly to create additional batches.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

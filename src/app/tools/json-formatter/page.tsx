@@ -158,21 +158,31 @@ export default function JsonFormatterPage() {
       </div>
 
       {/* SEO Content */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Online JSON Formatter &amp; Validator</h2>
-        <div className="text-sm text-gray-500 space-y-3">
-          <p>
-            A free online tool to format, validate, and minify JSON data. Perfect for developers
-            working with APIs, configuration files, or any JSON data structure.
-          </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Format messy JSON into readable, indented structure</li>
-            <li>Minify JSON to reduce file size for production</li>
-            <li>Validate JSON syntax with detailed error messages</li>
-            <li>All processing happens in your browser &mdash; no data is sent to any server</li>
-          </ul>
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the JSON Formatter &amp; Validator</h2>
+        <ol>
+          <li>Paste your JSON data into the left text area. The input can be a minified JSON string, a configuration file, or API response data.</li>
+          <li>Click &ldquo;Format&rdquo; to pretty-print the JSON with 2-space indentation. The tool validates the JSON and displays an error message if the syntax is incorrect.</li>
+          <li>Click &ldquo;Minify&rdquo; to compress the JSON into a single line &mdash; perfect for reducing payload size in API requests and responses.</li>
+          <li>Check the status indicator &mdash; a green checkmark confirms valid JSON and shows the output byte size, while a red error message pinpoints syntax issues.</li>
+          <li>Use the Copy button to copy the formatted or minified JSON to your clipboard.</li>
+          <li>Try the example buttons (Simple Object, Array of Users, API Config) to see how different JSON structures appear when formatted.</li>
+        </ol>
+        <h2>Tips for Better Results</h2>
+        <ul>
+          <li>Use Format during development to keep configuration and API response data readable and easy to debug.</li>
+          <li>Use Minify before deploying JSON files or sending data in API requests to reduce bandwidth usage.</li>
+          <li>Watch for trailing commas &mdash; they are invalid in JSON but valid in JavaScript objects. The tool will flag them as errors.</li>
+          <li>The formatter validates key and string delimiters &mdash; both must use double quotes (&ldquo;&nbsp;&rdquo;), not single quotes (&lsquo;&nbsp;&rsquo;).</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Is JSON the same as a JavaScript object?</h3><p>No, JSON is a strict text format derived from JavaScript object syntax. JSON requires double-quoted keys and strings, no trailing commas, and no functions or undefined values.</p></div>
+          <div><h3 className="font-semibold">Can the formatter handle large JSON files?</h3><p>Yes, the tool can handle large JSON structures. For extremely large files (tens of thousands of lines), the processing is done client-side and performance depends on your browser.</p></div>
+          <div><h3 className="font-semibold">What does &ldquo;Invalid JSON&rdquo; mean and how do I fix it?</h3><p>Invalid JSON means the parser found a syntax error. Common causes include trailing commas, single quotes instead of double quotes, missing brackets, or unescaped special characters. The error message shows the approximate location of the issue.</p></div>
+          <div><h3 className="font-semibold">Is my JSON data sent to a server?</h3><p>No, all formatting, validation, and minification happens entirely in your browser. Your JSON data is never uploaded or transmitted anywhere.</p></div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

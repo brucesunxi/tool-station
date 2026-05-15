@@ -149,10 +149,42 @@ export default function RandomToolsPage() {
         )}
       </div>
 
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free Random Tools Collection</h2>
-        <p className="text-sm text-gray-500">Random number generator, dice roller, coin flipper, lottery number picker, and decision maker. All in one page.</p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Click on a tool tab at the top -- Random Number, Dice Roll, Coin Flip, Lottery, or Pick a Choice.</li>
+          <li>For Random Number: set the minimum and maximum range, then click "Generate" to get a random number.</li>
+          <li>For Dice Roll: choose the number of sides (d4 through d100) and how many dice to roll, then click "Roll Dice."</li>
+          <li>For Coin Flip: simply click the coin emoji to flip it -- the result shows Heads or Tails.</li>
+          <li>For Pick a Choice: enter your options (one per line or comma-separated) and click "Pick" to randomly select one.</li>
+        </ol>
+        <h2>Tips</h2>
+        <ul>
+          <li>The Coin Flip is the quickest way to make a binary decision -- just click the coin once.</li>
+          <li>For Lottery, use realistic ranges like 1 to 49 with 6 picks to simulate popular lottery formats around the world.</li>
+          <li>The Pick a Choice tool is great for deciding where to eat, what movie to watch, or any situation with multiple options.</li>
+        </ul>
+        <h2>FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">How random are the results?</h3>
+            <p>The tool uses JavaScript's random number generator, which provides statistically uniform pseudo-random numbers suitable for games and casual decisions.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Can I roll dice other than standard six-sided?</h3>
+            <p>Yes. The Dice Roll tool supports d4, d6, d8, d10, d12, d20, and d100 dice -- perfect for tabletop role-playing games like Dungeons and Dragons.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Are duplicate numbers possible in the Lottery tool?</h3>
+            <p>No. The lottery tool generates unique, non-repeating numbers within your specified range, similar to real lottery drawings.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Is the data I enter saved anywhere?</h3>
+            <p>No. All processing happens locally in your browser. Nothing you enter is stored or transmitted.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

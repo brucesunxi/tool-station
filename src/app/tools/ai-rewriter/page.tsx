@@ -131,14 +131,31 @@ export default function AiRewriterPage() {
         <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>
       )}
 
-      {/* SEO */}
-      <div className="mt-12 pt-8 border-t">
-        <h2 className="text-xl font-bold mb-4">Free AI Text Rewriter</h2>
-        <p className="text-sm text-gray-500">
-          Rewrite any text with different tones and styles. Perfect for emails, social media, marketing copy,
-          academic writing, and more. AI-powered — preserves your original meaning while changing the voice.
-        </p>
-      </div>
+      {/* SEO Content */}
+      <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
+        <h2>How to Use the AI Text Rewriter</h2>
+        <ol>
+          <li>Paste or type the text you want to rewrite into the original text field.</li>
+          <li>Select your desired writing style — Formal, Concise, Casual, or Marketing.</li>
+          <li>Click &quot;Rewrite with AI&quot; and the rewritten version will appear in the output panel.</li>
+          <li>Review the word count to see how the length changed compared to your original text.</li>
+          <li>Copy the rewritten text with one click and use it in your emails, social posts, or marketing copy.</li>
+        </ol>
+
+        <h2>Tips for Great Rewrites</h2>
+        <ul>
+          <li>Start with clear, well-structured text — the better your input, the more coherent the rewrite will be.</li>
+          <li>Use Formal style for business proposals, cover letters, and professional correspondence.</li>
+          <li>Try Casual style for social media updates, blog comments, and internal team messages.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div><h3 className="font-semibold">Does the AI rewriter change the meaning of my text?</h3><p>No, the AI preserves the original meaning while adjusting the tone, style, and word choice. Key facts and intended message remain intact.</p></div>
+          <div><h3 className="font-semibold">Which style should I choose for academic writing?</h3><p>Formal style works best for academic writing, essays, and research papers. It produces polished, professional language suitable for scholarly contexts.</p></div>
+          <div><h3 className="font-semibold">Can I rewrite marketing copy with this tool?</h3><p>Absolutely. The Marketing style is designed specifically for persuasive, engaging copy — perfect for ads, product descriptions, landing pages, and promotional content.</p></div>
+        </div>
+      </section>
     </div>
   )
 }
