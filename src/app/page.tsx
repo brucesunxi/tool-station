@@ -56,7 +56,7 @@ export default function HomePage() {
           <p className="text-2xl font-bold text-blue-600">{totalTools}</p><p className="text-xs text-gray-500 mt-0.5">Free Tools</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/10 rounded-xl border border-green-200/50 dark:border-green-800/30">
-          <p className="text-2xl font-bold text-green-600">23</p><p className="text-xs text-gray-500 mt-0.5">API Endpoints</p>
+          <p className="text-2xl font-bold text-green-600">36</p><p className="text-xs text-gray-500 mt-0.5">API Endpoints</p>
         </div>
         <div className="text-center p-5 bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-900/20 dark:to-purple-800/10 rounded-xl border border-purple-200/50 dark:border-purple-800/30">
           <p className="text-2xl font-bold text-purple-600">100%</p><p className="text-xs text-gray-500 mt-0.5">Browser-based</p>

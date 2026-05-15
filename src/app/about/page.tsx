@@ -1,61 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { tools } from '@/lib/tools'
 
 export const metadata: Metadata = {
   title: 'About',
   description: 'About ToolStation — free online tools powered by AI for everyone.',
 }
-
-const toolLinks = [
-  { name: 'Image Compress', href: '/tools/image-compress' },
-  { name: 'Image Resize', href: '/tools/image-crop' },
-  { name: 'Format Converter', href: '/tools/format-converter' },
-  { name: 'PDF Merge', href: '/tools/pdf-merge' },
-  { name: 'PDF to PPT', href: '/tools/pdf-to-ppt' },
-  { name: 'Doc Converter', href: '/tools/doc-converter' },
-  { name: 'AI Text Summary', href: '/tools/ai-summary' },
-  { name: 'AI Translator', href: '/tools/ai-translator' },
-  { name: 'AI Rewriter', href: '/tools/ai-rewriter' },
-  { name: 'AI Chat', href: '/tools/ai-assistant' },
-  { name: 'AI Grammar Check', href: '/tools/ai-grammar' },
-  { name: 'AI Email Generator', href: '/tools/ai-email' },
-  { name: 'AI Title Generator', href: '/tools/ai-title' },
-  { name: 'AI Keyword Extractor', href: '/tools/ai-keywords' },
-  { name: 'AI Blog Generator', href: '/tools/ai-blog' },
-  { name: 'AI Pros & Cons', href: '/tools/ai-pros-cons' },
-  { name: 'AI Regex Generator', href: '/tools/ai-regex' },
-  { name: 'AI Hashtag Generator', href: '/tools/ai-hashtags' },
-  { name: 'AI Bio Generator', href: '/tools/ai-bio' },
-  { name: 'AI Copywriter', href: '/tools/ai-copy' },
-  { name: 'AI SQL Generator', href: '/tools/ai-sql' },
-  { name: 'AI Code Converter', href: '/tools/ai-code-convert' },
-  { name: 'AI Readability Checker', href: '/tools/ai-readability' },
-  { name: 'AI Interview Questions', href: '/tools/ai-interview' },
-  { name: 'AI Flashcard Generator', href: '/tools/ai-flashcards' },
-  { name: 'QR Code Generator', href: '/tools/qr-code' },
-  { name: 'Password Generator', href: '/tools/password-generator' },
-  { name: 'Unit Converter', href: '/tools/unit-converter' },
-  { name: 'PDF Compress', href: '/tools/pdf-compress' },
-  { name: 'Diff Checker', href: '/tools/diff-checker' },
-  { name: 'Data Converter', href: '/tools/data-converter' },
-  { name: 'Case Converter', href: '/tools/case-converter' },
-  { name: 'Markdown Editor', href: '/tools/markdown-editor' },
-  { name: 'Image OCR', href: '/tools/image-ocr' },
-  { name: 'Random Tools', href: '/tools/random-tools' },
-  { name: 'Resume Builder', href: '/tools/resume-builder' },
-  { name: 'Cover Letter', href: '/tools/cover-letter' },
-  { name: 'Citation Generator', href: '/tools/citation-generator' },
-  { name: 'Loan Calculator', href: '/tools/loan-calculator' },
-  { name: 'Invoice Generator', href: '/tools/invoice-generator' },
-  { name: 'JSON Formatter', href: '/tools/json-formatter' },
-  { name: 'Base64 Encoder', href: '/tools/base64' },
-  { name: 'UUID Generator', href: '/tools/uuid-generator' },
-  { name: 'Regex Tester', href: '/tools/regex-tester' },
-  { name: 'Code Beautifier', href: '/tools/code-beautifier' },
-  { name: 'Word Counter', href: '/tools/word-counter' },
-  { name: 'Color Converter', href: '/tools/color-converter' },
-  { name: 'URL Encoder', href: '/tools/url-encode' },
-]
 
 export default function AboutPage() {
   return (
@@ -66,7 +16,7 @@ export default function AboutPage() {
         <section>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is ToolStation?</h2>
           <p>
-            ToolStation is a collection of free online tools designed to help you process images, PDFs, text,
+            ToolStation is a collection of {tools.length} free online tools designed to help you process images, PDFs, text,
             and code — all directly in your browser. Our AI-powered tools can summarize, translate, and rewrite text,
             while our utility tools handle image compression, format conversion, PDF merging, and more.
           </p>
@@ -83,12 +33,12 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">All Tools ({toolLinks.length})</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">All Tools ({tools.length})</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {toolLinks.map(t => (
+            {tools.map(t => (
               <Link key={t.href} href={t.href}
                 className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                {t.name}
+                {t.title}
               </Link>
             ))}
           </div>
