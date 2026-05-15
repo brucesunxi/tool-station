@@ -52,7 +52,7 @@ export async function setSessionCookie(username: string): Promise<string> {
     secure: true,
     sameSite: 'lax',
     maxAge: SESSION_DURATION / 1000,
-    path: '/admin',
+    path: '/',
   })
   return token
 }
