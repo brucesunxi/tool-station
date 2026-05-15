@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 import NavDropdown from './NavDropdown'
+import LocaleSwitcher from './LocaleSwitcher'
 import { tools } from '@/lib/tools'
 
 const imageTools = tools.filter(t => t.category === 'image').map(t => ({ label: t.title, href: t.href, icon: t.icon }))
@@ -36,12 +37,14 @@ export default function Header() {
             <NavDropdown label="Dev" items={devTools} />
             <NavDropdown label="Text" items={textTools} />
             <NavDropdown label="Color" items={colorTools} />
-            <div className="pl-2 border-l border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-2 pl-2 border-l border-gray-200 dark:border-gray-700">
+              <LocaleSwitcher />
               <ThemeToggle />
             </div>
           </nav>
 
           <div className="flex items-center gap-1 md:hidden">
+            <LocaleSwitcher />
             <ThemeToggle />
             <button
               className="p-2"

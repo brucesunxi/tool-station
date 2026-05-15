@@ -1,0 +1,453 @@
+{
+  "site": {
+    "name": "ToolStation",
+    "tagline": "100 个免费在线工具 — AI 驱动",
+    "description": "免费在线工具，用于图片压缩、PDF 处理、AI 文本处理、格式转换等。无需注册。",
+    "search": "搜索",
+    "allTools": "全部工具",
+    "tools": "个工具",
+    "signUp": "无需注册"
+  },
+  "home": {
+    "title": "免费在线工具",
+    "subtitle": "AI 驱动",
+    "heroText": "直接在浏览器中处理图片、PDF、代码和文本。无需上传到外部服务器 — 快速、安全、100% 免费。"
+  },
+  "search": {
+    "title": "搜索工具",
+    "placeholder": "按工具名称、描述或分类搜索...",
+    "noResults": "未找到工具",
+    "tryDifferent": "请尝试其他关键词或分类",
+    "browseAll": "浏览全部 {count} 个免费在线工具，涵盖 6 个分类：图片、PDF、AI、开发者、文本和色彩。所有工具免费使用，无需注册。"
+  },
+  "nav": {
+    "image": "图片",
+    "pdf": "PDF",
+    "ai": "AI",
+    "dev": "开发",
+    "text": "文本",
+    "color": "色彩"
+  },
+  "footer": {
+    "description": "为所有人提供的免费在线工具。直接在浏览器中处理图片、PDF、文本和代码。",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "common": {
+    "advertisement": "广告",
+    "copy": "复制",
+    "copied": "已复制！",
+    "clear": "清空",
+    "generate": "生成",
+    "loading": "加载中...",
+    "howToUse": "如何使用",
+    "tips": "使用技巧",
+    "faq": "常见问题",
+    "refresh": "刷新",
+    "logout": "退出登录"
+  },
+  "tools": {
+    "image-compress": {
+      "title": "图片压缩",
+      "desc": "在保持质量的同时减小图片文件大小"
+    },
+    "image-crop": {
+      "title": "图片裁剪",
+      "desc": "将图片裁剪为精确尺寸"
+    },
+    "format-converter": {
+      "title": "格式转换器",
+      "desc": "在 JPG、PNG、WebP、GIF、AVIF 之间转换"
+    },
+    "image-ocr": {
+      "title": "图片文字识别",
+      "desc": "从图片中提取文字（基于浏览器）"
+    },
+    "qr-code": {
+      "title": "二维码生成器",
+      "desc": "生成自定义颜色的二维码"
+    },
+    "image-splitter": {
+      "title": "图片分割",
+      "desc": "将图片分割为行和列"
+    },
+    "image-to-pdf": {
+      "title": "图片转 PDF",
+      "desc": "将图片转换为 PDF 文档"
+    },
+    "color-extractor": {
+      "title": "颜色提取器",
+      "desc": "从照片中提取主色调"
+    },
+    "qr-reader": {
+      "title": "二维码阅读器",
+      "desc": "从上传的图片中解码二维码"
+    },
+    "favicon-generator": {
+      "title": "Favicon 生成器",
+      "desc": "从图片生成 Favicon 图标"
+    },
+    "pdf-merge": {
+      "title": "PDF 合并",
+      "desc": "将多个 PDF 合并为一个文档"
+    },
+    "pdf-to-ppt": {
+      "title": "PDF 转 PPT",
+      "desc": "将 PDF 页面转换为 PowerPoint 幻灯片"
+    },
+    "pdf-compress": {
+      "title": "PDF 压缩",
+      "desc": "在线减小 PDF 文件大小"
+    },
+    "doc-converter": {
+      "title": "文档转换器",
+      "desc": "在 Word 和 PDF 之间互相转换"
+    },
+    "pdf-split": {
+      "title": "PDF 拆分",
+      "desc": "从 PDF 文件中提取指定页面"
+    },
+    "pdf-to-jpg": {
+      "title": "PDF 转 JPG",
+      "desc": "将 PDF 页面转换为高清 JPG 图片"
+    },
+    "pdf-to-text": {
+      "title": "PDF 提取文字",
+      "desc": "从 PDF 文件中提取文本内容"
+    },
+    "pdf-password": {
+      "title": "PDF 密码",
+      "desc": "添加或移除 PDF 密码保护"
+    },
+    "pdf-metadata": {
+      "title": "PDF 元数据",
+      "desc": "查看和编辑 PDF 文档元数据"
+    },
+    "ai-summary": {
+      "title": "AI 文本摘要",
+      "desc": "用 AI 快速摘要文章"
+    },
+    "ai-translator": {
+      "title": "AI 翻译",
+      "desc": "在 20 多种语言之间翻译文本"
+    },
+    "ai-rewriter": {
+      "title": "AI 改写",
+      "desc": "用正式、随意或营销语气改写文本"
+    },
+    "ai-assistant": {
+      "title": "AI 聊天助手",
+      "desc": "与 AI 聊天，获得各种任务帮助"
+    },
+    "ai-grammar": {
+      "title": "AI 语法检查",
+      "desc": "检查拼写、语法和标点符号"
+    },
+    "ai-email": {
+      "title": "AI 邮件生成器",
+      "desc": "快速生成专业邮件"
+    },
+    "ai-title": {
+      "title": "AI 标题生成器",
+      "desc": "为博客和视频生成吸引人的标题"
+    },
+    "ai-keywords": {
+      "title": "AI 关键词提取",
+      "desc": "提取用于 SEO 优化的关键词"
+    },
+    "ai-blog": {
+      "title": "AI 博客生成器",
+      "desc": "生成博客大纲和全文"
+    },
+    "ai-pros-cons": {
+      "title": "AI 利弊分析",
+      "desc": "获得任何决策的平衡分析"
+    },
+    "cover-letter": {
+      "title": "AI 求职信",
+      "desc": "用 AI 生成求职信"
+    },
+    "ai-hashtags": {
+      "title": "AI 话题标签生成器",
+      "desc": "为社交媒体生成话题标签"
+    },
+    "ai-bio": {
+      "title": "AI 个人简介生成器",
+      "desc": "为任何平台生成个人简介"
+    },
+    "ai-copy": {
+      "title": "AI 广告文案",
+      "desc": "生成广告文案和产品描述"
+    },
+    "ai-readability": {
+      "title": "AI 可读性检查",
+      "desc": "分析和改善文本可读性"
+    },
+    "ai-interview": {
+      "title": "AI 面试题生成",
+      "desc": "为任何岗位生成面试问题"
+    },
+    "ai-flashcards": {
+      "title": "AI 闪卡生成器",
+      "desc": "将文本转换为学习闪卡"
+    },
+    "resume-builder": {
+      "title": "AI 简历生成器",
+      "desc": "制作简历并下载为 PDF"
+    },
+    "ai-story": {
+      "title": "AI 故事生成器",
+      "desc": "用 AI 生成创意故事"
+    },
+    "ai-poem": {
+      "title": "AI 诗歌生成器",
+      "desc": "用 AI 创作任何主题的诗歌"
+    },
+    "ai-code-explainer": {
+      "title": "AI 代码解释器",
+      "desc": "用通俗语言解释代码"
+    },
+    "ai-product-desc": {
+      "title": "AI 产品描述生成器",
+      "desc": "为电商生成产品描述"
+    },
+    "ai-slogan": {
+      "title": "AI 口号生成器",
+      "desc": "为品牌创建吸引人的口号"
+    },
+    "ai-social": {
+      "title": "AI 社交媒体文案",
+      "desc": "生成吸引人的社交媒体内容"
+    },
+    "ai-thanks": {
+      "title": "AI 感谢信生成器",
+      "desc": "写出贴心的感谢信"
+    },
+    "ai-email-reply": {
+      "title": "AI 邮件回复",
+      "desc": "快速生成智能邮件回复"
+    },
+    "ai-birthday-wish": {
+      "title": "AI 生日祝福",
+      "desc": "创建个性化生日祝福"
+    },
+    "ai-love-letter": {
+      "title": "AI 情书生成器",
+      "desc": "用 AI 写浪漫情书"
+    },
+    "ai-speech": {
+      "title": "AI 演讲稿生成器",
+      "desc": "为任何场合写演讲稿"
+    },
+    "ai-faq": {
+      "title": "AI 常见问题生成器",
+      "desc": "从任何内容生成常见问题"
+    },
+    "ai-learning": {
+      "title": "AI 学习路线生成器",
+      "desc": "创建个性化学习路线图"
+    },
+    "citation-generator": {
+      "title": "引用生成器",
+      "desc": "MLA、APA 和 Chicago 格式引用"
+    },
+    "loan-calculator": {
+      "title": "贷款计算器",
+      "desc": "贷款还款和复利计算"
+    },
+    "invoice-generator": {
+      "title": "发票生成器",
+      "desc": "创建发票并下载为 PDF"
+    },
+    "ai-regex": {
+      "title": "AI 正则表达式生成器",
+      "desc": "用自然语言生成正则表达式"
+    },
+    "ai-sql": {
+      "title": "AI SQL 生成器",
+      "desc": "自然语言转 SQL 查询"
+    },
+    "ai-code-convert": {
+      "title": "AI 代码转换",
+      "desc": "在 19 种编程语言之间转换代码"
+    },
+    "json-formatter": {
+      "title": "JSON 格式化",
+      "desc": "格式化、验证和压缩 JSON 数据"
+    },
+    "base64": {
+      "title": "Base64 编码器",
+      "desc": "Base64 编码/解码文本或文件"
+    },
+    "url-encode": {
+      "title": "URL 编码器",
+      "desc": "编码和解码 URL 及查询参数"
+    },
+    "uuid-generator": {
+      "title": "UUID 生成器",
+      "desc": "批量生成 UUID v4/v7"
+    },
+    "password-generator": {
+      "title": "密码生成器",
+      "desc": "生成安全强密码"
+    },
+    "diff-checker": {
+      "title": "差异比较",
+      "desc": "比较文本和代码差异"
+    },
+    "data-converter": {
+      "title": "数据转换器",
+      "desc": "在 JSON 和 YAML 之间转换"
+    },
+    "case-converter": {
+      "title": "大小写转换",
+      "desc": "在 11 种大小写格式之间转换文本"
+    },
+    "markdown-editor": {
+      "title": "Markdown 编辑器",
+      "desc": "使用实时预览编写 Markdown"
+    },
+    "random-tools": {
+      "title": "随机工具",
+      "desc": "数字、骰子、硬币、彩票、选择"
+    },
+    "unit-converter": {
+      "title": "单位转换器",
+      "desc": "长度、重量、温度、面积、体积等"
+    },
+    "regex-tester": {
+      "title": "正则表达式测试器",
+      "desc": "使用实时高亮测试正则模式"
+    },
+    "code-beautifier": {
+      "title": "代码美化器",
+      "desc": "格式化和压缩 HTML、CSS、JavaScript"
+    },
+    "word-counter": {
+      "title": "字数统计",
+      "desc": "统计字数、字符数、句数和阅读时间"
+    },
+    "reverse-text": {
+      "title": "文本反转",
+      "desc": "以多种方式反转和翻转文本"
+    },
+    "text-repeater": {
+      "title": "文本重复",
+      "desc": "使用分隔符多次重复文本"
+    },
+    "line-sorter": {
+      "title": "行排序",
+      "desc": "按字母顺序或长度排序行"
+    },
+    "palindrome-checker": {
+      "title": "回文检查器",
+      "desc": "检查文本是否正反读相同"
+    },
+    "unicode-converter": {
+      "title": "Unicode 转换器",
+      "desc": "将文本转换为 Unicode 转义序列"
+    },
+    "text-to-slug": {
+      "title": "文本转 Slug",
+      "desc": "将文本转换为 URL 友好的 slugs"
+    },
+    "morse-code": {
+      "title": "摩斯密码转换器",
+      "desc": "将文本转换为摩斯密码或反向转换"
+    },
+    "upside-down-text": {
+      "title": "翻转文本",
+      "desc": "翻转文本以获得趣味效果"
+    },
+    "binary-converter": {
+      "title": "二进制转换器",
+      "desc": "将文本转换为二进制或反向转换"
+    },
+    "strikethrough-text": {
+      "title": "删除线文本",
+      "desc": "生成 Unicode 删除线文本"
+    },
+    "random-word": {
+      "title": "随机单词生成器",
+      "desc": "生成随机单词和短语"
+    },
+    "color-converter": {
+      "title": "颜色转换器",
+      "desc": "在 HEX、RGB、HSL 之间转换并预览"
+    },
+    "random-color": {
+      "title": "随机颜色生成器",
+      "desc": "生成带有预览的随机颜色"
+    },
+    "contrast-checker": {
+      "title": "对比度检查器",
+      "desc": "检查无障碍功能的对比度比率"
+    },
+    "color-names": {
+      "title": "颜色名称查找",
+      "desc": "查找任何颜色的名称"
+    },
+    "color-gradient": {
+      "title": "渐变生成器",
+      "desc": "创建和预览 CSS 颜色渐变"
+    },
+    "color-blindness": {
+      "title": "色盲模拟器",
+      "desc": "模拟图片上的色盲效果"
+    },
+    "gradient-generator": {
+      "title": "CSS 渐变生成器",
+      "desc": "以可视化方式创建 CSS 渐变"
+    },
+    "box-shadow": {
+      "title": "CSS 阴影生成器",
+      "desc": "以可视化方式生成 CSS 盒子阴影效果"
+    },
+    "html-preview": {
+      "title": "HTML 预览",
+      "desc": "实时编写和预览 HTML"
+    },
+    "ip-lookup": {
+      "title": "IP 查询",
+      "desc": "查找您的 IP 地址和位置信息"
+    },
+    "color-palette": {
+      "title": "调色板生成器",
+      "desc": "生成和谐的配色方案"
+    },
+    "lorem-ipsum": {
+      "title": "Lorem Ipsum 生成器",
+      "desc": "为设计生成占位文本"
+    },
+    "timestamp-converter": {
+      "title": "时间戳转换器",
+      "desc": "在时间戳和日期之间转换"
+    },
+    "html-entities": {
+      "title": "HTML 实体编码器",
+      "desc": "安全编码/解码 HTML 实体"
+    },
+    "bmi-calculator": {
+      "title": "BMI 计算器",
+      "desc": "计算身体质量指数 (BMI)"
+    },
+    "percentage-calculator": {
+      "title": "百分比计算器",
+      "desc": "快速计算百分比"
+    },
+    "date-calculator": {
+      "title": "日期计算器",
+      "desc": "计算日期差异和添加天数"
+    },
+    "tip-calculator": {
+      "title": "小费计算器",
+      "desc": "计算餐厅小费和分摊账单"
+    },
+    "age-calculator": {
+      "title": "年龄计算器",
+      "desc": "精确计算年龄（年、月、日）"
+    }
+  }
+}

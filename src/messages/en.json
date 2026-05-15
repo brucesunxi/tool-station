@@ -1,0 +1,51 @@
+{
+  "site": {
+    "name": "ToolStation",
+    "tagline": "100 Free Online Tools — Powered by AI",
+    "description": "Free online tools for image compression, PDF processing, AI text processing, format conversion and more.",
+    "search": "Search",
+    "allTools": "All Tools",
+    "tools": "tools",
+    "signUp": "No Sign-up Required"
+  },
+  "home": {
+    "title": "Free Online Tools",
+    "subtitle": "Powered by AI",
+    "heroText": "Process images, PDFs, code, and text directly in your browser. No uploads to external servers — fast, secure, and 100% free."
+  },
+  "search": {
+    "title": "Search Tools",
+    "placeholder": "Search by tool name, description, or category...",
+    "noResults": "No tools found",
+    "tryDifferent": "Try a different keyword or category",
+    "browseAll": "Browse all {count} free online tools across 6 categories: Image, PDF, AI, Developer, Text, and Color. All tools are free to use with no sign-up required."
+  },
+  "nav": {
+    "image": "Image",
+    "pdf": "PDF",
+    "ai": "AI",
+    "dev": "Dev",
+    "text": "Text",
+    "color": "Color"
+  },
+  "footer": {
+    "description": "Free online tools for everyone. Process images, PDFs, text, and code directly in your browser.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "advertisement": "Advertisement",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "clear": "Clear",
+    "generate": "Generate",
+    "loading": "Loading...",
+    "howToUse": "How to Use",
+    "tips": "Tips",
+    "faq": "FAQ",
+    "refresh": "Refresh",
+    "logout": "Logout"
+  }
+}
