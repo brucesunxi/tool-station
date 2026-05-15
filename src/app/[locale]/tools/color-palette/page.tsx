@@ -1,4 +1,6 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -136,6 +138,9 @@ const HARMONY_NAMES: { value: Harmony; label: string; desc: string }[] = [
 ]
 
 export default function ColorPalettePage() {
+  const t = useTranslations('tools.color-palette')
+  const ct = useTranslations('common')
+
   const [baseColor, setBaseColor] = useState('#2563eb')
   const [harmony, setHarmony] = useState<Harmony>('complementary')
 
@@ -158,11 +163,8 @@ export default function ColorPalettePage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Color Palette Generator Free Online — Harmonious Color Schemes</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        Free online color palette generator. Create harmonious color schemes using color theory rules.
-        Generate complementary, analogous, triadic, and tetradic palettes from any color.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
 
       <AdBanner className="mb-8 h-20" />
 
@@ -232,7 +234,7 @@ export default function ColorPalettePage() {
                 <span className="text-xs font-mono mt-1">{color}</span>
                 <span className="text-xs text-gray-400">Click to copy</span>
                 {copiedIndex === i && (
-                  <span className="text-xs text-green-600 font-medium">Copied!</span>
+                  <span className="text-xs text-green-600 font-medium">{ct("copied")}</span>
                 )}
               </div>
             ))}
@@ -271,48 +273,29 @@ export default function ColorPalettePage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select a <strong>base color</strong> using the color picker or type a hex value directly.</li>
-          <li>Choose a <strong>harmony rule</strong> from the dropdown — complementary, analogous, triadic, tetradic, or split complementary.</li>
-          <li>View the generated 5-color palette. Click any swatch or hex value to copy it to your clipboard.</li>
-          <li>Use the &ldquo;Copy All&rdquo; button to copy all palette colors at once as a comma-separated list.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Analogous palettes create subtle, harmonious designs — great for backgrounds and main content areas.</li>
-          <li>Complementary and triadic palettes produce high contrast — use for call-to-action buttons and accents.</li>
-          <li>Use the darkest and lightest colors from your palette for text and backgrounds respectively to ensure proper contrast ratios.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is color harmony?</h3>
-          <p>
-            Color harmony is a design principle based on color theory that uses specific geometric
-            relationships on the color wheel to create visually pleasing color combinations.
-            Common harmonies include complementary (opposite colors), analogous (adjacent colors),
-            triadic (equally spaced), and tetradic (two complementary pairs).
-          </p>
-
-          <h3>Can I use these palettes for accessible design?</h3>
-          <p>
-            The generated palettes are based on hue relationships but do not automatically guarantee
-            WCAG contrast compliance. Always check contrast ratios for text on background colors,
-            especially with complementary or triadic schemes. You may need to adjust lightness values
-            to meet accessibility standards.
-          </p>
-
-          <h3>Why does the palette look different when I change the harmony rule?</h3>
-          <p>
-            Each harmony rule uses a different geometric relationship on the color wheel to select
-            colors. Complementary picks the opposite color, analogous picks neighbors, triadic picks
-            three evenly spaced colors, and tetradic picks four colors in a rectangle pattern. The
-            generated colors maintain the saturation and lightness of your base color for consistency.
-          </p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

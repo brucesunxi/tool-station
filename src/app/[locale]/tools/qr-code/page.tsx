@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function QrCodePage() {
+  const t = useTranslations('tools.qr-code')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [size, setSize] = useState(256)
   const [fgColor, setFgColor] = useState('#000000')
@@ -41,8 +45,8 @@ export default function QrCodePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">QR Code Generator</h1>
-        <p className="text-gray-500">Generate QR codes for URLs, text, contact info, and more. Free and instant.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -102,40 +106,27 @@ export default function QrCodePage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter the content you want to encode -- a URL, text, phone number, or any other information.</li>
-          <li>Select the QR code size from 128 by 128 up to 1024 by 1024 pixels using the dropdown menu.</li>
-          <li>Customize the foreground and background colors using the color picker inputs.</li>
-          <li>Click "Generate QR Code" to create your QR code image instantly.</li>
-          <li>Click "Download PNG" to save the QR code as a PNG image file for use in print or digital materials.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Always test your QR code by scanning it with a phone before printing it on materials to ensure the encoded content is correct.</li>
-          <li>Use higher resolution (512 or 1024) for printed materials like business cards and posters to ensure scanners can read it reliably.</li>
-          <li>Choose high-contrast color combinations -- dark foreground on a light background provides the best readability.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">What type of error correction does the QR code use?</h3>
-            <p>The tool uses Medium (M) error correction level, which allows the QR code to be scanned even if up to 15 percent of it is damaged or obscured.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I customize the colors of the QR code?</h3>
-            <p>Yes. You can set both the foreground (dark module) and background (light module) colors using the built-in color pickers before generating.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What content can I encode in a QR code?</h3>
-            <p>Any text content including URLs, plain text, phone numbers, email addresses, Wi-Fi credentials, and contact information.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">How do I save the QR code image?</h3>
-            <p>Click "Download PNG" to save the QR code as a PNG image file. You can also right-click the generated image in most browsers to save it directly.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -97,6 +98,9 @@ function quantizeColors(imageData: ImageData, maxColors: number = 10): ColorSwat
 }
 
 export default function ColorExtractorPage() {
+  const t = useTranslations('tools.color-extractor')
+  const ct = useTranslations('common')
+
   const [image, setImage] = useState<string | null>(null)
   const [colors, setColors] = useState<ColorSwatch[]>([])
   const [loading, setLoading] = useState(false)
@@ -165,10 +169,8 @@ export default function ColorExtractorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Image Color Extractor</h1>
-      <p className="text-gray-500 mb-6">
-        Upload any image and extract its dominant colors. Get HEX, RGB, and HSL values.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -250,43 +252,29 @@ export default function ColorExtractorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload any image (JPG, PNG, GIF, WebP) using the file picker.</li>
-          <li>The tool automatically analyzes the image and extracts up to 10 dominant colors.</li>
-          <li>Each color swatch displays HEX, RGB, and HSL values with a visual percentage bar.</li>
-          <li>Click <strong>Copy</strong> next to any color to copy its HEX value to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use images with clear, distinct colors for the most accurate results — busy photos with many small details may return more muted palettes.</li>
-          <li>Click any color swatch to copy its HEX code instantly for use in design tools.</li>
-          <li>The tool samples the image at a reduced resolution for performance — this does not affect color accuracy.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">How does the color extraction work?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              The tool reads every pixel of your image using the HTML5 Canvas API, then uses color quantization to group similar colors together. The most frequent color groups are selected and displayed as your dominant color palette.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">How many colors can it extract?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              The tool extracts up to 10 dominant colors. It filters out very similar colors to give you a diverse and useful palette rather than multiple nearly-identical shades.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are my images uploaded to a server?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              No. All image processing happens entirely in your browser using JavaScript and the Canvas API. Your images never leave your device — nothing is uploaded to any server.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

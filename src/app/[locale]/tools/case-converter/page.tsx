@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -7,22 +8,7 @@ type CaseType = 'upper' | 'lower' | 'title' | 'sentence' | 'camel' | 'pascal' | 
 
 interface CaseOption { value: CaseType; label: string; icon: string }
 
-const cases: CaseOption[] = [
-  { value: 'upper', label: 'UPPER CASE', icon: 'AA' },
-  { value: 'lower', label: 'lower case', icon: 'aa' },
-  { value: 'title', label: 'Title Case', icon: 'Aa' },
-  { value: 'sentence', label: 'Sentence case', icon: 'A.' },
-  { value: 'camel', label: 'camelCase', icon: 'aA' },
-  { value: 'pascal', label: 'PascalCase', icon: 'AA' },
-  { value: 'snake', label: 'snake_case', icon: 'a_a' },
-  { value: 'kebab', label: 'kebab-case', icon: 'a-a' },
-  { value: 'constant', label: 'CONSTANT_CASE', icon: 'A_A' },
-  { value: 'alternating', label: 'aLtErNaTiNg', icon: 'aA' },
-  { value: 'inverse', label: 'InVeRsE CaSe', icon: 'Aa' },
-]
-
 function applyCase(text: string, type: CaseType): string {
-  const words = text.split(/(\s+)/)
   switch (type) {
     case 'upper': return text.toUpperCase()
     case 'lower': return text.toLowerCase()
@@ -43,6 +29,23 @@ function applyCase(text: string, type: CaseType): string {
 }
 
 export default function CaseConverterPage() {
+  const t = useTranslations('tools.case-converter')
+  const ct = useTranslations('common')
+
+  const cases: CaseOption[] = [
+    { value: 'upper', label: ct('caseUpper'), icon: 'AA' },
+    { value: 'lower', label: ct('caseLower'), icon: 'aa' },
+    { value: 'title', label: ct('caseTitle'), icon: 'Aa' },
+    { value: 'sentence', label: ct('caseSentence'), icon: 'A.' },
+    { value: 'camel', label: ct('caseCamel'), icon: 'aA' },
+    { value: 'pascal', label: ct('casePascal'), icon: 'AA' },
+    { value: 'snake', label: ct('caseSnake'), icon: 'a_a' },
+    { value: 'kebab', label: ct('caseKebab'), icon: 'a-a' },
+    { value: 'constant', label: ct('caseConstant'), icon: 'A_A' },
+    { value: 'alternating', label: ct('caseAlternating'), icon: 'aA' },
+    { value: 'inverse', label: ct('caseInverse'), icon: 'Aa' },
+  ]
+
   const [text, setText] = useState('')
   const [activeCase, setActiveCase] = useState<CaseType>('lower')
   const [copied, setCopied] = useState(false)
@@ -58,13 +61,13 @@ export default function CaseConverterPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Case Converter</h1>
-        <p className="text-gray-500">Convert text between uppercase, lowercase, title case, camelCase, snake_case, and more.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
       <textarea value={text} onChange={e => setText(e.target.value)} rows={8}
-        placeholder="Type or paste text to convert..."
+        placeholder={ct("pasteHere")}
         className="w-full p-4 border rounded-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm dark:bg-gray-800 dark:border-gray-700 mb-4"
       />
 
@@ -83,7 +86,7 @@ export default function CaseConverterPage() {
       {result && (
         <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-medium text-gray-500">Result</span>
+            <span className="text-xs font-medium text-gray-500">{ct("result")}</span>
             <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-white dark:hover:bg-gray-700 transition-colors">
               {copied ? 'Copied!' : 'Copy'}
             </button>
@@ -93,42 +96,27 @@ export default function CaseConverterPage() {
       )}
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste your text into the input text area.</li>
-          <li>Click any case format button to apply it &mdash; the result appears instantly below.</li>
-          <li>Review the converted text in the green result box.</li>
-          <li>Click <strong>Copy</strong> to copy the result to your clipboard.</li>
-          <li>Continue editing your text and switching between cases as needed.</li>
-          <li>Paste the result into your document, code editor, or application.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li><strong>camelCase</strong> and <strong>PascalCase</strong> are commonly used for programming variable and class names.</li>
-          <li><strong>snake_case</strong> and <strong>CONSTANT_CASE</strong> are popular in Python and database column naming conventions.</li>
-          <li><strong>Title Case</strong> is ideal for headlines, article titles, and document headings.</li>
-          <li><strong>Alternating</strong> and <strong>Inverse</strong> cases are primarily decorative &mdash; use them sparingly.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Does the tool work with special characters and numbers?</h3>
-            <p>Yes, special characters and numbers are preserved in most case modes. camelCase and PascalCase strip non-alphanumeric characters during conversion.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my text sent to a server?</h3>
-            <p>No, all text processing happens locally in your browser. Nothing is transmitted over the network.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What is the difference between camelCase and PascalCase?</h3>
-            <p>camelCase starts with a lowercase letter (e.g., &quot;myVariable&quot;), while PascalCase starts with an uppercase letter (e.g., &quot;MyVariable&quot;).</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is there a character limit?</h3>
-            <p>There is no character limit &mdash; the tool runs entirely in your browser with no restrictions on text length.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

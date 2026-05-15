@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -66,6 +67,9 @@ function generateParagraphs(count: number): string[] {
 }
 
 export default function LoremIpsumPage() {
+  const t = useTranslations('tools.lorem-ipsum')
+  const ct = useTranslations('common')
+
   const [mode, setMode] = useState<Mode>('paragraphs')
   const [count, setCount] = useState<number>(3)
   const [output, setOutput] = useState<string>('')
@@ -111,16 +115,16 @@ export default function LoremIpsumPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Lorem Ipsum Generator Free Online — Dummy Text Generator</h1>
-      <p className="text-gray-500 mb-6">Free online Lorem Ipsum generator. Generate placeholder text for your designs, mockups, and layouts. Choose paragraphs, words, or sentences.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
         <div className="flex gap-2 mb-6">
           {[
-            { value: 'paragraphs' as Mode, label: 'Paragraphs' },
-            { value: 'words' as Mode, label: 'Words' },
-            { value: 'sentences' as Mode, label: 'Sentences' },
+            { value: 'paragraphs' as Mode, label: ct('paragraphsLabel') },
+            { value: 'words' as Mode, label: ct('wordCountLabel') },
+            { value: 'sentences' as Mode, label: ct('sentencesLabel') },
           ].map(m => (
             <button key={m.value} onClick={() => setMode(m.value)}
               className={`flex-1 p-2.5 rounded-lg border text-sm font-medium transition-all ${
@@ -160,31 +164,29 @@ export default function LoremIpsumPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Choose whether to generate paragraphs, words, or sentences using the mode buttons.</li>
-          <li>Adjust the quantity using the slider (1&ndash;50).</li>
-          <li>Click &ldquo;Generate&rdquo; to create placeholder text.</li>
-          <li>Click &ldquo;Copy&rdquo; to copy the generated text to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use paragraph mode for wireframes and mockups to fill content areas realistically.</li>
-          <li>Word mode is useful for testing layouts with specific word counts.</li>
-          <li>Regenerate if you need different text &mdash; each generation produces random variations.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is Lorem Ipsum?</h3>
-          <p>Lorem Ipsum is dummy text used in the printing and typesetting industry. It has been the industry&rsquo;s standard dummy text since the 1500s.</p>
-          <h3>Is the text truly random?</h3>
-          <p>Yes, each generation creates a unique combination of Latin-like words based on the standard Lorem Ipsum passage.</p>
-          <h3>Can I use this for commercial projects?</h3>
-          <p>Yes, Lorem Ipsum is public domain and free to use in any project, commercial or personal.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

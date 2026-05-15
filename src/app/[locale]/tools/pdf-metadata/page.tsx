@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -25,6 +26,9 @@ function formatDate(dateStr: string | null): string {
 }
 
 export default function PdfMetadataPage() {
+  const t = useTranslations('tools.pdf-metadata')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [metadata, setMetadata] = useState<PdfMetadata | null>(null)
   const [loading, setLoading] = useState(false)
@@ -34,7 +38,7 @@ export default function PdfMetadataPage() {
   const handleUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0]
     if (!f || f.type !== 'application/pdf') {
-      setError('Please select a valid PDF file.')
+      setError(ct("selectValidPdf"))
       return
     }
     setError('')
@@ -86,10 +90,8 @@ export default function PdfMetadataPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">PDF Metadata Viewer</h1>
-      <p className="text-gray-500 mb-6">
-        View PDF document properties including title, author, subject, and creation date.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -162,43 +164,29 @@ export default function PdfMetadataPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a PDF file using the file picker.</li>
-          <li>The tool automatically reads and displays all available metadata from the PDF.</li>
-          <li>View properties including title, author, subject, keywords, and creation dates.</li>
-          <li>Use the information to verify document details or organize your PDF collection.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Not all PDFs contain complete metadata — some fields may show &quot;N/A&quot; if the document creator did not fill them in.</li>
-          <li>Creation and modification dates are displayed in your local timezone for easy reference.</li>
-          <li>Use metadata to identify the source application or PDF producer that generated the document.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What metadata can this tool extract?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              The tool extracts all standard PDF document information dictionary fields: Title, Author, Subject, Keywords, Producer (the application that created the PDF), Creator (the original document application), Creation Date, and Modification Date. It also shows the total page count.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I edit the metadata with this tool?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              No, this tool is read-only. It displays the existing metadata embedded in the PDF file but does not provide editing capabilities. You would need a dedicated PDF editor to modify metadata fields.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why can&apos;t I see metadata for some PDFs?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Some PDFs, especially those created by certain applications or scanners, may have minimal or no metadata embedded. Additionally, encrypted or password-protected PDFs may not expose their metadata until decrypted. This is normal and depends on how the PDF was originally created.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

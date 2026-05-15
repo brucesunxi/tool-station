@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -42,6 +43,9 @@ function createFaviconDataUrl(
 }
 
 export default function FaviconGeneratorPage() {
+  const t = useTranslations('tools.favicon-generator')
+  const ct = useTranslations('common')
+
   const [image, setImage] = useState<string | null>(null)
   const [favicons, setFavicons] = useState<Record<number, string>>({})
   const [loading, setLoading] = useState(false)
@@ -98,10 +102,8 @@ export default function FaviconGeneratorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Favicon Generator</h1>
-      <p className="text-gray-500 mb-6">
-        Upload any image and generate favicons at all standard sizes.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -194,43 +196,29 @@ export default function FaviconGeneratorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a square image (PNG, JPG, or SVG work best) using the file picker.</li>
-          <li>The tool automatically generates favicons at 6 standard sizes: 16, 32, 48, 64, 128, and 256 pixels.</li>
-          <li>Preview each size in the grid to see how it will look on different devices.</li>
-          <li>Click <strong>Download</strong> on individual sizes or <strong>Download All Sizes</strong> to save all at once.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Start with a high-resolution square image for the best quality across all sizes, especially the larger ones.</li>
-          <li>The 16x16 and 32x32 sizes are used for browser tabs and bookmarks — ensure your source is recognizable at those small sizes.</li>
-          <li>Consider using a simple, high-contrast design as complex details become indistinguishable at small sizes.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What sizes do I need for a favicon?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Standard favicon usage: 16x16 (browser tabs), 32x32 (bookmarks, taskbar), 48x48 (Windows shortcuts), 64x64 and 128x128 (high-DPI screens), and 256x256 (Chrome web store, Android). This tool generates all six sizes for broad compatibility.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What image format should I use for the input?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              PNG is recommended for the best quality with transparency support. JPG works too but doesn&apos;t support transparent backgrounds. All common image formats supported by your browser will work.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Do I need to combine the sizes into a single .ico file?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Modern browsers no longer require .ico files — they accept PNG favicons. You can use the 32x32 or 48x48 PNG directly as your favicon by linking it in your HTML <code>&lt;link&gt;</code> tag. Each size is also useful for different platforms and devices.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

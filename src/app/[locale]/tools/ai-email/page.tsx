@@ -1,20 +1,24 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
-const scenarios = [
-  { value: 'inquiry', label: 'Inquiry', desc: 'Request information' },
-  { value: 'complaint', label: 'Complaint', desc: 'Polite escalation' },
-  { value: 'followup', label: 'Follow-up', desc: 'After a meeting' },
-  { value: 'thank_you', label: 'Thank You', desc: 'Express gratitude' },
-  { value: 'proposal', label: 'Proposal', desc: 'Business pitch' },
-  { value: 'apology', label: 'Apology', desc: 'Apologize' },
-  { value: 'introduction', label: 'Introduction', desc: 'Self-intro' },
-  { value: 'reminder', label: 'Reminder', desc: 'Gentle reminder' },
-]
-
 export default function AiEmailPage() {
+  const t = useTranslations('tools.ai-email')
+  const ct = useTranslations('common')
+
+  const scenarios = [
+    { value: 'inquiry', label: t('scenarioInquiry'), desc: t('scenarioInquiryDesc') },
+    { value: 'complaint', label: t('scenarioComplaint'), desc: t('scenarioComplaintDesc') },
+    { value: 'followup', label: t('scenarioFollowup'), desc: t('scenarioFollowupDesc') },
+    { value: 'thank_you', label: t('scenarioThankYou'), desc: t('scenarioThankYouDesc') },
+    { value: 'proposal', label: t('scenarioProposal'), desc: t('scenarioProposalDesc') },
+    { value: 'apology', label: t('scenarioApology'), desc: t('scenarioApologyDesc') },
+    { value: 'introduction', label: t('scenarioIntroduction'), desc: t('scenarioIntroductionDesc') },
+    { value: 'reminder', label: t('scenarioReminder'), desc: t('scenarioReminderDesc') },
+  ]
+
   const [scenario, setScenario] = useState('inquiry')
   const [tone, setTone] = useState('professional')
   const [recipient, setRecipient] = useState('')
@@ -33,10 +37,10 @@ export default function AiEmailPage() {
         body: JSON.stringify({ scenario, tone, recipient, details }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Generation failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setEmail(data.email)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Generation failed')
+      setError(err instanceof Error ? err.message : ct("generationFailed"))
     } finally {
       setLoading(false)
     }
@@ -47,15 +51,15 @@ export default function AiEmailPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Email Generator</h1>
-        <p className="text-gray-500">Generate professional emails in seconds. Choose a scenario, set the tone, and add your key points.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
 
       {/* Scenario */}
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Scenario</label>
+        <label className="block text-sm font-medium mb-2">{ct("scenario")}</label>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {scenarios.map(s => (
             <button key={s.value} onClick={() => setScenario(s.value)}
@@ -74,18 +78,18 @@ export default function AiEmailPage() {
       {/* Tone + Recipient */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Tone</label>
+          <label className="block text-sm font-medium mb-2">{ct("tone")}</label>
           <select value={tone} onChange={e => setTone(e.target.value)}
             className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="professional">Professional</option>
-            <option value="friendly">Friendly</option>
-            <option value="direct">Direct</option>
+            <option value="professional">{ct("toneProfessional")}</option>
+            <option value="friendly">{ct("toneFriendly")}</option>
+            <option value="direct">{ct("toneDirect")}</option>
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Recipient (optional)</label>
+          <label className="block text-sm font-medium mb-2">{ct("recipient")}</label>
           <input type="text" value={recipient} onChange={e => setRecipient(e.target.value)}
-            placeholder="e.g. Hiring Manager, Support Team"
+            placeholder={ct("placeholderRecipient")}
             className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -94,31 +98,31 @@ export default function AiEmailPage() {
       {/* Details */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Key Points</label>
+          <label className="block text-sm font-medium mb-2">{ct("keyPoints")}</label>
           <textarea value={details} onChange={e => setDetails(e.target.value)}
-            placeholder="Describe what the email should say. Include key details, questions, or points to cover..."
+            placeholder={ct("placeholderEmailDetails")}
             rows={10}
             className="w-full p-4 border rounded-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm dark:bg-gray-800 dark:border-gray-700"
           />
         </div>
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium">Generated Email</label>
+            <label className="text-sm font-medium">{ct("generatedContent")}</label>
             {email && (
-              <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+              <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
             )}
           </div>
           <div className={`min-h-[260px] p-4 border rounded-xl text-sm whitespace-pre-wrap ${
             email ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
           }`}>
-            {email || <p className="text-gray-400">{loading ? 'Writing...' : 'Email draft will appear here...'}</p>}
+            {email || <p className="text-gray-400">{loading ? ct("writing") : ct("placeholderEmailDraft")}</p>}
           </div>
         </div>
       </div>
 
       <button onClick={handleGenerate} disabled={loading || !details.trim()}
         className="w-full mt-4 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-        {loading ? '🤖 Writing email...' : '✉️ Generate Email'}
+        {loading ? ct("writing") : '✉️ Generate Email'}
       </button>
 
       {error && (
@@ -127,29 +131,29 @@ export default function AiEmailPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Email Generator</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select an email scenario from the available options &mdash; Inquiry, Complaint, Follow-up, Thank You, Proposal, Apology, Introduction, or Reminder.</li>
-          <li>Choose the desired tone &mdash; Professional, Friendly, or Direct.</li>
-          <li>Optionally enter the recipient name or title (e.g., &quot;Hiring Manager,&quot; &quot;Support Team&quot;).</li>
-          <li>Describe the key points and details your email should cover in the text area.</li>
-          <li>Click &quot;Generate Email&quot; and the AI will produce a complete draft with subject line, salutation, body, and closing.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for Great Emails</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Provide specific details in the key points field &mdash; names, dates, order numbers, and relevant context produce more accurate emails.</li>
-          <li>Use the Friendly tone for internal team communication and the Professional tone for external clients and formal correspondence.</li>
-          <li>Review and personalize the generated email before sending &mdash; small tweaks make it sound authentically like you.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">Can I generate emails in different languages?</h3><p>The email generator works best for English, but you can describe your key points in other languages and the AI will produce an email accordingly.</p></div>
-          <div><h3 className="font-semibold">Does the generated email include a subject line?</h3><p>Yes, every generated email includes a complete draft with a subject line, salutation, body paragraphs, and a professional closing.</p></div>
-          <div><h3 className="font-semibold">What if I need to adjust the generated email?</h3><p>Simply modify the key points and regenerate, or copy the draft and edit it manually. You can also change the scenario or tone and try again.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

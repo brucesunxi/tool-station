@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function PdfToTextPage() {
+  const t = useTranslations('tools.pdf-to-text')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
@@ -16,7 +20,7 @@ export default function PdfToTextPage() {
   const handleUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0]
     if (!f || f.type !== 'application/pdf') {
-      setError('Please select a valid PDF file.')
+      setError(ct("selectValidPdf"))
       return
     }
     setError('')
@@ -82,10 +86,8 @@ export default function PdfToTextPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">PDF to Text Extractor</h1>
-      <p className="text-gray-500 mb-6">
-        Extract all text content from PDF files for copying and editing.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -160,43 +162,29 @@ export default function PdfToTextPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a PDF file using the file picker. Text extraction starts automatically.</li>
-          <li>Wait for extraction to complete — the tool processes each page to collect all text content.</li>
-          <li>Review the extracted text in the text area. Page breaks are marked for reference.</li>
-          <li>Click <strong>Copy Text</strong> to copy to clipboard or <strong>Download .txt</strong> to save as a text file.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>This tool works best with text-based PDFs (digital documents, reports, academic papers).</li>
-          <li>For scanned PDFs (image-based), the text content will be empty — use an OCR tool instead.</li>
-          <li>The page order and basic layout structure are preserved, but complex formatting (tables, columns) may not render perfectly.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">Why is the extracted text for my PDF empty or garbled?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              This usually means the PDF is a scanned document (image-based) rather than a digital text-based PDF. PDF.js extracts text from the text layer of PDFs, not from images. For scanned documents, you need an OCR (Optical Character Recognition) tool.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does this tool preserve formatting like tables and columns?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Text extraction focuses on raw text content. Simple formatting like paragraph order is preserved, but complex layouts (tables, columns, text boxes) may have text appearing in reading order rather than visual layout. For precise formatting, consider using the PDF to JPG converter instead.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I extract text from password-protected PDFs?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              No. PDF.js cannot access the text content of encrypted PDFs. You will need to remove the password protection first using a PDF password removal tool before extracting text.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,10 +1,14 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { formatFileSize } from '@/lib/utils'
 import AdBanner from '@/components/AdBanner'
 
 export default function PdfCompressPage() {
+  const t = useTranslations('tools.pdf-compress')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<{ dataUrl: string; originalSize: number; compressedSize: number; ratio: number } | null>(null)
@@ -12,8 +16,8 @@ export default function PdfCompressPage() {
 
   const handleFile = (f: File) => {
     setError(null); setResult(null)
-    if (!f.name.toLowerCase().endsWith('.pdf')) { setError('Please select a PDF file'); return }
-    if (f.size > 50 * 1024 * 1024) { setError('File must be under 50MB'); return }
+    if (!f.name.toLowerCase().endsWith('.pdf')) { setError(ct("selectPdfFile")); return }
+    if (f.size > 50 * 1024 * 1024) { setError(ct("fileMustBeUnder", { size: "50MB" })); return }
     setFile(f)
   }
 
@@ -25,10 +29,10 @@ export default function PdfCompressPage() {
       fd.append('file', file)
       const res = await fetch('/api/pdf-compress', { method: 'POST', body: fd })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Compression failed')
+      if (!res.ok) throw new Error(data.error || ct("compressionFailed"))
       setResult(data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Compression failed')
+      setError(err instanceof Error ? err.message : ct("compressionFailed"))
     } finally { setLoading(false) }
   }
 
@@ -37,8 +41,8 @@ export default function PdfCompressPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">PDF Compressor</h1>
-        <p className="text-gray-500">Reduce PDF file size by removing unused data. Fast and secure — files are processed in memory.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -51,8 +55,8 @@ export default function PdfCompressPage() {
             el.type = 'file'; el.accept = '.pdf'; el.onchange = () => el.files?.[0] && handleFile(el.files[0]); el.click()
           }}>
           <p className="text-2xl mb-2">📄</p>
-          <p className="font-medium">Drop a PDF here or click to browse</p>
-          <p className="text-sm text-gray-400 mt-1">Max 50MB</p>
+          <p className="font-medium">{ct("dropFileHere")}</p>
+          <p className="text-sm text-gray-400 mt-1">{ct("maxFileSize", { size: "50MB" })}</p>
         </div>
       )}
 
@@ -68,7 +72,7 @@ export default function PdfCompressPage() {
           </div>
           <button onClick={handleCompress} disabled={loading}
             className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-            {loading ? 'Compressing...' : '📦 Compress PDF'}
+            {loading ? ct("compressing") : ct('compressPdf')}
           </button>
         </div>
       )}
@@ -77,7 +81,7 @@ export default function PdfCompressPage() {
         <div className="space-y-4">
           <div className="p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-center">
             <p className="text-4xl mb-2">✅</p>
-            <p className="text-xl font-bold mb-1">Compressed!</p>
+            <p className="text-xl font-bold mb-1">{ct("compressed")}</p>
             <p className="text-sm text-gray-500">
               {formatFileSize(result.originalSize)} → {formatFileSize(result.compressedSize)}
               <span className="ml-2 text-green-600 font-semibold">-{result.ratio}%</span>
@@ -89,7 +93,7 @@ export default function PdfCompressPage() {
               Download ({formatFileSize(result.compressedSize)})
             </a>
             <button onClick={handleReset}
-              className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Compress Another</button>
+              className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{ct("compressAnother")}</button>
           </div>
         </div>
       )}
@@ -97,42 +101,27 @@ export default function PdfCompressPage() {
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Drop a PDF file onto the upload area or click to browse and select one.</li>
-          <li>Review the file name and size displayed on screen.</li>
-          <li>Click <strong>Compress PDF</strong> to start the compression process.</li>
-          <li>Wait for processing to complete &mdash; larger files take longer.</li>
-          <li>Review the compression results showing original versus compressed size.</li>
-          <li>Download the compressed PDF or use <strong>Compress Another</strong> for additional files.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Compression works best on PDFs with embedded images and heavy metadata.</li>
-          <li>Text-only PDFs typically see minimal size reduction since there is little redundant data to remove.</li>
-          <li>All processing happens in memory &mdash; your files are never written to disk on our servers.</li>
-          <li>The maximum file size is 50MB.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">How much can PDF compression reduce file size?</h3>
-            <p>Reduction varies by content. PDFs with large images can be reduced by 50&ndash;80%. Text-only PDFs may see only 5&ndash;15% compression.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does compression affect text quality?</h3>
-            <p>No, text content is not re-encoded during compression. The optimization focuses on removing unused data and redundant objects from the PDF structure.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is the compression lossless?</h3>
-            <p>Yes, this tool uses lossless compression techniques. No content is removed, only redundant or unused data is cleaned up.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I compress password-protected PDFs?</h3>
-            <p>Password-protected PDFs are not supported. Please remove protection before uploading.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

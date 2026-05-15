@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -105,6 +106,9 @@ const WORD_BANK: Record<WordCategory, string[]> = {
 }
 
 export default function RandomWordPage() {
+  const t = useTranslations('tools.random-word')
+  const ct = useTranslations('common')
+
   const [count, setCount] = useState(5)
   const [category, setCategory] = useState<WordCategory>('all')
   const [words, setWords] = useState<string[]>([])
@@ -131,8 +135,8 @@ export default function RandomWordPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Random Word Generator</h1>
-      <p className="text-gray-500 mb-6">Generate random English words for brainstorming and creative writing.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -186,38 +190,29 @@ export default function RandomWordPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select a word <strong>Category</strong>: All Words, Nouns, Verbs, Adjectives, Animals, or Colors.</li>
-          <li>Set the <strong>Number of Words</strong> (1 to 100) you want to generate.</li>
-          <li>Click the <strong>Generate</strong> button to produce random words.</li>
-          <li>Each generated word is displayed in a tag format for easy reading.</li>
-          <li>Click <strong>Copy</strong> to copy the words as a comma-separated list.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the <strong>Nouns</strong> category to brainstorm character names or place names for writing projects.</li>
-          <li>The <strong>Adjectives</strong> category is great for generating descriptive words to improve your writing.</li>
-          <li>Generate multiple rounds to get fresh ideas — each click produces different random results.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">How large is the word database?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">The generator includes hundreds of carefully selected English words across multiple categories — including over 100 nouns, 100+ verbs, 150+ adjectives, 100+ animal names, and 80+ color names.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I generate more than 100 words at once?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">The maximum is 100 words per generation to maintain performance and readability. You can click Generate again to get a fresh set of words.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are the words truly random?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. Each word is selected independently at random from the chosen category&apos;s word bank using JavaScript&apos;s cryptographic-quality Math.random() function.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

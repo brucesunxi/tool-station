@@ -1,4 +1,6 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -17,6 +19,9 @@ function shadowCss(s: Shadow): string {
 }
 
 export default function BoxShadowPage() {
+  const t = useTranslations('tools.box-shadow')
+  const ct = useTranslations('common')
+
   const [shadow, setShadow] = useState<Shadow>({
     offsetX: 2,
     offsetY: 4,
@@ -40,11 +45,8 @@ export default function BoxShadowPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">CSS Box Shadow Generator Free Online — Shadow Effects Maker</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        Free online CSS box-shadow generator. Create custom shadow effects with visual controls. Adjust
-        offset, blur, spread, and color. Copy CSS code. Perfect for web design.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
 
       <AdBanner className="mb-8 h-20" />
 
@@ -154,45 +156,29 @@ export default function BoxShadowPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Adjust the <strong>Offset X</strong> and <strong>Offset Y</strong> sliders to position the shadow horizontally and vertically.</li>
-          <li>Use the <strong>Blur</strong> slider to control how soft or sharp the shadow edge appears.</li>
-          <li>Set the <strong>Spread</strong> to expand or contract the shadow size, and pick a <strong>Color</strong> using the color picker.</li>
-          <li>Toggle <strong>Inset</strong> to switch between an outer shadow (default) and an inner shadow effect, then copy the generated CSS.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Small blur values (2-6px) create sharp, realistic shadows for UI elements like buttons and cards.</li>
-          <li>Use semi-transparent black or gray (e.g., rgba(0,0,0,0.15)) for natural-looking shadows instead of solid colors.</li>
-          <li>Layer multiple box-shadows by separating them with commas for complex effects like glow + drop shadow.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is the difference between blur and spread?</h3>
-          <p>
-            Blur controls how the shadow fades at its edges. A higher blur creates a softer, more diffuse
-            shadow. Spread controls the size of the shadow before the blur is applied. Positive spread
-            values make the shadow larger than the element; negative values make it smaller.
-          </p>
-
-          <h3>Can I create multiple shadows on one element?</h3>
-          <p>
-            Yes. You can layer multiple box-shadow values by separating them with commas. For example:
-            <code> box-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);</code>. This
-            tool generates a single shadow, but you can manually combine outputs in your CSS.
-          </p>
-
-          <h3>Does the inset keyword change the shadow appearance?</h3>
-          <p>
-            Yes. Without inset (the default), the shadow is cast outside the element&apos;s border. With
-            inset, the shadow is drawn inside the element, creating a recessed or &ldquo;inner shadow&rdquo;
-            effect. Inset shadows are commonly used for pressed button states or inset panels.
-          </p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type BinaryMode = 'encode' | 'decode'
 
 export default function BinaryConverterPage() {
+  const t = useTranslations('tools.binary-converter')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<BinaryMode>('encode')
   const [separator, setSeparator] = useState(' ')
@@ -51,8 +55,8 @@ export default function BinaryConverterPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Binary Converter</h1>
-      <p className="text-gray-500 mb-6">Convert text to binary code and decode binary back to text.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -76,9 +80,9 @@ export default function BinaryConverterPage() {
             <label className="block text-sm font-medium mb-1">Output Separator</label>
             <select value={separator} onChange={e => setSeparator(e.target.value)}
               className="w-full max-w-xs p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option value=" ">Space</option>
-              <option value="">None</option>
-              <option value=",">Comma</option>
+              <option value=" ">{ct("separatorSpace")}</option>
+              <option value="">{ct("separatorNone")}</option>
+              <option value=",">{ct("separatorComma")}</option>
             </select>
           </div>
         )}
@@ -114,38 +118,29 @@ export default function BinaryConverterPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select <strong>Text to Binary</strong> to encode text, or <strong>Binary to Text</strong> to decode.</li>
-          <li>Type or paste your input in the appropriate field.</li>
-          <li>For encoding, choose a separator (space, comma, or none) between binary groups.</li>
-          <li>For decoding, enter 8-bit binary groups separated by spaces.</li>
-          <li>The converted result updates in real time.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Each character is represented as 8 bits (one byte) using ASCII/Unicode encoding.</li>
-          <li>When decoding, ensure binary groups are separated by spaces for proper conversion.</li>
-          <li>Use this tool to understand how computers store text data at the binary level.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What is binary encoding?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Binary encoding represents each character as an 8-bit sequence of 0s and 1s. Each character&apos;s numeric code (ASCII/Unicode) is converted to base-2 notation. For example, &quot;A&quot; (ASCII 65) becomes &quot;01000001&quot;.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why are binary values 8 bits long?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">8 bits (one byte) is the standard unit for representing a single character in computing. Eight bits can represent 256 different values (0-255), which covers all standard ASCII characters.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can this convert Unicode characters like emoji?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. Characters outside the ASCII range will still be converted to their binary representation based on their Unicode code point (in 8-bit groups for each byte of the UTF-8 representation).</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

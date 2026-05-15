@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function AiCopyPage() {
+  const t = useTranslations('tools.ai-copy')
+  const ct = useTranslations('common')
+
   const [product, setProduct] = useState('')
   const [type, setType] = useState('ad')
   const [tone, setTone] = useState('professional')
@@ -21,10 +25,10 @@ export default function AiCopyPage() {
         body: JSON.stringify({ product, type, tone, audience }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Generation failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setResult(data.result)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Generation failed')
+      setError(err instanceof Error ? err.message : ct("generationFailed"))
     } finally { setLoading(false) }
   }
 
@@ -33,8 +37,8 @@ export default function AiCopyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Copywriter</h1>
-        <p className="text-gray-500">Generate ad copy, product descriptions, and social media posts with AI.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
       <textarea value={product} onChange={e => setProduct(e.target.value)} rows={4}
@@ -50,62 +54,59 @@ export default function AiCopyPage() {
           <label className="block text-sm font-medium mb-2">Type</label>
           <select value={type} onChange={e => setType(e.target.value)}
             className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="ad">Ad Copy</option>
-            <option value="description">Product Description</option>
-            <option value="social">Social Media Post</option>
+            <option value="ad">{ct("copyAd")}</option>
+            <option value="description">{ct("copyProductDesc")}</option>
+            <option value="social">{ct("copySocialPost")}</option>
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Tone</label>
+          <label className="block text-sm font-medium mb-2">{ct("tone")}</label>
           <select value={tone} onChange={e => setTone(e.target.value)}
             className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="professional">Professional</option>
-            <option value="persuasive">Persuasive</option>
-            <option value="friendly">Friendly</option>
-            <option value="luxury">Luxury</option>
+            <option value="professional">{ct("toneProfessional")}</option>
+            <option value="persuasive">{ct("tonePersuasive")}</option>
+            <option value="friendly">{ct("toneFriendly")}</option>
+            <option value="luxury">{ct("toneLuxury")}</option>
           </select>
         </div>
       </div>
       <button onClick={handleGenerate} disabled={loading || !product.trim()}
         className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-        {loading ? '🤖 Writing...' : '✍️ Generate Copy'}
+        {loading ? ct("aiWriting") : '✍️ Generate Copy'}
       </button>
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
       {result && (
         <div className="mt-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-sm">Copy</h3>
-            <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+            <h3 className="font-semibold text-sm">{ct("copy")}</h3>
+            <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
           </div>
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed">{result}</div>
         </div>
       )}
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Copywriter</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Describe your product or service in detail &mdash; include key features, benefits, and unique selling points that set it apart from competitors.</li>
-          <li>Optionally enter your target audience (e.g., &ldquo;small business owners,&rdquo; &ldquo;tech professionals,&rdquo; &ldquo;new parents&rdquo;) to tailor the copy to their interests.</li>
-          <li>Choose the copy type: Ad Copy, Product Description, or Social Media Post &mdash; each follows a different structure and length.</li>
-          <li>Select a tone that matches your brand voice: Professional, Persuasive, Friendly, or Luxury.</li>
-          <li>Click &ldquo;Generate Copy&rdquo; and review the AI-written marketing text in the result panel.</li>
-          <li>Use the Copy button to move the generated copy to your clipboard and paste it into your ad platform, website, or social media scheduler.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips for Better Results</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Include specific data points, pricing, or testimonials in your product description so the AI can incorporate concrete selling points.</li>
-          <li>For social media posts, mention the platform (Instagram, LinkedIn, Twitter, Facebook) so the AI adjusts length and format accordingly.</li>
-          <li>Generate multiple variations with different tones to A/B test which messaging resonates best with your audience.</li>
-          <li>Edit the generated copy to add your brand&rsquo;s unique voice and adjust any claims for accuracy before publishing.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What types of copy can I generate?</h3><p>You can generate ad copy, product descriptions, and social media posts. Each type follows best practices for its format &mdash; ads are concise and action-oriented, descriptions are detailed, and social posts are engaging and platform-appropriate.</p></div>
-          <div><h3 className="font-semibold">Can I choose the tone of the generated copy?</h3><p>Yes, the tool offers four tones: Professional (formal and credible), Persuasive (benefit-driven with calls to action), Friendly (approachable and conversational), and Luxury (sophisticated and premium).</p></div>
-          <div><h3 className="font-semibold">How long should my product description be?</h3><p>Aim for 2&ndash;4 sentences covering what the product is, its key benefit, and what makes it unique. You can provide more detail for longer-form content like landing pages.</p></div>
-          <div><h3 className="font-semibold">Is the generated copy original?</h3><p>Yes, the AI generates original text based on your inputs. However, you should always review for brand alignment, factual accuracy, and compliance with advertising guidelines before publishing.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

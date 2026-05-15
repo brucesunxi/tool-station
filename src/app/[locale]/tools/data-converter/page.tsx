@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 const formats = ['JSON', 'YAML']
 
 export default function DataConverterPage() {
+  const t = useTranslations('tools.data-converter')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [fromFmt, setFromFmt] = useState('JSON')
   const [toFmt, setToFmt] = useState('YAML')
@@ -46,8 +50,8 @@ export default function DataConverterPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Data Converter</h1>
-        <p className="text-gray-500">Convert between JSON and YAML formats. Perfect for configuration files and data serialization.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -80,7 +84,7 @@ export default function DataConverterPage() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium">Output ({toFmt})</label>
-            {output && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>}
+            {output && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>}
           </div>
           <div className={`min-h-[400px] p-4 border rounded-xl text-sm font-mono whitespace-pre-wrap ${
             output ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
@@ -99,40 +103,27 @@ export default function DataConverterPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select the input format (JSON or YAML) from the left dropdown menu.</li>
-          <li>Select the output format (YAML or JSON) from the right dropdown menu.</li>
-          <li>Paste your input data into the text area on the left side of the screen.</li>
-          <li>Click "Convert to [format]" to transform your data into the selected output format.</li>
-          <li>Use the "Copy" button to copy the converted output, or click the swap button to reverse the conversion direction.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Validate your JSON with a linter before converting if the conversion fails -- common issues include trailing commas and missing quotes.</li>
-          <li>YAML is more readable for human-edited configuration files, while JSON is better for API data exchange and programmatic processing.</li>
-          <li>Use the swap button to quickly toggle between conversion directions instead of manually changing both dropdowns.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Does the converter support nested objects and arrays?</h3>
-            <p>Yes. The converter handles deeply nested structures including objects, arrays, and mixed data types of any complexity.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What happens if my input data has comments?</h3>
-            <p>JSON does not support comments, so they will cause a parse error. YAML supports comments, and they will be preserved during conversion.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my data uploaded to any server?</h3>
-            <p>No. All conversion happens in your browser using client-side libraries. Your data never leaves your computer.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why does my JSON conversion fail?</h3>
-            <p>Common causes include trailing commas, unquoted keys, single quotes instead of double quotes, or missing brackets. Use a JSON validator to check your input.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function DiffCheckerPage() {
+  const t = useTranslations('tools.diff-checker')
+  const ct = useTranslations('common')
+
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
   const [diffs, setDiffs] = useState<{ type: 'added' | 'removed' | 'unchanged'; text: string }[]>([])
@@ -28,8 +32,8 @@ export default function DiffCheckerPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Diff Checker</h1>
-        <p className="text-gray-500">Compare two texts and see the differences highlighted. Ideal for code, documents, and configuration files.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -37,7 +41,7 @@ export default function DiffCheckerPage() {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Original</label>
+              <label className="block text-sm font-medium mb-2">{ct("original")}</label>
               <textarea value={left} onChange={e => setLeft(e.target.value)} rows={14}
                 className="w-full p-4 border rounded-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-mono dark:bg-gray-800 dark:border-gray-700" />
             </div>
@@ -75,39 +79,27 @@ export default function DiffCheckerPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Paste the original text into the left text area labeled "Original."</li>
-          <li>Paste the modified or updated text into the right text area labeled "Modified."</li>
-          <li>Click the "Compare" button to compute the differences between the two texts.</li>
-          <li>Review the highlighted output -- green for added lines, red for removed lines, and unhighlighted for unchanged text.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the diff checker to compare code changes before committing to catch unintended modifications.</li>
-          <li>Compare configuration files when troubleshooting to quickly spot what changed between working and broken setups.</li>
-          <li>Click "Copy All" to copy the complete diff output for pasting into pull request descriptions or code review comments.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">What types of differences does the tool detect?</h3>
-            <p>It detects line-level differences -- lines that were added (highlighted green), removed (highlighted red), or unchanged between the two texts.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What algorithm is used for text comparison?</h3>
-            <p>The tool uses the popular diff library, which implements a line-level diff algorithm similar to the Unix diff command.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is there a limit on text size?</h3>
-            <p>The tool works with standard text sizes. For extremely large files, consider splitting the content into smaller sections for comparison.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my text uploaded to any server?</h3>
-            <p>No. All diff computation happens entirely within your browser using client-side JavaScript. Your text never leaves your computer.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -11,14 +11,60 @@
   "home": {
     "title": "免费在线工具",
     "subtitle": "AI 驱动",
-    "heroText": "直接在浏览器中处理图片、PDF、代码和文本。无需上传到外部服务器 — 快速、安全、100% 免费。"
+    "heroText": "直接在浏览器中处理图片、PDF、代码和文本。无需上传到外部服务器 — 快速、安全、100% 免费。",
+    "badge": "{count} 个免费在线工具 — 无需注册",
+    "categories": [
+      { "name": "图片与照片", "description": "压缩、调整大小和转换图片" },
+      { "name": "PDF 与文档", "description": "合并 PDF，在 Word 和 PDF 之间转换" },
+      { "name": "AI 工具", "description": "使用 AI 进行摘要、翻译、写作、编码、生成和分析" },
+      { "name": "开发者工具", "description": "格式化、编码、计算、生成和创建" },
+      { "name": "文本与写作", "description": "分析和处理文本内容" },
+      { "name": "色彩与设计", "description": "转换和预览颜色" }
+    ],
+    "stats": {
+      "freeTools": "免费工具",
+      "apiEndpoints": "个 API 接口",
+      "browserBased": "基于浏览器",
+      "noSignup": "无需注册"
+    },
+    "features": [
+      { "title": "极速处理", "description": "通过优化的引擎在数秒内处理文件。" },
+      { "title": "100% 安全", "description": "文件在内存中处理，使用后自动删除。" },
+      { "title": "随处可用", "description": "桌面端、平板端或手机端 — 支持所有主流浏览器。" }
+    ],
+    "cta": {
+      "title": "立即开始使用免费工具",
+      "description": "无需注册，无限制，无隐藏费用。",
+      "items": ["无需注册", "隐私安全", "文件自动删除", "始终免费"]
+    },
+    "tools": "个工具"
   },
   "search": {
     "title": "搜索工具",
+    "description": "在 {count} 个免费在线工具中找到你需要的工具。",
     "placeholder": "按工具名称、描述或分类搜索...",
     "noResults": "未找到工具",
     "tryDifferent": "请尝试其他关键词或分类",
+    "browseHeading": "免费在线工具",
+    "resultCount": "共 {total} 个工具中的 {count} 个",
     "browseAll": "浏览全部 {count} 个免费在线工具，涵盖 6 个分类：图片、PDF、AI、开发者、文本和色彩。所有工具免费使用，无需注册。"
+  },
+  "about": {
+    "title": "关于 ToolStation",
+    "whatIsHeading": "什么是 ToolStation？",
+    "whatIsText": "ToolStation 是一个包含 {count} 个免费在线工具的工具集合，帮助您直接在浏览器中处理图片、PDF、文本和代码。我们的 AI 驱动工具可以摘要、翻译和重写文本，而实用工具则处理图片压缩、格式转换、PDF 合并等。",
+    "whyHeading": "为什么选择 ToolStation？",
+    "whyItems": [
+      "✓ 完全免费 — 无需注册，无隐藏费用，无限制",
+      "✓ 隐私优先 — 文件在内存中处理，自动删除",
+      "✓ AI 驱动 — 使用前沿 AI 进行智能文本处理",
+      "✓ 随处可用 — 桌面端、平板端和手机端"
+    ],
+    "allToolsHeading": "全部工具",
+    "technologyHeading": "技术栈",
+    "technologyText": "基于 Next.js、React、TypeScript 和 Tailwind CSS 构建。AI 功能由 DeepSeek API 提供支持。图片处理由 Sharp 提供支持。部署在 Vercel 上。",
+    "contactHeading": "联系我们",
+    "contactText": "有反馈或建议？请联系我们："
   },
   "nav": {
     "image": "图片",
@@ -30,6 +76,10 @@
   },
   "footer": {
     "description": "为所有人提供的免费在线工具。直接在浏览器中处理图片、PDF、文本和代码。",
+    "toolsHeading": "工具",
+    "moreHeading": "更多",
+    "legalHeading": "法律",
+    "copyright": "ToolStation。保留所有权利。",
     "privacy": "隐私政策",
     "terms": "服务条款",
     "about": "关于我们",
@@ -37,6 +87,7 @@
   },
   "common": {
     "advertisement": "广告",
+    "adSpace": "广告位 — 728x90",
     "copy": "复制",
     "copied": "已复制！",
     "clear": "清空",
@@ -46,408 +97,4511 @@
     "tips": "使用技巧",
     "faq": "常见问题",
     "refresh": "刷新",
-    "logout": "退出登录"
+    "logout": "退出登录",
+    "new": "新",
+    "searchTools": "搜索工具...",
+    "noToolsFor": "未找到与\"{query}\"相关的工具",
+    "tryDifferentKeyword": "请尝试其他关键词",
+    "download": "下载",
+    "cancel": "取消",
+    "reset": "重置",
+    "compressAnother": "压缩另一个",
+    "convertAnother": "转换另一个",
+    "downloadCompressedImage": "下载压缩图片",
+    "uploadAnother": "上传另一个",
+    "compressed": "压缩完成！",
+    "compressing": "压缩中...",
+    "converting": "转换中...",
+    "aiThinking": "🤖 AI 思考中...",
+    "quality": "质量",
+    "outputFormat": "输出格式",
+    "smallerFile": "更小的文件",
+    "betterQuality": "更好的质量",
+    "original": "原始",
+    "before": "之前",
+    "after": "之后",
+    "compressedLabel": "已压缩",
+    "dimensions": "尺寸",
+    "savings": "节省",
+    "sizeChange": "大小变化",
+    "originalFormat": "原始格式",
+    "newFormat": "新格式",
+    "percentSmaller": "缩小 {savings}%",
+    "percentLarger": "增大 {savings}%",
+    "chars": "{count} 个字符",
+    "words": "{count} 个词",
+    "format": "格式化",
+    "minify": "压缩",
+    "encode": "编码",
+    "decode": "解码",
+    "calculate": "计算",
+    "input": "输入",
+    "output": "输出",
+    "result": "结果",
+    "preview": "预览",
+    "downloadItem": "下载 {item}",
+    "convertTo": "转换为 {format}",
+    "compressImage": "压缩图片",
+    "textToSummarize": "要总结的文本",
+    "summary": "摘要",
+    "summaryLength": "摘要长度",
+    "outputStyle": "输出风格",
+    "tryExample": "试试示例",
+    "validJson": "✓ 有效 JSON（{size}）",
+    "enterJson": "请输入要格式化的 JSON",
+    "selectImageFile": "请选择一个图片文件",
+    "selectPdfFile": "请选择一个 PDF 文件",
+    "selectValidPdf": "请选择一个有效的 PDF 文件",
+    "fileMustBeUnder": "文件大小不能超过 {size}",
+    "compressionFailed": "压缩失败",
+    "conversionFailed": "转换失败",
+    "somethingWentWrong": "出错了",
+    "requestTimedOut": "请求超时。AI 服务可能较慢——请尝试较短的文本或重新尝试。",
+    "short": "短",
+    "medium": "中",
+    "long": "长",
+    "descShortSummary": "2-3句话",
+    "descLongSummary": "详细",
+    "descFlowingText": "流畅文本",
+    "descKeyPoints": "要点列表",
+    "descUltraShort": "超简短",
+    "paragraph": "段落",
+    "bulletPoints": "要点列表",
+    "oneSentence": "一句话",
+    "placeholderJson": "格式化后的 JSON 将显示在这里...",
+    "placeholderSummary": "AI 摘要将显示在这里...",
+    "simpleObject": "简单对象",
+    "arrayOfUsers": "用户数组",
+    "apiConfig": "API 配置",
+    "dropFileHere": "将文件拖放到此处或点击浏览",
+    "maxFileSize": "最大 {size}",
+    "supportsFormats": "支持 {formats}",
+    "clickToUpload": "点击上传或拖放文件",
+    "addDays": "添加天数",
+    "aiWriting": "🤖 写作中...",
+    "anyGenre": "任意类型",
+    "anyLevel": "任意级别",
+    "anyPlatform": "任意平台",
+    "anyStyle": "任意风格",
+    "anyTone": "任意语气",
+    "approxWords": "约 {count} 个词",
+    "autoSameAsOriginal": "自动（与原图相同）",
+    "azLower": "a-z",
+    "azUpper": "A-Z",
+    "baseDate": "基准日期",
+    "blogFullPost": "完整的博客文章",
+    "blogIntroOnly": "仅引言",
+    "blogOutline": "大纲",
+    "calculateBmi": "计算 BMI",
+    "calculateDifference": "计算差值",
+    "characters": "{count} 个字符",
+    "compressPdf": "📦 压缩 PDF",
+    "convertToLabel": "转换为：",
+    "count": "数量",
+    "days": "天数",
+    "digits": "0-9",
+    "endDate": "结束日期",
+    "enterText": "输入要编码/解码的文本...",
+    "fair": "一般",
+    "formatDescAvif": "下一代格式，卓越压缩",
+    "formatDescGif": "支持动画，颜色有限",
+    "formatDescJpeg": "适合照片，文件小",
+    "formatDescPng": "无损，支持透明",
+    "formatDescWebp": "现代格式，最佳压缩",
+    "frequency": "频率",
+    "generateBio": "👤 生成简介",
+    "generateBlogContent": "📝 生成博客内容",
+    "generatePasswords": "生成密码",
+    "generatedBios": "生成的简介",
+    "generatedContent": "生成的内容",
+    "generating": "生成中...",
+    "generationFailed": "生成失败",
+    "genreAdventure": "冒险",
+    "genreFantasy": "奇幻",
+    "genreMystery": "悬疑",
+    "genreRomance": "浪漫",
+    "genreSciFi": "科幻",
+    "good": "良好",
+    "heightCm": "身高（厘米）",
+    "keywords": "关键词（可选）",
+    "levelAdvanced": "高级",
+    "levelBeginner": "初级",
+    "levelIntermediate": "中级",
+    "passwordCount": "数量：{count}",
+    "passwordLength": "长度：{count}",
+    "pasteHere": "在此粘贴或输入文本...",
+    "percentReduction": "缩减 {percent}%",
+    "placeholderBlogContent": "博客内容将显示在这里...",
+    "placeholderDetails": "要包含的关键信息：技能、成就、兴趣等（可选）",
+    "placeholderKeywords": "例如：生产力、工作与生活平衡、远程工具",
+    "placeholderRole": "例如：高级软件工程师、自由设计师、数字营销经理",
+    "placeholderStory": "输入你的故事主题或提示...",
+    "placeholderSummaryInput": "粘贴要总结的文章、文档或文本...",
+    "placeholderTopic": "例如：远程工作的好处、如何开通新闻通讯...",
+    "platform": "平台",
+    "platformFacebook": "Facebook",
+    "platformInstagram": "Instagram",
+    "platformLinkedin": "LinkedIn",
+    "platformTiktok": "TikTok",
+    "platformTwitter": "Twitter / X",
+    "platformWebsite": "个人网站",
+    "separatorComma": "逗号",
+    "separatorNone": "无",
+    "separatorSpace": "空格",
+    "sqlMysql": "MySQL",
+    "sqlPostgresql": "PostgreSQL",
+    "sqlSqlServer": "SQL Server",
+    "sqlSqlite": "SQLite",
+    "sqlStandard": "标准 SQL",
+    "startDate": "开始日期",
+    "strength": "强度",
+    "strong": "强",
+    "styleAcrostic": "藏头诗",
+    "styleFreeVerse": "自由诗",
+    "styleHaiku": "俳句",
+    "styleLimerick": "五行打油诗",
+    "styleSonnet": "十四行诗",
+    "subtractDays": "减去天数",
+    "summarizeWithAI": "🤖 用 AI 总结",
+    "symbols": "!@#$",
+    "tone": "语气",
+    "toneCasual": "随意",
+    "toneConversational": "对话式",
+    "toneCreative": "创意",
+    "toneDark": "黑暗",
+    "toneDirect": "直接",
+    "toneDirectConcise": "直接简洁",
+    "toneEnthusiastic": "热情",
+    "toneFormal": "正式",
+    "toneFriendly": "友好",
+    "toneFunCasual": "趣味休闲",
+    "toneFunny": "搞笑",
+    "toneHeartfelt": "真诚",
+    "toneHumorous": "幽默",
+    "toneInspirational": "鼓舞人心",
+    "toneLuxury": "奢华",
+    "tonePersuasive": "有说服力",
+    "tonePlayful": "俏皮",
+    "tonePoetic": "诗意",
+    "toneProfessional": "专业",
+    "toneRomantic": "浪漫",
+    "toneWarm": "温暖",
+    "toneWhimsical": "奇思妙想",
+    "topic": "主题",
+    "totalDays": "总天数",
+    "uploadFile": "上传文件",
+    "veryStrong": "非常强",
+    "weak": "弱",
+    "weeks": "周数",
+    "weightKg": "体重（公斤）",
+    "word": "单词",
+    "wordFrequency": "词频",
+    "wordsAndChars": "{words} 个单词，{chars} 个字符",
+    "writing": "写作中...",
+    "yearsMonthsDays": "年/月/日",
+    "afterWithSavings": "压缩后 — 缩小 {savings}%",
+    "caseAlternating": "aLtErNaTiNg",
+    "caseCamel": "camelCase",
+    "caseConstant": "CONSTANT_CASE",
+    "caseInverse": "InVeRsE CaSe",
+    "caseKebab": "kebab-case",
+    "caseLower": "小写",
+    "casePascal": "PascalCase",
+    "caseSentence": "句首大写",
+    "caseSnake": "snake_case",
+    "caseTitle": "首字母大写",
+    "caseUpper": "大写",
+    "charCountLabel": "字符数",
+    "charsNoSpacesLabel": "字符数（不含空格）",
+    "paragraphsLabel": "段落数",
+    "readingTimeLabel": "阅读时间",
+    "sentencesLabel": "句子数",
+    "speakingTimeLabel": "朗读时间",
+    "wordCountLabel": "单词数",
+    "scenario": "场景",
+    "recipient": "收件人（可选）",
+    "keyPoints": "关键点",
+    "placeholderRecipient": "例如：招聘经理、支持团队",
+    "placeholderEmailDetails": "描述邮件应该包含的内容。包含关键细节、问题或要涵盖的要点...",
+    "placeholderEmailDraft": "邮件草稿将显示在这里...",
+    "writingStyle": "写作风格",
+    "originalText": "原始文本",
+    "rewritten": "改写结果",
+    "rewriting": "正在改写...",
+    "placeholderRewriteText": "粘贴或输入您要改写的文本...",
+    "placeholderRewrittenText": "改写后的文本将显示在这里...",
+    "rewriteWithAi": "✍️ 用AI改写",
+    "topicOrSubject": "主题/标题",
+    "styleHowTo": "教程式",
+    "styleQuestion": "提问式",
+    "numberOfTitles": "标题数量：{count}",
+    "generateTitles": "🚀 生成标题",
+    "generatedTitles": "生成的标题",
+    "copyAll": "全部复制",
+    "style": "风格",
+    "generateHashtags": "# 生成标签",
+    "hashtags": "标签",
+    "textToCheck": "要检查的文本",
+    "placeholderGrammarCheck": "在此粘贴要检查语法的文本...",
+    "results": "结果",
+    "checking": "正在检查...",
+    "checkGrammar": "✓ 检查语法",
+    "placeholderGrammarResults": "更正结果将显示在这里...",
+    "placeholderSqlPrompt": "例如：查找过去30天内有购买记录的所有客户，按今年收入获取前10名产品...",
+    "sqlDialect": "SQL 方言",
+    "generateSql": "💾 生成 SQL",
+    "sqlQuery": "SQL 查询"
   },
   "tools": {
     "image-compress": {
       "title": "图片压缩",
-      "desc": "在保持质量的同时减小图片文件大小"
+      "desc": "在保持质量的同时减小图片文件大小",
+      "h1": "图片压缩",
+      "description": "在线压缩 JPG、PNG 和 WebP 图片。在保持质量的同时减小文件大小。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击上传区域或拖放文件到该区域来上传图片。",
+          "调整质量滑块来控制压缩程度——数值越低，文件越小。",
+          "选择输出格式：保持自动（与原图相同）或选择 JPEG、PNG 或 WebP。",
+          "点击 <strong>压缩图片</strong> 开始处理。",
+          "并排对比压缩前后的文件大小和预览质量。",
+          "将压缩后的图片直接下载到您的设备。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对于网页图片，70-80% 的质量可在文件大小和视觉保真度之间取得最佳平衡。",
+          "在同等质量水平下，WebP 格式的文件比 JPEG 小得多。",
+          "对于包含文字或锐利边缘图形的图片，请使用更高的质量设置（90% 以上）。",
+          "务必保留原始文件，以便日后需要使用不同设置重新压缩。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "有文件大小限制吗？",
+            "a": "是的，每张图片最大上传大小为 20MB。"
+          },
+          {
+            "q": "压缩会减少图片尺寸吗？",
+            "a": "不会，压缩仅通过优化数据编码来减小文件大小。像素尺寸保持不变。"
+          },
+          {
+            "q": "哪种格式的压缩效果最好？",
+            "a": "WebP 通常提供最佳的压缩质量比，其次是 JPEG。PNG 最适合需要透明背景的图片。"
+          },
+          {
+            "q": "我的图片会存储在服务器上吗？",
+            "a": "不会，所有图片都会临时处理，不会永久存储在我们的服务器上。"
+          }
+        ]
+      }
     },
     "image-crop": {
       "title": "图片裁剪",
-      "desc": "将图片裁剪为精确尺寸"
+      "desc": "将图片裁剪为精确尺寸",
+      "h1": "图片缩放与裁剪",
+      "description": "精确调整图片大小和裁剪。保持画质。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击上传区域或拖放文件来上传图片。",
+          "输入您想要的宽度和高度（像素）。",
+          "选择适配模式：<strong>覆盖</strong> 填充区域（可能会裁剪）、<strong>包含</strong> 完全适配（可能会添加空白条）、<strong>填充</strong> 精确拉伸、或 <strong>内侧</strong> 缩小至适配。",
+          "点击缩放按钮处理图片。",
+          "查看处理前后的对比和尺寸变化。",
+          "将缩放后的图片下载到您的设备。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对于需要精确像素尺寸的社交媒体头像，请使用 <strong>覆盖</strong> 模式。",
+          "<strong>包含</strong> 模式保留原始宽高比，必要时添加水平或垂直黑边。",
+          "对于单元格尺寸统一的缩略图网格，<strong>填充</strong> 模式会强制使用您指定的精确尺寸。",
+          "始终缩小而非放大图片——放大图片会降低清晰度并产生像素化。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "Cover 和 Contain 有什么区别？",
+            "a": "Cover 会填充整个目标区域，如果宽高比不同则会裁剪边缘。Contain 将整张图片适配到目标尺寸内，如果宽高比不匹配则会留出空白条。"
+          },
+          {
+            "q": "缩放会降低图片质量吗？",
+            "a": "缩小图片（使图片变小）可以保持良好的质量，甚至能提升感知清晰度。放大图片则会导致模糊或像素化。"
+          },
+          {
+            "q": "最大文件大小是多少？",
+            "a": "每张图片最大上传大小为 20MB。"
+          },
+          {
+            "q": "可以一次性缩放多张图片吗？",
+            "a": "目前该工具一次只处理一张图片。批量处理功能计划在未来的更新中推出。"
+          }
+        ]
+      }
     },
     "format-converter": {
       "title": "格式转换器",
-      "desc": "在 JPG、PNG、WebP、GIF、AVIF 之间转换"
+      "desc": "在 JPG、PNG、WebP、GIF、AVIF 之间转换",
+      "h1": "图片格式转换器",
+      "description": "在 JPEG、PNG、WebP、GIF 和 AVIF 格式之间转换图片。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "上传 JPEG、PNG、WebP 或 GIF 格式的图片。",
+          "从网格中选择目标格式——每张卡片都简要说明了适用场景。",
+          "点击 <strong>转换</strong> 将图片处理为新格式。",
+          "对比原始文件与转换后的文件大小。",
+          "将转换后的图片下载到您的设备。",
+          "使用 <strong>转换另一张</strong> 重新开始处理新文件。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对于需要透明背景的图片（如 Logo 和图标），请使用 <strong>PNG</strong> 格式。",
+          "<strong>JPEG</strong> 是照片的理想选择，适合文件大小比完美保真度更重要的情况。",
+          "<strong>WebP</strong> 为网络提供了出色的压缩率，且所有现代浏览器均支持。",
+          "<strong>AVIF</strong> 提供了最佳的压缩比，但浏览器兼容性有限——请先确认您的受众是否支持。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "转换会影响图片质量吗？",
+            "a": "在有损格式之间转换（如 JPEG 转 WebP）可能会产生轻微的质量损失。从 PNG 等无损格式转换为有损格式会减小文件大小，但可能会产生瑕疵。"
+          },
+          {
+            "q": "可以转换 GIF 动画吗？",
+            "a": "本工具转换的是单张图片。动画 GIF 将被转换为单个静态帧。"
+          },
+          {
+            "q": "什么是 AVIF？",
+            "a": "AVIF 是一种新一代图片格式，相比 JPEG 和 WebP 提供了更出色的压缩率。但目前尚未得到所有浏览器的支持，使用时请检查兼容性。"
+          },
+          {
+            "q": "有文件大小限制吗？",
+            "a": "是的，每张图片最大上传大小为 20MB。"
+          }
+        ]
+      }
     },
     "image-ocr": {
       "title": "图片文字识别",
-      "desc": "从图片中提取文字（基于浏览器）"
+      "desc": "从图片中提取文字（基于浏览器）",
+      "h1": "图片转文字 (OCR)",
+      "description": "使用光学字符识别技术从图片中提取文字。支持 JPG、PNG 和 WebP 格式。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击上传区域或拖放文件，上传包含文字的图片。",
+          "点击 <strong>提取文字</strong> 对图片运行 OCR 引擎。",
+          "等待进度指示器达到 100%——处理时间取决于图片大小和内容。",
+          "在右侧面板中查看提取的文字。",
+          "点击 <strong>复制</strong> 将文字复制到剪贴板，以便在其他应用中使用。",
+          "使用 <strong>移除</strong> 清除当前图片，重新开始处理新图片。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "高分辨率、文字清晰且光线良好的图片可以获得最准确的结果。",
+          "印刷文字（文档、收据、标志）的识别效果远好于手写文字。",
+          "确保文字水平放置——旋转或倾斜的文字会降低识别准确率。",
+          "文字与背景之间的高对比度（例如白纸上的黑色文字）有助于提升 OCR 质量。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我的数据会发送到服务器吗？",
+            "a": "不会，所有 OCR 处理完全在您的浏览器中使用 Tesseract.js 完成。不会有任何内容上传到服务器。"
+          },
+          {
+            "q": "支持哪些语言？",
+            "a": "目前支持英语 (eng)。更多语言将在未来更新中添加。"
+          },
+          {
+            "q": "接受哪些图片格式？",
+            "a": "我们支持最大 10MB 的 JPG、PNG 和 WebP 图片。"
+          },
+          {
+            "q": "OCR 的准确率如何？",
+            "a": "准确率取决于图片质量。使用标准字体的清晰高分辨率图片通常可以达到 90% 以上的准确率。"
+          }
+        ]
+      }
     },
     "qr-code": {
       "title": "二维码生成器",
-      "desc": "生成自定义颜色的二维码"
+      "desc": "生成自定义颜色的二维码",
+      "h1": "二维码生成器",
+      "description": "为网址、文字、联系方式等生成二维码。免费且即时。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入您要编码的内容——网址、文字、电话号码或任何其他信息。",
+          "使用下拉菜单选择二维码尺寸，从 128x128 像素到 1024x1024 像素。",
+          "使用颜色选择器自定义前景色和背景色。",
+          "点击“生成二维码”即时创建二维码图片。",
+          "点击“下载 PNG”将二维码保存为 PNG 图片文件，用于印刷或数字素材。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在印刷之前，务必先用手机扫描二维码进行测试，确保编码内容正确无误。",
+          "对于名片和海报等印刷材料，请使用较高分辨率（512 或 1024），确保扫描设备能够可靠读取。",
+          "选择高对比度的颜色组合——浅色背景上的深色前景可提供最佳可读性。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "二维码使用什么级别的纠错？",
+            "a": "该工具使用中等（M）纠错级别，即使二维码多达 15% 的面积受损或被遮挡，仍可被扫描识别。"
+          },
+          {
+            "q": "可以自定义二维码的颜色吗？",
+            "a": "可以。您可以在生成前使用内置颜色选择器设置前景（深色模块）和背景（浅色模块）颜色。"
+          },
+          {
+            "q": "可以在二维码中编码哪些内容？",
+            "a": "任何文本内容，包括网址、纯文字、电话号码、电子邮件地址、Wi-Fi 凭证和联系信息。"
+          },
+          {
+            "q": "如何保存二维码图片？",
+            "a": "点击“下载 PNG”将二维码保存为 PNG 图片文件。在大多数浏览器中，您也可以右键点击生成的图片直接保存。"
+          }
+        ]
+      }
     },
     "image-splitter": {
       "title": "图片分割",
-      "desc": "将图片分割为行和列"
+      "desc": "将图片分割为行和列",
+      "h1": "图片分割器",
+      "description": "将图片分割为相等的行和列。非常适合创建 Instagram 九宫格和拼图。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传图片——支持所有常见格式。",
+          "设置网格的 <strong>行数</strong> 和 <strong>列数</strong>（1 到 20）。",
+          "点击 <strong>分割图片</strong> 将图片分成等份。",
+          "预览每个碎片，单独下载，或点击 <strong>全部下载</strong> 一次性保存所有碎片。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对于 Instagram 九宫格，使用 3x3 获得经典九格布局，或使用 2x2 获得简单的四格布局。",
+          "较大的图片能产生更高质量的碎片——使用高分辨率源图片可获得最佳效果。",
+          "所有处理都在您的浏览器中本地完成。您的图片绝不会上传到任何服务器。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "支持哪些图片格式？",
+            "a": "您的浏览器支持的任何图片格式——JPG、PNG、GIF、WebP、BMP 和 SVG。该工具完全在浏览器中使用 HTML5 Canvas API 运行。"
+          },
+          {
+            "q": "如果尺寸无法均分怎么办？",
+            "a": "该工具使用 <code>Math.floor</code> 计算碎片尺寸，因此碎片尽可能相等。如果图片宽度为 100px 且分为 3 列，则每个碎片宽度为 33px，剩余像素将被排除。"
+          },
+          {
+            "q": "可以分割大于 10MB 的图片吗？",
+            "a": "可以——性能取决于您的设备。非常大的图片可能需要一些时间处理，但由于一切都在本地运行，没有文件大小限制。"
+          }
+        ]
+      }
     },
     "image-to-pdf": {
       "title": "图片转 PDF",
-      "desc": "将图片转换为 PDF 文档"
+      "desc": "将图片转换为 PDF 文档",
+      "h1": "图片转 PDF 转换器",
+      "description": "将 JPG、PNG、WebP 等图片转换为 PDF 文档。全部在浏览器中完成。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传一张或多张图片。支持 JPG、PNG、GIF 和 WebP 格式。",
+          "选择您偏好的 <strong>页面大小</strong>（A4、Letter 或 Legal）和 <strong>方向</strong>。",
+          "点击 <strong>打印为 PDF</strong> 打开浏览器的打印对话框。",
+          "在打印对话框中选择 <strong>另存为 PDF</strong> 作为目标，然后点击保存。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "拖拽可重新排列图片顺序，或使用 <strong>全部清除</strong> 按钮重新开始。",
+          "为获得最佳打印质量，请使用高分辨率图片（建议 300 DPI）。",
+          "所有处理均在本地完成——您的图片绝不会上传到任何服务器。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这是真正的 PDF 转换器吗？",
+            "a": "是的。该工具利用浏览器内置的打印为 PDF 功能，按照您选择的页面大小和方向生成标准的 PDF 文档。生成的文件是标准 PDF 格式，可在任何 PDF 阅读器中打开。"
+          },
+          {
+            "q": "可以一次性转换多张图片吗？",
+            "a": "可以——上传时选择多个文件。每张图片会成为 PDF 中的单独一页。您也可以在初次选择后继续上传更多图片。"
+          },
+          {
+            "q": "为什么打开的是打印对话框而不是直接下载？",
+            "a": "这是浏览器的限制。打印为 PDF 功能需要打开打印对话框，以便您选择“另存为 PDF”并配置边距和页面大小等选项。这为您提供了对最终输出的更多控制。"
+          }
+        ]
+      }
     },
     "color-extractor": {
       "title": "颜色提取器",
-      "desc": "从照片中提取主色调"
+      "desc": "从照片中提取主色调",
+      "h1": "在线图片颜色提取器 — 提取图片主色调",
+      "description": "上传任意图片并提取其主色调。获取 HEX、RGB 和 HSL 色值。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传任意图片（JPG、PNG、GIF、WebP）。",
+          "工具会自动分析图片并提取最多 10 种主色调。",
+          "每个色块显示 HEX、RGB 和 HSL 色值，并附带可视化百分比条。",
+          "点击任意颜色旁的 <strong>复制</strong> 按钮，将其 HEX 色值复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用色彩清晰鲜明的图片可获得最准确的结果 — 包含许多小细节的繁杂照片可能会返回较为平淡的调色板。",
+          "点击任意色块即可立即复制其 HEX 色值，用于设计工具中。",
+          "工具会以降低的分辨率采样图片以提升性能 — 这不会影响色彩准确性。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "颜色提取是如何工作的？",
+            "a": "工具通过 HTML5 Canvas API 读取图片的每个像素，然后使用颜色量化算法将相似颜色分组。出现频率最高的颜色组被选中并显示为主色调。"
+          },
+          {
+            "q": "可以提取多少种颜色？",
+            "a": "工具最多提取 10 种主色调。它会过滤掉非常相似的颜色，为您提供多样且实用的调色板，而不是多个几乎相同的色值。"
+          },
+          {
+            "q": "我的图片会上传到服务器吗？",
+            "a": "不会。所有图片处理完全在浏览器中通过 JavaScript 和 Canvas API 完成。您的图片不会离开您的设备 — 不会上传到任何服务器。"
+          }
+        ]
+      }
     },
     "qr-reader": {
       "title": "二维码阅读器",
-      "desc": "从上传的图片中解码二维码"
+      "desc": "从上传的图片中解码二维码",
+      "h1": "二维码阅读器",
+      "description": "上传二维码图片即可即时解码。无需安装应用。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传二维码图片（截图、照片或下载的文件）。",
+          "工具会从 CDN 加载 jsQR 库并自动解码二维码。",
+          "查看解码后的文字——可能是网址、文字、联系信息或其他数据。",
+          "点击<strong>复制</strong>将解码内容复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "为获得最佳效果，请使用清晰、光线充足且二维码与背景对比度高的图片。",
+          "如果未能识别二维码，请尝试裁剪图片，使其聚焦于二维码区域。",
+          "jsQR 库在首次使用时从 CDN 加载，因此首次加载需要互联网连接。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这个阅读器可以解码哪些类型的二维码？",
+            "a": "本工具可解码包含网址、纯文字、电话号码、短信、电子邮件地址、vCard 联系人数据、Wi-Fi 网络凭证和日历事件的标准二维码。它使用支持所有常见二维码格式的 jsQR 库。"
+          },
+          {
+            "q": "为什么需要从互联网加载库？",
+            "a": "二维码解码需要专门的图像处理算法。jsQR 库是从 CDN 加载的，因为它是一个较大的库，仅在需要使用此工具时才加载。首次加载后，浏览器可能会将其缓存。"
+          },
+          {
+            "q": "这个工具能识别受损或低质量的二维码吗？",
+            "a": "jsQR 包含纠错功能，因此通常可以解码部分受损、旋转或质量较低的二维码。但严重受损的二维码可能无法读取。为获得最佳效果，请使用最高质量的图片。"
+          }
+        ]
+      }
     },
     "favicon-generator": {
       "title": "Favicon 生成器",
-      "desc": "从图片生成 Favicon 图标"
+      "desc": "从图片生成 Favicon 图标",
+      "h1": "Favicon 生成器",
+      "description": "上传任意图片，生成所有标准尺寸的 Favicon 图标。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传一张方形图片（PNG、JPG 或 SVG 效果最佳）。",
+          "该工具会自动生成 6 种标准尺寸的 Favicon：16、32、48、64、128 和 256 像素。",
+          "在网格中预览每种尺寸，查看在不同设备上的显示效果。",
+          "点击单个尺寸的 <strong>下载</strong> 按钮，或点击 <strong>下载所有尺寸</strong> 一次性保存全部。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "建议使用高分辨率方形图片作为源文件，以确保在所有尺寸（尤其是较大尺寸）下都能获得最佳质量。",
+          "16x16 和 32x32 尺寸用于浏览器标签页和书签——请确保您的源文件在这些小尺寸下仍可辨识。",
+          "建议使用简洁、高对比度的设计，因为复杂细节在小尺寸下会变得难以分辨。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "Favicon 需要哪些尺寸？",
+            "a": "Favicon 的标准用法：16x16（浏览器标签页）、32x32（书签、任务栏）、48x48（Windows 快捷方式）、64x64 和 128x128（高 DPI 屏幕）以及 256x256（Chrome 网上应用店、Android）。本工具会生成全部六种尺寸，确保广泛兼容。"
+          },
+          {
+            "q": "输入图片应使用什么格式？",
+            "a": "建议使用 PNG 格式以获得最佳质量并支持透明背景。JPG 也可以使用，但不支持透明背景。浏览器支持的所有常见图片格式均可。"
+          },
+          {
+            "q": "需要将所有尺寸合并为单个 .ico 文件吗？",
+            "a": "现代浏览器已不再需要 .ico 文件——它们直接支持 PNG 格式的 Favicon。您可以在 HTML 的 <code><link></code> 标签中引用 32x32 或 48x48 的 PNG 图片作为 Favicon。每种尺寸也适用于不同的平台和设备。"
+          }
+        ]
+      }
     },
     "pdf-merge": {
       "title": "PDF 合并",
-      "desc": "将多个 PDF 合并为一个文档"
+      "desc": "将多个 PDF 合并为一个文档",
+      "h1": "PDF 合并器",
+      "description": "将多个 PDF 文件合并为一个文档。免费且快速。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击上传区域或将 PDF 文件拖放到其中。",
+          "如有需要，使用<strong>添加更多</strong>按钮添加更多文件。",
+          "使用每个文件条目旁的上下箭头按钮重新排序文件。",
+          "点击 X 按钮移除不需要的文件。",
+          "在选择至少两个文件后，点击<strong>合并 PDF</strong>。",
+          "将合并后的 PDF 文档下载到您的设备。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在合并前重新排序文件——最终文档将按照列表中显示的顺序排列。",
+          "每个 PDF 必须为 50MB 或更小。超过此限制的文件将被拒绝。",
+          "您可以合并不同页面尺寸的 PDF——每个页面保留其原始尺寸。",
+          "所有处理均在内存中完成；您的文件永远不会存储在磁盘上。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "合并的 PDF 数量有限制吗？",
+            "a": "文件数量没有硬性限制，但每个文件必须小于 50MB，且总请求大小受服务器容量限制。"
+          },
+          {
+            "q": "合并后的 PDF 会保持原始文件的质量吗？",
+            "a": "是的，合并页面时不重新压缩，因此原始质量完全保留。"
+          },
+          {
+            "q": "我的文件会存储在你们的服务器上吗？",
+            "a": "不会，所有处理均在内存中进行，文件不会被永久存储。"
+          },
+          {
+            "q": "我可以合并不同页面尺寸的 PDF 吗？",
+            "a": "可以，无论尺寸差异如何，页面在合并后的文档中都保留其原始尺寸。"
+          }
+        ]
+      }
     },
     "pdf-to-ppt": {
       "title": "PDF 转 PPT",
-      "desc": "将 PDF 页面转换为 PowerPoint 幻灯片"
+      "desc": "将 PDF 页面转换为 PowerPoint 幻灯片",
+      "h1": "PDF 转 PowerPoint",
+      "description": "将 PDF 转换为可编辑的 PowerPoint。保留文字和格式，而非截图。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击上传区域或将 PDF 文件拖放到拖拽区进行上传。",
+          "查看文件详情，然后点击<strong>转换为可编辑的 PowerPoint</strong>。",
+          "等待进度条完成——工具会从每一页中提取文字。",
+          "处理完成后下载生成的 PPTX 文件。",
+          "使用 Microsoft PowerPoint、Google Slides 或 LibreOffice 打开文件。",
+          "根据需要编辑文字、调整格式并添加自定义样式。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "文字密集且布局简单的 PDF 可达到最佳转换效果。",
+          "每个 PDF 页面会变成 PowerPoint 演示文稿中的一张独立幻灯片。",
+          "嵌入字体会被映射为常用替代字体，如 Calibri 或 Consolas。",
+          "包含表格、多栏或重叠元素的复杂布局在转换后可能需要手动调整。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "转换时会保留图片吗？",
+            "a": "本工具主要提取文本内容并以可编辑文本框的形式呈现。复杂的图形和嵌入图片可能无法完美迁移。"
+          },
+          {
+            "q": "可以转换扫描版 PDF 吗？",
+            "a": "本工具直接提取 PDF 中的文字内容。对于扫描文档（基于图片的 PDF），请先使用 OCR 工具提取文字，然后粘贴到 PowerPoint 中。"
+          },
+          {
+            "q": "输出什么 PowerPoint 格式？",
+            "a": "输出为 PPTX 格式，兼容 Microsoft PowerPoint 2007 及更高版本，以及 Google Slides 和 LibreOffice。"
+          },
+          {
+            "q": "格式会保留吗？",
+            "a": "文字位置、字体以及粗体/斜体样式都会保留。复杂的布局可能需要在 PowerPoint 中进行一些手动调整。"
+          }
+        ]
+      }
     },
     "pdf-compress": {
       "title": "PDF 压缩",
-      "desc": "在线减小 PDF 文件大小"
+      "desc": "在线减小 PDF 文件大小",
+      "h1": "PDF 压缩器",
+      "description": "通过移除未使用的数据减小 PDF 文件大小。快速安全——文件在内存中处理。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将 PDF 文件拖放到上传区域，或点击浏览并选择文件。",
+          "查看屏幕上显示的文件名和大小。",
+          "点击<strong>压缩 PDF</strong>开始压缩过程。",
+          "等待处理完成——较大的文件需要更长时间。",
+          "查看显示原始大小与压缩大小的压缩结果。",
+          "下载压缩后的 PDF，或使用<strong>压缩另一个</strong>处理更多文件。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "压缩对包含嵌入图像和大量元数据的 PDF 效果最佳。",
+          "纯文本 PDF 通常体积缩减很小，因为几乎没有冗余数据可移除。",
+          "所有处理均在内存中进行——您的文件永远不会写入我们服务器的磁盘。",
+          "最大文件大小为 50MB。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "PDF 压缩能减少多少文件大小？",
+            "a": "缩减程度因内容而异。包含大图的 PDF 可减少 50–80%。纯文本 PDF 可能仅压缩 5–15%。"
+          },
+          {
+            "q": "压缩会影响文本质量吗？",
+            "a": "不会，压缩过程中文本内容不会被重新编码。优化专注于移除 PDF 结构中未使用的数据和冗余对象。"
+          },
+          {
+            "q": "压缩是无损的吗？",
+            "a": "是的，该工具使用无损压缩技术。不会移除任何内容，仅清理冗余或未使用的数据。"
+          },
+          {
+            "q": "我可以压缩受密码保护的 PDF 吗？",
+            "a": "不支持受密码保护的 PDF。请在上传前移除保护。"
+          }
+        ]
+      }
     },
     "doc-converter": {
       "title": "文档转换器",
-      "desc": "在 Word 和 PDF 之间互相转换"
+      "desc": "在 Word 和 PDF 之间互相转换",
+      "h1": "在线文档转换器 — Word 与 PDF 互转工具",
+      "description": "将 Word 转换为 PDF，或将 PDF 转换为 Word，保留图片和格式。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用顶部的切换按钮选择转换方向：<strong>Word 转 PDF</strong> 或 <strong>PDF 转 Word</strong>。",
+          "上传文件 — Word 转 PDF 上传 .docx 文件，PDF 转 Word 上传 .pdf 文件。",
+          "点击 <strong>转换</strong> 按钮开始处理。",
+          "Word 转 PDF：预览生成的 HTML 并下载 PDF。",
+          "PDF 转 Word：直接下载生成的 .docx 文件。",
+          "使用「转换另一个」处理更多文件。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "Word 转 PDF 生成的是真正的 PDF，包含可选择、可搜索的文本，而非扫描图像。",
+          "PDF 转 Word 将每个 PDF 页面渲染为嵌入 Word 文档中的图像，以保持视觉保真度。",
+          "为获得最佳效果，请确保源文档格式整洁、结构良好。",
+          "每个文件大小不得超过 30MB。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "PDF 转 Word 的转换结果可编辑吗？",
+            "a": "PDF 转 Word 生成包含渲染页面图像的文档。文本不可直接编辑，但保留了视觉布局。"
+          },
+          {
+            "q": "Word 转 PDF 支持什么 Word 格式？",
+            "a": "Word 转 PDF 只接受 .docx 文件。不支持旧版 .doc 格式。"
+          },
+          {
+            "q": "我的文档会存储在服务器上吗？",
+            "a": "不会。所有处理在内存中完成，文件不会被永久存储。"
+          },
+          {
+            "q": "可以转换扫描的 PDF 到 Word 吗？",
+            "a": "可以，支持扫描的 PDF — 每个页面会以图像形式渲染到生成的 Word 文档中。"
+          }
+        ]
+      }
     },
     "pdf-split": {
       "title": "PDF 拆分",
-      "desc": "从 PDF 文件中提取指定页面"
+      "desc": "从 PDF 文件中提取指定页面",
+      "h1": "PDF 拆分器",
+      "description": "从 PDF 文件中提取指定页面。选择单个页面或页码范围。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传 PDF 文件。",
+          "该工具显示您的 PDF 的总<strong>页数</strong>。",
+          "输入您要提取的<strong>页码范围</strong>（例如 <code>1,3,5-8</code>）。",
+          "点击<strong>提取页面</strong>生成并下载仅包含所选页面的新 PDF。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用逗号分隔单个页面（例如 <code>1, 4, 7</code>），使用连字符表示范围（例如 <code>2-6</code>）。",
+          "您可以在一个输入中组合两种格式：<code>1,3,5-8,10,12-15</code>。",
+          "页码从 1 开始——输入超出文档范围的页码将被忽略。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这个工具适用于扫描版 PDF 吗？",
+            "a": "是的——只要文件是有效的 PDF 文件，就支持扫描版 PDF。该工具复制整个页面，包括所有内容、图像和文本。但是，扫描页面的内容是基于图像的，而非基于文本的。"
+          },
+          {
+            "q": "有文件大小限制吗？",
+            "a": "没有人为设置的文件大小限制。非常大的 PDF 根据您设备的内存和处理能力可能需要更长的处理时间。所有处理均在您的浏览器中本地进行。"
+          },
+          {
+            "q": "我可以从受密码保护的 PDF 中提取页面吗？",
+            "a": "不能。受密码保护的 PDF 无法处理，因为 pdf-lib 无法在没有密码的情况下打开加密文件。您需要先使用 PDF 密码工具移除密码，然后拆分未受保护的文档。"
+          }
+        ]
+      }
     },
     "pdf-to-jpg": {
       "title": "PDF 转 JPG",
-      "desc": "将 PDF 页面转换为高清 JPG 图片"
+      "desc": "将 PDF 页面转换为高清 JPG 图片",
+      "h1": "PDF 转 JPG 转换器",
+      "description": "将 PDF 的每一页转换为高质量的 JPG 图像。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传 PDF 文件。",
+          "调整<strong>图像质量比例</strong>——数值越高，图像越大、质量越高。",
+          "每个页面都呈现为 JPG 预览。下载前请查看结果。",
+          "点击单个页面的<strong>下载</strong>或<strong>全部下载</strong>，将每个页面保存为单独的 JPG。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用<strong>2x 或 3x</strong> 的比例获取适合打印或社交媒体分享的高质量图像。",
+          "较低比例（0.5x-1x）处理更快，适合快速预览或缩略图。",
+          "多页 PDF 以高比例渲染所有页面可能需要一些时间——请耐心等待，该工具会逐页处理。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "输出使用什么 JPG 质量？",
+            "a": "该工具使用 0.92（92%）的质量设置，在保持合理文件大小的同时提供出色的图像质量。实际分辨率取决于您选择的比例因子。"
+          },
+          {
+            "q": "为什么 PDF.js 需要从 CDN 加载 worker 脚本？",
+            "a": "PDF.js 使用 web worker 渲染 PDF 页面，而不会阻塞浏览器界面。为提升效率，worker 脚本从 CDN 加载。首次加载后，可能会被浏览器缓存，以便后续更快使用。"
+          },
+          {
+            "q": "我可以转换受密码保护的 PDF 吗？",
+            "a": "不能。PDF.js 无法在没有正确密码的情况下渲染加密的 PDF。如果您的 PDF 受密码保护，您需要先使用 PDF 密码工具移除密码。"
+          }
+        ]
+      }
     },
     "pdf-to-text": {
       "title": "PDF 提取文字",
-      "desc": "从 PDF 文件中提取文本内容"
+      "desc": "从 PDF 文件中提取文本内容",
+      "h1": "PDF 文字提取器",
+      "description": "从 PDF 文件中提取所有文字内容，方便复制和编辑。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传 PDF 文件。文字提取会自动开始。",
+          "等待提取完成——工具会处理每一页以收集所有文字内容。",
+          "在文本区域中查看提取的文字。分页符已标记以供参考。",
+          "点击<strong>复制文字</strong>复制到剪贴板，或点击<strong>下载 .txt</strong>保存为文本文件。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "本工具最适合处理基于文字的 PDF（电子文档、报告、学术论文）。",
+          "对于扫描版 PDF（基于图片），提取的文字内容将为空——请改用 OCR 工具。",
+          "页面顺序和基本布局结构会保留，但复杂格式（表格、多栏）可能无法完美呈现。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "为什么我的 PDF 提取出的文字为空或乱码？",
+            "a": "这通常意味着 PDF 是扫描文档（基于图片）而非数字文字型 PDF。PDF.js 从 PDF 的文字层提取内容，而非从图片中提取。对于扫描文档，您需要使用 OCR（光学字符识别）工具。"
+          },
+          {
+            "q": "这个工具会保留表格和多栏等格式吗？",
+            "a": "文字提取专注于原始文本内容。段落顺序等简单格式会保留，但复杂布局（表格、多栏、文本框）中的文字可能按阅读顺序而非视觉布局显示。如需精确格式，请考虑使用 PDF 转 JPG 转换器。"
+          },
+          {
+            "q": "可以从受密码保护的 PDF 中提取文字吗？",
+            "a": "不可以。PDF.js 无法访问加密 PDF 的文字内容。您需要先使用 PDF 密码移除工具解除密码保护，然后再提取文字。"
+          }
+        ]
+      }
     },
     "pdf-password": {
       "title": "PDF 密码",
-      "desc": "添加或移除 PDF 密码保护"
+      "desc": "添加或移除 PDF 密码保护",
+      "h1": "PDF 密码保护器",
+      "description": "为您的 PDF 文件添加密码保护或移除现有密码。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在<strong>保护 PDF</strong>（添加密码）或<strong>解锁 PDF</strong>（移除密码）模式之间进行选择。",
+          "使用文件选择器上传 PDF 文件。",
+          "输入密码——保护时输入新密码，解锁时输入现有密码。",
+          "点击操作按钮下载处理后的 PDF，无论是否有密码保护。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用包含字母、数字和符号组合的强密码以获得更好的安全性。",
+          "密码区分大小写——请务必记住准确的大小写。",
+          "解锁模式适用于使用 RC4 加密（PDF 1.7 规范）的标准 PDF 密码保护。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "密码加密安全吗？",
+            "a": "该工具使用 RC4 加密，具有 40 位密钥，从您的密码和随机文件标识符派生，遵循 PDF 1.7 标准。基于 RC4 的 PDF 加密为日常使用提供合理保护，但并非对坚定攻击者不可破解。"
+          },
+          {
+            "q": "这个工具可以移除哪些类型的 PDF 密码？",
+            "a": "此工具可以移除使用标准 RC4 加密（算法修订版 2）的 PDF 的用户级打开密码。它无法处理基于 AES 的加密（PDF 2.0）、基于证书的加密、数字签名或仅所有者限制的 PDF。"
+          },
+          {
+            "q": "处理后的 PDF 外观会完全一样吗？",
+            "a": "是的。所有页面、内容、图像和格式都将保留。该工具仅修改加密设置。文档的视觉外观保持不变。"
+          }
+        ]
+      }
     },
     "pdf-metadata": {
       "title": "PDF 元数据",
-      "desc": "查看和编辑 PDF 文档元数据"
+      "desc": "查看和编辑 PDF 文档元数据",
+      "h1": "PDF 元数据查看器",
+      "description": "查看 PDF 文档属性，包括标题、作者、主题和创建日期。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用文件选择器上传 PDF 文件。",
+          "该工具会自动读取并显示 PDF 中所有可用的元数据。",
+          "查看属性，包括标题、作者、主题、关键词和创建日期。",
+          "使用这些信息验证文档详情或整理您的 PDF 收藏。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "并非所有 PDF 都包含完整的元数据——如果文档创建者未填写，某些字段可能显示\"N/A\"。",
+          "创建和修改日期以您的本地时区显示，便于参考。",
+          "使用元数据识别生成文档的源应用程序或 PDF 生产者。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这个工具可以提取哪些元数据？",
+            "a": "该工具提取所有标准 PDF 文档信息字典字段：标题、作者、主题、关键词、生产者（创建 PDF 的应用程序）、创建者（原始文档应用程序）、创建日期和修改日期。它还显示总页数。"
+          },
+          {
+            "q": "我可以使用这个工具编辑元数据吗？",
+            "a": "不能，此工具为只读工具。它显示 PDF 文件中嵌入的现有元数据，但不提供编辑功能。您需要专用的 PDF 编辑器来修改元数据字段。"
+          },
+          {
+            "q": "为什么有些 PDF 的元数据我看不到？",
+            "a": "某些 PDF，特别是由特定应用程序或扫描仪创建的 PDF，可能嵌入极少或没有元数据。此外，加密或受密码保护的 PDF 在解密前可能不会暴露其元数据。这属于正常情况，取决于 PDF 的原始创建方式。"
+          }
+        ]
+      }
     },
     "ai-summary": {
       "title": "AI 文本摘要",
-      "desc": "用 AI 快速摘要文章"
+      "desc": "用 AI 快速摘要文章",
+      "h1": "AI 文本摘要工具",
+      "description": "使用 AI 总结长篇文章、文档和文本。几秒钟内获取关键要点。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将你想要总结的文章、文档或文本粘贴或输入到输入框中。",
+          "选择你偏好的摘要长度——简短（2-3 句）、中等（段落）或详细（详细版）。",
+          "选择输出风格——段落、要点列表或一句话快速总结。",
+          "点击“使用 AI 总结”，等待 AI 处理你的文本。一键复制结果。",
+          "查看字数和缩减百分比，以评估摘要的压缩程度。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "为获得最佳效果，请粘贴完整的文章或文档而不仅仅是片段——更多上下文有助于 AI 生成更准确的摘要。",
+          "对于研究论文和报告，当你需要清晰的关键要点时，请使用要点列表风格。",
+          "从中等长度开始，根据你需要的详细程度向上或向下调整。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI 文本摘要工具是免费的吗？",
+            "a": "是的，这个 AI 文本摘要工具完全免费使用。没有使用限制或隐藏费用。"
+          },
+          {
+            "q": "AI 是如何总结文本的？",
+            "a": "AI 分析全文，识别最重要的句子和概念，并生成简洁的摘要，在保留原意的同时提取关键要点。"
+          },
+          {
+            "q": "使用摘要工具时我的文本安全吗？",
+            "a": "你的文本会被安全地发送到 AI API 进行处理。我们不会存储或分享你的内容。对于敏感信息，请避免包含个人或机密细节。"
+          },
+          {
+            "q": "什么样的文本适合进行摘要？",
+            "a": "任何写得好的文本都可以——新闻文章、博客文章、学术论文、报告或长电子邮件。清晰且有结构的内容能产生最连贯的摘要。"
+          }
+        ]
+      }
     },
     "ai-translator": {
       "title": "AI 翻译",
-      "desc": "在 20 多种语言之间翻译文本"
+      "desc": "在 20 多种语言之间翻译文本",
+      "h1": "AI 翻译工具",
+      "description": "使用 AI 在 20 多种语言之间翻译文本。保留格式和自然表达。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择源语言或选择“自动检测”让 AI 自动识别语言。",
+          "从支持 20 多种语言的列表中选择目标语言。",
+          "在源文本区域中输入或粘贴你想要翻译的文本。",
+          "点击“使用 AI 翻译”，译文将立即出现在右侧。",
+          "使用交换按钮切换源语言和目标语言，快速进行反向翻译。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用完整的句子而不是零散的短语——完整的句子能为 AI 提供更多上下文，以实现更自然的翻译。",
+          "在不同文字体系的语言之间翻译时（例如英语到日语），请检查结果中专有名词是否保留。",
+          "对于商务或专业内容，建议先翻译，然后让母语者审阅以处理文化细微差别。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI 翻译工具支持多少种语言？",
+            "a": "翻译工具支持 20 多种语言，包括英语、中文、日语、韩语、法语、德语、西班牙语、葡萄牙语、俄语、阿拉伯语、印地语、意大利语、越南语、泰语、印尼语、土耳其语、荷兰语和波兰语。"
+          },
+          {
+            "q": "AI 翻译的准确度如何？",
+            "a": "AI 生成的译文自然流畅，保留原意、语气和格式。与传统机器翻译工具相比，它能更好地处理习语和上下文。"
+          },
+          {
+            "q": "我可以在所有翻译中使用自动检测吗？",
+            "a": "是的，自动检测对大多数语言都能很好地工作。如果你知道源语言，手动选择可以略微提高较少见语言对的翻译准确性。"
+          }
+        ]
+      }
     },
     "ai-rewriter": {
       "title": "AI 改写",
-      "desc": "用正式、随意或营销语气改写文本"
+      "desc": "用正式、随意或营销语气改写文本",
+      "h1": "AI 文本改写工具 —— 智能风格转换助手",
+      "description": "用 AI 改变你的写作语气和风格。正式、随意、简洁或营销。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将你想要改写的文本粘贴或输入到原文文本框中。",
+          "选择你想要的写作风格 —— 正式、简洁、随意或营销。",
+          "点击“用 AI 改写”，改写后的版本将显示在输出面板中。",
+          "查看字数变化，了解改写后长度与原文的对比。",
+          "一键复制改写后的文本，用于你的邮件、社交媒体帖子或营销文案。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "从清晰、结构良好的文本开始 —— 输入质量越好，改写得越连贯。",
+          "对商业提案、求职信和职业通信使用正式风格。",
+          "对社交媒体更新、博客评论和内部团队消息尝试随意风格。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI 改写工具会改变文本的含义吗？",
+            "a": "不会，AI 会保留原文含义，同时调整语气、风格和措辞。关键信息和意图保持不变。"
+          },
+          {
+            "q": "学术写作应该选择哪种风格？",
+            "a": "正式风格最适合学术写作、论文和研究报告。它能生成适用于学术场景的优美、专业语言。"
+          },
+          {
+            "q": "我可以用这个工具改写营销文案吗？",
+            "a": "当然可以。营销风格专门为富有说服力和吸引力的文案而设计 —— 非常适合广告、产品描述、着陆页和推广内容。"
+          }
+        ]
+      },
+      "styleFormal": "正式",
+      "styleFormalDesc": "专业优雅",
+      "styleConcise": "简洁",
+      "styleConciseDesc": "简明扼要",
+      "styleCasual": "随意",
+      "styleCasualDesc": "友好对话",
+      "styleMarketing": "营销",
+      "styleMarketingDesc": "有说服力"
     },
     "ai-assistant": {
       "title": "AI 聊天助手",
-      "desc": "与 AI 聊天，获得各种任务帮助"
+      "desc": "与 AI 聊天，获得各种任务帮助",
+      "h1": "AI 助手",
+      "description": "与AI聊天，获取写作、编程、分析等方面的即时帮助。任何任务都能获得协助。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在聊天容器底部的输入框中输入您的问题或请求。",
+          "按Enter键发送消息（使用Shift+Enter换行）。",
+          "阅读AI的回复，然后提出后续问题来优化答案。",
+          "随时点击“清除聊天”按钮开始新的对话。",
+          "查看消息数量以了解您的对话历史记录。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "提问时尽量具体——与其说“写代码”，不如说“写一个Python函数，按字典的某个键对字典列表进行排序”。",
+          "通过后续提问优化回答。AI会记住对话上下文。",
+          "对于复杂任务，将其拆分为小步骤逐一提问，可获得更全面的回答。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI助手能帮我做什么？",
+            "a": "AI助手可以帮助写作、编程、分析、研究、头脑风暴、解决问题、创意任务和日常答疑。它是一个几乎适用于任何任务的多功能工具。"
+          },
+          {
+            "q": "AI助手会记住之前的消息吗？",
+            "a": "是的，AI助手会在单个聊天会话中保持对话上下文，因此它会记住您之前讨论过的内容。"
+          },
+          {
+            "q": "发送消息数量有限制吗？",
+            "a": "没有消息数量限制。AI助手完全免费，可以无限畅聊。"
+          }
+        ]
+      }
     },
     "ai-grammar": {
       "title": "AI 语法检查",
-      "desc": "检查拼写、语法和标点符号"
+      "desc": "检查拼写、语法和标点符号",
+      "h1": "AI 语法检查器",
+      "description": "检查拼写、语法、标点和风格。获取带有解释的修正文本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将要检查的英文文本粘贴或输入到输入文本区域。",
+          "点击“检查语法”开始AI对您文本的分析。",
+          "查看右侧结果面板中显示的修正版本。",
+          "阅读每个修正提供的解释，理解相关的语法规则。",
+          "一键复制修正后的文本，用于您的文档或消息中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "先自然地写作——不必担心完美。AI会检查错误并提出改进建议。",
+          "将较长的文档逐段通过检查器，以获得更全面的分析。",
+          "注意您经常看到的修正——这些是您可以提升写作技巧的地方。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI语法检查器能发现哪些类型的错误？",
+            "a": "它能发现拼写错误、标点错误、语法问题（主谓一致、时态、冠词）、不通顺的措辞以及风格改进建议。"
+          },
+          {
+            "q": "语法检查器适合非英语母语者使用吗？",
+            "a": "是的，它对非母语者尤其有帮助。AI不仅提供修正文本，还附带解释，帮助您从错误中学习。"
+          },
+          {
+            "q": "我可以检查英语以外的其他语言的语法吗？",
+            "a": "目前，语法检查器针对英文文本进行了优化。它可能适用于其他语言，但英文内容的检查效果最佳。"
+          }
+        ]
+      }
     },
     "ai-email": {
       "title": "AI 邮件生成器",
-      "desc": "快速生成专业邮件"
+      "desc": "快速生成专业邮件",
+      "h1": "AI 邮件生成器",
+      "description": "在几秒钟内生成专业邮件。选择场景、设定语气、添加要点。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "从可用选项中选择邮件场景——咨询、投诉、跟进、感谢、提案、道歉、介绍或提醒。",
+          "选择所需的语气——专业、友好或直接。",
+          "可选地输入收件人姓名或称谓（如“招聘经理”、“支持团队”）。",
+          "在文本区域描述邮件应包含的要点和详细信息。",
+          "点击“生成邮件”，AI将生成包含主题行、称呼、正文和结尾的完整草稿。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在要点字段中提供具体细节——姓名、日期、订单号和相关背景有助于生成更准确的邮件。",
+          "内部团队沟通使用友好语气，外部客户和正式通信使用专业语气。",
+          "发送前审核并个性化生成的邮件——稍加调整就能让它听起来更像是您本人所写。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我可以生成不同语言的邮件吗？",
+            "a": "邮件生成器在英语方面效果最佳，但您也可以用其他语言描述要点，AI会相应地生成邮件。"
+          },
+          {
+            "q": "生成的邮件包含主题行吗？",
+            "a": "是的，每封生成的邮件都包含完整草稿，包括主题行、称呼、正文段落和专业的结尾。"
+          },
+          {
+            "q": "如果需要调整生成的邮件怎么办？",
+            "a": "只需修改要点后重新生成，或复制草稿手动编辑。您也可以更改场景或语气后再次尝试。"
+          }
+        ]
+      },
+      "scenarioInquiry": "咨询",
+      "scenarioInquiryDesc": "索取信息",
+      "scenarioComplaint": "投诉",
+      "scenarioComplaintDesc": "礼貌升级",
+      "scenarioFollowup": "跟进",
+      "scenarioFollowupDesc": "会议后续",
+      "scenarioThankYou": "感谢",
+      "scenarioThankYouDesc": "表达感激",
+      "scenarioProposal": "提案",
+      "scenarioProposalDesc": "商业推介",
+      "scenarioApology": "道歉",
+      "scenarioApologyDesc": "表示歉意",
+      "scenarioIntroduction": "介绍",
+      "scenarioIntroductionDesc": "自我介绍",
+      "scenarioReminder": "提醒",
+      "scenarioReminderDesc": "温和提醒"
     },
     "ai-title": {
       "title": "AI 标题生成器",
-      "desc": "为博客和视频生成吸引人的标题"
+      "desc": "为博客和视频生成吸引人的标题",
+      "h1": "AI 标题生成器",
+      "description": "为博客文章、视频、广告等生成吸引人的标题。多种风格和长度可选。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入你的主题或话题——尽可能具体以获得更好的效果。",
+          "从可用选项中选择标题风格：专业型、高点击型、教程型、问题型或创意型。",
+          "使用滑块调整你想要的标题数量（3 到 10 个标题）。",
+          "点击“生成标题”，AI 将生成一系列独特且吸引人的标题。",
+          "使用每个标题旁边的“复制”按钮复制单个标题，或使用“全部复制”获取整个列表。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对于教育类内容使用提问风格——好奇心驱动的标题具有更高的点击率。",
+          "对于 YouTube 视频和社交媒体帖子，尝试使用高点击风格，这些场景中互动率最为重要。",
+          "一次生成 10 个标题，让自己有更多选择并可以组合创意。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我可以为哪些类型的内容生成标题？",
+            "a": "标题生成器适用于博客文章、YouTube 视频、社交媒体内容、广告、新闻通讯、播客、演示文稿等。"
+          },
+          {
+            "q": "我可以生成不同语言的标题吗？",
+            "a": "该工具最擅长生成英文标题，但你也可以用其他语言输入主题，AI 会生成对应的标题。"
+          },
+          {
+            "q": "高点击风格和专业风格有什么区别？",
+            "a": "高点击风格的标题利用好奇心缺口、强力词汇和情感触发词来吸引高互动。专业风格的标题则权威、清晰，适合商业场景。"
+          }
+        ]
+      },
+      "styleProfessionalDesc": "权威专业",
+      "styleClickWorthy": "高点击型",
+      "styleClickWorthyDesc": "引人注目",
+      "styleHowToDesc": "实用可行",
+      "styleQuestionDesc": "好奇心驱动",
+      "styleCreativeDesc": "社交媒体风格"
     },
     "ai-keywords": {
       "title": "AI 关键词提取",
-      "desc": "提取用于 SEO 优化的关键词"
+      "desc": "提取用于 SEO 优化的关键词",
+      "h1": "AI 关键词提取工具 —— 智能内容分析助手",
+      "description": "从任何文本中提取关键主题、关键词和短语。非常适合 SEO 和内容规划。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将你的文章、博客帖子、产品描述或任何内容粘贴到文本输入区域。",
+          "点击“提取关键词”，开始 AI 分析你的内容。",
+          "查看提取出的关键词，包含主要术语、次要关键词和长尾短语。",
+          "一键复制关键词列表，用于你的 SEO 策略、内容规划或广告定向。",
+          "优化输入文本后重新提取，发现同一主题的不同关键词角度。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用较长内容（300 词以上），可获得更全面和准确的关键词提取结果。",
+          "将提取的关键词与目标受众的搜索意图进行对照 —— 优先选择与用户实际搜索内容匹配的术语。",
+          "将提取的关键词组合成主题集群，构建更有效的内容策略。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI 会提取哪些类型的关键词？",
+            "a": "AI 会从你的内容中提取主要关键词（核心主题）、次要关键词（辅助术语）和长尾短语（特定的多词查询）。"
+          },
+          {
+            "q": "我可以将这些关键词用于 SEO 优化吗？",
+            "a": "可以，提取的关键词非常适合 SEO。将它们用于元描述、标题标签、图片替代文本以及内容各处，以提升搜索排名。"
+          },
+          {
+            "q": "关键词提取的准确度如何？",
+            "a": "AI 使用先进的自然语言处理技术来识别最相关的术语和短语。针对特定主题编写良好、内容集中的文本，准确度会更高。"
+          }
+        ]
+      }
     },
     "ai-blog": {
       "title": "AI 博客生成器",
-      "desc": "生成博客大纲和全文"
+      "desc": "生成博客大纲和全文",
+      "h1": "AI 博客生成器",
+      "description": "使用AI生成博客大纲、引言或完整文章。选择格式、语气和目标关键词。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在主题字段中输入您的博客主题——越具体效果越好（例如“远程工作对软件团队的好处”）。",
+          "可选地添加目标关键词，帮助AI优化您的内容以获得更好的SEO效果。",
+          "选择输出格式——大纲、仅引言或完整博客文章。",
+          "选择语气——专业、对话式或说服性——以匹配您的品牌调性。",
+          "点击“生成博客内容”，AI将为您生成内容。准备就绪后一键复制。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "先使用大纲格式规划结构，待流程满意后再生成完整博客文章。",
+          "生活类博客使用对话式语气，行业或B2B内容使用专业语气。",
+          "包含3-5个相关关键词，帮助AI将其自然地融入生成的内容中。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "博客内容是原创且无抄袭的吗？",
+            "a": "是的，AI会根据您的主题和关键词从头生成独特内容。不过，发布前您仍应审核和核实事实。"
+          },
+          {
+            "q": "我可以用生成的内容用于商业目的吗？",
+            "a": "可以，您拥有此工具生成的内容的所有权。您可以将其用于网站、博客、新闻通讯或任何商业用途。"
+          },
+          {
+            "q": "大纲和完整博客文章格式有什么区别？",
+            "a": "大纲生成带有标题和要点的结构化计划。完整博客文章则生成包含引言、正文段落和结论的完整篇章。"
+          }
+        ]
+      }
     },
     "ai-pros-cons": {
       "title": "AI 利弊分析",
-      "desc": "获得任何决策的平衡分析"
+      "desc": "获得任何决策的平衡分析",
+      "h1": "AI 利弊分析器 —— 智能决策助手",
+      "description": "对任何决策、产品或想法进行平衡分析。AI 客观评估双方面。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在文本区域描述你要分析的决策、产品或想法。",
+          "选择分析重点 —— 全面分析、成本分析或实用性分析 —— 以定制分析内容。",
+          "点击“分析”，AI 将客观评估你的主题的正反两面。",
+          "查看结构化的利弊分析及可行的建议。",
+          "一键复制分析结果，保存或与团队分享。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在主题描述中提供具体的背景信息 —— 包括预算、时间线和相关方等细节，以获得更具可操作性的洞察。",
+          "在涉及购买软件、招聘或投资等财务决策时，使用成本分析重点。",
+          "将同一主题用不同的分析重点分别运行，在做决策前获得全面的视角。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我可以使用这个工具分析哪些类型的话题？",
+            "a": "你可以分析任何决策、产品比较、想法或情况 —— 从职业变动和商业策略到产品购买和生活方式改变。"
+          },
+          {
+            "q": "分析结果会偏向某一方吗？",
+            "a": "不会，AI 旨在提供平衡、客观的分析。它公平地评估利弊，并指出你可能未曾考虑的因素。"
+          },
+          {
+            "q": "这个工具会提供建议吗？",
+            "a": "会的，除了列出利弊之外，AI 还会基于分析提供可操作的建议，帮助你做出更明智的决策。"
+          }
+        ]
+      }
     },
     "cover-letter": {
       "title": "AI 求职信",
-      "desc": "用 AI 生成求职信"
+      "desc": "用 AI 生成求职信",
+      "h1": "AI 求职信生成器",
+      "description": "为任何求职申请在数秒内生成专业的求职信。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在第一个输入框中输入您申请的职位名称。",
+          "输入公司名称，使求职信针对特定组织个性化定制。",
+          "在技能文本区域描述您的相关技能、经验和关键成就，以获得最佳效果。",
+          "选择语气 — 专业、热情或直接简洁 — 以匹配公司文化和职位要求。",
+          "点击「生成求职信」，等待 AI 撰写您的信件，然后使用复制按钮保存结果。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在技能部分要具体 — 提到具体成就，如「销售额提升了 20%」，而不是模糊的描述。",
+          "语气要与行业匹配：企业职位用专业语气，初创公司和创意职位用热情语气，高管求职用直接语气。",
+          "发送前务必审阅和自定义生成的求职信 — AI 输出的结果最适合作为强有力的起点。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI 是如何生成求职信的？",
+            "a": "AI 通过我们的服务端 API，利用您提供的职位名称、公司名称、技能和选择的语气来生成定制化的求职信。"
+          },
+          {
+            "q": "生成求职信的数量有限制吗？",
+            "a": "没有。您可以为不同的求职申请和公司生成无限封求职信。"
+          },
+          {
+            "q": "可以自定义生成的求职信再使用吗？",
+            "a": "可以。生成的求职信会显示在可编辑的文本区域中，您可以复制后粘贴到任何文字处理器中进行进一步编辑。"
+          },
+          {
+            "q": "为了获得最佳效果，技能部分应该包含哪些信息？",
+            "a": "包括您的工作年限、关键技术能力、带有数据指标的显著成就，以及相关证书或教育背景。"
+          }
+        ]
+      }
     },
     "ai-hashtags": {
       "title": "AI 话题标签生成器",
-      "desc": "为社交媒体生成话题标签"
+      "desc": "为社交媒体生成话题标签",
+      "h1": "AI 话题标签生成器 —— 智能社交媒体标签工具",
+      "description": "为 Instagram、X (Twitter)、TikTok 和 LinkedIn 生成相关且高效的话题标签。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在文本区域描述你的帖子、主题或内容 —— 提供的信息越详细，生成的话题标签就越精准相关。",
+          "选择你的目标平台 —— Instagram、Twitter/X、TikTok 或 LinkedIn —— 获取针对该平台的话题标签建议。",
+          "使用滑块调整话题标签数量（5 到 20 个标签）。",
+          "点击“生成话题标签”，AI 将为你生成一份精选的相关标签列表。",
+          "复制生成的话题标签，直接粘贴到你的社交媒体帖子中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "混合使用宽泛型和细分型话题标签 —— 宽泛标签扩大覆盖面，细分标签提升精准互动。",
+          "选择特定平台，获取针对该平台算法和用户行为优化的话题标签。",
+          "在 Instagram 上每条帖子使用 10-15 个标签，在 LinkedIn 上使用 3-5 个标签，可获得最佳互动效果。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这些话题标签是否针对每个社交媒体平台有所不同？",
+            "a": "是的，当你选择某个平台时，AI 会生成在该平台上相关且流行的话题标签。不同平台有不同的标签文化和最佳实践。"
+          },
+          {
+            "q": "每个平台应该使用多少个话题标签？",
+            "a": "对于 Instagram，10-15 个标签效果不错。对于 TikTok，3-5 个精准标签效果很好。对于 LinkedIn，3-5 个专业标签。对于 Twitter/X，1-3 个标签是最佳选择。"
+          },
+          {
+            "q": "这个工具会按流行度对话题标签进行分类吗？",
+            "a": "是的，生成的话题标签通常会分类显示，哪些是热门或高流量的标签，哪些是细分或社区专用的标签。"
+          }
+        ]
+      }
     },
     "ai-bio": {
       "title": "AI 个人简介生成器",
-      "desc": "为任何平台生成个人简介"
+      "desc": "为任何平台生成个人简介",
+      "h1": "AI 个人简介生成器",
+      "description": "为LinkedIn、Twitter、Instagram和个人网站生成专业的个人简介。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入您当前的职位或头衔（例如“高级软件工程师”、“自由设计师”）。",
+          "可选地添加关于您的技能、成就、兴趣或职业亮点的关键信息。",
+          "选择您偏好的语气——专业、创意或趣味休闲。",
+          "选择目标平台——LinkedIn、Twitter/X、Instagram或个人网站——获取针对平台优化过的简介。",
+          "点击“生成简介”，AI将根据您的平台和语气生成一份精炼的个人简介。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含具体的成就和数字——“带领过10人工程师团队”比“带领过团队”更有说服力。",
+          "在LinkedIn和个人网站使用专业语气，Instagram使用创意语气，Twitter/X使用趣味休闲语气。",
+          "保持简介简洁——LinkedIn简介最佳长度为150-200词，Twitter简介应在160个字符以内。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我可以同时为多个平台生成简介吗？",
+            "a": "个人简介生成器每次为所选平台生成一份简介。您可以切换平台并重新生成，以获取针对不同平台的版本。"
+          },
+          {
+            "q": "在详细信息字段中应该填写什么？",
+            "a": "填写您的核心技能、显著成就、工作年限、行业关键词、个人兴趣以及任何让您的个人资料独具特色的内容。"
+          },
+          {
+            "q": "简介是否符合不同平台的字符限制？",
+            "a": "是的，AI会根据所选平台的典型长度和字符限制生成合适的简介，因此您不必担心内容被截断。"
+          }
+        ]
+      }
     },
     "ai-copy": {
       "title": "AI 广告文案",
-      "desc": "生成广告文案和产品描述"
+      "desc": "生成广告文案和产品描述",
+      "h1": "AI 广告文案撰写器",
+      "description": "使用AI生成广告文案、产品描述和社交媒体帖子。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "详细描述您的产品或服务——包括关键功能、优势和使其区别于竞争对手的独特卖点。",
+          "可选地输入您的目标受众（如“小企业主”、“技术专业人士”、“新手父母”），以便文案贴合他们的兴趣。",
+          "选择文案类型：广告文案、产品描述或社交媒体帖子——每种类型具有不同的结构和长度。",
+          "选择与品牌调性匹配的语气：专业、说服性、友好或奢华。",
+          "点击“生成文案”并在结果面板中查看AI撰写的营销文本。",
+          "使用复制按钮将生成的文案复制到剪贴板，然后粘贴到您的广告平台、网站或社交媒体排期工具中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在产品描述中包含具体的数据、定价或客户评价，以便AI融入具体的卖点。",
+          "对于社交媒体帖子，提及平台（Instagram、LinkedIn、Twitter、Facebook），以便AI相应地调整长度和格式。",
+          "使用不同语气生成多个变体，进行A/B测试，找出最能引起受众共鸣的文案。",
+          "在发布前编辑生成的文案，加入您品牌的独特风格，并核实所有表述的准确性。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我可以生成哪些类型的文案？",
+            "a": "您可以生成广告文案、产品描述和社交媒体帖子。每种类型都遵循其格式的最佳实践——广告简洁且以行动为导向，描述详细，社交帖子引人入胜且适合平台。"
+          },
+          {
+            "q": "我可以选择生成文案的语气吗？",
+            "a": "是的，该工具提供四种语气：专业（正式可信）、说服性（以利益驱动并包含行动号召）、友好（平易近人、对话式）和奢华（精致高端）。"
+          },
+          {
+            "q": "产品描述应该写多长？",
+            "a": "目标是2-4句话，涵盖产品是什么、核心优势以及独特之处。对于着陆页等更长的内容，您可以提供更多细节。"
+          },
+          {
+            "q": "生成的文案是原创的吗？",
+            "a": "是的，AI会根据您的输入生成原创文本。不过，发布前您应始终审核其与品牌的一致性、事实准确性以及是否符合广告规范。"
+          }
+        ]
+      }
     },
     "ai-readability": {
       "title": "AI 可读性检查",
-      "desc": "分析和改善文本可读性"
+      "desc": "分析和改善文本可读性",
+      "h1": "AI 可读性检查工具 —— 文本质量优化助手",
+      "description": "分析文本可读性，获取改进建议和简化版本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将要分析的文本粘贴或输入到左侧文本区域。可以是博客文章、论文、邮件、文档或任何书面内容。",
+          "点击“分析可读性”，将文本提交给 AI 进行评估。",
+          "查看可读性评分和详细统计数据，包括句子长度、词汇复杂度和年级水平估算。",
+          "阅读 AI 提供的清晰度改进建议 —— 可能包括缩短句子、简化词汇或优化段落结构。",
+          "查看 AI 提供的简化版本，了解你的文本在较低年级水平下的阅读效果。",
+          "将建议应用到原文后重新分析，跟踪可读性分数的提升。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "为获得最准确的分析，请提交完整段落而非孤立句子 —— 上下文有助于 AI 评估文章的流畅度和连贯性。",
+          "如果面向普通受众写作，目标可读性水平应设定为 6-8 年级（Flesch-Kincaid 指数）。技术文档可设定更高的水平。",
+          "关注关于被动语态和复杂词汇的建议 —— 这些是导致文本难以阅读的常见原因。",
+          "将原文和简化版本并排对比，了解具体修改如何影响可读性。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这个工具提供哪些可读性指标？",
+            "a": "AI 提供全面的分析，包括估算的年级水平、句子长度分布、词汇复杂度分析、被动语态检测以及具体的改进建议。"
+          },
+          {
+            "q": "我的内容达到什么可读性分数才算好？",
+            "a": "对于普通受众，目标为 6-8 年级阅读水平。学术内容可以定位 10-12 年级，而技术文档根据受众不同，10-14 年级也可接受。"
+          },
+          {
+            "q": "这个工具能帮助我简化复杂文本吗？",
+            "a": "是的，除了分析之外，AI 还会生成文本的简化版本，使用更短的句子和更简单的词汇，同时保留原文含义。"
+          },
+          {
+            "q": "这个工具适用于非英文文本吗？",
+            "a": "分析针对英文文本进行了优化。对于其他语言，分数估算可能不太可靠，但关于清晰度和结构的一般性建议仍然有帮助。"
+          }
+        ]
+      }
     },
     "ai-interview": {
       "title": "AI 面试题生成",
-      "desc": "为任何岗位生成面试问题"
+      "desc": "为任何岗位生成面试问题",
+      "h1": "AI 面试题生成器 —— 智能招聘面试助手",
+      "description": "为任何岗位生成面试问题。包含面试官考察要点和回答技巧。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入你要招聘的职位角色 —— 例如“前端开发”、“产品经理”、“数据科学家”或“市场负责人”。",
+          "选择问题类型：技术/技能类评估硬技能，行为类评估软技能和过往经验，或混合类获得均衡组合。",
+          "使用滑块调整问题数量 —— 每套题可从 3 到 15 个问题。",
+          "点击“生成问题”，获取针对该职位量身定制的面试问题列表。",
+          "查看每个问题，了解面试官在优秀回答中看重什么，以及候选人准备回答的技巧。",
+          "使用复制按钮保存问题集，用于你的面试小组或与招聘团队分享。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对职位级别要具体说明 —— 在职位描述中加入“初级”、“高级”或“主管”，以获得与经验水平匹配的问题。",
+          "对于技术岗位，提及具体的技术或框架（例如“React + Node.js 开发者”，而不只是“Web 开发者”），以获得更相关的问题。",
+          "使用混合模式创建全面的面试，同时评估技术能力和文化契合度。",
+          "为不同面试阶段生成多套问题 —— 电话筛选、技术面试和终面小组 —— 各有不同的侧重点。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我可以为非技术岗位生成问题吗？",
+            "a": "可以，该生成器适用于任何岗位。输入职位名称，选择行为类或混合类问题类型即可。它涵盖了从市场营销、销售到人力资源和运营等所有领域。"
+          },
+          {
+            "q": "每个问题附带哪些信息？",
+            "a": "每个问题都包含面试官应在优秀回答中关注的内容、需要注意的常见陷阱，以及候选人如何组织回答的技巧。"
+          },
+          {
+            "q": "一次面试应该生成多少个问题？",
+            "a": "对于 45–60 分钟的面试，5–8 个问题最为理想。对于电话筛选，3–5 个问题效果很好。使用滑块为你的面试形式找到合适的数量。"
+          },
+          {
+            "q": "我可以用这些问题进行自我练习吗？",
+            "a": "当然可以。求职者可以使用这个工具练习回答针对特定职位的问题，了解面试官的考察重点，并在实际面试前准备出更有力的回答。"
+          }
+        ]
+      }
     },
     "ai-flashcards": {
       "title": "AI 闪卡生成器",
-      "desc": "将文本转换为学习闪卡"
+      "desc": "将文本转换为学习闪卡",
+      "h1": "AI 闪卡生成器",
+      "description": "将任何文本转化为问答式学习闪卡。非常适合学生和终身学习者。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将学习材料粘贴到文本区域——可以是教科书内容、课堂笔记、文章、文档或任何教育性文本。",
+          "使用滑块调整闪卡数量（5到20张），控制AI提取的概念数量。",
+          "点击“生成闪卡”提交文本。AI会识别关键概念并创建问答对。",
+          "在右侧面板中查看生成的闪卡。每张卡片的一面是清晰的问题，另一面是简洁的答案。",
+          "使用复制按钮将所有卡片复制到剪贴板，然后粘贴到您喜欢的闪卡应用中（Anki、Quizlet等）。",
+          "学习卡片并从材料的不同部分生成新的卡片集，进行全面备考。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "粘贴关于单一主题的聚焦文本而非宽泛章节——这有助于AI生成更具体、更高质量的问答对。",
+          "对于技术性主题，在源文本中包含代码片段、公式或定义，以便闪卡捕获精确的技术知识。",
+          "每次学习使用10-15张卡片以获得最佳记忆效果。一次性太多卡片会降低回忆效率。",
+          "将来自不同主题的多个较短闪卡组合并使用，而非创建一个大的集合，以获得更好的间隔重复学习效果。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "哪种类型的源材料效果最好？",
+            "a": "教科书章节、课堂笔记、研究论文、技术文档和文章摘要都很适用。AI会提取概念、定义、过程和关键事实。"
+          },
+          {
+            "q": "我可以将这些闪卡导出到其他应用吗？",
+            "a": "可以，使用复制按钮将所有问答对作为格式化文本复制。然后您可以粘贴到Anki、Quizlet、Notion或任何支持问答导入的学习工具中。"
+          },
+          {
+            "q": "AI如何决定将哪些内容制作成闪卡？",
+            "a": "AI会识别文本中的关键概念、定义、重要事实、过程和关系，然后将每个内容转化为一个带有清晰简洁答案的问题。"
+          },
+          {
+            "q": "我可以提交的文本量有限制吗？",
+            "a": "该工具可处理段落至数页的文本。对于很长的文档，请将内容按逻辑分段，并为每段分别生成闪卡集。"
+          }
+        ]
+      }
     },
     "resume-builder": {
       "title": "AI 简历生成器",
-      "desc": "制作简历并下载为 PDF"
+      "desc": "制作简历并下载为 PDF",
+      "h1": "${name || 'Your Name'}",
+      "description": "制作专业简历并下载为 PDF。包含工作经历、教育背景和技能等模块，格式适合打印。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在“个人信息”部分填写您的详细信息，包括姓名、职位、电子邮件、电话和所在地。",
+          "撰写专业摘要，突出您的关键资质、职业目标以及您能为职位带来的价值。",
+          "添加工作经历条目，包括公司名称、职位、任职时间以及您的职责和成就描述。",
+          "列出教育背景，包括学校、学位、专业和毕业日期。",
+          "以逗号分隔列表的形式输入您的技能，然后点击“预览并下载”查看并导出适合打印的 PDF 简历。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "根据您申请的特定职位调整专业摘要，而不是使用通用概述。",
+          "在经历描述中使用“主导”、“开发”和“实施”等行动动词，让成就更加突出。",
+          "如果工作经验不足 10 年，请将简历控制在一页内——招聘经理通常只会花几秒钟浏览每份简历。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "可以将简历下载为 PDF 吗？",
+            "a": "可以。点击“预览并下载”查看适合打印的预览，然后点击“下载 PDF”打开浏览器的打印对话框并保存为 PDF。"
+          },
+          {
+            "q": "我的数据会被存储或与他人共享吗？",
+            "a": "不会。所有数据都保留在您的浏览器中。不会发送到服务器或存储到线上。"
+          },
+          {
+            "q": "可以添加多段工作经历和教育经历吗？",
+            "a": "可以。使用“+ 添加”按钮添加任意数量的条目。您也可以使用每个条目上的“移除”按钮删除条目。"
+          },
+          {
+            "q": "如果我没有填写所有部分怎么办？",
+            "a": "任何空白部分都会在预览中自动隐藏。您只需填写与简历相关的内容即可。"
+          }
+        ]
+      }
     },
     "ai-story": {
       "title": "AI 故事生成器",
-      "desc": "用 AI 生成创意故事"
+      "desc": "用 AI 生成创意故事",
+      "h1": "AI 故事生成器 — 免费在线创意故事创作",
+      "description": "免费的 AI 故事生成器。创作任何主题的创意故事。从奇幻、科幻、悬疑、浪漫和冒险等类型中选择。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入你的故事主题或提示",
+          "选择类型和风格",
+          "点击生成",
+          "复制结果"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "输入越具体，效果越好",
+          "尝试不同的类型和风格以获得多样性"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 故事生成器？",
+            "a": "AI 故事生成器使用人工智能根据你的提示创作叙事故事，帮助克服写作障碍并激发创意。"
+          },
+          {
+            "q": "我可以将这些故事用于商业用途吗？",
+            "a": "是的，生成的故事可以免费用于个人或商业目的。"
+          },
+          {
+            "q": "生成的故事有多长？",
+            "a": "根据提示的复杂程度，故事通常为几段到一页的长度。"
+          }
+        ]
+      }
     },
     "ai-poem": {
       "title": "AI 诗歌生成器",
-      "desc": "用 AI 创作任何主题的诗歌"
+      "desc": "用 AI 创作任何主题的诗歌",
+      "h1": "AI 诗歌生成器 —— 在线免费诗歌创作工具",
+      "description": "免费的 AI 诗歌生成器。创作任何主题的优美诗歌。可选择十四行诗、俳句、自由诗、打油诗和藏头诗等风格。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入一个主题或话题",
+          "选择一种诗歌风格",
+          "点击生成",
+          "复制结果"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "主题描述越详细，生成的诗歌越丰富",
+          "尝试不同风格，体验多种诗歌形式"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 诗歌生成器？",
+            "a": "AI 诗歌生成器根据你选择的主题和风格偏好，利用人工智能创作诗歌。"
+          },
+          {
+            "q": "这些诗歌是原创的吗？",
+            "a": "是的，每一首诗都是 AI 根据你的输入独特生成的。"
+          },
+          {
+            "q": "我可以分享这些诗歌吗？",
+            "a": "当然可以！你可以将它们用于个人项目、礼物或社交媒体。"
+          }
+        ]
+      }
     },
     "ai-code-explainer": {
       "title": "AI 代码解释器",
-      "desc": "用通俗语言解释代码"
+      "desc": "用通俗语言解释代码",
+      "h1": "在线AI代码解释器 — 代码说明工具",
+      "description": "免费的AI代码解释器。获取任何代码的通俗解释，通过简单的分解理解复杂的编程概念。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "粘贴您的代码片段",
+          "可选地指定编程语言",
+          "点击“解释代码”",
+          "阅读通俗易懂的解释"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "提供足够的上下文以获得更好的解释",
+          "指定语言以获得更准确的结果"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是AI代码解释器？",
+            "a": "AI代码解释器会分析代码，并生成关于其功能、工作原理和涉及的关键概念的通俗解释。"
+          },
+          {
+            "q": "支持哪些语言？",
+            "a": "支持大多数主流编程语言，包括Python、JavaScript、TypeScript、Java、C++、Go、Rust等。"
+          },
+          {
+            "q": "我的代码会被存储吗？",
+            "a": "不会，您的代码是实时处理的，不会存储在我们的服务器上。"
+          }
+        ]
+      }
     },
     "ai-product-desc": {
       "title": "AI 产品描述生成器",
-      "desc": "为电商生成产品描述"
+      "desc": "为电商生成产品描述",
+      "h1": "AI 产品描述生成器 —— 电商文案创作工具",
+      "description": "免费的 AI 产品描述生成器。创建引人入胜的电商产品描述，包含特性、优势及行动号召。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入你的产品详情",
+          "选择符合品牌调性的语气风格",
+          "点击生成",
+          "复制结果"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含关键特性和优势，以获得更好效果",
+          "语气风格要与目标受众相匹配"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 产品描述生成器？",
+            "a": "它利用 AI 创建引人入胜的产品文案，突出特性和优势，并包含针对电商优化的行动号召。"
+          },
+          {
+            "q": "我可以在 Amazon 或 Shopify 上使用这些描述吗？",
+            "a": "可以，生成的描述适用于各大电商平台。"
+          },
+          {
+            "q": "描述有多长？",
+            "a": "描述通常为 1-3 段，针对转化率进行了优化。"
+          }
+        ]
+      }
     },
     "ai-slogan": {
       "title": "AI 口号生成器",
-      "desc": "为品牌创建吸引人的口号"
+      "desc": "为品牌创建吸引人的口号",
+      "h1": "AI 口号生成器 —— 在线免费创意标语工具",
+      "description": "免费的 AI 口号生成器。为你的品牌、企业或营销活动创建朗朗上口、令人难忘的标语。提供多个选项供你选择。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入你的品牌名称和描述",
+          "选择符合品牌调性的语气风格",
+          "点击生成",
+          "复制你喜爱的口号"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含与你的业务相关的关键词",
+          "尝试不同的语气风格，获得更多样化的选择"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 口号生成器？",
+            "a": "AI 口号生成器利用人工智能为品牌、企业和营销活动创建朗朗上口的标语和口号。"
+          },
+          {
+            "q": "我可以获得多少条口号？",
+            "a": "生成器会提供多个标语选项，方便你挑选最喜欢的。"
+          },
+          {
+            "q": "我可以为这些口号注册商标吗？",
+            "a": "你需要另外查询商标的可用性，但这些口号都是独特的创作。"
+          }
+        ]
+      }
     },
     "ai-social": {
       "title": "AI 社交媒体文案",
-      "desc": "生成吸引人的社交媒体内容"
+      "desc": "生成吸引人的社交媒体内容",
+      "h1": "AI 社交媒体文案生成器 —— 内容创作助手",
+      "description": "免费的 AI 社交媒体帖子生成器。为 Twitter、LinkedIn、Instagram、Facebook 和 TikTok 创建引人入胜的内容。包含话题标签。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入你的内容主题",
+          "选择一个平台",
+          "点击生成",
+          "复制帖子"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "根据平台格式调整你的信息",
+          "包含相关关键词以获得更好的互动"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 社交媒体帖子生成器？",
+            "a": "它利用 AI 创建针对平台优化的社交媒体内容，包含引人入胜的文案和相关话题标签。"
+          },
+          {
+            "q": "包含话题标签吗？",
+            "a": "是的，根据你的内容和所选平台，会自动生成相关的话题标签。"
+          },
+          {
+            "q": "我可以自定义输出内容吗？",
+            "a": "可以，你可以在发布前编辑任何生成的帖子，以匹配你的品牌风格。"
+          }
+        ]
+      }
     },
     "ai-thanks": {
       "title": "AI 感谢信生成器",
-      "desc": "写出贴心的感谢信"
+      "desc": "写出贴心的感谢信",
+      "h1": "AI 感谢信生成器 — 感谢信撰写工具",
+      "description": "免费的 AI 感谢信生成器。为任何场合撰写真诚的感谢信息。从正式、温暖或随意的风格中选择。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "描述具体情况",
+          "选择语调风格",
+          "点击生成",
+          "复制结果"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含具体细节以获得更个性化的效果",
+          "根据与收件人的关系匹配合适的语气"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 感谢信生成器？",
+            "a": "它为任何场合——礼物、帮助、面试或善意的举动——创建个性化的感谢信息。"
+          },
+          {
+            "q": "我可以直接发送这些信息吗？",
+            "a": "是的，这些信息可以直接用于贺卡、电子邮件或短信中。"
+          },
+          {
+            "q": "这些信是个性化的吗？",
+            "a": "是的，AI 会根据你的具体情况和所选风格精心撰写每一封信。"
+          }
+        ]
+      }
     },
     "ai-email-reply": {
       "title": "AI 邮件回复",
-      "desc": "快速生成智能邮件回复"
+      "desc": "快速生成智能邮件回复",
+      "h1": "AI 邮件回复生成器 — 智能回复助手",
+      "description": "免费的AI邮件回复生成器。快速起草专业的邮件回复。从专业、友好或正式语气中选择。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "粘贴邮件或描述背景",
+          "选择语气",
+          "点击生成",
+          "复制回复"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含您想回应的要点",
+          "选择与您的关系相匹配的语气"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是AI邮件回复生成器？",
+            "a": "它能帮助快速起草专业的邮件回复，节省时间同时保持适当的语气和结构。"
+          },
+          {
+            "q": "我可以自定义回复吗？",
+            "a": "可以，生成的回复是一个草稿，您可以进一步编辑。"
+          },
+          {
+            "q": "内容是原创的吗？",
+            "a": "是的，每条回复都是根据您输入的上下文唯一生成的。"
+          }
+        ]
+      }
     },
     "ai-birthday-wish": {
       "title": "AI 生日祝福",
-      "desc": "创建个性化生日祝福"
+      "desc": "创建个性化生日祝福",
+      "h1": "AI 生日祝福生成器 — 生日贺词撰写工具",
+      "description": "免费的AI生日祝福生成器。为朋友、家人、同事和伴侣创建个性化的生日祝福。提供多种选择。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "描述收祝福人和您的关系",
+          "选择语气",
+          "点击生成",
+          "复制祝福语"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "加入具体的回忆或专属笑点",
+          "根据您的关系匹配相应的语气"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是AI生日祝福生成器？",
+            "a": "它利用AI为任何收件人生成个性化的生日祝福，既节省时间又保持信息有意义。"
+          },
+          {
+            "q": "可以生成多个选项吗？",
+            "a": "可以，尝试不同的语气或改写输入内容，即可获得新的变体。"
+          },
+          {
+            "q": "使用是免费的吗？",
+            "a": "是的，生日祝福生成器完全免费使用。"
+          }
+        ]
+      }
     },
     "ai-love-letter": {
       "title": "AI 情书生成器",
-      "desc": "用 AI 写浪漫情书"
+      "desc": "用 AI 写浪漫情书",
+      "h1": "AI 情书生成器 —— 浪漫书信创作助手",
+      "description": "免费的 AI 情书生成器。写出优美浪漫的情书。用诗意、真挚或俏皮的文字表达你的情感。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "描述对方和你们的关系",
+          "选择一种语气风格",
+          "点击生成",
+          "复制你的情书"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含具体的品质和回忆，增添个人色彩",
+          "发送前大声朗读一遍，确保读起来真挚自然"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 情书生成器？",
+            "a": "它通过精心创作的情书帮你表达情感，无论是浪漫、诗意、真挚还是俏皮的风格都可以。"
+          },
+          {
+            "q": "我可以个性化定制情书吗？",
+            "a": "可以，在输入中添加具体细节可获得更个性化的结果。"
+          },
+          {
+            "q": "我的内容会保密吗？",
+            "a": "是的，你的输入是实时处理的，不会被存储。"
+          }
+        ]
+      }
     },
     "ai-speech": {
       "title": "AI 演讲稿生成器",
-      "desc": "为任何场合写演讲稿"
+      "desc": "为任何场合写演讲稿",
+      "h1": "AI 演讲稿生成器 — 免费在线演讲稿生成",
+      "description": "免费的 AI 演讲稿写作工具。为婚礼、商务活动、毕业典礼、颁奖典礼等任何场合撰写富有感染力的演讲稿。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "描述场合和你的关键要点",
+          "选择语调风格",
+          "点击生成",
+          "练习你的演讲稿"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "包含听众和背景信息以获得更好的结果",
+          "大声朗读演讲稿并根据需要调整"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 演讲稿生成器？",
+            "a": "它为任何场合——婚礼、商务活动、毕业典礼、颁奖典礼等——生成富有感染力的演讲稿。"
+          },
+          {
+            "q": "演讲稿有多长？",
+            "a": "根据你输入的内容，演讲稿朗读起来通常为 2-5 分钟。"
+          },
+          {
+            "q": "我可以编辑演讲稿吗？",
+            "a": "当然可以！将生成的演讲稿作为基础，并根据你的风格进行个性化修改。"
+          }
+        ]
+      }
     },
     "ai-faq": {
       "title": "AI 常见问题生成器",
-      "desc": "从任何内容生成常见问题"
+      "desc": "从任何内容生成常见问题",
+      "h1": "在线AI常见问题生成器 — 常见问题",
+      "description": "免费的AI常见问题生成器。从任何主题生成全面的常见问题部分，用清晰的答案覆盖最重要的问题。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入您的主题或内容",
+          "可选地设置问答数量",
+          "点击生成",
+          "复制常见问题部分"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "提供详细内容以获得更准确的常见问题",
+          "调整数量以控制部分的篇幅"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是AI常见问题生成器？",
+            "a": "它能从您的内容中创建全面的常见问题部分，识别最相关的问题并提供清晰的答案。"
+          },
+          {
+            "q": "我可以指定生成多少个问题吗？",
+            "a": "可以，您可以选择设置问答对的数量。"
+          },
+          {
+            "q": "答案准确吗？",
+            "a": "AI会根据与您主题相关的常见问题生成答案。请始终审核其准确性。"
+          }
+        ]
+      }
     },
     "ai-learning": {
       "title": "AI 学习路线生成器",
-      "desc": "创建个性化学习路线图"
+      "desc": "创建个性化学习路线图",
+      "h1": "AI 学习路线生成器 —— 个性化学习路径规划",
+      "description": "免费的 AI 学习路线生成器。为任何技能创建个性化学习路径。涵盖从初级到高级各阶段及学习资源。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入技能或学科名称",
+          "选择你的经验水平",
+          "点击生成",
+          "跟随你的个性化学习路径"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对技能领域描述得越具体，学习路径就越精准",
+          "选择你的水平以获取合适的资源"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 AI 学习路线生成器？",
+            "a": "它能为你想要掌握的任何技能或学科创建包含阶段、资源和里程碑的个性化学习路径。"
+          },
+          {
+            "q": "它包含学习资源吗？",
+            "a": "是的，学习路径包含推荐的资源、课程和练习活动。"
+          },
+          {
+            "q": "我可以为任何技能生成学习路径吗？",
+            "a": "可以，从编程到烹饪到音乐 —— 任何技能或学科都可以。"
+          }
+        ]
+      }
     },
     "citation-generator": {
       "title": "引用生成器",
-      "desc": "MLA、APA 和 Chicago 格式引用"
+      "desc": "MLA、APA 和 Chicago 格式引用",
+      "h1": "引用格式生成器",
+      "description": "生成 MLA、APA 和 Chicago 格式的引用。支持书籍、网站、期刊文章和视频。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用页面顶部的切换按钮选择你的引用格式——MLA、APA 或 Chicago。",
+          "选择来源类型：书籍、网站、期刊文章或视频。",
+          "根据需要填写来源详细信息，如作者、标题、出版商、年份和 URL。",
+          "使用“复制引用”按钮复制格式化后的引用，或复制主引用下方显示的各个样式变体。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在提交学术作品之前，务必对照来源的标题页仔细核对自动生成的引用是否准确。",
+          "对于网站，MLA 和 Chicago 格式需要访问日期，但在 APA 中为可选。",
+          "对于期刊文章，尽可能使用 DOI（数字对象标识符）——它是最可靠和最稳定的标识符。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "我应该使用哪种引用格式？",
+            "a": "MLA 常用于人文学科，APA 用于心理学和教育学，Chicago 用于历史学和一些社会科学。请向你的导师或出版方确认他们偏好的格式。"
+          },
+          {
+            "q": "我可以为书籍、网站、文章和视频以外的来源生成引用吗？",
+            "a": "目前，该工具支持这四种来源类型。对于会议论文或访谈等其他来源，请参阅你的格式指南以了解正确的格式。"
+          },
+          {
+            "q": "我的数据会被发送到服务器吗？",
+            "a": "不会。所有引用生成完全在你的浏览器中完成——没有任何数据上传到任何地方。"
+          },
+          {
+            "q": "书籍引用需要包含页码吗？",
+            "a": "如果你输入了页码则会包含在内，但在引用中为可选。在引用特定内容的文内引用和脚注中通常需要页码。"
+          }
+        ]
+      }
     },
     "loan-calculator": {
       "title": "贷款计算器",
-      "desc": "贷款还款和复利计算"
+      "desc": "贷款还款和复利计算",
+      "h1": "贷款与复利计算器",
+      "description": "计算贷款还款额、总利息、还款计划表以及复利投资增长。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择\"贷款计算器\"模式，计算固定利率贷款的每月还款额并查看还款计划表。",
+          "输入贷款金额、年利率和贷款年限，然后点击\"计算\"。",
+          "查看结果卡片中显示的每月还款额、总还款额和总利息。",
+          "展开\"还款计划表\"部分，查看本金和利息的逐月明细。",
+          "切换到\"复利\"模式，计算投资在定期投入和复利下随时间增长的情况。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "利用还款计划表了解早期每笔还款中有多少用于支付利息——这有助于决定是否再融资。",
+          "对于复利计算器，更频繁的复利（每月或每日）在同一时期内会产生略高的总回报。",
+          "尝试调整贷款期限——较短的期限每月还款额更高，但总利息成本显著降低。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "贷款计算器和复利模式有什么区别？",
+            "a": "贷款计算器计算固定利率贷款的每月还款额和总利息。复利模式计算投资在复利回报和可选投入下随时间增长的情况。"
+          },
+          {
+            "q": "每月还款额是如何计算的？",
+            "a": "每月还款额使用标准还款公式计算：M = P[r(1+r)^n] / [(1+r)^n - 1]，其中 P 为本金，r 为月利率，n 为总月数。"
+          },
+          {
+            "q": "还款计划表显示什么？",
+            "a": "它显示每笔每月还款分解为本金和利息部分，以及每次还款后的剩余贷款余额，通常涵盖整个贷款期限。"
+          },
+          {
+            "q": "这些计算对实际财务规划准确吗？",
+            "a": "计算使用标准财务公式，对固定利率贷款和复利是准确的。如需个性化建议，请咨询财务专业人士。"
+          }
+        ]
+      }
     },
     "invoice-generator": {
       "title": "发票生成器",
-      "desc": "创建发票并下载为 PDF"
+      "desc": "创建发票并下载为 PDF",
+      "h1": "发票",
+      "description": "创建专业发票并下载为 PDF。对自由职业者和小型企业免费。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在“来自（您的企业）”部分填写您的企业信息——名称、邮箱和地址。",
+          "在“账单对象”部分输入客户的名称、邮箱和地址，以指定收票方。",
+          "在发票详情部分设置发票编号、日期和到期日。",
+          "添加明细项目，填写说明、数量和单价。可选设置税率百分比和添加付款备注。",
+          "点击“预览发票”查看完整发票，然后点击“下载 PDF”打印或保存为 PDF 文件。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "务必设置明确的到期日以促进及时付款——大多数行业的标准是自发票日期起 30 天。",
+          "使用描述性的项目名称并包含数量和单价，让客户清楚了解收费内容。",
+          "在备注部分添加付款条款和接受的付款方式，以减少后续询问。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "可以在发票中添加税费吗？",
+            "a": "可以。在税率字段中输入您的税率百分比，小计、税额和总计将自动更新。"
+          },
+          {
+            "q": "我的发票数据会存储或发送到任何地方吗？",
+            "a": "不会。所有发票数据仅保留在您的浏览器中。不会上传到任何服务器或外部存储。"
+          },
+          {
+            "q": "如何将发票下载为 PDF？",
+            "a": "点击“预览发票”查看，然后点击“下载 PDF”。这会打开浏览器的打印对话框，您可以在其中选择“另存为 PDF”作为目标。"
+          },
+          {
+            "q": "可以添加多个明细项目吗？",
+            "a": "可以。点击“+ 添加行”按钮即可添加所需数量的明细项目。每个项目都可以有自己的说明、数量和单价。"
+          }
+        ]
+      }
     },
     "ai-regex": {
       "title": "AI 正则表达式生成器",
-      "desc": "用自然语言生成正则表达式"
+      "desc": "用自然语言生成正则表达式",
+      "h1": "AI 正则表达式生成器 —— 自然语言转正则",
+      "description": "描述你想要匹配的内容，AI 会为你写出正则表达式。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在文本区域用简单的英文描述你要匹配的文本模式 —— 例如“匹配电子邮件地址”或“从文本中提取所有 URL”。",
+          "点击“生成正则表达式”按钮，将描述提交给 AI，获取完整的正则表达式。",
+          "查看生成的模式，包含正则表达式本身、简明英文说明以及示例匹配。",
+          "点击复制按钮将正则表达式复制到剪贴板，用于你的代码、编辑器或命令行。",
+          "使用内置的正则表达式测试器，将生成的正则表达式与实际的文本样本进行测试，验证匹配是否符合预期。",
+          "如果结果没有捕获所有想要的匹配或遗漏了边界情况，优化描述后重新生成。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "尽可能具体 —— 包括字符类型（数字、字母、空白符）的细节，以及匹配是否区分大小写。",
+          "说明你使用的正则表达式风格（PCRE、JavaScript、Python 等），以便生成的模式使用兼容的语法和特性。",
+          "明确描述边界情况，例如可选字符、重复模式、空字符串或需要处理的嵌套结构。",
+          "在生产系统中使用 AI 生成的正则表达式之前，务必先用代表性样本数据进行测试。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "AI 支持哪些正则表达式风格？",
+            "a": "AI 生成兼容 PCRE、JavaScript、Python、Java、.NET 以及大多数主流正则表达式引擎的模式。在描述中指定你偏好的风格可获得最佳效果。"
+          },
+          {
+            "q": "AI 能解释正则表达式每个部分的作用吗？",
+            "a": "是的，除了模式本身，AI 还会用简明英文逐项解释每个组成部分 —— 锚点、字符类、量词、分组和标志 —— 让你理解其工作原理。"
+          },
+          {
+            "q": "AI 生成的正则表达式准确度如何？",
+            "a": "对于大多数常见用例，AI 能生成可用的模式。复杂的嵌套模式或包含多个重叠条件的模式，在部署前务必进行充分测试。"
+          },
+          {
+            "q": "生成正则表达式时我的数据会发送到服务器吗？",
+            "a": "是的，你的描述会发送到 AI API 以生成正则表达式。请避免提交敏感或专有的模式描述。"
+          }
+        ]
+      }
     },
     "ai-sql": {
       "title": "AI SQL 生成器",
-      "desc": "自然语言转 SQL 查询"
+      "desc": "自然语言转 SQL 查询",
+      "h1": "AI SQL 生成器",
+      "description": "描述你需要的数据，AI 将自动编写 SQL 查询。支持多种 SQL 方言。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "用简单的英文描述你需要的数据——例如，“查找最近 30 天内购买过的所有客户”或“获取今年收入排名前 10 的产品”。",
+          "从下拉菜单中选择你的 SQL 方言（Standard SQL、PostgreSQL、MySQL、SQLite 或 SQL Server）以确保生成对应语法的查询语句。",
+          "点击“生成 SQL”将请求提交给 AI。",
+          "检查生成的查询，包括表别名、JOIN 条件、聚合和过滤逻辑。",
+          "使用复制按钮复制查询，然后粘贴到你的数据库客户端或应用程序代码中。",
+          "根据实际数据库模式测试查询，如果列名或表名与你的模式不匹配，请调整描述。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在描述中包含实际表名和列名，以便生成的查询引用真实的模式对象。",
+          "说明你是否需要 JOIN、子查询、CTE、窗口函数或 GROUP BY 和 HAVING 等聚合操作。",
+          "提及任何性能方面的考虑，例如预期的数据量或所需的索引。",
+          "在生产数据库上运行之前，请务必检查生成的查询是否正确，特别是 DELETE、UPDATE 和 DROP 语句。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "生成器是否支持特定的 SQL 方言？",
+            "a": "是的，你可以从 Standard SQL、PostgreSQL、MySQL、SQLite 和 SQL Server 中选择。AI 会根据所选方言调整语法、函数和数据类型。"
+          },
+          {
+            "q": "它能生成包含 JOIN 和子查询的复杂查询吗？",
+            "a": "当然可以。描述表之间的关系和你需要的数据——AI 可以生成多表 JOIN、嵌套子查询、CTE、窗口函数等。"
+          },
+          {
+            "q": "我应该如何提供表名和列名？",
+            "a": "在描述中包含你的实际模式名称。例如，“从包含 id、customer_id 和 total_amount 列的 orders 表中……”可以获得更准确的结果。"
+          },
+          {
+            "q": "生成的查询是否保证正确？",
+            "a": "AI 会生成语法有效的 SQL，但正确性取决于你的模式。在生产环境中使用之前，请务必检查并在数据库中测试生成的查询。"
+          }
+        ]
+      }
     },
     "ai-code-convert": {
       "title": "AI 代码转换",
-      "desc": "在 19 种编程语言之间转换代码"
+      "desc": "在 19 种编程语言之间转换代码",
+      "h1": "AI 代码转换器",
+      "description": "在编程语言之间转换代码。保留逻辑、注释和结构。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "从“从”下拉菜单中选择代码的源语言——支持19种语言，包括Python、JavaScript、TypeScript、Java、Go和Rust。",
+          "将源代码粘贴到左侧文本区域。转换器会保留注释、变量名和整体结构。",
+          "从“到”下拉菜单中选择目标语言。使用交换按钮快速反转转换方向。",
+          "点击“转换代码”将代码提交给AI，并在右侧面板中接收转换后的版本。",
+          "检查转换后的代码是否有需要手动调整的语言特定惯用法或库的等效实现。",
+          "使用复制按钮将转换后的代码复制到剪贴板，然后粘贴到您的项目中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在转换前清理源代码——消除语法错误，确保代码在源语言中能正确编译或运行。",
+          "在源代码中包含必要的导入语句和类型注解，以便转换器能在目标语言中生成对应的等效代码。",
+          "对于范式差异很大的语言对（如Python转Rust），请预期会有结构上的差异，并仔细检查输出中的内存管理和类型处理是否正确。",
+          "在语言间逐步迁移项目时，使用交换按钮来回转换代码。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "支持哪些编程语言？",
+            "a": "该工具支持19种语言：Python、JavaScript、TypeScript、Java、Go、Rust、C、C++、C#、Ruby、PHP、Swift、Kotlin、Scala、R、Dart、Lua、Perl和Haskell。"
+          },
+          {
+            "q": "转换器会保留注释和格式吗？",
+            "a": "是的，AI会保留行内注释和块注释，并尽可能保持原始代码结构和命名规范。"
+          },
+          {
+            "q": "代码转换的准确度如何？",
+            "a": "转换器能准确处理大多数语法和控制流结构。标准库调用和特定框架的API在目标语言中可能需要手动调整。"
+          },
+          {
+            "q": "可以转换大型代码文件吗？",
+            "a": "该工具最适合处理单个函数或中等大小的文件（最多几百行）。对于大型代码库，为获得最佳效果，请一次转换一个函数或模块。"
+          }
+        ]
+      }
     },
     "json-formatter": {
       "title": "JSON 格式化",
-      "desc": "格式化、验证和压缩 JSON 数据"
+      "desc": "格式化、验证和压缩 JSON 数据",
+      "h1": "JSON 格式化工具",
+      "description": "格式化、验证和压缩 JSON 数据。完全在浏览器中运行。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将 JSON 数据粘贴到左侧文本区域。输入内容可以是压缩的 JSON 字符串、配置文件或 API 响应数据。",
+          "点击“格式化”以 2 空格缩进美化 JSON。该工具会验证 JSON 格式，并在语法错误时显示错误信息。",
+          "点击“压缩”将 JSON 压缩为单行——非常适合减小 API 请求和响应中的数据大小。",
+          "查看状态指示器——绿色勾号表示 JSON 有效并显示输出字节大小，红色错误信息则指出语法问题。",
+          "使用复制按钮将格式化或压缩后的 JSON 复制到剪贴板。",
+          "尝试示例按钮（简单对象、用户数组、API 配置），查看不同 JSON 结构在格式化后的显示效果。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在开发过程中使用格式化功能，保持配置文件和 API 响应数据的可读性，便于调试。",
+          "在部署 JSON 文件或通过 API 请求发送数据之前使用压缩功能，以减少带宽使用。",
+          "注意尾随逗号——它们在 JSON 中无效，但在 JavaScript 对象中是有效的。该工具会将其标记为错误。",
+          "格式化工具会验证键和字符串分隔符——两者都必须使用双引号 (\" \")，而不是单引号 (&lsquo; &rsquo;)。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "JSON 和 JavaScript 对象相同吗？",
+            "a": "不相同。JSON 是一种源自 JavaScript 对象语法的严格文本格式。JSON 要求键和字符串使用双引号、不能有尾随逗号，并且不能包含函数或 undefined 值。"
+          },
+          {
+            "q": "格式化工具能处理大型 JSON 文件吗？",
+            "a": "可以，该工具能够处理大型 JSON 结构。对于非常大的文件（数万行），处理在客户端完成，性能取决于您的浏览器。"
+          },
+          {
+            "q": "“Invalid JSON”是什么意思，如何修复？",
+            "a": "Invalid JSON 表示解析器发现了语法错误。常见原因包括尾随逗号、使用单引号而非双引号、缺少括号或未转义的特殊字符。错误消息会显示问题的大致位置。"
+          },
+          {
+            "q": "我的 JSON 数据会发送到服务器吗？",
+            "a": "不会，所有格式化、验证和压缩操作完全在您的浏览器中完成。您的 JSON 数据绝不会上传或传输到任何地方。"
+          }
+        ]
+      }
     },
     "base64": {
       "title": "Base64 编码器",
-      "desc": "Base64 编码/解码文本或文件"
+      "desc": "Base64 编码/解码文本或文件",
+      "h1": "Base64 编码器/解码器",
+      "description": "将文本或文件编码为 Base64，或将 Base64 解码回文本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在左侧文本区域中输入或粘贴输入文本——可以是要编码的纯文本，或是要解码的 Base64 字符串。",
+          "点击“编码”将文本转换为 Base64 编码的字符串，或点击“解码”将 Base64 字符串转换回可读文本。",
+          "使用“上传文件”按钮上传文件，将其转换为 Base64 数据 URL——适用于在 HTML 或 CSS 中嵌入图片。",
+          "在右侧面板中查看输出。对于文件上传，会显示一个下载链接以保存解码后的内容。",
+          "使用复制按钮将结果复制到剪贴板，或对于文件数据 URL 点击“下载”。",
+          "点击“清除”重置输入和输出字段，开始新的转换。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "对图片、PDF 或音频文件等二进制文件使用文件上传功能——该工具会将其转换为可直接用于 HTML src 属性的 Base64 数据 URL。",
+          "解码时，确保输入仅包含有效的 Base64 字符（A–Z、a–z、0–9、+、/、=）以避免错误。",
+          "对于大文件，Base64 编码会使大小增加约 33%——在网页中嵌入数据 URL 时需考虑这一点。",
+          "所有处理完全在你的浏览器中完成——没有任何数据上传到服务器，因此对敏感内容也很安全。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "Base64 有什么用途？",
+            "a": "Base64 编码通常用于通过 HTTP 和 SMTP 等基于文本的协议传输二进制数据。Web 开发者将其用于 HTML 和 CSS 中的数据 URL、电子邮件附件和 API 负载。"
+          },
+          {
+            "q": "该工具支持文件编码吗？",
+            "a": "是的，使用“上传文件”按钮选择任何文件（图片、PDF、音频等）。该工具会将其转换为可直接用于 HTML、CSS 或 JavaScript 的 Base64 数据 URL。"
+          },
+          {
+            "q": "使用此工具时我的数据安全吗？",
+            "a": "是的，所有编码和解码操作完全在你的浏览器中使用 JavaScript 内置的 btoa() 和 atob() 函数运行。不会向任何服务器发送数据。"
+          },
+          {
+            "q": "“无效的 Base64 字符串”错误是什么意思？",
+            "a": "这意味着输入包含 Base64 编码中无效的字符。Base64 字符串应仅包含 A–Z、a–z、0–9、+、/ 和 = 字符。"
+          }
+        ]
+      }
     },
     "url-encode": {
       "title": "URL 编码器",
-      "desc": "编码和解码 URL 及查询参数"
+      "desc": "编码和解码 URL 及查询参数",
+      "h1": "URL 编码器/解码器",
+      "description": "在线编码或解码 URL 及 URL 组件。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入或粘贴要编码或解码的 URL 或文本。",
+          "开启“完整 URL”以编码/解码整个 URL，关闭则仅编码/解码 URL 组件（查询参数）。",
+          "点击“编码”对特殊字符进行百分号编码，或点击“解码”将编码序列转换回可读文本。",
+          "使用复制按钮将结果复制到剪贴板，或点击“清除”重新开始。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用“完整 URL”模式编码完整 URL——它在编码必要字符的同时保留 URL 结构。",
+          "使用组件模式编码查询参数值——它会编码更多字符，包括 /、?、& 和 #。",
+          "所有处理均在浏览器中使用 JavaScript 内置的 URL 编码函数完成——您的数据保持私密。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 URL 编码？",
+            "a": "URL 编码将 URL 中不允许出现的字符转换为可以安全传输的格式。例如，空格变为 %20，与号变为 %26。"
+          },
+          {
+            "q": "encodeURI 和 encodeURIComponent 有什么区别？",
+            "a": "encodeURI 编码完整的 URI，同时保留 /、?、&、# 和 : 等结构字符。encodeURIComponent 编码查询字符串值，并且也会编码这些特殊字符——用于参数值。"
+          },
+          {
+            "q": "我的数据会发送到服务器吗？",
+            "a": "不会。所有编码和解码均在浏览器中使用 JavaScript 内置函数完成。您的数据不会离开您的设备。"
+          }
+        ]
+      }
     },
     "uuid-generator": {
       "title": "UUID 生成器",
-      "desc": "批量生成 UUID v4/v7"
+      "desc": "批量生成 UUID v4/v7",
+      "h1": "UUID 生成器",
+      "description": "生成 UUID v4（随机）和 UUID v7（基于时间）标识符。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用页面顶部的切换按钮选择 UUID v4（随机）或 UUID v7（基于时间）。",
+          "使用数量输入框设置要生成的 UUID 数量，一次最多 100 个。",
+          "可选开启“大写”，以大写格式生成 UUID，而非默认的小写格式。",
+          "点击“生成”按钮创建指定数量的 UUID 标识符。",
+          "悬停在任何 UUID 上并点击其“复制”按钮，或点击“全部复制”将所有生成的 UUID 复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "当需要按时间排序的标识符以提升 B 树索引性能时，可在数据库主键中使用 UUID v7。",
+          "当需要纯随机标识符且无明显的排序或时间戳信息时，请使用 UUID v4。",
+          "默认以小写格式生成 UUID，这是 RFC 4122 中规定的惯用格式。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "UUID v4 和 UUID v7 有什么区别？",
+            "a": "UUID v4 是随机生成的。UUID v7 包含时间戳前缀，使其可按创建时间排序，从而提升数据库索引性能。"
+          },
+          {
+            "q": "这些 UUID 在加密上安全吗？",
+            "a": "它们使用 JavaScript 的随机数生成器。对于大多数应用来说这已经足够，但在加密场景中，建议使用 Web Crypto API。"
+          },
+          {
+            "q": "可以生成用于数据库的 UUID 吗？",
+            "a": "可以。UUID 常用作主键。UUID v7 特别适合数据库，因为按时间排序的值可减少索引碎片。"
+          },
+          {
+            "q": "生成 UUID 的数量有限制吗？",
+            "a": "一次最多可生成 100 个 UUID。您可以重复点击“生成”按钮来创建更多批次。"
+          }
+        ]
+      }
     },
     "password-generator": {
       "title": "密码生成器",
-      "desc": "生成安全强密码"
+      "desc": "生成安全强密码",
+      "h1": "密码生成器",
+      "description": "生成强大、安全的密码，提供可自定义选项。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "调整长度滑块——较长的密码（16 个字符或以上）提供最佳安全性。",
+          "选择要包含的字符类型：大写字母、小写字母、数字和符号。",
+          "使用数量滑块设置一次生成的密码数量，最多一次生成 10 个。",
+          "点击\"生成密码\"即刻创建您的安全密码。",
+          "点击任意密码旁边的\"复制\"将其复制到剪贴板，并检查强度计以评估其安全性。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用至少 16 个字符的密码，并启用所有四种字符类型以获得最高安全性。",
+          "切勿在不同账户间重复使用密码——为您使用的每项服务生成唯一密码。",
+          "使用密码管理器安全存储生成的密码，而不是保存在浏览器或文本文件中。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "密码强度指示器是如何工作的？",
+            "a": "它根据长度、字符多样性以及大小写混合、数字和符号的使用对密码进行评分。评分范围从弱到非常强，基于五个标准。"
+          },
+          {
+            "q": "生成的密码是真正随机的吗？",
+            "a": "是的。生成器使用 JavaScript 的随机数生成器，从您选择的字符集中均匀选择字符。"
+          },
+          {
+            "q": "我可以一次生成多个密码吗？",
+            "a": "可以。使用数量滑块同时生成最多 10 个密码，每个密码具有相同的长度和字符设置。"
+          },
+          {
+            "q": "密码会被保存或传输到任何地方吗？",
+            "a": "不会。所有密码均在您的浏览器中本地生成，绝不会发送到任何服务器。将其复制到剪贴板并安全存储在密码管理器中。"
+          }
+        ]
+      }
     },
     "diff-checker": {
       "title": "差异比较",
-      "desc": "比较文本和代码差异"
+      "desc": "比较文本和代码差异",
+      "h1": "在线差异比较工具 — 文本与代码对比",
+      "description": "比较两段文本并高亮显示差异。适用于代码、文档和配置文件。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "将原始文本粘贴到左侧标记为「原始」的文本区域。",
+          "将修改后的文本粘贴到右侧标记为「已修改」的文本区域。",
+          "点击「比较」按钮计算两段文本之间的差异。",
+          "查看高亮输出结果 — 绿色表示新增的行，红色表示删除的行，未高亮表示未更改的文本。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在提交前使用差异比较工具检查代码更改，捕捉意外的修改。",
+          "在故障排除时比较配置文件，快速发现正常运行和出现问题配置之间的差异。",
+          "点击「全部复制」复制完整的差异输出，粘贴到拉取请求描述或代码评审意见中。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "工具可以检测哪些类型的差异？",
+            "a": "它检测行级别的差异 — 两段文本之间新增（绿色高亮）、删除（红色高亮）或未更改的行。"
+          },
+          {
+            "q": "文本比较使用什么算法？",
+            "a": "工具使用流行的 diff 库，实现了类似 Unix diff 命令的行级别差异比较算法。"
+          },
+          {
+            "q": "文本大小有限制吗？",
+            "a": "工具适用于标准大小的文本。对于极大的文件，建议将内容分成较小的部分进行比较。"
+          },
+          {
+            "q": "我的文本会上传到服务器吗？",
+            "a": "不会。所有差异计算完全在浏览器中通过客户端 JavaScript 完成。您的文本不会离开您的计算机。"
+          }
+        ]
+      }
     },
     "data-converter": {
       "title": "数据转换器",
-      "desc": "在 JSON 和 YAML 之间转换"
+      "desc": "在 JSON 和 YAML 之间转换",
+      "h1": "在线数据转换器 — JSON 与 YAML 互转工具",
+      "description": "在 JSON 和 YAML 格式之间互相转换。适用于配置文件和数据序列化。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "从左侧下拉菜单中选择输入格式（JSON 或 YAML）。",
+          "从右侧下拉菜单中选择输出格式（YAML 或 JSON）。",
+          "将输入数据粘贴到屏幕左侧的文本区域中。",
+          "点击「转换为 [格式]」按钮，将数据转换为所选输出格式。",
+          "使用「复制」按钮复制转换后的输出，或点击交换按钮反转转换方向。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "如果转换失败，请先用检查工具验证 JSON — 常见问题包括尾部逗号和缺少引号。",
+          "YAML 对于人工编辑的配置文件更具可读性，而 JSON 更适合 API 数据交换和程序化处理。",
+          "使用交换按钮快速切换转换方向，无需手动更改两个下拉菜单。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "转换器支持嵌套对象和数组吗？",
+            "a": "是的。转换器处理深度嵌套的结构，包括对象、数组和任意复杂度的混合数据类型。"
+          },
+          {
+            "q": "如果输入数据中包含注释会怎样？",
+            "a": "JSON 不支持注释，因此会导致解析错误。YAML 支持注释，并且在转换过程中会保留注释。"
+          },
+          {
+            "q": "我的数据会上传到服务器吗？",
+            "a": "不会。所有转换都在浏览器中通过客户端库完成。您的数据不会离开您的计算机。"
+          },
+          {
+            "q": "为什么我的 JSON 转换失败？",
+            "a": "常见原因包括尾部逗号、未加引号的键、使用单引号代替双引号或缺少括号。请使用 JSON 验证器检查您的输入。"
+          }
+        ]
+      }
     },
     "case-converter": {
       "title": "大小写转换",
-      "desc": "在 11 种大小写格式之间转换文本"
+      "desc": "在 11 种大小写格式之间转换文本",
+      "h1": "大小写转换器",
+      "description": "在大写、小写、首字母大写、camelCase、snake_case 等多种大小写格式之间转换文本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入文本区域中输入或粘贴你的文本。",
+          "点击任意大小写格式按钮进行转换——结果会立即显示在下方。",
+          "在绿色结果框中查看转换后的文本。",
+          "点击<strong>复制</strong>将结果复制到剪贴板。",
+          "根据需要继续编辑文本并在不同大小写格式之间切换。",
+          "将结果粘贴到你的文档、代码编辑器或应用程序中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "<strong>camelCase</strong> 和 <strong>PascalCase</strong> 通常用于编程变量和类名。",
+          "<strong>snake_case</strong> 和 <strong>CONSTANT_CASE</strong> 在 Python 和数据库列命名约定中很常用。",
+          "<strong>标题大小写</strong>非常适合标题、文章名称和文档标题。",
+          "<strong>交替大小写</strong>和<strong>反转大小写</strong>主要是装饰性的——请谨慎使用。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "该工具是否支持特殊字符和数字？",
+            "a": "是的，大多数大小写模式会保留特殊字符和数字。camelCase 和 PascalCase 会在转换过程中移除非字母数字字符。"
+          },
+          {
+            "q": "我的文本会被发送到服务器吗？",
+            "a": "不会，所有文本处理都在你的浏览器本地完成。没有任何数据通过网络传输。"
+          },
+          {
+            "q": "camelCase 和 PascalCase 有什么区别？",
+            "a": "camelCase 以小写字母开头（例如 \"myVariable\"），而 PascalCase 以大写字母开头（例如 \"MyVariable\"）。"
+          },
+          {
+            "q": "有字符限制吗？",
+            "a": "没有字符限制——该工具完全在你的浏览器中运行，对文本长度没有任何限制。"
+          }
+        ]
+      }
     },
     "markdown-editor": {
       "title": "Markdown 编辑器",
-      "desc": "使用实时预览编写 Markdown"
+      "desc": "使用实时预览编写 Markdown",
+      "h1": "Markdown 编辑器",
+      "description": "实时编写和预览 Markdown。支持 GFM 表格、代码块等。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在左侧编辑面板中输入或粘贴 Markdown 语法——系统提供了示例文档以供入门。",
+          "在输入时观看右侧面板中的实时 HTML 预览更新。",
+          "使用标准 Markdown 元素：标题、粗体、斜体、列表、链接和图片。",
+          "尝试 GFM 特性：表格、围栏代码块、删除线和引用。",
+          "点击预览面板上方的<strong>复制 HTML</strong>，将渲染后的 HTML 复制到剪贴板。",
+          "将 Markdown 源代码粘贴到 .md 文件中，或将 HTML 粘贴到您的 CMS 或网站中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "示例文本展示了所有主要 Markdown 功能——可将其作为语法参考。",
+          "表格必须有用短横线分隔的标题行（<code>| --- |</code>）才能正确渲染。",
+          "带有语言标识符的代码块（例如 <code>```javascript</code>）会在预览中获得语法高亮。",
+          "删除线文本通过将文字包裹在双波浪线中创建：<code>~~text~~</code>。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 GFM？",
+            "a": "GFM 代表 GitHub Flavored Markdown。它通过表格、任务列表、删除线和自动 URL 链接扩展了标准 Markdown。"
+          },
+          {
+            "q": "渲染是在服务器端完成的吗？",
+            "a": "不是，Markdown 完全在您的浏览器中使用 marked.js 库渲染。没有数据发送到任何服务器。"
+          },
+          {
+            "q": "我可以保存我的工作吗？",
+            "a": "编辑器不包含内置保存功能。从左侧面板复制 Markdown 源代码，然后将其保存为计算机上的 .md 文件。"
+          }
+        ]
+      }
     },
     "random-tools": {
       "title": "随机工具",
-      "desc": "数字、骰子、硬币、彩票、选择"
+      "desc": "数字、骰子、硬币、彩票、选择",
+      "h1": "随机工具",
+      "description": "随机数生成器、掷骰子、抛硬币、彩票选号和决策工具。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击顶部的工具标签——随机数字、掷骰子、抛硬币、彩票或选择工具。",
+          "随机数字：设置最小和最大范围，然后点击“生成”获取随机数字。",
+          "掷骰子：选择骰子面数（d4 到 d100）和掷骰数量，然后点击“掷骰子”。",
+          "抛硬币：只需点击硬币图标即可抛掷——结果显示正面或反面。",
+          "选择工具：输入选项（每行一个或以逗号分隔），点击“选择”即可随机选出一个。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "抛硬币是做出二选一决定最快的方式——只需点击硬币一次。",
+          "彩票中，使用 1 到 49 等实际范围并选择 6 个号码，以模拟全球流行的彩票格式。",
+          "选择工具非常适合决定去哪里吃饭、看什么电影，或任何有多个选项的情况。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "结果有多随机？",
+            "a": "该工具使用 JavaScript 的随机数生成器，可提供统计上均匀的伪随机数，适用于游戏和日常决策。"
+          },
+          {
+            "q": "可以掷标准六面骰子以外的其他骰子吗？",
+            "a": "可以。掷骰子工具支持 d4、d6、d8、d10、d12、d20 和 d100 骰子——非常适合龙与地下城等桌面角色扮演游戏。"
+          },
+          {
+            "q": "彩票工具中可能出现重复数字吗？",
+            "a": "不会。彩票工具会在指定范围内生成唯一、不重复的数字，类似于真实彩票开奖。"
+          },
+          {
+            "q": "我输入的数据会被保存吗？",
+            "a": "不会。所有处理都在浏览器本地完成。您输入的任何内容都不会被存储或传输。"
+          }
+        ]
+      }
     },
     "unit-converter": {
       "title": "单位转换器",
-      "desc": "长度、重量、温度、面积、体积等"
+      "desc": "长度、重量、温度、面积、体积等",
+      "h1": "单位转换器",
+      "description": "在长度、重量、温度、面积、体积、速度、数据和时间等单位之间进行转换。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击胶囊按钮选择类别——长度、重量、温度、面积、体积、速度、数据或时间。",
+          "在“数值”输入框中输入要转换的数字。",
+          "从“从”下拉菜单中选择源单位。",
+          "从“到”下拉菜单中选择目标单位——转换结果会自动实时更新。",
+          "点击两个下拉菜单之间的互换按钮，快速反转转换方向。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "转换器会随输入实时更新结果——大多数操作无需点击“转换”按钮。",
+          "使用互换按钮快速反转转换方向，例如从英里转公里切换为公里转英里。",
+          "对于温度转换，请记住摄氏度和开尔文使用相同的单位间隔——1 摄氏度的变化等于 1 开尔文的变化。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "支持多少种单位？",
+            "a": "支持超过 50 种单位，涵盖 8 个类别，包括长度、重量、温度、面积、体积、速度、数据存储和时间。"
+          },
+          {
+            "q": "温度转换的处理方式与其他类别不同吗？",
+            "a": "是的。温度转换使用偏移公式（F = C x 9/5 + 32），而非其他单位类型使用的简单乘法因子。"
+          },
+          {
+            "q": "转换器能正确处理大数字吗？",
+            "a": "可以。它使用标准 JavaScript 数字精度。结果最多显示 6 位小数，并去除末尾的零以提高可读性。"
+          },
+          {
+            "q": "我的数据会发送到服务器吗？",
+            "a": "不会。所有转换均在浏览器中计算完成。不会上传任何内容到服务器。"
+          }
+        ]
+      }
     },
     "regex-tester": {
       "title": "正则表达式测试器",
-      "desc": "使用实时高亮测试正则模式"
+      "desc": "使用实时高亮测试正则模式",
+      "h1": "正则表达式测试器",
+      "description": "实时测试正则表达式，匹配内容高亮显示。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在两个斜线之间的输入框中输入或粘贴正则表达式模式。工具提供了默认模式供您入门。",
+          "通过切换模式字段下方的按钮添加标志（g 为全局匹配、i 为不区分大小写、m 为多行模式、s 为点号匹配换行符）。",
+          "在左侧文本区域输入测试文本——当您输入模式或更改标志时，工具会实时高亮所有匹配项。",
+          "在右侧面板中查看高亮匹配项，匹配部分以黄色背景显示。",
+          "查看下方的匹配详情表格，其中显示每个匹配项在文本中的位置及所有捕获组。",
+          "使用常用模式预设（Email、URL、Phone、IP Address、Date、HTML Tag）加载预定义正则表达式，快速进行测试。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "当您想查找文本中所有匹配项时，请使用“g”（全局）标志。不使用此标志时，测试器会在第一个匹配项后停止。",
+          "匹配详情表格显示捕获组（由模式中括号内部分匹配的文本）——使用捕获组提取每个匹配项的特定部分。",
+          "从简单模式开始，逐步增加复杂性——每次添加后都进行测试，以定位正则表达式中导致意外行为的部分。",
+          "使用常用模式预设作为起点，并根据您的具体使用场景进行自定义。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这个测试器使用什么正则表达式引擎？",
+            "a": "该测试器使用 JavaScript 内置的 RegExp 引擎。虽然大多数标准模式在不同语言中都能使用，但某些功能（如 lookbehind）在 JavaScript 中的行为可能与 PCRE 或 Python 不同。"
+          },
+          {
+            "q": "标志按钮（g, i, m, s）有什么作用？",
+            "a": "g（全局）查找所有匹配项，i（忽略大小写）使匹配不区分大小写，m（多行模式）使 ^ 和 $ 匹配行边界，s（点号匹配所有）使点号匹配换行符。"
+          },
+          {
+            "q": "如何使用捕获组提取匹配项的一部分？",
+            "a": "在模式中将要提取的部分用括号括起来。例如，(\\w+)@(\\w+\\.\\w+) 从电子邮件地址中分别捕获用户名和域名。"
+          },
+          {
+            "q": "使用此工具时我的数据安全吗？",
+            "a": "是的，所有正则表达式测试完全在浏览器中进行。您的模式和测试文本绝不会发送到任何服务器。"
+          }
+        ]
+      }
     },
     "code-beautifier": {
       "title": "代码美化器",
-      "desc": "格式化和压缩 HTML、CSS、JavaScript"
+      "desc": "格式化和压缩 HTML、CSS、JavaScript",
+      "h1": "在线代码美化器 — HTML/CSS/JS 格式化与压缩工具",
+      "description": "格式化、美化并压缩 HTML、CSS 和 JavaScript 代码。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "点击工具顶部的 HTML、CSS 或 JavaScript 按钮，选择代码的语言类型。",
+          "将未格式化或压缩过的代码粘贴到左侧文本区域。输入面板接受需要整理的原始代码。",
+          "点击「美化」按钮，为代码添加正确的缩进、换行和间距，提升可读性。",
+          "点击「压缩」按钮，去除所有不必要的空白、注释和换行 — 适用于减小生产环境中的文件体积。",
+          "在右侧面板查看格式化或压缩后的输出，使用「复制」按钮保存结果。",
+          "在美化与压缩之间切换，对比可读版本和压缩版本的代码差异。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "美化前请务必确认输入代码在语法上是有效的 — 格式错误的代码可能无法正确格式化。",
+          "在部署到生产环境前使用压缩功能，可减小文件体积、提升页面加载速度。",
+          "对于 CSS，美化器会展开简写属性，并为嵌套选择器添加一致的缩进。",
+          "所有处理均在客户端的浏览器中完成，代码不会上传至任何服务器 — 适用于专有或敏感代码。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "美化器支持哪些语言？",
+            "a": "该工具支持 HTML、CSS 和 JavaScript。每种语言都有针对其语法优化的格式化规则 — HTML 的标签正确嵌套、CSS 的选择器缩进以及 JavaScript 的花括号对齐。"
+          },
+          {
+            "q": "美化和压缩有什么区别？",
+            "a": "美化添加缩进、换行和间距以使代码可读。压缩去除所有非必要的空白和注释以减小文件体积，从而在生产环境中更快加载。"
+          },
+          {
+            "q": "可以对原本格式化的代码进行压缩吗？",
+            "a": "可以，粘贴格式化代码后点击「压缩」即可压缩。同样，您可以粘贴压缩代码并点击「美化」使其恢复可读。"
+          },
+          {
+            "q": "我的代码会上传到服务器吗？",
+            "a": "不会。所有格式化和压缩操作完全在浏览器中通过 JavaScript 完成。您的代码不会离开您的设备，因此对于专有或机密代码库来说非常安全。"
+          }
+        ]
+      }
     },
     "word-counter": {
       "title": "字数统计",
-      "desc": "统计字数、字符数、句数和阅读时间"
+      "desc": "统计字数、字符数、句数和阅读时间",
+      "h1": "字数统计工具",
+      "description": "统计任意文本中的字数、字符数、句数、段落数和阅读时间。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在文本区域输入或粘贴文本——统计数据会随输入实时更新。",
+          "查看统计面板，其中显示字数、字符数、句数和段落数。",
+          "查看内容的预估阅读时间和演讲时间。",
+          "向下滚动到词频表，查看最常用的词语。",
+          "点击<strong>清除</strong>重置文本区域并重新开始。",
+          "完成后可将文本复制到其他地方——所有分析都是即时且在客户端完成的。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用词频分析识别过度使用的词语，提升写作多样性。",
+          "阅读时间估算有助于规划博客文章，使其符合读者的注意力时长。",
+          "字符数（不含空格）适用于短信、推文草稿和有严格限制的表单字段。",
+          "段落数有助于评估文本结构是否合理，分段是否合适。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "字符数和字符数（不含空格）有什么区别？",
+            "a": "字符数包含所有字符，包括空格。字符数（不含空格）排除所有空白字符，适用于短信字符限制和某些平台的约束。"
+          },
+          {
+            "q": "阅读时间和演讲时间是如何计算的？",
+            "a": "阅读时间基于每分钟 200 词的平均阅读速度。演讲时间使用每分钟 150 词，这是对话式表达的标准语速。"
+          },
+          {
+            "q": "文本区域有字符限制吗？",
+            "a": "没有限制——该工具完全在浏览器中处理文本，没有服务器端限制。"
+          },
+          {
+            "q": "可以用于 SEO 内容分析吗？",
+            "a": "可以，词频表有助于跟踪关键词密度，避免过度优化，确保内容中关键词使用自然。"
+          }
+        ]
+      }
     },
     "reverse-text": {
       "title": "文本反转",
-      "desc": "以多种方式反转和翻转文本"
+      "desc": "以多种方式反转和翻转文本",
+      "h1": "文本反转",
+      "description": "即时反转整个字符串、单词或字母顺序。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入或粘贴您的文本。",
+          "选择反转模式：<strong>反转字符串</strong>翻转所有字符，<strong>反转单词顺序</strong>反转单词顺序，<strong>反转每个单词</strong>反转每个单词内的字母。",
+          "结果会随着您的输入或切换模式而即时更新。",
+          "点击<strong>复制</strong>按钮将反转后的文本复制到剪贴板。",
+          "在社交媒体、谜题或创意项目等任意场景中使用反转后的文本。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用<strong>反转字符串</strong>快速检查一个短语是否为回文。",
+          "<strong>反转单词顺序</strong>非常适合改写句子或创建文字谜题。",
+          "将反转文本与大小写转换等其他工具结合使用，获得更多创意效果。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "反转单词顺序和反转每个单词有什么区别？",
+            "a": "反转单词顺序改变单词的顺序（例如，“hello world”变成“world hello”）。反转每个单词保持单词顺序不变，但翻转每个单词中的字母顺序（例如，“hello world”变成“olleh dlrow”）。"
+          },
+          {
+            "q": "这个工具能处理特殊字符和数字吗？",
+            "a": "可以。所有字符（包括标点符号、数字、符号和表情符号）都会被正确反转。"
+          },
+          {
+            "q": "我的文本会被发送到服务器吗？",
+            "a": "不会。所有处理都在您的浏览器中进行。您的文本永远不会离开您的设备。"
+          }
+        ]
+      }
     },
     "text-repeater": {
       "title": "文本重复",
-      "desc": "使用分隔符多次重复文本"
+      "desc": "使用分隔符多次重复文本",
+      "h1": "文本重复",
+      "description": "使用自定义分隔符多次重复任何文本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入要重复的文本。",
+          "设置<strong>重复次数</strong>（1 到 10,000）以控制文本出现的次数。",
+          "选择<strong>分隔符</strong>来分隔重复内容：空格、逗号、换行或无。",
+          "重复后的文本会立即显示在结果框中。",
+          "点击<strong>复制</strong>将输出复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用<strong>换行</strong>分隔符生成列表或填充模板占位符。",
+          "对于大段文本，请将重复次数控制在 1,000 以内，以避免浏览器卡顿。",
+          "显示的字符计数有助于确保输出符合目标应用的文本限制。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "最大重复次数是多少？",
+            "a": "最大重复次数为 10,000。对于非常大的文本块，建议保持在 1,000 以内以保持性能。"
+          },
+          {
+            "q": "可以重复多行文本吗？",
+            "a": "可以。您可以输入多行文本，它会按原样重复，包括换行符。"
+          },
+          {
+            "q": "这个处理是在我的设备上完成的吗？",
+            "a": "是的。所有操作都在浏览器本地运行。不会向任何服务器发送数据。"
+          }
+        ]
+      }
     },
     "line-sorter": {
       "title": "行排序",
-      "desc": "按字母顺序或长度排序行"
+      "desc": "按字母顺序或长度排序行",
+      "h1": "行排序器",
+      "description": "将文本行按 A-Z、Z-A、长度排序，或随机打乱。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入或粘贴文本，每行一个项目。",
+          "选择排序方式：<strong>A to Z</strong>、<strong>Z to A</strong>、<strong>按长度</strong>、<strong>随机打乱</strong>或<strong>反向</strong>。",
+          "开启<strong>移除重复行</strong>以删除重复条目。",
+          "排序结果会立即显示在输出面板中。",
+          "点击<strong>复制</strong>，将排序后的列表用于其他地方。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用<strong>随机打乱</strong>来为比赛、抽奖或名字抽取随机化列表。",
+          "按<strong>长度</strong>排序有助于快速找到列表中最短或最长的条目。",
+          "在打乱前启用<strong>移除重复项</strong>，确保公平随机化且无重复。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "行排序器能处理空行吗？",
+            "a": "可以。空行被视为空字符串并与其他行一起排序。启用移除重复项可清除空行。"
+          },
+          {
+            "q": "按字母排序使用了什么排序算法？",
+            "a": "排序器使用 JavaScript 的区域感知比较，能够正确处理带重音符号的字符和国际文本。"
+          }
+        ]
+      }
     },
     "palindrome-checker": {
       "title": "回文检查器",
-      "desc": "检查文本是否正反读相同"
+      "desc": "检查文本是否正反读相同",
+      "h1": "回文检查器",
+      "description": "检查任何单词、短语或句子正读反读是否相同。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在文本框中输入或粘贴任何单词、短语或句子。",
+          "该工具会自动分析文本并告诉您它是否为回文。",
+          "如果您想要区分大小写，请切换<strong>区分大小写</strong>选项。",
+          "查看带有颜色编码匹配的正向和反向字符比较。",
+          "检查过程中会忽略非字母数字字符（空格、标点符号）。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "尝试著名的回文，如 \"racecar\"、\"madam\" 或 \"A man, a plan, a canal: Panama\"。",
+          "启用区分大小写以检查逐字符精确匹配的回文。",
+          "颜色编码视图精确显示哪些字符匹配（绿色）和不匹配（红色）。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是回文？",
+            "a": "回文是指正读反读都相同的单词、短语或序列，忽略空格、标点符号和大小写。例如：\"racecar\"、\"level\"、\"A man, a plan, a canal: Panama\"。"
+          },
+          {
+            "q": "检查器会忽略空格和标点符号吗？",
+            "a": "是的。默认情况下，仅比较字母数字字符。空格、标点符号和特殊字符会被忽略，以专注于实际的单词或短语。"
+          },
+          {
+            "q": "区分大小写模式有什么作用？",
+            "a": "当区分大小写模式关闭时（默认），\"A\" 与 \"a\" 匹配。开启时，字符的大小写必须完全一致——因此 \"Racecar\" 不会与 \"racecaR\" 匹配。"
+          }
+        ]
+      }
     },
     "unicode-converter": {
       "title": "Unicode 转换器",
-      "desc": "将文本转换为 Unicode 转义序列"
+      "desc": "将文本转换为 Unicode 转义序列",
+      "h1": "Unicode 转换器",
+      "description": "将文本转换为 Unicode 转义序列，或将 Unicode 转义序列还原为文本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择转换方向：<strong>文本转 Unicode</strong> 或 <strong>Unicode 转文本</strong>。",
+          "在输入框中输入文本或 Unicode 转义序列。",
+          "编码模式下，ASCII 字符（A-Z、a-z、0-9、基本符号）保持不变。",
+          "非 ASCII 字符会被转换为 <code>\\uXXXX</code> 格式。",
+          "点击<strong>复制</strong>将结果复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "Unicode 转义序列使用 <code>\\uXXXX</code> 格式，其中 XXXX 是 4 位十六进制代码。",
+          "当需要在 JavaScript 或 JSON 字符串中嵌入特殊字符时，请使用“文本转 Unicode”模式。",
+          "表情符号在 <code>\\uXXXX</code> 表示法中会产生代理对——解码模式会自动处理这些字符。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 Unicode 转义序列？",
+            "a": "Unicode 转义序列是一种使用反斜杠后跟 'u' 和 4 位十六进制数字来表示 Unicode 字符的方式。例如，版权符号 &copy; 就是 <code>©</code>。"
+          },
+          {
+            "q": "为什么 ASCII 字符不会被转义？",
+            "a": "ASCII 字符（码点 0-127）通常保留原样，因为它们已被普遍支持。只有 ASCII 范围之外的字符才被转换为转义序列。"
+          },
+          {
+            "q": "支持表情符号吗？",
+            "a": "是的。表情符号使用 Unicode 表示，可以正确编码/解码，不过在 JavaScript 中可能会使用两个代理 <code>\\uXXXX</code> 序列。"
+          }
+        ]
+      }
     },
     "text-to-slug": {
       "title": "文本转 Slug",
-      "desc": "将文本转换为 URL 友好的 slugs"
+      "desc": "将文本转换为 URL 友好的 slugs",
+      "h1": "文本转 Slug 转换器",
+      "description": "将任意文本转换为简洁、SEO 友好的 URL slug。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "输入或粘贴要转换为 slug 的文本。",
+          "选择<strong>分隔符</strong>——连字符 (-) 是 URL 的标准选择，下划线 (_) 常见于数据库字段。",
+          "根据需要开关<strong>小写</strong>选项。",
+          "Slug 和预览 URL 会随输入实时更新。",
+          "点击<strong>复制</strong>将 slug 复制到剪贴板，以便在项目中使用。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用<strong>连字符</strong>分隔符可以生成 SEO 友好的 URL——搜索引擎更青睐连字符而非下划线。",
+          "保持 slug 简短且具有描述性（3-5 个词），以获得最佳 SEO 效果。",
+          "从输入中移除停用词（如 \"a\"、\"an\"、\"the\"），以生成更简洁的 slug。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 URL slug？",
+            "a": "URL slug 是 URL 中以人类可读格式标识特定页面的部分。例如，在 <code>example.com/blog/my-post</code> 中，\"my-post\" 就是 slug。"
+          },
+          {
+            "q": "为什么 slug 应该使用小写？",
+            "a": "小写 slug 可以避免内容重复问题，因为某些服务器将 \"My-Page\" 和 \"my-page\" 视为不同的 URL，而其他服务器则视其为相同。小写字母在 URL 中也更整洁。"
+          }
+        ]
+      }
     },
     "morse-code": {
       "title": "摩斯密码转换器",
-      "desc": "将文本转换为摩斯密码或反向转换"
+      "desc": "将文本转换为摩斯密码或反向转换",
+      "h1": "摩斯密码转换器",
+      "description": "将文本转换为摩斯密码，或将摩斯密码解码为文本，支持声音播放。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择转换方向：<strong>文本转摩斯</strong>或<strong>摩斯转文本</strong>。",
+          "输入您的文本或摩斯密码（使用空格分隔的点和划）。",
+          "解码摩斯密码时，使用<strong>/</strong>（正斜杠）作为单词分隔符。",
+          "转换结果会立即更新在输出面板中。",
+          "点击<strong>播放声音</strong>，以音频音调形式收听摩斯密码。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "编码时，单词之间的空格在摩斯密码中用正斜杠（<code>/</code>）表示。",
+          "声音播放使用标准摩斯计时：嘀（点）为一个单位，嗒（划）为三个单位。",
+          "编码为摩斯密码时，输入中不支持的字符会被静默跳过。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "摩斯密码转换器支持哪些字符？",
+            "a": "转换器支持所有 26 个字母（A-Z）、数字（0-9）和常见标点符号，包括句号、逗号、问号、感叹号等。"
+          },
+          {
+            "q": "为什么在摩斯密码中使用正斜杠来表示单词间距？",
+            "a": "在标准摩斯密码符号中，正斜杠（<code>/</code>）通常用于将摩斯密码书写为文本时分隔单词，比仅使用空格更易阅读。"
+          },
+          {
+            "q": "我可以控制播放速度吗？",
+            "a": "当前播放使用大约每分钟 15 个单词的固定速度。这提供了清晰适中的节奏，适合初学者学习摩斯密码。"
+          }
+        ]
+      }
     },
     "upside-down-text": {
       "title": "翻转文本",
-      "desc": "翻转文本以获得趣味效果"
+      "desc": "翻转文本以获得趣味效果",
+      "h1": "翻转文本生成器",
+      "description": "使用 Unicode 字符翻转文本，获得有趣的社交媒体效果。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入或粘贴文本。",
+          "翻转后的版本会随输入即时显示。",
+          "点击复制按钮复制结果。",
+          "粘贴到任何地方——社交媒体、消息或个人简介。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "标准字母和常见标点符号的效果最佳。",
+          "并非所有字符都有对应的翻转版本——部分字符保持不变。",
+          "非常适合在社交媒体个人资料和评论中脱颖而出。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "翻转文本是如何实现的？",
+            "a": "此工具使用视觉上类似于常规字母和符号翻转版本的 Unicode 字符，然后将文本顺序反转。"
+          },
+          {
+            "q": "为什么有些字符不会变化？",
+            "a": "有些字符（如 'o'、'l'、's'）由于对称性，翻转后看起来相同。Unicode 标准并未为每个字符都提供翻转等效字符。"
+          },
+          {
+            "q": "在所有平台上都能使用吗？",
+            "a": "是的，这些是标准的 Unicode 字符，受所有现代设备和平台支持，包括 iOS、Android、Windows 和 Mac。"
+          }
+        ]
+      }
     },
     "binary-converter": {
       "title": "二进制转换器",
-      "desc": "将文本转换为二进制或反向转换"
+      "desc": "将文本转换为二进制或反向转换",
+      "h1": "二进制转换器",
+      "description": "将文本转换为二进制代码，并将二进制解码回文本。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择<strong>文本转二进制</strong>进行编码，或选择<strong>二进制转文本</strong>进行解码。",
+          "在相应字段中输入或粘贴你的内容。",
+          "编码时，选择二进制组之间的分隔符（空格、逗号或无）。",
+          "解码时，输入以空格分隔的 8 位二进制组。",
+          "转换结果会实时更新。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "每个字符使用 ASCII/Unicode 编码表示为 8 位（一个字节）。",
+          "解码时，确保二进制组之间用空格分隔以便正确转换。",
+          "使用此工具了解计算机如何在二进制级别存储文本数据。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是二进制编码？",
+            "a": "二进制编码将每个字符表示为 0 和 1 组成的 8 位序列。每个字符的数字编码（ASCII/Unicode）被转换为二进制表示。例如，\"A\"（ASCII 65）变为 \"01000001\"。"
+          },
+          {
+            "q": "为什么二进制值是 8 位长？",
+            "a": "8 位（一个字节）是计算机中表示单个字符的标准单位。8 位可以表示 256 个不同的值（0-255），涵盖了所有标准 ASCII 字符。"
+          },
+          {
+            "q": "这能转换像 emoji 这样的 Unicode 字符吗？",
+            "a": "是的。ASCII 范围之外的字符仍会根据其 Unicode 码点转换为二进制表示（UTF-8 表示的每个字节以 8 位为一组）。"
+          }
+        ]
+      }
     },
     "strikethrough-text": {
       "title": "删除线文本",
-      "desc": "生成 Unicode 删除线文本"
+      "desc": "生成 Unicode 删除线文本",
+      "h1": "删除线文字生成器",
+      "description": "使用 Unicode 组合字符创建删除线文字效果。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入或粘贴您的文本。",
+          "选择删除样式：<strong>单删除线</strong>（长划线）、<strong>双删除线</strong>（两条划线）或<strong>斜线</strong>（正斜杠）。",
+          "删除线文字会随着您的输入即时生成。",
+          "点击<strong>复制</strong>将样式化文本复制到剪贴板。",
+          "将结果粘贴到社交媒体简介、消息、论坛帖子或任何支持 Unicode 的地方。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "<strong>单删除线</strong>样式使用长组合划线，产生最常见的删除效果。",
+          "<strong>双删除线</strong>产生粗体删除效果——非常适合强调。",
+          "<strong>斜线</strong>样式使用类似正斜杠的划线，呈现不同的视觉效果。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "删除线文字是如何工作的？",
+            "a": "删除线文字使用 Unicode 组合字符创建——这些特殊字符放在字母后面，在字母上画一条线。每个字母后附加组合字符，从而产生删除效果。"
+          },
+          {
+            "q": "删除线文字在所有平台上都能正常显示吗？",
+            "a": "大多数现代平台（社交媒体、消息应用、论坛）都支持 Unicode 组合字符，能够正确显示删除线。部分字体支持有限的平台可能无法正常渲染。"
+          },
+          {
+            "q": "为什么空格没有删除线？",
+            "a": "空格保持不变，因为给空格添加组合字符会产生可见的杂点，使文本更难阅读。字母上的删除线效果足以表达删除的含义。"
+          }
+        ]
+      }
     },
     "random-word": {
       "title": "随机单词生成器",
-      "desc": "生成随机单词和短语"
+      "desc": "生成随机单词和短语",
+      "h1": "随机单词生成器",
+      "description": "生成随机英语单词，用于头脑风暴和创意写作。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择单词<strong>类别</strong>：所有单词、名词、动词、形容词、动物或颜色。",
+          "设置要生成的<strong>单词数量</strong>（1 到 100）。",
+          "点击<strong>生成</strong>按钮生成随机单词。",
+          "每个生成的单词以标签格式显示，便于阅读。",
+          "点击<strong>复制</strong>将单词以逗号分隔的列表形式复制。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用<strong>名词</strong>类别为写作项目构思角色名或地名。",
+          "<strong>形容词</strong>类别非常适合生成描述性词汇，提升写作质量。",
+          "多次生成以获得新灵感——每次点击都会产生不同的随机结果。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "单词库有多大？",
+            "a": "该生成器包含数百个精心挑选的英语单词，涵盖多个类别——包括 100 多个名词、100 多个动词、150 多个形容词、100 多个动物名称和 80 多个颜色名称。"
+          },
+          {
+            "q": "一次可以生成超过 100 个单词吗？",
+            "a": "每次生成最多 100 个单词，以保持性能和可读性。您可以再次点击“生成”获得一组新的单词。"
+          },
+          {
+            "q": "单词是真正随机的吗？",
+            "a": "是的。每个单词都是使用 JavaScript 的加密级 Math.random() 函数从所选类别的词库中独立随机选取的。"
+          }
+        ]
+      }
     },
     "color-converter": {
       "title": "颜色转换器",
-      "desc": "在 HEX、RGB、HSL 之间转换并预览"
+      "desc": "在 HEX、RGB、HSL 之间转换并预览",
+      "h1": "在线颜色转换器 — HEX/RGB/HSL 颜色格式互转",
+      "description": "在 HEX、RGB 和 HSL 格式之间转换颜色。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "通过取色器从渐变条上直观选取任何颜色。",
+          "点击预设色块可快速访问常用颜色。",
+          "直接输入 HEX 色值（例如 <code>#3b82f6</code>）进行精确输入。",
+          "编辑 RGB 字段（例如 <code>59, 130, 246</code>）进行精细控制。",
+          "调整 HSL 值（例如 <code>217, 91%, 60%</code>）进行直观的色调和明暗调整。",
+          "所有三种格式的字段会随您的任何输入实时更新。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用取色器快速直观取色，然后通过 HSL 进行精确的色调微调。",
+          "HSL 通常比 RGB 更直观地用于创建颜色变体 — 只需调整色相角度即可。",
+          "预设色块为常用设计调色板提供了很好的起点。",
+          "直接从 CSS 或设计工具中复制色值到相应的输入字段中。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "RGB 和 HSL 有什么区别？",
+            "a": "RGB 通过红、绿、蓝的光照级别（0–255）定义颜色。HSL 通过色相（0–360）、饱和度（0–100%）和明度（0–100%）定义颜色 — 通常更直观地进行系统性调整。"
+          },
+          {
+            "q": "可以转换为 CMYK 用于打印吗？",
+            "a": "目前我们支持 HEX、RGB 和 HSL。CMYK 支持可能会在未来的更新中添加。"
+          },
+          {
+            "q": "如何为无障碍访问使用取色器？",
+            "a": "确保背景色明度值高于 50%，前景文字明度值低于 50%，以保证足够的对比度。"
+          },
+          {
+            "q": "每种格式的值范围是多少？",
+            "a": "HEX 接受 3 位或 6 位值。RGB 值必须为 0–255。HSL 色相必须为 0–360，饱和度和明度必须为 0–100%。"
+          }
+        ]
+      }
     },
     "random-color": {
       "title": "随机颜色生成器",
-      "desc": "生成带有预览的随机颜色"
+      "desc": "生成带有预览的随机颜色",
+      "h1": "免费在线随机颜色生成器——随机生成 HEX、RGB 和 HSL 颜色",
+      "description": "免费随机颜色生成器。可随机生成 HEX、RGB 和 HSL 颜色并实时预览。即时复制颜色用于设计项目。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "打开工具即可看到带有实时预览的随机颜色。",
+          "点击“生成新颜色”获得一个新的随机颜色。",
+          "以 HEX、RGB 和 HSL 格式查看颜色值。",
+          "点击任意格式旁的“复制”按钮，将该值复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用此工具发现新的调色板，突破常规的色彩选择。",
+          "HEX 代码最适合网页开发，而 RGB/HSL 在 CSS 和设计软件中更实用。",
+          "持续生成，直到找到符合项目主题的颜色。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "支持哪些颜色格式？",
+            "a": "生成器以 HEX（#RRGGBB）、RGB（红、绿、蓝）和 HSL（色相、饱和度、亮度）格式显示颜色。"
+          },
+          {
+            "q": "颜色是真正随机的吗？",
+            "a": "每种颜色都使用 JavaScript 的 Math.random() 为每个 RGB 通道生成，共有 16,777,216 种可能的颜色。"
+          },
+          {
+            "q": "可以编辑生成的颜色吗？",
+            "a": "此工具仅生成随机颜色。如需微调，请将颜色值复制到颜色选择器或使用颜色渐变工具。"
+          }
+        ]
+      }
     },
     "contrast-checker": {
       "title": "对比度检查器",
-      "desc": "检查无障碍功能的对比度比率"
+      "desc": "检查无障碍功能的对比度比率",
+      "h1": "在线颜色对比度检查器 — WCAG 无障碍检测工具",
+      "description": "免费在线颜色对比度检查器。检查您的颜色组合是否符合 WCAG 无障碍标准（普通文本、大号文本和 UI 组件）。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用取色器或输入 HEX 色值设置前景（文字）颜色。",
+          "使用取色器或输入 HEX 色值设置背景颜色。",
+          "对比度比率会立即计算，并显示 WCAG 通过/失败结果。",
+          "查看普通文本和大号文本的 WCAG AA 和 AAA 合规情况。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "为达到最佳无障碍效果，至少争取 AA 合规（普通文本 4.5:1，大号文本 3:1）。",
+          "深色文字配浅色背景（或反之）通常能提供更好的对比度。",
+          "面向公众的网站建议达到 WCAG AAA 合规（普通文本 7:1）。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 WCAG 对比度比率？",
+            "a": "WCAG 对比度比率衡量前景色与背景色之间的亮度差异，范围从 1:1（完全相同）到 21:1（黑底白字）。"
+          },
+          {
+            "q": "AA 和 AAA 有什么区别？",
+            "a": "AA 要求普通文本 4.5:1，大号文本 3:1。AAA 更严格，要求普通文本 7:1，大号文本 4.5:1。"
+          },
+          {
+            "q": "需要检查 UI 组件的对比度吗？",
+            "a": "是的，WCAG 2.1 AA 要求 UI 组件和图形对象与相邻颜色的对比度至少达到 3:1。"
+          }
+        ]
+      }
     },
     "color-names": {
       "title": "颜色名称查找",
-      "desc": "查找任何颜色的名称"
+      "desc": "查找任何颜色的名称",
+      "h1": "在线颜色名称查找工具 — 查找 CSS 颜色名称",
+      "description": "免费在线颜色名称查找工具。输入任意 HEX 或 RGB 颜色，查找其最接近的命名 CSS 颜色。浏览常用颜色名称及其预览。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入 HEX 颜色代码（可带或不带 # 前缀）。",
+          "点击「查找名称」查看最接近的命名 CSS 颜色。",
+          "将输入的颜色与匹配的颜色名称及其预览进行对比查看。",
+          "浏览下方列出的常见 CSS 颜色名称以供参考。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "颜色匹配使用 RGB 空间中的欧几里得距离来查找最接近的命名颜色。",
+          "在样式表中使用 CSS 命名颜色可提高代码可读性（例如 <code>color: rebeccapurple</code>）。",
+          "在浏览列表中点击任意颜色名称可立即查找其匹配项。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "颜色名称匹配是如何工作的？",
+            "a": "工具计算输入颜色与全部 148 种 CSS 命名颜色在 RGB 空间中的欧几里得距离，返回最接近的匹配项。"
+          },
+          {
+            "q": "可以使用 RGB 输入而不是 HEX 吗？",
+            "a": "目前工具接受 HEX 输入。您可以使用在线转换器或我们的颜色转换工具轻松将 RGB 转换为 HEX。"
+          },
+          {
+            "q": "是否包含所有 CSS 命名颜色？",
+            "a": "是的，全部 148 种标准 CSS 命名颜色都包含在查找数据库中，从 AliceBlue 到 YellowGreen。"
+          }
+        ]
+      }
     },
     "color-gradient": {
       "title": "渐变生成器",
-      "desc": "创建和预览 CSS 颜色渐变"
+      "desc": "创建和预览 CSS 颜色渐变",
+      "h1": "在线 CSS 渐变生成器 — 颜色渐变制作工具",
+      "description": "免费在线渐变生成器。使用两种颜色创建漂亮的 CSS 渐变。选择方向并实时预览。一键复制 CSS 代码。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用取色器选取第一种颜色，或手动输入 HEX 色值。",
+          "选取渐变的第二种终点颜色。",
+          "选择渐变方向：水平、垂直或对角。",
+          "点击「复制」按钮复制生成的 CSS 代码。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "色环上相邻的颜色可产生平滑、自然的渐变效果。",
+          "使用高对比度的颜色组合可获得鲜艳的渐变效果，使用相近色相则可获得柔和的过渡。",
+          "渐变非常适合用作按钮、卡片、英雄区和横幅的背景。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "这会生成什么 CSS 属性？",
+            "a": "生成器输出 <code>background: linear-gradient(...)</code> CSS 声明，您可以直接在样式表中使用。"
+          },
+          {
+            "q": "可以添加两种以上的颜色吗？",
+            "a": "本工具支持两种颜色的渐变。对于多色渐变，您可以手动在生成的 CSS 代码中添加颜色节点。"
+          },
+          {
+            "q": "生成的 CSS 在所有浏览器中都能工作吗？",
+            "a": "是的，<code>linear-gradient</code> 受到所有现代浏览器支持，包括 Chrome、Firefox、Safari 和 Edge。"
+          }
+        ]
+      }
     },
     "color-blindness": {
       "title": "色盲模拟器",
-      "desc": "模拟图片上的色盲效果"
+      "desc": "模拟图片上的色盲效果",
+      "h1": "在线色盲模拟器 — 色觉障碍免费测试工具",
+      "description": "免费在线色盲模拟器。模拟红色盲、绿色盲和蓝色盲。查看您的颜色在色觉障碍用户眼中的显示效果。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用取色器选取颜色，或手动输入 HEX 色值。",
+          "点击「模拟」按钮，查看该颜色在不同类型色盲用户眼中的效果。",
+          "将原始颜色与红色盲（Protanopia）、绿色盲（Deuteranopia）和蓝色盲（Tritanopia）的模拟版本进行对比查看。",
+          "在设计中利用模拟后的 HEX 色值确保可访问性。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "避免仅使用红绿颜色组合来传达信息，因为这对最常见的色盲类型来说难以区分。",
+          "在使用颜色的同时辅以图标、图案和文字标签，确保所有用户都能获取信息。",
+          "对所有三种模拟类型测试关键 UI 元素（错误状态、状态指示器、图表）。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是色盲？",
+            "a": "色盲（色觉障碍）影响全球约 1/12 的男性和 1/200 的女性，会降低区分某些颜色的能力。"
+          },
+          {
+            "q": "模拟了哪些不同类型的色盲？",
+            "a": "红色盲（Protanopia）影响对红光的感知。绿色盲（Deuteranopia）影响对绿光的感知。蓝色盲（Tritanopia）影响蓝黄感知，非常罕见。"
+          },
+          {
+            "q": "这些模拟的准确度如何？",
+            "a": "模拟采用公认的 Brettel-Vienot-Mollon (1997) 算法，广泛用于近似模拟色觉障碍。虽然提供了有用的参考，但可能无法完全匹配每个人的实际体验。"
+          }
+        ]
+      }
     },
     "gradient-generator": {
       "title": "CSS 渐变生成器",
-      "desc": "以可视化方式创建 CSS 渐变"
+      "desc": "以可视化方式创建 CSS 渐变",
+      "h1": "CSS 渐变生成器在线工具 — 创建漂亮的色彩渐变",
+      "description": "免费的在线 CSS 渐变生成器。通过多个色标创建漂亮的线性渐变和径向渐变。实时预览并即时复制 CSS 代码。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "从可用选项中选择渐变方向（向下、向右、对角、径向等）。",
+          "使用控件添加或删除色标。每个色标都配有颜色选择器和位置滑块。",
+          "通过拖拽滑块调整每个色标的位置，微调渐变效果。",
+          "点击“复制”按钮，将生成的 CSS 代码复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用 2-3 个色标即可获得简洁专业的渐变效果。更多色标可创建复杂效果。",
+          "对于径向渐变，位置值控制每种颜色距离中心出现的距离。",
+          "将渐变与纯色背景色回退方案结合使用，以兼容不支持 CSS 渐变的浏览器。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 CSS 渐变？",
+            "a": "CSS 渐变让您可以在两种或多种指定颜色之间显示平滑过渡。CSS 支持线性渐变（方向性）、径向渐变（从中心向外）和锥形渐变。渐变在 CSS 中被视为背景图片。"
+          },
+          {
+            "q": "可以使用带透明度的渐变吗？",
+            "a": "可以。您可以使用带有 Alpha 通道的 rgba() 或 hsla() 颜色值（例如 rgba(255, 0, 0, 0.5)）来创建淡出效果。只需在颜色选择器中输入带透明度的颜色，或直接编辑 CSS 即可。"
+          },
+          {
+            "q": "如何创建硬色标（非平滑过渡）？",
+            "a": "将两个色标放置在同一位置即可创建硬边缘。例如，将一个颜色设置在 50%，另一个不同颜色也设置在 50%，就会在两个颜色之间形成清晰的边界，不产生混合。"
+          }
+        ]
+      }
     },
     "box-shadow": {
       "title": "CSS 阴影生成器",
-      "desc": "以可视化方式生成 CSS 盒子阴影效果"
+      "desc": "以可视化方式生成 CSS 盒子阴影效果",
+      "h1": "CSS 盒子阴影生成器 — 免费在线阴影效果制作工具",
+      "description": "免费的在线 CSS 盒子阴影生成器。使用可视化控件创建自定义阴影效果。调整偏移、模糊、扩散和颜色。复制 CSS 代码。非常适合网页设计。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "调整<strong>水平偏移</strong>和<strong>垂直偏移</strong>滑块，在水平和垂直方向上定位阴影。",
+          "使用<strong>模糊</strong>滑块控制阴影边缘的柔和或锐利程度。",
+          "设置<strong>扩散</strong>以扩展或收缩阴影大小，并使用拾色器选择<strong>颜色</strong>。",
+          "切换<strong>内阴影</strong>在外阴影（默认）和内阴影效果之间切换，然后复制生成的 CSS。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "较小的模糊值（2-6px）可为按钮和卡片等 UI 元素创建清晰逼真的阴影。",
+          "使用半透明的黑色或灰色（例如 rgba(0,0,0,0.15)）来获得自然的阴影效果，而不是使用纯色。",
+          "通过逗号分隔多个 box-shadow 值来叠加多层阴影，实现如发光加投影等复杂效果。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "模糊和扩散有什么区别？",
+            "a": "模糊控制阴影边缘的淡出方式。模糊值越高，阴影越柔和、越扩散。扩散控制应用模糊之前阴影的大小。正扩散值使阴影比元素更大；负值使其更小。"
+          },
+          {
+            "q": "我可以在一个元素上创建多个阴影吗？",
+            "a": "是的。你可以通过逗号分隔来叠加多个 box-shadow 值。例如：<code> box-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);</code>。此工具生成单个阴影，但你可以在 CSS 中手动组合多个输出。"
+          },
+          {
+            "q": "inset 关键字会改变阴影外观吗？",
+            "a": "是的。不使用 inset（默认）时，阴影投射在元素边框外部。使用 inset 时，阴影绘制在元素内部，产生凹陷或\"内阴影\"效果。内阴影通常用于按钮按下状态或内嵌面板。"
+          }
+        ]
+      }
     },
     "html-preview": {
       "title": "HTML 预览",
-      "desc": "实时编写和预览 HTML"
+      "desc": "实时编写和预览 HTML",
+      "h1": "Hello, World!",
+      "description": "免费的在线 HTML 预览工具。编写 HTML 代码并实时查看渲染效果。非常适合测试 HTML 片段、学习网页开发和调试布局。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在左侧编辑面板中键入或粘贴 HTML 代码。",
+          "右侧预览面板会随您的输入自动实时更新。",
+          "完成后使用“复制 HTML”按钮将代码复制到剪贴板。",
+          "编辑现有 HTML 片段，在部署到网站之前测试更改效果。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在 head 中添加 <code><style></code> 标签引入 CSS，或添加 <code><script></code> 标签引入 JavaScript，以测试交互元素。",
+          "使用沙盒 iframe 进行安全预览——它可以防止脚本访问父页面。",
+          "建议从完整的 HTML 文档模板开始，包含 <code><!DOCTYPE html></code>，以确保准确渲染。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "为什么我的 JavaScript 在预览中无法运行？",
+            "a": "预览 iframe 使用了包含 <code>allow-scripts</code> 和 <code>allow-same-origin</code> 的 <code>sandbox</code> 属性。大多数脚本可以正常运行，但某些高级 API（如访问浏览器存储或打开弹窗）可能会受到限制。如果需要完全访问权限，可以尝试移除 <code>sandbox</code> 属性，但请注意安全风险。"
+          },
+          {
+            "q": "我输入的 HTML 会保存在任何地方吗？",
+            "a": "不会。所有 HTML 处理完全在您的浏览器中完成。您的代码绝不会发送到任何服务器。不过，内容可能会保存在浏览器的会话存储中，直到您关闭标签页。清空编辑器或关闭页面即可彻底清除。"
+          },
+          {
+            "q": "可以预览外部资源（如图片或字体）吗？",
+            "a": "可以，但外部资源必须托管在可访问的 URL 上并使用绝对路径（例如 <code>https://example.com/image.jpg</code>）。相对路径无法使用，因为预览 iframe 没有真实的文件系统。通过链接完整的 URL 使用 CDN 托管的库。"
+          }
+        ]
+      }
     },
     "ip-lookup": {
       "title": "IP 查询",
-      "desc": "查找您的 IP 地址和位置信息"
+      "desc": "查找您的 IP 地址和位置信息",
+      "h1": "IP 地址查询在线工具 — 查找我的 IP 和位置",
+      "description": "免费的 IP 地址查询工具。查找您的公网 IP 地址、位置、ISP 等详细信息。查询任意 IP 地址的地理位置信息。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "打开页面即可自动查看您的公网 IP 地址和地理位置数据。",
+          "在查询字段中输入任意 IP 地址，点击“查询”查找其位置和 ISP 详细信息。",
+          "在查询字段中输入时按回车键可更快搜索。",
+          "点击“在 Google Maps 上查看”在地图上查看大致位置。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "您的 IP 地址会显示大致位置（城市/地区），但不会显示精确的街道地址。",
+          "如果您需要向访问的网站隐藏公网 IP 地址，请使用 VPN 或代理。",
+          "对于地理位置信息，ISP 提供的 IP 数据通常比第三方数据库更准确。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "IP 地理位置数据的准确度如何？",
+            "a": "IP 地理位置通常在市级层面较为准确，但无法精确到街道级别。准确度取决于所使用的 IP 数据库。移动 IP 和 VPN 可能显示与实际位置相差甚远的地点。通常，国家级别准确率超过 99%，城市级别准确率约为 80-90%。"
+          },
+          {
+            "q": "有人能通过我的 IP 找到精确地址吗？",
+            "a": "不能。您的公网 IP 地址仅显示大致地理位置（通常是城市或地区），而不是您的街道地址。互联网服务提供商（ISP）知道与 IP 关联的精确地址，但这些信息无法通过 IP 查询 API 公开获取。"
+          },
+          {
+            "q": "为什么我的 IP 显示的位置与我实际所在地不同？",
+            "a": "这可能是由于您的 ISP 将流量路由到另一个城市的中枢、您使用了 VPN 或代理，或者 IP 地理位置数据库的信息已过时。某些移动网络也会通过远离您实际位置的区域网关路由流量。"
+          }
+        ]
+      }
     },
     "color-palette": {
       "title": "调色板生成器",
-      "desc": "生成和谐的配色方案"
+      "desc": "生成和谐的配色方案",
+      "h1": "在线调色板生成器 — 和谐配色方案工具",
+      "description": "免费在线调色板生成器。利用色彩理论规则创建和谐的配色方案。根据任意颜色生成互补、相似、三色和四色调色板。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用取色器选择 <strong>基础颜色</strong>，或直接输入十六进制色值。",
+          "从下拉菜单中选择 <strong>和谐规则</strong> — 互补、相似、三色、四色或分裂互补。",
+          "查看生成的 5 色调色板。点击任意色块或十六进制色值将其复制到剪贴板。",
+          "使用「全部复制」按钮将所有调色板颜色以逗号分隔列表的形式一次性复制。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "相似调色板营造柔和、和谐的设计感 — 非常适合背景和主要内容区域。",
+          "互补和三色调色板产生高对比度 — 用于行动号召按钮和强调色。",
+          "使用调色板中最深和最浅的颜色分别作为文字和背景色，以确保合适的对比度。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是色彩和谐？",
+            "a": "色彩和谐是一种基于色彩理论的设计原则，利用色环上的特定几何关系来创建视觉上令人愉悦的颜色组合。常见的和谐类型包括互补色（对立色）、相似色（相邻色）、三色（等距分布）和四色（两组互补对）。"
+          },
+          {
+            "q": "这些调色板可以用于无障碍设计吗？",
+            "a": "生成的调色板基于色相关系，但不会自动保证符合 WCAG 对比度标准。请务必检查文字在背景色上的对比度，特别是使用互补或三色方案时。您可能需要调整明度值以满足无障碍标准。"
+          },
+          {
+            "q": "为什么当我更改和谐规则时调色板看起来不同？",
+            "a": "每种和谐规则在色环上使用不同的几何关系来选取颜色。互补选取对立色，相似选取相邻色，三色选取三种等距颜色，四色选取矩形图案中的四种颜色。生成的颜色会保持基础颜色的饱和度和明度以保证一致性。"
+          }
+        ]
+      }
     },
     "lorem-ipsum": {
       "title": "Lorem Ipsum 生成器",
-      "desc": "为设计生成占位文本"
+      "desc": "为设计生成占位文本",
+      "h1": "在线免费 Lorem Ipsum 生成器 —— 占位文本生成器",
+      "description": "免费在线 Lorem Ipsum 生成器。为您的设计、模型和布局生成占位文本。可选择段落、单词或句子。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "使用模式按钮选择生成段落、单词还是句子。",
+          "使用滑块调整数量（1–50）。",
+          "点击\"生成\"创建占位文本。",
+          "点击\"复制\"将生成的文本复制到剪贴板。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在线框图和模型中使用段落模式，以真实地填充内容区域。",
+          "单词模式适合测试特定字数的布局。",
+          "如需不同文本可重新生成——每次生成都会产生随机变化。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 Lorem Ipsum？",
+            "a": "Lorem Ipsum 是印刷和排版行业使用的占位文本。自 1500 年代以来，它一直是行业&rsquo;的标准占位文本。"
+          },
+          {
+            "q": "文本是真正随机的吗？",
+            "a": "是的，每次生成都会基于标准 Lorem Ipsum 段落创建独特的类拉丁单词组合。"
+          },
+          {
+            "q": "我可以将其用于商业项目吗？",
+            "a": "可以，Lorem Ipsum 属于公共领域，可免费用于任何商业或个人项目。"
+          }
+        ]
+      }
     },
     "timestamp-converter": {
       "title": "时间戳转换器",
-      "desc": "在时间戳和日期之间转换"
+      "desc": "在时间戳和日期之间转换",
+      "h1": "在线时间戳转换器免费使用——Unix 时间戳转日期",
+      "description": "免费在线时间戳转换器。将 Unix 时间戳转换为人类可读的日期，反之亦然。支持秒、毫秒和多种日期格式。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "查看页面顶部显示的当前 Unix 时间戳，每秒自动更新。",
+          "要将时间戳转换为日期，请输入 Unix 时间戳并选择偏好的格式，然后点击“转换为日期”。",
+          "要将日期转换为时间戳，请选择日期和时间，然后点击“转换为时间戳”。",
+          "复制结果以用于应用程序、数据库或脚本中。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "Unix 时间戳以自 1970 年 1 月 1 日（纪元）以来的秒数表示。转换器会自动检测毫秒级时间戳。",
+          "使用 ISO 8601 格式可获得与 API 和数据库的最大兼容性。",
+          "当前时间戳显示功能有助于调试和设置基于时间的事件。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 Unix 时间戳？",
+            "a": "Unix 时间戳是自 1970 年 1 月 1 日（UTC 午夜）以来经过的秒数，不计入闰秒。"
+          },
+          {
+            "q": "秒和毫秒有什么区别？",
+            "a": "Unix 时间戳通常以秒为单位（10 位数字）。JavaScript&rsquo;s Date.now() 返回毫秒数（13 位数字）。转换器会自动处理两者。"
+          },
+          {
+            "q": "转换器支持时区吗？",
+            "a": "Unix 时间戳始终是 UTC 时间。对于“区域格式”和“日期”格式，人类可读的日期格式会遵循您的本地时区。"
+          }
+        ]
+      }
     },
     "html-entities": {
       "title": "HTML 实体编码器",
-      "desc": "安全编码/解码 HTML 实体"
+      "desc": "安全编码/解码 HTML 实体",
+      "h1": "HTML 实体编码器在线工具 — 编码与解码 HTML 实体",
+      "description": "免费的在线 HTML 实体编码器和解码器。安全地将特殊字符编码为 HTML 实体，也可将实体解码回原始字符。附带常见实体参考表。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择 <strong>编码</strong> 将特殊字符（&、<、>、引号）转换为对应的 HTML 实体。",
+          "选择 <strong>解码</strong> 将 HTML 实体转换回实际字符。",
+          "在输入区域键入或粘贴文本——输出内容会自动更新。",
+          "使用 <strong>互换</strong> 按钮交换输入和输出内容，实现快速往返转换，或直接复制结果。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在将用户生成的内容插入 HTML 之前，务必使用 <code><</code> 和 <code>&amp;</code> 进行编码，以防止 XSS 攻击。",
+          "编码器会先解码再编码，从而保留现有实体——这可以防止双重编码。",
+          "使用参考表查找特殊字符（如版权符号 &copy; 或商标符号 &trade;）的正确实体。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "什么是 HTML 实体，为什么需要它们？",
+            "a": "HTML 实体是表示 HTML 中保留字符的特殊代码。例如，<code><</code> 代表小于号 (<)。之所以需要它们，是因为 <、> 和 & 等字符在 HTML 标记中具有特殊含义。使用实体可以防止浏览器将其误解释为代码。"
+          },
+          {
+            "q": "是否需要编码每个特殊字符？",
+            "a": "HTML 内容中只需编码五个保留字符：& (&amp;)、< (<)、> (>)、\" (\") 和 ' (&#39;)。其他字符如 &copy; 或 &euro; 可选——在 UTF-8 文档中可以直接输入，但使用实体可以确保与旧系统的兼容性。"
+          },
+          {
+            "q": "&#39; 和 ' 有什么区别？",
+            "a": "两者都表示撇号或单引号字符 (')。&#39; 是数字实体，适用于所有 HTML 版本。' 是命名实体，在 XHTML 中引入，适用于 HTML5 文档。为了获得最大兼容性，通常推荐使用 &#39;。"
+          }
+        ]
+      }
     },
     "bmi-calculator": {
       "title": "BMI 计算器",
-      "desc": "计算身体质量指数 (BMI)"
+      "desc": "计算身体质量指数 (BMI)",
+      "h1": "BMI 计算器 — 免费在线身体质量指数计算",
+      "description": "免费的在线 BMI 计算器。立即计算你的身体质量指数。根据身高和体重检查你是否偏瘦、正常、超重或肥胖。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在身高字段中输入你的身高（厘米）。",
+          "在体重字段中输入你的体重（千克）。",
+          "点击“计算 BMI”按钮计算你的身体质量指数。",
+          "立即查看你的 BMI 值、体重类别和颜色编码指示。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用准确的测量值以获得最可靠的 BMI 结果。",
+          "BMI 是一种筛查工具，而非诊断测试。请咨询医疗保健提供者进行全面评估。",
+          "长期追踪你的 BMI 以监测身体成分的变化。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "健康的 BMI 范围是多少？",
+            "a": "对于大多数成年人，BMI 在 18.5 到 24.9 之间被认为是健康体重范围。低于 18.5 为偏瘦，25–29.9 为超重，30 及以上为肥胖。"
+          },
+          {
+            "q": "BMI 对运动员准确吗？",
+            "a": "BMI 可能会高估运动员和肌肉量高的人的体脂率，因为它不区分肌肉和脂肪。可能需要额外的测量指标。"
+          },
+          {
+            "q": "BMI 可以用于儿童吗？",
+            "a": "儿童和青少年的 BMI 使用基于年龄和性别的百分位数。此计算器适用于 18 岁及以上的成年人。"
+          }
+        ]
+      }
     },
     "percentage-calculator": {
       "title": "百分比计算器",
-      "desc": "快速计算百分比"
+      "desc": "快速计算百分比",
+      "h1": "免费在线百分比计算器——即时计算百分比",
+      "description": "免费在线百分比计算器。可计算 X 占 Y 的百分比、X 是 Y 的百分之几，以及百分比增减。快速精准计算。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择计算模式：“X% of Y”（X 占 Y 的百分比）、“X is what % of Y”（X 是 Y 的百分之几）或“X% of what is Y”（X% 对应的是多少）。",
+          "在输入框中输入所需数字。",
+          "点击“计算”按钮得出结果。",
+          "查看高亮区域中显示的结果。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用“X is what % of Y”模式快速计算两个数字之间的百分比差。",
+          "请仔细确认选择了正确的计算模式，以避免错误。",
+          "百分比计算在折扣、税费计算、小费金额和数据分析中非常实用。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "如何计算一个数字的百分比？",
+            "a": "将数字乘以百分比除以 100。例如，200 的 20% = (20/100) * 200 = 40。"
+          },
+          {
+            "q": "如何计算一个数字占另一个数字的百分比？",
+            "a": "将第一个数字除以第二个数字再乘以 100。例如，30 是 150 的 20%，因为 (30/150) * 100 = 20%。"
+          },
+          {
+            "q": "可以计算百分比增减吗？",
+            "a": "使用“X is what % of Y”模式比较新旧值。将结果减去 100% 即可得到百分比变化。"
+          }
+        ]
+      }
     },
     "date-calculator": {
       "title": "日期计算器",
-      "desc": "计算日期差异和添加天数"
+      "desc": "计算日期差异和添加天数",
+      "h1": "在线日期计算器 — 日期差值与天数加减工具",
+      "description": "免费在线日期计算器。计算日期之间的天数，或在任意日期上加减天数。以年、月、日的形式显示结果。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "选择「日期之间相差天数」或「加/减天数」模式。",
+          "输入开始日期和结束日期，或输入基准日期和天数。",
+          "点击计算按钮立即查看结果。",
+          "查看总天数、年/月/天和周数的差异。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用「加天数」模式计算项目截止日期和交付日期。",
+          "对于精确的月份计算，请记住月份长度不同（28–31 天）。",
+          "计算器使用日历天数，而非工作日。如需计算工作日，请单独排除周末。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "计算器是否包含开始日期和结束日期？",
+            "a": "不包含，它计算两个日期之间的差值。例如，1 月 1 日到 1 月 2 日相差 1 天。"
+          },
+          {
+            "q": "可以计算工作日吗？",
+            "a": "此计算器统计所有日历天数。要计算工作日，您需要手动排除周末和节假日。"
+          },
+          {
+            "q": "使用什么日期格式？",
+            "a": "计算器使用 YYYY-MM-DD 格式（ISO 8601），这是所有现代浏览器支持的标准日期输入格式。"
+          }
+        ]
+      }
     },
     "tip-calculator": {
       "title": "小费计算器",
-      "desc": "计算餐厅小费和分摊账单"
+      "desc": "计算餐厅小费和分摊账单",
+      "h1": "在线小费计算器免费使用——计算餐厅小费和分摊账单",
+      "description": "免费在线小费计算器。计算小费金额、账单总额以及多人分摊。可以选择常见的小费百分比，或自定义设置。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "在输入框中输入账单金额（例如 $75.50）。",
+          "从预设选项（10%、15%、18%、20%）中选择小费百分比，或输入自定义百分比。",
+          "使用 +/- 按钮调整分摊账单的人数。",
+          "点击“计算”查看小费金额、账单总额和每人应付金额。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "在美国，15%–20% 的小费是良好餐厅服务的一般标准。",
+          "在额外添加小费之前，请检查账单是否已包含服务费（自动加收）。",
+          "分摊账单时，可使用“每人应付”金额确保每个人都支付包括税费和小费在内的公平份额。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "标准小费百分比是多少？",
+            "a": "美国标准餐厅小费为税前账单金额的 15% 到 20%。部分餐厅会为大型聚餐包含服务费。"
+          },
+          {
+            "q": "应按税前还是税后金额给小费？",
+            "a": "大多数小费指南建议按税前金额计算小费，不过许多人也会按含税的总账单金额给小费。"
+          },
+          {
+            "q": "如何不均等分摊小费？",
+            "a": "本计算器按均分方式计算小费。如需不均等分摊，请根据每个人的账单金额单独计算各自的小费。"
+          }
+        ]
+      }
     },
     "age-calculator": {
       "title": "年龄计算器",
-      "desc": "精确计算年龄（年、月、日）"
+      "desc": "精确计算年龄（年、月、日）",
+      "h1": "在线年龄计算器 — 精确计算年龄",
+      "description": "免费的在线年龄计算器。精确计算您的年龄（年、月、日），了解距离下一个生日还有多少天。",
+      "howto": {
+        "heading": "如何使用",
+        "steps": [
+          "通过点击日期选择器或以YYYY-MM-DD格式输入您的出生日期。",
+          "系统会自动以年、月、日为单位精确计算您的年龄。",
+          "查看您的总存活天数，获得更精确的衡量。",
+          "查看距离下一个生日的倒计时。"
+        ]
+      },
+      "tips": {
+        "heading": "使用技巧",
+        "items": [
+          "使用此计算器验证申请、表格或注册中的年龄信息。",
+          "总天数计数功能适合追踪里程碑，如出生10,000天纪念日。",
+          "将此页面加入书签并预填出生日期，方便日后快速查看。"
+        ]
+      },
+      "faq": {
+        "heading": "常见问题",
+        "items": [
+          {
+            "q": "如何计算我的精确年龄？",
+            "a": "您的年龄通过比较出生日期与当前日期来计算。它会考虑年、月、日的差异，包括闰年因素。"
+          },
+          {
+            "q": "计算器会考虑闰年吗？",
+            "a": "是的，JavaScript Date对象会自动处理闰年，因此2月29日的生日也能正确计算。"
+          },
+          {
+            "q": "如果我是2月29日出生的怎么办？",
+            "a": "在非闰年，计算器会根据日期解析方式，将您的下一个生日显示为2月28日或3月1日。"
+          }
+        ]
+      }
     }
   }
 }

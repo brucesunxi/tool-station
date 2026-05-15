@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback, useEffect } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -50,6 +51,9 @@ function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: n
 type ColorInput = 'hex' | 'rgb' | 'hsl'
 
 export default function ColorConverterPage() {
+  const t = useTranslations('tools.color-converter')
+  const ct = useTranslations('common')
+
   const [hex, setHex] = useState('#3b82f6')
   const [rgb, setRgb] = useState('59, 130, 246')
   const [hsl, setHsl] = useState('217, 91%, 60%')
@@ -106,8 +110,8 @@ export default function ColorConverterPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Color Converter</h1>
-        <p className="text-gray-500">Convert colors between HEX, RGB, and HSL formats.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -157,42 +161,27 @@ export default function ColorConverterPage() {
       </div>
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Use the color picker to select any color visually from the gradient strip.</li>
-          <li>Click a preset color swatch for quick access to commonly used colors.</li>
-          <li>Type a HEX value directly (e.g., <code>#3b82f6</code>) for precise input.</li>
-          <li>Edit the RGB fields (e.g., <code>59, 130, 246</code>) for fine-grained control.</li>
-          <li>Adjust the HSL values (e.g., <code>217, 91%, 60%</code>) for intuitive tint and shade tweaks.</li>
-          <li>All three format fields update in real time as you change any input.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the color picker for quick visual selection, then fine-tune with HSL for precise shade adjustments.</li>
-          <li>HSL is often more intuitive than RGB for creating color variations &mdash; just adjust the hue angle.</li>
-          <li>Preset swatches provide a great starting point for common design color palettes.</li>
-          <li>Copy values directly from your CSS or design tools into the corresponding input field.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">What is the difference between RGB and HSL?</h3>
-            <p>RGB defines color by red, green, and blue light levels (0&ndash;255 each). HSL defines color by hue (0&ndash;360), saturation (0&ndash;100%), and lightness (0&ndash;100%) &mdash; it is often more intuitive for making systematic adjustments.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I convert to CMYK for printing?</h3>
-            <p>Currently we support HEX, RGB, and HSL. CMYK support may be added in a future update.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">How do I use the color picker for accessibility?</h3>
-            <p>Keep lightness values above 50% for background colors and below 50% for text foregrounds to ensure sufficient contrast ratios.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What are the value limits for each format?</h3>
-            <p>HEX accepts 3 or 6-digit values. RGB values must be 0&ndash;255. HSL hue must be 0&ndash;360, while saturation and lightness must be 0&ndash;100%.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

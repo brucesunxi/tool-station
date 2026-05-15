@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type ResultStatus = 'idle' | 'success' | 'error'
 
 export default function JsonFormatterPage() {
+  const t = useTranslations('tools.json-formatter')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [status, setStatus] = useState<ResultStatus>('idle')
@@ -50,10 +54,8 @@ export default function JsonFormatterPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">JSON Formatter</h1>
-        <p className="text-gray-500">
-          Format, validate, and minify JSON data. Works entirely in your browser.
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -62,7 +64,7 @@ export default function JsonFormatterPage() {
         {/* Input */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium">Input JSON</label>
+            <label className="text-sm font-medium">{ct("input")}</label>
             <span className="text-xs text-gray-400">{input.length} chars</span>
           </div>
           <textarea
@@ -77,7 +79,7 @@ export default function JsonFormatterPage() {
         {/* Output */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium">Output</label>
+            <label className="text-sm font-medium">{ct("output")}</label>
             {output && (
               <button
                 onClick={handleCopy}
@@ -99,7 +101,7 @@ export default function JsonFormatterPage() {
                   ? 'border-red-300 bg-red-50/50 dark:bg-red-900/10'
                   : ''
               }`}
-              placeholder="Formatted JSON will appear here..."
+              placeholder={ct("placeholderJson")}
             />
           </div>
         </div>
@@ -143,7 +145,7 @@ export default function JsonFormatterPage() {
 
       {/* Examples */}
       <div className="mt-8">
-        <h2 className="text-lg font-bold mb-3">Try an example</h2>
+        <h2 className="text-lg font-bold mb-3">{ct("tryExample")}</h2>
         <div className="flex flex-wrap gap-2">
           {examples.map((ex, i) => (
             <button
@@ -159,30 +161,27 @@ export default function JsonFormatterPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the JSON Formatter &amp; Validator</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Paste your JSON data into the left text area. The input can be a minified JSON string, a configuration file, or API response data.</li>
-          <li>Click &ldquo;Format&rdquo; to pretty-print the JSON with 2-space indentation. The tool validates the JSON and displays an error message if the syntax is incorrect.</li>
-          <li>Click &ldquo;Minify&rdquo; to compress the JSON into a single line &mdash; perfect for reducing payload size in API requests and responses.</li>
-          <li>Check the status indicator &mdash; a green checkmark confirms valid JSON and shows the output byte size, while a red error message pinpoints syntax issues.</li>
-          <li>Use the Copy button to copy the formatted or minified JSON to your clipboard.</li>
-          <li>Try the example buttons (Simple Object, Array of Users, API Config) to see how different JSON structures appear when formatted.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips for Better Results</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use Format during development to keep configuration and API response data readable and easy to debug.</li>
-          <li>Use Minify before deploying JSON files or sending data in API requests to reduce bandwidth usage.</li>
-          <li>Watch for trailing commas &mdash; they are invalid in JSON but valid in JavaScript objects. The tool will flag them as errors.</li>
-          <li>The formatter validates key and string delimiters &mdash; both must use double quotes (&ldquo;&nbsp;&rdquo;), not single quotes (&lsquo;&nbsp;&rsquo;).</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">Is JSON the same as a JavaScript object?</h3><p>No, JSON is a strict text format derived from JavaScript object syntax. JSON requires double-quoted keys and strings, no trailing commas, and no functions or undefined values.</p></div>
-          <div><h3 className="font-semibold">Can the formatter handle large JSON files?</h3><p>Yes, the tool can handle large JSON structures. For extremely large files (tens of thousands of lines), the processing is done client-side and performance depends on your browser.</p></div>
-          <div><h3 className="font-semibold">What does &ldquo;Invalid JSON&rdquo; mean and how do I fix it?</h3><p>Invalid JSON means the parser found a syntax error. Common causes include trailing commas, single quotes instead of double quotes, missing brackets, or unescaped special characters. The error message shows the approximate location of the issue.</p></div>
-          <div><h3 className="font-semibold">Is my JSON data sent to a server?</h3><p>No, all formatting, validation, and minification happens entirely in your browser. Your JSON data is never uploaded or transmitted anywhere.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

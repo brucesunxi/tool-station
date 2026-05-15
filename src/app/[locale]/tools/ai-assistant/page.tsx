@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useEffect } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -11,6 +12,9 @@ interface Message {
 const welcomeMessage = "Hi! I'm your AI assistant. I can help with writing, coding, analysis, research, and more. What can I help you with today?"
 
 export default function AiAssistantPage() {
+  const t = useTranslations('tools.ai-assistant')
+  const ct = useTranslations('common')
+
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: welcomeMessage },
   ])
@@ -69,8 +73,8 @@ export default function AiAssistantPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Assistant</h1>
-        <p className="text-gray-500">Chat with AI for writing, coding, analysis, and more. Get instant help with any task.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -138,29 +142,29 @@ export default function AiAssistantPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Chat Assistant</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type your question or request in the chat input field at the bottom of the chat container.</li>
-          <li>Press Enter to send your message (use Shift+Enter for a new line).</li>
-          <li>Read the AI&apos;s response, then ask follow-up questions to refine the answer.</li>
-          <li>Use the &quot;Clear chat&quot; button to start a fresh conversation at any time.</li>
-          <li>Review your message count to track your conversation history.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for Getting the Best Responses</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Be specific in your questions &mdash; instead of &quot;write code,&quot; try &quot;write a Python function to sort a list of dictionaries by a key.&quot;</li>
-          <li>Use follow-up questions to refine answers. The AI remembers the conversation context.</li>
-          <li>For complex tasks, break them into smaller steps and ask one at a time for more thorough responses.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What can the AI assistant help me with?</h3><p>The AI assistant can help with writing, coding, analysis, research, brainstorming, problem-solving, creative tasks, and general questions. It is a versatile tool for almost any task.</p></div>
-          <div><h3 className="font-semibold">Does the AI assistant remember previous messages?</h3><p>Yes, the assistant maintains the conversation context within a single chat session, so it remembers what you discussed earlier in the conversation.</p></div>
-          <div><h3 className="font-semibold">Is there a limit to how many messages I can send?</h3><p>No, there are no message limits. The AI assistant is completely free to use for unlimited conversations.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

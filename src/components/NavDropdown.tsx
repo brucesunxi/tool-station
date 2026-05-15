@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n'
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 interface DropdownItem {

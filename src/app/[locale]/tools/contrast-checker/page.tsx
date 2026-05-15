@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -46,6 +47,9 @@ function wcagLevel(ratio: number, isLarge: boolean) {
 }
 
 export default function ContrastCheckerPage() {
+  const t = useTranslations('tools.contrast-checker')
+  const ct = useTranslations('common')
+
   const [fgColor, setFgColor] = useState('#1a1a1a')
   const [bgColor, setBgColor] = useState('#ffffff')
   const [fgInput, setFgInput] = useState('#1a1a1a')
@@ -73,8 +77,8 @@ export default function ContrastCheckerPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Color Contrast Checker Free Online — WCAG Accessibility Checker</h1>
-      <p className="text-gray-500 mb-6">Free color contrast checker. Check if your color combinations meet WCAG accessibility standards for normal text, large text, and UI components.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -159,31 +163,29 @@ export default function ContrastCheckerPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter the foreground (text) color using the color picker or type a HEX code.</li>
-          <li>Enter the background color using the color picker or type a HEX code.</li>
-          <li>The contrast ratio is calculated instantly with WCAG pass/fail results.</li>
-          <li>Review WCAG AA and AAA compliance for both normal and large text sizes.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>For the best accessibility, aim for at least AA compliance (4.5:1 for normal text, 3:1 for large text).</li>
-          <li>Darker text on lighter backgrounds (or vice versa) typically provides better contrast.</li>
-          <li>WCAG AAA compliance (7:1 for normal text) is recommended for public-facing websites.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is WCAG contrast ratio?</h3>
-          <p>WCAG contrast ratio measures the luminance difference between foreground and background colors, ranging from 1:1 (identical) to 21:1 (black on white).</p>
-          <h3>What is the difference between AA and AAA?</h3>
-          <p>AA requires 4.5:1 for normal text and 3:1 for large text. AAA is stricter, requiring 7:1 for normal text and 4.5:1 for large text.</p>
-          <h3>Do I need to check contrast for UI components?</h3>
-          <p>Yes, WCAG 2.1 AA requires UI components and graphical objects to have at least 3:1 contrast against adjacent colors.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

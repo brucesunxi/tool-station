@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -184,6 +185,9 @@ function findClosestName(rgb: { r: number; g: number; b: number }): NamedColor {
 }
 
 export default function ColorNamesPage() {
+  const t = useTranslations('tools.color-names')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('#663399')
   const [matchedColor, setMatchedColor] = useState<{ inputHex: string; named: NamedColor; inputRgb: { r: number; g: number; b: number } } | null>(null)
 
@@ -201,8 +205,8 @@ export default function ColorNamesPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Color Name Finder Free Online — Find Color Names</h1>
-      <p className="text-gray-500 mb-6">Free online color name finder. Enter any HEX or RGB color and find its closest named CSS color. Browse common color names with previews.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -267,31 +271,29 @@ export default function ColorNamesPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter a HEX color code (with or without the # prefix) in the input field.</li>
-          <li>Click &ldquo;Find Name&rdquo; to see the closest named CSS color.</li>
-          <li>View your input color alongside the matched color name with preview.</li>
-          <li>Browse the list of common CSS color names below for reference.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>The color matching uses Euclidean distance in RGB space to find the closest named color.</li>
-          <li>Use CSS named colors in your stylesheets for better code readability (e.g., <code>color: rebeccapurple</code>).</li>
-          <li>Click any color name in the browser to instantly look up its match.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>How does the color name matching work?</h3>
-          <p>The tool calculates the Euclidean distance between your input color and all 148 CSS named colors in RGB space, returning the closest match.</p>
-          <h3>Can I use RGB input instead of HEX?</h3>
-          <p>Currently the tool accepts HEX input. You can easily convert RGB to HEX using online converters or our color converter tool.</p>
-          <h3>Are all CSS named colors included?</h3>
-          <p>Yes, all 148 standard CSS named colors are included in the lookup database, from AliceBlue to YellowGreen.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -26,6 +27,9 @@ const languages = [
 ]
 
 export default function AiTranslatorPage() {
+  const t = useTranslations('tools.ai-translator')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [sourceLang, setSourceLang] = useState('auto')
   const [targetLang, setTargetLang] = useState('en')
@@ -70,8 +74,8 @@ export default function AiTranslatorPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Translator</h1>
-        <p className="text-gray-500">Translate text between 20+ languages with AI. Preserves formatting and natural expression.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -119,7 +123,7 @@ export default function AiTranslatorPage() {
             <label className="text-sm font-medium">Translation</label>
             {translated && (
               <button onClick={handleCopy}
-                className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+                className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
             )}
           </div>
           <div className={`min-h-[310px] p-4 border rounded-xl text-sm whitespace-pre-wrap ${
@@ -144,29 +148,29 @@ export default function AiTranslatorPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Translator</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select the source language or choose &quot;Auto Detect&quot; to let the AI identify the language automatically.</li>
-          <li>Choose your target language from the list of 20+ supported languages.</li>
-          <li>Type or paste the text you want to translate into the source text area.</li>
-          <li>Click &quot;Translate with AI&quot; and the translated text will appear instantly on the right.</li>
-          <li>Use the swap button to switch source and target languages for a quick reverse translation.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for Accurate Translations</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use complete sentences rather than fragmented phrases — full sentences give the AI more context for natural translations.</li>
-          <li>When translating between languages with different scripts (e.g., English to Japanese), review the result for proper name preservation.</li>
-          <li>For business or professional content, consider translating and then reviewing with a native speaker for cultural nuances.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">How many languages does the AI translator support?</h3><p>The translator supports 20+ languages including English, Chinese, Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, Hindi, Italian, Vietnamese, Thai, Indonesian, Turkish, Dutch, and Polish.</p></div>
-          <div><h3 className="font-semibold">How accurate is the AI translation?</h3><p>The AI produces natural-sounding translations that preserve meaning, tone, and formatting. It handles idioms and context better than traditional machine translation tools.</p></div>
-          <div><h3 className="font-semibold">Can I use Auto Detect for all translations?</h3><p>Yes, Auto Detect works well for most languages. If you know the source language, selecting it manually can improve accuracy slightly for less common language pairs.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

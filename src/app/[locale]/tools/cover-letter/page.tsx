@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function CoverLetterPage() {
+  const t = useTranslations('tools.cover-letter')
+  const ct = useTranslations('common')
+
   const [jobTitle, setJobTitle] = useState('')
   const [company, setCompany] = useState('')
   const [skills, setSkills] = useState('')
@@ -21,10 +25,10 @@ export default function CoverLetterPage() {
         body: JSON.stringify({ jobTitle, company, skills, tone }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Generation failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setLetter(data.letter)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Generation failed')
+      setError(err instanceof Error ? err.message : ct("generationFailed"))
     } finally { setLoading(false) }
   }
 
@@ -33,8 +37,8 @@ export default function CoverLetterPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Cover Letter Generator</h1>
-        <p className="text-gray-500">Generate professional cover letters tailored to any job application in seconds.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -60,12 +64,12 @@ export default function CoverLetterPage() {
                 className="w-full p-3 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Tone</label>
+              <label className="block text-sm font-medium mb-1">{ct("tone")}</label>
               <select value={tone} onChange={e => setTone(e.target.value)}
                 className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="professional">Professional</option>
-                <option value="enthusiastic">Enthusiastic</option>
-                <option value="direct">Direct & Concise</option>
+                <option value="professional">{ct("toneProfessional")}</option>
+                <option value="enthusiastic">{ct("toneEnthusiastic")}</option>
+                <option value="direct">{ct("toneDirectConcise")}</option>
               </select>
             </div>
           </div>
@@ -73,59 +77,46 @@ export default function CoverLetterPage() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium">Cover Letter</label>
-            {letter && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>}
+            {letter && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>}
           </div>
           <div className={`min-h-[400px] p-4 border rounded-xl text-sm whitespace-pre-wrap leading-relaxed ${
             letter ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
           }`}>
-            {letter || <p className="text-gray-400">{loading ? 'Writing...' : 'Your cover letter will appear here...'}</p>}
+            {letter || <p className="text-gray-400">{loading ? ct("writing") : 'Your cover letter will appear here...'}</p>}
           </div>
         </div>
       </div>
 
       <button onClick={handleGenerate} disabled={loading || !jobTitle.trim() || !company.trim()}
         className="w-full mt-4 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-        {loading ? '🤖 Writing...' : '✍️ Generate Cover Letter'}
+        {loading ? ct("aiWriting") : '✍️ Generate Cover Letter'}
       </button>
 
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter the job title you are applying for in the first input field.</li>
-          <li>Type the company name to personalize the cover letter for the specific organization.</li>
-          <li>Describe your relevant skills, experience, and key achievements in the skills text area for the best results.</li>
-          <li>Choose a tone -- Professional, Enthusiastic, or Direct and Concise -- to match the company culture and role.</li>
-          <li>Click "Generate Cover Letter" and wait for the AI to write your letter, then copy the result using the Copy button.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Be specific in your skills section -- mention concrete achievements like "increased sales by 20 percent" rather than vague statements.</li>
-          <li>Match the tone to the industry: Professional for corporate roles, Enthusiastic for startups and creative positions, and Direct for executive applications.</li>
-          <li>Always review and customize the generated letter before sending it -- AI outputs work best as a strong starting point.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">How does the AI generate the cover letter?</h3>
-            <p>The AI uses your job title, company name, skills, and selected tone to craft a tailored cover letter through our server-side API.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is there a limit on how many cover letters I can generate?</h3>
-            <p>No. You can generate unlimited cover letters for different job applications and companies.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I customize the generated letter before using it?</h3>
-            <p>Yes. The generated letter appears in an editable text area where you can copy it and then paste it into any word processor for further editing.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What information should I include in the skills section for the best results?</h3>
-            <p>Include your years of experience, key technical skills, notable achievements with metrics, and any relevant certifications or education.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

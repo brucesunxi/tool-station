@@ -6,7 +6,7 @@ export type Locale = (typeof locales)[number]
 export const defaultLocale = 'en' as const
 
 export const { Link, redirect, usePathname, useRouter } =
-  createSharedPathnamesNavigation({ locales })
+  createSharedPathnamesNavigation({ locales, localePrefix: 'as-needed' })
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale

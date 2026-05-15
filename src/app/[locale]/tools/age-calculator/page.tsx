@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -31,6 +32,9 @@ function getNextBirthday(dob: Date, now: Date) {
 }
 
 export default function AgeCalculatorPage() {
+  const t = useTranslations('tools.age-calculator')
+  const ct = useTranslations('common')
+
   const [dobInput, setDobInput] = useState('1990-06-15')
   const now = useMemo(() => new Date(), [])
 
@@ -40,8 +44,8 @@ export default function AgeCalculatorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Age Calculator Free Online — Calculate Exact Age</h1>
-      <p className="text-gray-500 mb-6">Free online age calculator. Calculate your exact age in years, months, and days. Find out how many days until your next birthday.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -64,7 +68,7 @@ export default function AgeCalculatorPage() {
               </div>
               <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl text-center">
                 <div className="text-3xl font-bold text-purple-600">{age.days}</div>
-                <div className="text-sm text-gray-500">Days</div>
+                <div className="text-sm text-gray-500">{ct("days")}</div>
               </div>
             </div>
 
@@ -93,31 +97,29 @@ export default function AgeCalculatorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter your date of birth by clicking the date picker or typing in YYYY-MM-DD format.</li>
-          <li>Your exact age is calculated automatically in years, months, and days.</li>
-          <li>View your total number of days old for a precise measurement.</li>
-          <li>Check the countdown to your next birthday.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use this calculator to verify age for applications, forms, or registrations.</li>
-          <li>The total days counter is useful for tracking milestones like 10,000 days old.</li>
-          <li>Bookmark the page with your birth date pre-filled for quick future reference.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>How is my exact age calculated?</h3>
-          <p>Your age is calculated by comparing your date of birth to the current date. It accounts for differences in years, months, and days, including leap years.</p>
-          <h3>Does the calculator account for leap years?</h3>
-          <p>Yes, the JavaScript Date object handles leap years automatically, so February 29 birthdays are correctly accounted for.</p>
-          <h3>What if I was born on February 29?</h3>
-          <p>The calculator will show your next birthday on February 28 or March 1 in non-leap years, depending on how the date is interpreted.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

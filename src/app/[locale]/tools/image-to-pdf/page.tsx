@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function ImageToPdfPage() {
+  const t = useTranslations('tools.image-to-pdf')
+  const ct = useTranslations('common')
+
   const [images, setImages] = useState<string[]>([])
   const [pageSize, setPageSize] = useState<'A4' | 'Letter' | 'Legal'>('A4')
   const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait')
@@ -57,10 +61,8 @@ export default function ImageToPdfPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Image to PDF Converter</h1>
-      <p className="text-gray-500 mb-6">
-        Convert JPG, PNG, WebP, and other images to PDF documents. All done in your browser.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -178,43 +180,29 @@ export default function ImageToPdfPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload one or more images using the file picker. Supports JPG, PNG, GIF, and WebP formats.</li>
-          <li>Select your preferred <strong>Page Size</strong> (A4, Letter, or Legal) and <strong>Orientation</strong>.</li>
-          <li>Click <strong>Print as PDF</strong> to open the browser&apos;s print dialog.</li>
-          <li>Choose <strong>Save as PDF</strong> as the destination in the print dialog and click Save.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Drag to reorder images or use the <strong>Clear All</strong> button to start fresh.</li>
-          <li>For best print quality, use high-resolution images (300 DPI recommended).</li>
-          <li>All processing happens locally — your images are never uploaded to any server.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">Is this a real PDF converter?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Yes. This tool uses your browser&apos;s built-in print-to-PDF functionality to generate a proper PDF document with your chosen page size and orientation. The result is a standard PDF file that works with any PDF reader.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I convert multiple images at once?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Yes — select multiple files when uploading. Each image becomes a separate page in the PDF. You can also upload additional images after your initial selection.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why does the print dialog open instead of downloading directly?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              This is a browser limitation. The print-to-PDF function requires the print dialog so you can select &quot;Save as PDF&quot; and configure options like margins and page size. It gives you more control over the final output.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

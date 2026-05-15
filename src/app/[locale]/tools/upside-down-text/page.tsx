@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -24,14 +25,17 @@ function flipText(text: string): string {
 }
 
 export default function UpsideDownTextPage() {
+  const t = useTranslations('tools.upside-down-text')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
 
   const output = useMemo(() => flipText(input), [input])
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Upside Down Text Generator</h1>
-      <p className="text-gray-500 mb-6">Flip text upside down using Unicode characters for fun social media effects.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8 space-y-4">
@@ -61,37 +65,29 @@ export default function UpsideDownTextPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste your text into the input box</li>
-          <li>The flipped version appears instantly as you type</li>
-          <li>Click the copy button to copy the result</li>
-          <li>Paste it anywhere — social media, messages, or bios</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Works best with standard letters and common punctuation</li>
-          <li>Not all characters have an upside-down equivalent — some stay the same</li>
-          <li>Great for standing out in social media profiles and comments</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">How does upside down text work?</h3>
-            <p>This tool uses Unicode characters that visually resemble upside-down versions of regular letters and symbols, then reverses the order of the text.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why do some characters not change?</h3>
-            <p>Some characters (like 'o', 'l', 's') look the same when flipped due to their symmetry. The Unicode standard doesn&apos;t have upside-down equivalents for every character.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Will this work on all platforms?</h3>
-            <p>Yes, these are standard Unicode characters supported on all modern devices and platforms including iOS, Android, Windows, and Mac.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function TextToSlugPage() {
+  const t = useTranslations('tools.text-to-slug')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [separator, setSeparator] = useState('-')
   const [lowercase, setLowercase] = useState(true)
@@ -37,8 +41,8 @@ export default function TextToSlugPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Text to Slug Converter</h1>
-      <p className="text-gray-500 mb-6">Convert any text to clean, SEO-friendly URL slugs.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -89,34 +93,29 @@ export default function TextToSlugPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste the text you want to convert into a slug.</li>
-          <li>Choose a <strong>Separator</strong> — hyphen (-) is standard for URLs, underscore (_) is common for database fields.</li>
-          <li>Toggle <strong>Lowercase</strong> on or off depending on your preference.</li>
-          <li>The slug and a preview URL update live as you type.</li>
-          <li>Click <strong>Copy</strong> to copy the slug for use in your project.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use <strong>hyphen</strong> separators for SEO-friendly URLs — search engines prefer hyphens over underscores.</li>
-          <li>Keep slugs short and descriptive (3-5 words) for the best SEO results.</li>
-          <li>Remove stop words (like &quot;a&quot;, &quot;an&quot;, &quot;the&quot;) from your input to create cleaner slugs.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What is a URL slug?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">A URL slug is the part of a URL that identifies a specific page in a human-readable format. For example, in <code>example.com/blog/my-post</code>, &quot;my-post&quot; is the slug.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why should slugs be lowercase?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Lowercase slugs prevent duplicate content issues, since some servers treat &quot;My-Page&quot; and &quot;my-page&quot; as different URLs while others treat them the same. Lowercase also looks cleaner in URLs.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -41,6 +42,9 @@ function generateRandomColor(): ColorValues {
 }
 
 export default function RandomColorPage() {
+  const t = useTranslations('tools.random-color')
+  const ct = useTranslations('common')
+
   const [color, setColor] = useState<ColorValues>(generateRandomColor)
   const [copiedField, setCopiedField] = useState<string | null>(null)
 
@@ -74,8 +78,8 @@ export default function RandomColorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Random Color Generator Free Online — Random HEX, RGB &amp; HSL Colors</h1>
-      <p className="text-gray-500 mb-6">Free random color generator. Generate random HEX, RGB, and HSL colors with live preview. Copy colors instantly for your design projects.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -108,31 +112,29 @@ export default function RandomColorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Open the tool to see a random color with live preview.</li>
-          <li>Click &ldquo;Generate New Color&rdquo; to get a fresh random color.</li>
-          <li>View the color values in HEX, RGB, and HSL formats.</li>
-          <li>Click the &ldquo;Copy&rdquo; button next to any format to copy the value to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use this tool to discover new color palettes and break out of your usual color choices.</li>
-          <li>HEX codes are best for web development, while RGB/HSL are useful for CSS and design software.</li>
-          <li>Keep generating until you find a color that fits your project&rsquo;s theme.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What color formats are supported?</h3>
-          <p>The generator displays colors in HEX (#RRGGBB), RGB (red, green, blue), and HSL (hue, saturation, lightness) formats.</p>
-          <h3>Are the colors truly random?</h3>
-          <p>Each color is generated using JavaScript&rsquo;s Math.random() for each RGB channel, giving 16,777,216 possible colors.</p>
-          <h3>Can I edit a generated color?</h3>
-          <p>This tool generates random colors only. For fine-tuning, copy the color value to a color picker or use the Color Gradient tool.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

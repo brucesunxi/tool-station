@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type UnicodeMode = 'encode' | 'decode'
 
 export default function UnicodeConverterPage() {
+  const t = useTranslations('tools.unicode-converter')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<UnicodeMode>('encode')
   const [copied, setCopied] = useState(false)
@@ -42,8 +46,8 @@ export default function UnicodeConverterPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Unicode Converter</h1>
-      <p className="text-gray-500 mb-6">Convert text to Unicode escape sequences and back.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -93,38 +97,29 @@ export default function UnicodeConverterPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select the conversion direction: <strong>Text to Unicode</strong> or <strong>Unicode to Text</strong>.</li>
-          <li>Enter your text or Unicode escape sequences in the input box.</li>
-          <li>ASCII characters (A-Z, a-z, 0-9, basic symbols) remain unchanged in encode mode.</li>
-          <li>Non-ASCII characters are converted to <code>\uXXXX</code> format.</li>
-          <li>Click <strong>Copy</strong> to copy the result to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Unicode escape sequences use the format <code>\uXXXX</code> where XXXX is a 4-digit hexadecimal code.</li>
-          <li>Use Text to Unicode mode when you need to embed special characters in JavaScript or JSON strings.</li>
-          <li>Emoji characters produce surrogate pairs in <code>\uXXXX</code> notation — decode mode handles these automatically.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What is a Unicode escape sequence?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">A Unicode escape sequence is a way to represent a Unicode character using a backslash followed by &apos;u&apos; and a 4-digit hexadecimal number. For example, the copyright symbol &copy; is <code>©</code>.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why are ASCII characters not escaped?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">ASCII characters (code points 0-127) are typically left as-is because they are already universally supported. Only characters outside the ASCII range are converted to escape sequences.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does this work with emoji?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. Emoji characters are represented using Unicode and will be encoded/decoded correctly, though they may use two surrogate <code>\uXXXX</code> sequences in JavaScript.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

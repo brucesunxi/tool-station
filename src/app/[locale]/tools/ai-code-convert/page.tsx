@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -10,6 +11,9 @@ const languages = [
 ]
 
 export default function AiCodeConvertPage() {
+  const t = useTranslations('tools.ai-code-convert')
+  const ct = useTranslations('common')
+
   const [code, setCode] = useState('')
   const [fromLang, setFromLang] = useState('Python')
   const [toLang, setToLang] = useState('JavaScript')
@@ -26,10 +30,10 @@ export default function AiCodeConvertPage() {
         body: JSON.stringify({ code, fromLang, toLang }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Conversion failed')
+      if (!res.ok) throw new Error(data.error || ct("conversionFailed"))
       setResult(data.result)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Conversion failed')
+      setError(err instanceof Error ? err.message : ct("conversionFailed"))
     } finally { setLoading(false) }
   }
 
@@ -39,8 +43,8 @@ export default function AiCodeConvertPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Code Converter</h1>
-        <p className="text-gray-500">Convert code between programming languages. Preserves logic, comments, and structure.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
       <div className="flex items-center gap-3 mb-4">
@@ -73,12 +77,12 @@ export default function AiCodeConvertPage() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium">Converted</label>
-            {result && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>}
+            {result && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>}
           </div>
           <div className={`min-h-[370px] p-4 border rounded-xl text-sm whitespace-pre-wrap font-mono leading-relaxed ${
             result ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
           }`}>
-            {result || <p className="text-gray-400 font-sans">{loading ? 'Converting...' : 'Converted code will appear here...'}</p>}
+            {result || <p className="text-gray-400 font-sans">{loading ? ct("converting") : 'Converted code will appear here...'}</p>}
           </div>
         </div>
       </div>
@@ -89,30 +93,27 @@ export default function AiCodeConvertPage() {
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Code Converter</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select the source language of your code from the &ldquo;From&rdquo; dropdown &mdash; supports 19 languages including Python, JavaScript, TypeScript, Java, Go, and Rust.</li>
-          <li>Paste your source code into the left text area. The converter preserves comments, variable names, and overall structure.</li>
-          <li>Select the target language from the &ldquo;To&rdquo; dropdown. Use the swap button to quickly reverse the conversion direction.</li>
-          <li>Click &ldquo;Convert Code&rdquo; to submit your code to the AI and receive the translated version in the right panel.</li>
-          <li>Review the converted code for any language-specific idioms or library equivalents that may need manual adjustment.</li>
-          <li>Use the Copy button to copy the converted code to your clipboard, then paste it into your project.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips for Better Results</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Clean up your source code before converting &mdash; remove syntax errors and ensure the code compiles or runs correctly in the source language.</li>
-          <li>Include necessary import statements and type annotations in the source so the converter can generate appropriate equivalents in the target language.</li>
-          <li>For language pairs with very different paradigms (e.g., Python to Rust), expect structural differences and review the output carefully for correct memory management and type handling.</li>
-          <li>Use the swap button to convert code back and forth when migrating a project incrementally between languages.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">Which programming languages are supported?</h3><p>The tool supports 19 languages: Python, JavaScript, TypeScript, Java, Go, Rust, C, C++, C#, Ruby, PHP, Swift, Kotlin, Scala, R, Dart, Lua, Perl, and Haskell.</p></div>
-          <div><h3 className="font-semibold">Does the converter preserve comments and formatting?</h3><p>Yes, the AI preserves inline and block comments and attempts to maintain the original code structure and naming conventions as much as possible.</p></div>
-          <div><h3 className="font-semibold">How accurate is the code conversion?</h3><p>The converter handles most syntax and control flow constructs accurately. Standard library calls and framework-specific APIs may need manual adjustment in the target language.</p></div>
-          <div><h3 className="font-semibold">Can I convert large code files?</h3><p>The tool works best with individual functions or moderate-sized files (up to a few hundred lines). For large codebases, convert one function or module at a time for best results.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

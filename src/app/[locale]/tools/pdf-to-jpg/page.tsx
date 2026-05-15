@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -9,6 +10,9 @@ interface RenderedPage {
 }
 
 export default function PdfToJpgPage() {
+  const t = useTranslations('tools.pdf-to-jpg')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [pages, setPages] = useState<RenderedPage[]>([])
   const [loading, setLoading] = useState(false)
@@ -19,7 +23,7 @@ export default function PdfToJpgPage() {
   const handleUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0]
     if (!f || f.type !== 'application/pdf') {
-      setError('Please select a valid PDF file.')
+      setError(ct("selectValidPdf"))
       return
     }
     setError('')
@@ -79,10 +83,8 @@ export default function PdfToJpgPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">PDF to JPG Converter</h1>
-      <p className="text-gray-500 mb-6">
-        Convert each page of your PDF to high-quality JPG images.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -167,43 +169,29 @@ export default function PdfToJpgPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a PDF file using the file picker.</li>
-          <li>Adjust the <strong>Image Quality Scale</strong> — higher values produce larger, higher-quality images.</li>
-          <li>Each page is rendered as a JPG preview. Review the results before downloading.</li>
-          <li>Click <strong>Download</strong> on individual pages or <strong>Download All</strong> to save every page as a separate JPG.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use a scale of <strong>2x or 3x</strong> for high-quality images suitable for print or social media sharing.</li>
-          <li>Lower scales (0.5x-1x) process faster and are good for quick previews or thumbnails.</li>
-          <li>Multi-page PDFs may take time to render all pages at high scale — be patient, the tool processes each page one at a time.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What JPG quality is used for the output?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              The tool uses a quality setting of 0.92 (92%) which provides excellent image quality while maintaining reasonable file sizes. The actual resolution depends on the scale factor you choose.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why does PDF.js need a worker script from a CDN?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              PDF.js uses a web worker to render PDF pages without blocking the browser UI. The worker script is loaded from a CDN for efficiency. After the first load, it may be cached by your browser for faster subsequent use.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I convert password-protected PDFs?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              No. PDF.js cannot render encrypted PDFs without the correct password. If your PDF is password-protected, you need to remove the password first using a PDF password tool.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

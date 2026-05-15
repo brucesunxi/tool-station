@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -59,6 +60,9 @@ const simTypes: { value: SimulationType; label: string; desc: string }[] = [
 ]
 
 export default function ColorBlindnessPage() {
+  const t = useTranslations('tools.color-blindness')
+  const ct = useTranslations('common')
+
   const [baseColor, setBaseColor] = useState('#ff6b6b')
   const [input, setInput] = useState('#ff6b6b')
 
@@ -87,8 +91,8 @@ export default function ColorBlindnessPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Color Blindness Simulator Free Online — Color Vision Deficiency Test</h1>
-      <p className="text-gray-500 mb-6">Free color blindness simulator. Simulate Protanopia, Deuteranopia, and Tritanopia. See how your colors appear to users with color vision deficiency.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -150,31 +154,29 @@ export default function ColorBlindnessPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Pick a color using the color picker or enter a HEX code manually.</li>
-          <li>Click &ldquo;Simulate&rdquo; to see how the color appears to users with different types of color blindness.</li>
-          <li>View the original color alongside simulated versions for Protanopia, Deuteranopia, and Tritanopia.</li>
-          <li>Use the simulated HEX values in your design to ensure accessibility.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Avoid using red-green color combinations as the sole means of conveying information, as they are problematic for the most common types of color blindness.</li>
-          <li>Use icons, patterns, and text labels alongside color to ensure information is accessible to all users.</li>
-          <li>Test critical UI elements (error states, status indicators, charts) with all three simulation types.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is color blindness?</h3>
-          <p>Color blindness (color vision deficiency) affects approximately 1 in 12 men and 1 in 200 women worldwide. It reduces the ability to distinguish between certain colors.</p>
-          <h3>What are the different types simulated?</h3>
-          <p>Protanopia (red-blind) affects perception of red light. Deuteranopia (green-blind) affects green light perception. Tritanopia (blue-blind) affects blue-yellow perception and is very rare.</p>
-          <h3>How accurate are these simulations?</h3>
-          <p>The simulations use established Brettel-Vienot-Mollon (1997) algorithms, which are widely accepted for approximating color vision deficiency. They provide a useful guide but may not perfectly match every individual&rsquo;s experience.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

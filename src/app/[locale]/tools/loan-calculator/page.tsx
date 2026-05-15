@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -8,6 +9,9 @@ type CalcMode = 'loan' | 'compound'
 function toCurrency(n: number) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
 
 export default function LoanCalculatorPage() {
+  const t = useTranslations('tools.loan-calculator')
+  const ct = useTranslations('common')
+
   const [mode, setMode] = useState<CalcMode>('loan')
 
   // Loan
@@ -65,8 +69,8 @@ export default function LoanCalculatorPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Loan & Compound Calculator</h1>
-        <p className="text-gray-500">Calculate loan payments, total interest, amortization schedules, and investment growth with compound interest.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -94,7 +98,7 @@ export default function LoanCalculatorPage() {
             <div><label className="block text-xs font-medium mb-1">Term (Years)</label>
               <input type="number" value={term} onChange={e => setTerm(Number(e.target.value))} className="w-full p-3 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
           </div>
-          <button onClick={calcLoan} className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">Calculate</button>
+          <button onClick={calcLoan} className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculate")}</button>
 
           {result && (
             <div className="mt-6 space-y-4">
@@ -160,7 +164,7 @@ export default function LoanCalculatorPage() {
             <div className="sm:col-span-2"><label className="block text-xs font-medium mb-1">Monthly Contribution</label>
               <input type="number" value={cContribution} onChange={e => setCContribution(Number(e.target.value))} className="w-full p-3 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700" /></div>
           </div>
-          <button onClick={calcCompound} className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">Calculate</button>
+          <button onClick={calcCompound} className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculate")}</button>
 
           {compoundResult && (
             <div className="mt-6 grid grid-cols-3 gap-3">
@@ -183,40 +187,27 @@ export default function LoanCalculatorPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select "Loan Calculator" mode to calculate monthly payments and view amortization schedules for a fixed-rate loan.</li>
-          <li>Enter the loan amount, annual interest rate, and loan term in years, then click "Calculate."</li>
-          <li>Review your monthly payment, total payment, and total interest displayed in the result cards.</li>
-          <li>Expand the "Amortization Schedule" section to see a month-by-month breakdown of principal and interest payments.</li>
-          <li>Switch to "Compound Interest" mode to calculate how an investment grows over time with regular contributions and compounding.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the amortization schedule to understand how much of each early payment goes toward interest -- this is helpful for deciding whether to refinance.</li>
-          <li>For the compound interest calculator, more frequent compounding (monthly or daily) results in slightly higher total returns over the same period.</li>
-          <li>Try adjusting the loan term -- shorter terms have higher monthly payments but significantly lower total interest costs.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">What is the difference between the Loan Calculator and Compound Interest modes?</h3>
-            <p>The Loan Calculator determines monthly payments and total interest for a fixed-rate loan. Compound Interest calculates how an investment grows over time with compounding returns and optional contributions.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">How is the monthly payment calculated?</h3>
-            <p>The monthly payment is calculated using the standard amortization formula: M = P[r(1+r)^n] / [(1+r)^n - 1], where P is the principal, r is the monthly interest rate, and n is the total number of months.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What does the amortization schedule show?</h3>
-            <p>It shows each monthly payment broken down into principal and interest portions along with the remaining loan balance after each payment, typically for the full loan term.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are these calculations accurate for real financial planning?</h3>
-            <p>The calculations use standard financial formulas and are accurate for fixed-rate loans and compound interest. For personalized advice, consult a financial professional.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

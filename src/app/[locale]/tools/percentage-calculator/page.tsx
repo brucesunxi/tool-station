@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type Mode = 'percent-of' | 'what-percent' | 'percent-of-what'
 
 export default function PercentageCalculatorPage() {
+  const t = useTranslations('tools.percentage-calculator')
+  const ct = useTranslations('common')
+
   const [mode, setMode] = useState<Mode>('percent-of')
   const [value1, setValue1] = useState<string>('')
   const [value2, setValue2] = useState<string>('')
@@ -80,8 +84,8 @@ export default function PercentageCalculatorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Percentage Calculator Free Online — Calculate Percentages Instantly</h1>
-      <p className="text-gray-500 mb-6">Free online percentage calculator. Find what is X% of Y, X is what percent of Y, and percentage increase/decrease. Fast and accurate calculations.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -103,9 +107,7 @@ export default function PercentageCalculatorPage() {
         </div>
 
         <button onClick={calculate}
-          className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-          Calculate
-        </button>
+          className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculate")}</button>
 
         {result && (
           <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl text-center">
@@ -115,31 +117,29 @@ export default function PercentageCalculatorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select your calculation mode: &ldquo;X% of Y,&rdquo; &ldquo;X is what % of Y,&rdquo; or &ldquo;X% of what is Y.&rdquo;</li>
-          <li>Enter the required numbers in the input fields.</li>
-          <li>Click the &ldquo;Calculate&rdquo; button to compute the result.</li>
-          <li>Read the result displayed in the highlighted section.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the &ldquo;X is what % of Y&rdquo; mode to quickly find percentage differences between two numbers.</li>
-          <li>Double-check that you are using the correct mode for your calculation to avoid errors.</li>
-          <li>Percentages are useful for discounts, tax calculations, tip amounts, and data analysis.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>How do I calculate a percentage of a number?</h3>
-          <p>Multiply the number by the percentage divided by 100. For example, 20% of 200 = (20/100) * 200 = 40.</p>
-          <h3>How do I find what percentage one number is of another?</h3>
-          <p>Divide the first number by the second number and multiply by 100. For example, 30 is 20% of 150 because (30/150) * 100 = 20%.</p>
-          <h3>Can I calculate percentage increase or decrease?</h3>
-          <p>Use the &ldquo;X is what % of Y&rdquo; mode to compare old and new values. Subtract 100% from the result to get the percentage change.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

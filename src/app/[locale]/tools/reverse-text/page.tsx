@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type ReverseMode = 'string' | 'words' | 'each-word'
 
 export default function ReverseTextPage() {
+  const t = useTranslations('tools.reverse-text')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<ReverseMode>('string')
   const [copied, setCopied] = useState(false)
@@ -31,8 +35,8 @@ export default function ReverseTextPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Reverse Text</h1>
-      <p className="text-gray-500 mb-6">Reverse entire strings, words, or letters instantly.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -59,7 +63,7 @@ export default function ReverseTextPage() {
         {result && (
           <div className="p-4 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-900/30 rounded-lg">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-gray-500">Result</span>
+              <span className="text-xs font-medium text-gray-500">{ct("result")}</span>
               <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-white dark:hover:bg-gray-700 transition-colors">
                 {copied ? 'Copied!' : 'Copy'}
               </button>
@@ -70,38 +74,29 @@ export default function ReverseTextPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste your text into the input box.</li>
-          <li>Choose a reverse mode: <strong>Reverse String</strong> flips all characters, <strong>Reverse Words</strong> reverses word order, <strong>Reverse Each Word</strong> reverses letters within each word.</li>
-          <li>The result updates instantly as you type or change modes.</li>
-          <li>Click the <strong>Copy</strong> button to copy the reversed text to your clipboard.</li>
-          <li>Use the reversed text anywhere — social media, puzzles, or creative projects.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use <strong>Reverse String</strong> to quickly check if a phrase is a palindrome.</li>
-          <li><strong>Reverse Words</strong> is great for rewording sentences or creating word puzzles.</li>
-          <li>Combine reversed text with other tools like the Case Converter for more creative effects.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What is the difference between Reverse Words and Reverse Each Word?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Reverse Words changes the order of words (e.g., &quot;hello world&quot; becomes &quot;world hello&quot;). Reverse Each Word keeps word order but flips the letters in each word (e.g., &quot;hello world&quot; becomes &quot;olleh dlrow&quot;).</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does this tool work with special characters and numbers?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. All characters including punctuation, numbers, symbols, and emoji are reversed correctly.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my text sent to a server?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">No. All processing happens in your browser. Your text never leaves your device.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

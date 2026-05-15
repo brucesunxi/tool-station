@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function AiInterviewPage() {
+  const t = useTranslations('tools.ai-interview')
+  const ct = useTranslations('common')
+
   const [role, setRole] = useState('')
   const [type, setType] = useState('technical')
   const [count, setCount] = useState(5)
@@ -20,10 +24,10 @@ export default function AiInterviewPage() {
         body: JSON.stringify({ role, count, type }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Generation failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setResult(data.result)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Generation failed')
+      setError(err instanceof Error ? err.message : ct("generationFailed"))
     } finally { setLoading(false) }
   }
 
@@ -32,8 +36,8 @@ export default function AiInterviewPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Interview Question Generator</h1>
-        <p className="text-gray-500">Generate interview questions for any role. Includes what interviewers look for and answering tips.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
       <input type="text" value={role} onChange={e => setRole(e.target.value)}
@@ -64,37 +68,34 @@ export default function AiInterviewPage() {
         <div className="mt-6">
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-semibold text-sm">Interview Questions</h3>
-            <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+            <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
           </div>
           <div className="p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30 text-sm whitespace-pre-wrap leading-relaxed">{result}</div>
         </div>
       )}
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Interview Question Generator</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter the job role you&rsquo;re hiring for &mdash; for example, &ldquo;Frontend Developer,&rdquo; &ldquo;Product Manager,&rdquo; &ldquo;Data Scientist,&rdquo; or &ldquo;Marketing Lead.&rdquo;</li>
-          <li>Choose the type of questions: Technical/Skills to assess hard skills, Behavioral to evaluate soft skills and past experience, or Mixed for a balanced set.</li>
-          <li>Adjust the number of questions using the slider &mdash; anywhere from 3 to 15 questions per set.</li>
-          <li>Click &ldquo;Generate Questions&rdquo; to receive a curated list of interview questions tailored to the role.</li>
-          <li>Review each question along with what interviewers look for in a strong answer and tips for candidates preparing responses.</li>
-          <li>Use the Copy button to save the question set for your interview panel or share it with your hiring team.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips for Better Results</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Be specific about the role level &mdash; include &ldquo;junior,&rdquo; &ldquo;senior,&rdquo; or &ldquo;lead&rdquo; in the role description to get questions calibrated to experience level.</li>
-          <li>For technical roles, mention specific technologies or frameworks (e.g., &ldquo;React + Node.js developer&rdquo; instead of just &ldquo;web developer&rdquo;) for more relevant questions.</li>
-          <li>Use Mixed mode to create well-rounded interviews that assess both technical competence and cultural fit.</li>
-          <li>Generate multiple sets for different interview stages &mdash; phone screen, technical round, and final panel &mdash; each with different focus areas.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">Can I generate questions for non-technical roles?</h3><p>Yes, the generator works for any role. Enter the job title and select Behavioral or Mixed question types. It covers everything from marketing and sales to HR and operations.</p></div>
-          <div><h3 className="font-semibold">What information is included with each question?</h3><p>Every question includes context about what the interviewer should look for in a good answer, common pitfalls to watch for, and tips for candidates on how to structure their response.</p></div>
-          <div><h3 className="font-semibold">How many questions should I generate for an interview?</h3><p>For a 45&ndash;60 minute interview, 5&ndash;8 questions is ideal. For phone screens, 3&ndash;5 questions work well. Use the slider to find the right quantity for your format.</p></div>
-          <div><h3 className="font-semibold">Can I use these questions for self-practice?</h3><p>Absolutely. Candidates can use this tool to practice answering role-specific questions, review what interviewers look for, and prepare stronger responses before the actual interview.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

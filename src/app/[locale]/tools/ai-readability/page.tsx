@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function AiReadabilityPage() {
+  const t = useTranslations('tools.ai-readability')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState('')
@@ -30,8 +34,8 @@ export default function AiReadabilityPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Readability Checker</h1>
-        <p className="text-gray-500">Analyze text readability, get improvement suggestions, and a simplified version.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -46,7 +50,7 @@ export default function AiReadabilityPage() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium">Analysis</label>
-            {result && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>}
+            {result && <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>}
           </div>
           <div className={`min-h-[370px] p-4 border rounded-xl text-sm whitespace-pre-wrap leading-relaxed ${
             result ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
@@ -62,30 +66,27 @@ export default function AiReadabilityPage() {
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Readability Checker</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Paste or type the text you want to analyze into the left text area. This can be a blog post, article, email, documentation, or any written content.</li>
-          <li>Click &ldquo;Analyze Readability&rdquo; to submit your text to the AI for evaluation.</li>
-          <li>Review the readability score and detailed statistics including sentence length, word complexity, and grade-level estimates.</li>
-          <li>Read the AI&rsquo;s suggestions for improving clarity &mdash; these may include shorter sentences, simpler vocabulary, or better paragraph structure.</li>
-          <li>Check the simplified version provided by the AI to see how your text reads at a lower grade level.</li>
-          <li>Apply the suggestions to your original text and re-analyze to track improvement in readability scores.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips for Better Results</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>For the most accurate analysis, submit complete paragraphs rather than isolated sentences &mdash; context helps the AI assess flow and coherence.</li>
-          <li>If writing for a general audience, aim for a readability level around grade 6&ndash;8 (Flesch-Kincaid). Technical documentation can target a higher level.</li>
-          <li>Pay attention to suggestions about passive voice and complex vocabulary &mdash; these are common culprits in hard-to-read text.</li>
-          <li>Compare the original and simplified versions side by side to learn how specific changes affect readability.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What readability metrics does the tool provide?</h3><p>The AI provides a comprehensive analysis including estimated grade level, sentence length distribution, word complexity analysis, passive voice detection, and specific improvement suggestions.</p></div>
-          <div><h3 className="font-semibold">What is a good readability score for my content?</h3><p>For general audiences, aim for a grade 6&ndash;8 reading level. Academic content can target grade 10&ndash;12, while technical documentation is acceptable at grade 10&ndash;14 depending on the audience.</p></div>
-          <div><h3 className="font-semibold">Can the tool help me simplify complex text?</h3><p>Yes, along with analysis the AI generates a simplified version of your text that uses shorter sentences and simpler vocabulary while preserving the original meaning.</p></div>
-          <div><h3 className="font-semibold">Does the tool work with non-English text?</h3><p>The analysis is optimized for English text. For other languages, the score estimates may be less reliable, but the general suggestions about clarity and structure can still be helpful.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

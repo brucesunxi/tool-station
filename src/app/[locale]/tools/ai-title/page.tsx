@@ -1,17 +1,21 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
-const styles = [
-  { value: 'professional', label: 'Professional', desc: 'Authoritative', icon: '👔' },
-  { value: 'clickbait', label: 'Click-Worthy', desc: 'Attention-grabbing', icon: '🎯' },
-  { value: 'howto', label: 'How-to', desc: 'Actionable', icon: '📋' },
-  { value: 'question', label: 'Question', desc: 'Curiosity-driven', icon: '❓' },
-  { value: 'creative', label: 'Creative', desc: 'Social media style', icon: '✨' },
-]
-
 export default function AiTitlePage() {
+  const t = useTranslations('tools.ai-title')
+  const ct = useTranslations('common')
+
+  const styles = [
+    { value: 'professional', label: ct('toneProfessional'), desc: t('styleProfessionalDesc'), icon: '👔' },
+    { value: 'clickbait', label: t('styleClickWorthy'), desc: t('styleClickWorthyDesc'), icon: '🎯' },
+    { value: 'howto', label: ct('styleHowTo'), desc: t('styleHowToDesc'), icon: '📋' },
+    { value: 'question', label: ct('styleQuestion'), desc: t('styleQuestionDesc'), icon: '❓' },
+    { value: 'creative', label: ct('toneCreative'), desc: t('styleCreativeDesc'), icon: '✨' },
+  ]
+
   const [topic, setTopic] = useState('')
   const [style, setStyle] = useState('professional')
   const [count, setCount] = useState(5)
@@ -29,10 +33,10 @@ export default function AiTitlePage() {
         body: JSON.stringify({ topic, style, count }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Generation failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setTitles(data.titles || [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Generation failed')
+      setError(err instanceof Error ? err.message : ct("generationFailed"))
     } finally {
       setLoading(false)
     }
@@ -41,24 +45,24 @@ export default function AiTitlePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Title Generator</h1>
-        <p className="text-gray-500">Generate catchy titles for blog posts, videos, ads, and more. Multiple styles and lengths.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
 
       {/* Topic */}
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Topic / Subject</label>
+        <label className="block text-sm font-medium mb-2">{ct("topicOrSubject")}</label>
         <input type="text" value={topic} onChange={e => setTopic(e.target.value)}
-          placeholder="e.g. How to start a podcast, Best running shoes 2026, Easy vegan recipes..."
+          placeholder={ct("placeholderTopic")}
           className="w-full p-3 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
       {/* Style */}
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Style</label>
+        <label className="block text-sm font-medium mb-2">{ct("style")}</label>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
           {styles.map(s => (
             <button key={s.value} onClick={() => setStyle(s.value)}
@@ -77,7 +81,7 @@ export default function AiTitlePage() {
 
       {/* Count */}
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Number of titles: {count}</label>
+        <label className="block text-sm font-medium mb-2">{ct("numberOfTitles", { count })}</label>
         <input type="range" min="3" max="10" value={count} onChange={e => setCount(Number(e.target.value))}
           className="w-full accent-blue-600" />
       </div>
@@ -85,7 +89,7 @@ export default function AiTitlePage() {
       {/* Generate */}
       <button onClick={handleGenerate} disabled={loading || !topic.trim()}
         className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-        {loading ? '🤖 Generating...' : '🚀 Generate Titles'}
+        {loading ? ct("aiWriting") : ct("generateTitles")}
       </button>
 
       {error && (
@@ -95,47 +99,47 @@ export default function AiTitlePage() {
       {/* Results */}
       {titles.length > 0 && (
         <div className="mt-6 p-4 border rounded-xl bg-green-50/50 dark:bg-green-900/10 dark:border-green-900/30">
-          <h3 className="font-semibold text-sm mb-3">Generated Titles</h3>
+          <h3 className="font-semibold text-sm mb-3">{ct("generatedTitles")}</h3>
           <ul className="space-y-2">
             {titles.map((title, i) => (
               <li key={i} className="flex items-start gap-3 p-2 rounded-lg hover:bg-white dark:hover:bg-gray-800 transition-colors">
                 <span className="text-xs font-mono text-gray-400 mt-0.5 shrink-0">#{i + 1}</span>
                 <p className="text-sm flex-1">{title}</p>
                 <button onClick={() => navigator.clipboard.writeText(title).catch(() => {})}
-                  className="text-xs text-blue-600 hover:underline shrink-0">Copy</button>
+                  className="text-xs text-blue-600 hover:underline shrink-0">{ct("copy")}</button>
               </li>
             ))}
           </ul>
           <button onClick={() => navigator.clipboard.writeText(titles.join('\n')).catch(() => {})}
-            className="mt-3 text-xs text-gray-400 hover:text-gray-600 transition-colors">Copy all</button>
+            className="mt-3 text-xs text-gray-400 hover:text-gray-600 transition-colors">{ct("copyAll")}</button>
         </div>
       )}
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Title Generator</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter your topic or subject in the input field — be as specific as possible for better results.</li>
-          <li>Choose a title style from the available options: Professional, Click-Worthy, How-to, Question, or Creative.</li>
-          <li>Adjust the number of titles you want using the slider (3 to 10 titles).</li>
-          <li>Click &quot;Generate Titles&quot; and the AI will produce a list of unique, catchy titles.</li>
-          <li>Copy individual titles with the &quot;Copy&quot; button next to each, or use &quot;Copy all&quot; to grab the entire list.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for Catchy Titles</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the Question style for educational content — curiosity-driven titles get higher click-through rates.</li>
-          <li>Try the Click-Worthy style for YouTube videos and social media posts where engagement matters most.</li>
-          <li>Generate 10 titles at once to give yourself more options to choose from and combine ideas.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What types of content can I generate titles for?</h3><p>The title generator works for blog posts, YouTube videos, social media content, ads, newsletters, podcasts, presentations, and more.</p></div>
-          <div><h3 className="font-semibold">Can I generate titles in different languages?</h3><p>The tool works best for English titles, but you can enter your topic in another language and the AI will generate matching titles.</p></div>
-          <div><h3 className="font-semibold">How does the Click-Worthy style differ from Professional?</h3><p>Click-Worthy titles use curiosity gaps, power words, and emotional triggers designed for high engagement. Professional titles are authoritative, clear, and suitable for business contexts.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

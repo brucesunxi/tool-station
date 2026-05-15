@@ -1,6 +1,9 @@
-import Link from 'next/link'
+import { Link } from '@/i18n'
+import { useTranslations } from 'next-intl'
 
 export default function Footer() {
+  const t = useTranslations('footer')
+
   return (
     <footer className="border-t mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -12,12 +15,10 @@ export default function Footer() {
               </div>
               <span className="font-bold">ToolStation</span>
             </div>
-            <p className="text-sm text-gray-500">
-              Free online tools powered by AI. Process images, PDFs, text, and code in your browser.
-            </p>
+            <p className="text-sm text-gray-500">{t('description')}</p>
           </div>
           <div>
-            <h3 className="font-semibold text-sm mb-3">Tools</h3>
+            <h3 className="font-semibold text-sm mb-3">{t('toolsHeading')}</h3>
             <ul className="space-y-2 text-sm text-gray-500">
               <li><Link href="/tools/image-compress" className="hover:text-blue-600 transition-colors">Image Compress</Link></li>
               <li><Link href="/tools/pdf-merge" className="hover:text-blue-600 transition-colors">PDF Merge</Link></li>
@@ -27,9 +28,9 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-sm mb-3">More</h3>
+            <h3 className="font-semibold text-sm mb-3">{t('moreHeading')}</h3>
             <ul className="space-y-2 text-sm text-gray-500">
-              <li><Link href="/about" className="hover:text-blue-600 transition-colors">About</Link></li>
+              <li><Link href="/about" className="hover:text-blue-600 transition-colors">{t('about')}</Link></li>
               <li><Link href="/tools/ai-assistant" className="hover:text-blue-600 transition-colors">AI Chat</Link></li>
               <li><Link href="/tools/code-beautifier" className="hover:text-blue-600 transition-colors">Code Beautifier</Link></li>
               <li><Link href="/tools/regex-tester" className="hover:text-blue-600 transition-colors">Regex Tester</Link></li>
@@ -37,16 +38,16 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-sm mb-3">Legal</h3>
+            <h3 className="font-semibold text-sm mb-3">{t('legalHeading')}</h3>
             <ul className="space-y-2 text-sm text-gray-500">
-              <li><Link href="/privacy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-blue-600 transition-colors">Terms of Service</Link></li>
-              <li><a href="mailto:hello@toolstation.app" className="hover:text-blue-600 transition-colors">Contact</a></li>
+              <li><Link href="/privacy" className="hover:text-blue-600 transition-colors">{t('privacy')}</Link></li>
+              <li><Link href="/terms" className="hover:text-blue-600 transition-colors">{t('terms')}</Link></li>
+              <li><a href="mailto:hello@toolstation.app" className="hover:text-blue-600 transition-colors">{t('contact')}</a></li>
             </ul>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-gray-400">
-          &copy; {new Date().getFullYear()} ToolStation. All rights reserved.
+          &copy; {new Date().getFullYear()} {t('copyright')}
         </div>
       </div>
     </footer>

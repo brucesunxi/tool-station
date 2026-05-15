@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import { formatFileSize } from '@/lib/utils'
 import AdBanner from '@/components/AdBanner'
@@ -23,6 +24,9 @@ const fitOptions = [
 ]
 
 export default function ImageCropPage() {
+  const t = useTranslations('tools.image-crop')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
   const [width, setWidth] = useState(800)
@@ -38,8 +42,8 @@ export default function ImageCropPage() {
 
   const handleFile = useCallback((selectedFile: File) => {
     setError(null); setResult(null)
-    if (!selectedFile.type.startsWith('image/')) { setError('Please select an image file'); return }
-    if (selectedFile.size > 20 * 1024 * 1024) { setError('File size must be under 20MB'); return }
+    if (!selectedFile.type.startsWith('image/')) { setError(ct("selectImageFile")); return }
+    if (selectedFile.size > 20 * 1024 * 1024) { setError(ct("fileMustBeUnder", { size: "20MB" })); return }
     setFile(selectedFile)
     const reader = new FileReader()
     reader.onload = (e) => {
@@ -70,7 +74,7 @@ export default function ImageCropPage() {
       if (!res.ok) { const d = await res.json(); throw new Error(d.error || 'Processing failed') }
       setResult(await res.json())
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(err instanceof Error ? err.message : ct("somethingWentWrong"))
     } finally { setLoading(false) }
   }
 
@@ -82,8 +86,8 @@ export default function ImageCropPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Image Resize &amp; Crop</h1>
-        <p className="text-gray-500">Resize and crop images to exact dimensions. Maintains quality.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -95,8 +99,8 @@ export default function ImageCropPage() {
           className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-colors ${dragOver ? 'border-blue-500 bg-blue-50' : 'border-gray-300 dark:border-gray-600 hover:border-blue-400'}`}>
           <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
           <div className="text-4xl mb-4">📐</div>
-          <p className="text-lg font-medium mb-2">Drop an image here or click to browse</p>
-          <p className="text-sm text-gray-400">Supports JPG, PNG, WebP &bull; Max 20MB</p>
+          <p className="text-lg font-medium mb-2">{ct("dropFileHere")}</p>
+          <p className="text-sm text-gray-400">Supports JPG, PNG, WebP &bull; {ct("maxFileSize", { size: "20MB" })}</p>
         </div>
       )}
 
@@ -146,7 +150,7 @@ export default function ImageCropPage() {
               {loading ? 'Processing...' : `Resize to ${width}×${height}`}
             </button>
             <button onClick={handleReset}
-              className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Cancel</button>
+              className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{ct("cancel")}</button>
           </div>
         </div>
       )}
@@ -161,7 +165,7 @@ export default function ImageCropPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-xl overflow-hidden border">
-              <div className="p-2 bg-gray-50 dark:bg-gray-800 text-xs font-medium uppercase text-gray-500">Original</div>
+              <div className="p-2 bg-gray-50 dark:bg-gray-800 text-xs font-medium uppercase text-gray-500">{ct("original")}</div>
               <div className="bg-gray-100 dark:bg-gray-800 flex items-center justify-center" style={{ minHeight: '200px' }}>
                 {preview && <img src={preview} alt="Original" className="max-w-full max-h-64 object-contain" />}
               </div>
@@ -188,7 +192,7 @@ export default function ImageCropPage() {
               <p className="font-semibold text-green-600">{formatFileSize(result.newSize)}</p>
             </div>
             <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <p className="text-xs text-blue-600">Original</p>
+              <p className="text-xs text-blue-600">{ct("original")}</p>
               <p className="font-semibold text-blue-600">{result.originalWidth}×{result.originalHeight}</p>
             </div>
             <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -199,7 +203,7 @@ export default function ImageCropPage() {
 
           <div className="flex gap-3">
             <a href={result.imageUrl} download={`resized-${file?.name}`}
-              className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 text-center transition-colors">Download</a>
+              className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 text-center transition-colors">{ct("download")}</a>
             <button onClick={handleReset}
               className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Process Another</button>
           </div>
@@ -209,42 +213,27 @@ export default function ImageCropPage() {
       {error && <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload an image by clicking the upload area or dragging and dropping a file.</li>
-          <li>Enter your desired width and height in pixels.</li>
-          <li>Choose a fit mode: <strong>Cover</strong> fills the area (may crop), <strong>Contain</strong> fits entirely (may add bars), <strong>Fill</strong> stretches exactly, or <strong>Inside</strong> shrinks to fit.</li>
-          <li>Click the resize button to process your image.</li>
-          <li>Review the before-and-after comparison and dimension changes.</li>
-          <li>Download the resized image to your device.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use <strong>Cover</strong> mode for social media profile pictures that require exact pixel dimensions.</li>
-          <li><strong>Contain</strong> preserves the original aspect ratio, adding letterbox or pillarbox bars when needed.</li>
-          <li>For thumbnail grids with uniform cell sizes, <strong>Fill</strong> forces the exact dimensions you specify.</li>
-          <li>Always resize down rather than up &mdash; enlarging an image reduces sharpness and introduces pixelation.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">What is the difference between Cover and Contain?</h3>
-            <p>Cover fills the entire target area by cropping edges if the aspect ratio differs. Contain fits the whole image inside the target dimensions, leaving bars if aspect ratios do not match.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does resizing reduce image quality?</h3>
-            <p>Resizing down (making the image smaller) maintains good quality and can even improve perceived sharpness. Resizing up causes blurriness or pixelation.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What is the maximum file size?</h3>
-            <p>The maximum upload size is 20MB per image.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I resize multiple images at once?</h3>
-            <p>Currently this tool processes one image at a time. Batch processing is planned for a future update.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

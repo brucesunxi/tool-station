@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -14,6 +15,9 @@ function getDirectionValue(dir: Direction): string {
 }
 
 export default function ColorGradientPage() {
+  const t = useTranslations('tools.color-gradient')
+  const ct = useTranslations('common')
+
   const [color1, setColor1] = useState('#667eea')
   const [color2, setColor2] = useState('#764ba2')
   const [direction, setDirection] = useState<Direction>('horizontal')
@@ -61,8 +65,8 @@ export default function ColorGradientPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">CSS Gradient Generator Free Online — Color Gradient Maker</h1>
-      <p className="text-gray-500 mb-6">Free online gradient generator. Create beautiful CSS gradients with two colors. Choose direction and preview in real-time. Copy CSS code instantly.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -125,31 +129,29 @@ export default function ColorGradientPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Pick the first color using the color picker or enter a HEX code manually.</li>
-          <li>Pick the second color for the gradient end point.</li>
-          <li>Choose a gradient direction: horizontal, vertical, or diagonal.</li>
-          <li>Copy the generated CSS code by clicking the &ldquo;Copy&rdquo; button.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Colors that are adjacent on the color wheel produce smooth, natural gradients.</li>
-          <li>Use high-contrast color pairs for vibrant gradients, or similar hues for subtle transitions.</li>
-          <li>Gradients work great as backgrounds for buttons, cards, hero sections, and banners.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What CSS property does this generate?</h3>
-          <p>The generator outputs a <code>background: linear-gradient(...)</code> CSS declaration that you can use directly in your stylesheets.</p>
-          <h3>Can I add more than two colors?</h3>
-          <p>This tool supports two-color gradients. For multi-color gradients, you can manually add color stops to the generated CSS code.</p>
-          <h3>Does the CSS work in all browsers?</h3>
-          <p>Yes, <code>linear-gradient</code> is supported in all modern browsers including Chrome, Firefox, Safari, and Edge.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

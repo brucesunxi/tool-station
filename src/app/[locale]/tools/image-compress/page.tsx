@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import { formatFileSize } from '@/lib/utils'
 import AdBanner from '@/components/AdBanner'
@@ -14,6 +15,9 @@ interface CompressionResult {
 }
 
 export default function ImageCompressPage() {
+  const t = useTranslations('tools.image-compress')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
   const [quality, setQuality] = useState(80)
@@ -29,12 +33,12 @@ export default function ImageCompressPage() {
     setResult(null)
 
     if (!selectedFile.type.startsWith('image/')) {
-      setError('Please select an image file (JPG, PNG, WebP, GIF)')
+      setError(ct("selectImageFile"))
       return
     }
 
     if (selectedFile.size > 20 * 1024 * 1024) {
-      setError('File size must be under 20MB')
+      setError(ct("fileMustBeUnder", { size: "20MB" }))
       return
     }
 
@@ -79,13 +83,13 @@ export default function ImageCompressPage() {
 
       if (!res.ok) {
         const errData = await res.json()
-        throw new Error(errData.error || 'Compression failed')
+        throw new Error(errData.error || ct("compressionFailed"))
       }
 
       const data = await res.json()
       setResult(data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(err instanceof Error ? err.message : ct("somethingWentWrong"))
     } finally {
       setLoading(false)
     }
@@ -107,10 +111,8 @@ export default function ImageCompressPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Image Compress</h1>
-        <p className="text-gray-500">
-          Compress JPG, PNG, and WebP images online. Reduce file size while keeping quality.
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -136,11 +138,9 @@ export default function ImageCompressPage() {
             onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
           />
           <div className="text-4xl mb-4">📁</div>
-          <p className="text-lg font-medium mb-2">
-            Drop an image here or click to browse
-          </p>
+          <p className="text-lg font-medium mb-2">{ct("dropFileHere")}</p>
           <p className="text-sm text-gray-400">
-            Supports JPG, PNG, WebP, GIF &bull; Max 20MB
+            {ct("supportsFormats", { formats: "JPG, PNG, WebP, GIF" })} &bull; {ct("maxFileSize", { size: "20MB" })}
           </p>
         </div>
       )}
@@ -163,7 +163,7 @@ export default function ImageCompressPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-2">
-                Quality: {quality}%
+                {ct("quality")}: {quality}%
               </label>
               <input
                 type="range"
@@ -174,23 +174,23 @@ export default function ImageCompressPage() {
                 className="w-full"
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
-                <span>Smaller file</span>
-                <span>Better quality</span>
+                <span>{ct("smallerFile")}</span>
+                <span>{ct("betterQuality")}</span>
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">
-                Output Format
+                {ct("outputFormat")}
               </label>
               <select
                 value={format}
                 onChange={(e) => setFormat(e.target.value)}
                 className="w-full p-2 border rounded-lg bg-white dark:bg-gray-800"
               >
-                <option value="auto">Auto (same as original)</option>
-                <option value="jpeg">JPEG</option>
-                <option value="png">PNG</option>
-                <option value="webp">WebP</option>
+                <option value="auto">{ct("autoSameAsOriginal")}</option>
+                <option value="jpeg">{ct("jpeg")}</option>
+                <option value="png">{ct("png")}</option>
+                <option value="webp">{ct("webp")}</option>
               </select>
             </div>
           </div>
@@ -202,13 +202,13 @@ export default function ImageCompressPage() {
               disabled={loading}
               className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
             >
-              {loading ? 'Compressing...' : 'Compress Image'}
+              {loading ? ct("compressing") : ct('compressImage')}
             </button>
             <button
               onClick={handleReset}
               className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             >
-              Cancel
+              {ct("cancel")}
             </button>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function ImageCompressPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-xl overflow-hidden border">
               <div className="p-2 bg-gray-50 dark:bg-gray-800 text-xs font-medium text-gray-500 uppercase">
-                Before
+                {ct("before")}
               </div>
               {preview && <img src={preview} alt="Original" className="w-full" />}
               <div className="p-2 border-t text-sm text-gray-500">
@@ -230,7 +230,7 @@ export default function ImageCompressPage() {
             </div>
             <div className="rounded-xl overflow-hidden border border-green-200">
               <div className="p-2 bg-green-50 dark:bg-green-900/20 text-xs font-medium text-green-600 uppercase">
-                After &mdash; {savings}% smaller
+                {ct("afterWithSavings", { savings })}
               </div>
               <img src={result.compressedUrl} alt="Compressed" className="w-full" />
               <div className="p-2 border-t text-sm text-green-600 font-medium">
@@ -242,19 +242,19 @@ export default function ImageCompressPage() {
           {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <p className="text-xs text-gray-400">Original</p>
+              <p className="text-xs text-gray-400">{ct("original")}</p>
               <p className="font-semibold">{formatFileSize(result.originalSize)}</p>
             </div>
             <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-              <p className="text-xs text-green-600">Compressed</p>
+              <p className="text-xs text-green-600">{ct("compressedLabel")}</p>
               <p className="font-semibold text-green-600">{formatFileSize(result.compressedSize)}</p>
             </div>
             <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <p className="text-xs text-blue-600">Savings</p>
+              <p className="text-xs text-blue-600">{ct("savings")}</p>
               <p className="font-semibold text-blue-600">{savings}%</p>
             </div>
             <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <p className="text-xs text-gray-400">Dimensions</p>
+              <p className="text-xs text-gray-400">{ct("dimensions")}</p>
               <p className="font-semibold">{result.width} x {result.height}</p>
             </div>
           </div>
@@ -266,13 +266,13 @@ export default function ImageCompressPage() {
               download={`compressed-${file?.name}`}
               className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 text-center transition-colors"
             >
-              Download Compressed Image
+              {ct("downloadCompressedImage")}
             </a>
             <button
               onClick={handleReset}
               className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             >
-              Compress Another
+              {ct("compressAnother")}
             </button>
           </div>
         </div>
@@ -287,42 +287,27 @@ export default function ImageCompressPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload an image by clicking the upload area or dragging and dropping a file onto it.</li>
-          <li>Adjust the quality slider to control compression level &mdash; lower values produce smaller files.</li>
-          <li>Select the output format: keep Auto (same as original) or choose JPEG, PNG, or WebP.</li>
-          <li>Click <strong>Compress Image</strong> to process your image.</li>
-          <li>Compare the before and after sizes and preview quality side by side.</li>
-          <li>Download the compressed image directly to your device.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>For web images, 70&ndash;80% quality offers the best balance between file size and visual fidelity.</li>
-          <li>WebP format achieves significantly smaller files than JPEG at the same quality level.</li>
-          <li>Use higher quality settings (90%+) for images containing text or graphics with sharp edges.</li>
-          <li>Always keep the original file in case you need to re-compress with different settings later.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Is there a file size limit?</h3>
-            <p>Yes, the maximum upload size is 20MB per image.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does compression reduce image dimensions?</h3>
-            <p>No, compression only reduces file size by optimizing data encoding. Pixel dimensions remain unchanged.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Which format offers the best compression?</h3>
-            <p>WebP typically offers the best compression-to-quality ratio, followed by JPEG. PNG is best for images that need transparency.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are my images stored on your server?</h3>
-            <p>No, all images are processed temporarily and never stored permanently on our servers.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

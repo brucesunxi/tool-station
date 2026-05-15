@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import { formatFileSize, clamp } from '@/lib/utils'
 import AdBanner from '@/components/AdBanner'
@@ -28,6 +29,9 @@ const SLIDE_W = 13.33
 const SLIDE_H = 7.5
 
 export default function PdfToPptPage() {
+  const t = useTranslations('tools.pdf-to-ppt')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
   const [progress, setProgress] = useState('')
@@ -41,7 +45,7 @@ export default function PdfToPptPage() {
     if (selectedFile.type !== 'application/pdf' && !selectedFile.name.toLowerCase().endsWith('.pdf')) {
       setError('Please upload a PDF file'); return
     }
-    if (selectedFile.size > 50 * 1024 * 1024) { setError('File size must be under 50MB'); return }
+    if (selectedFile.size > 50 * 1024 * 1024) { setError(ct("fileMustBeUnder", { size: "50MB" })); return }
     setFile(selectedFile)
   }, [])
 
@@ -152,7 +156,7 @@ export default function PdfToPptPage() {
 
       setResult({ pptxDataUrl: data.pptxDataUrl, size: data.size, slides: data.slides })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Conversion failed')
+      setError(err instanceof Error ? err.message : ct("conversionFailed"))
     } finally { setLoading(false); setProgress('') }
   }
 
@@ -161,10 +165,8 @@ export default function PdfToPptPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">PDF to PowerPoint</h1>
-        <p className="text-gray-500">
-          Convert PDF to editable PowerPoint. Text and formatting are preserved, not screenshots.
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -176,7 +178,7 @@ export default function PdfToPptPage() {
           <input ref={inputRef} type="file" accept=".pdf,application/pdf" className="hidden" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
           <div className="text-5xl mb-4">📽️</div>
           <p className="text-lg font-medium mb-2">Drop a PDF here to convert to PowerPoint</p>
-          <p className="text-sm text-gray-400">PDF → Editable PPTX &bull; Text preserved &bull; Max 50MB</p>
+          <p className="text-sm text-gray-400">PDF → Editable PPTX &bull; Text preserved &bull; {ct("maxFileSize", { size: "50MB" })}</p>
         </div>
       )}
 
@@ -225,7 +227,7 @@ export default function PdfToPptPage() {
               Download PowerPoint ({formatFileSize(result.size)})
             </a>
             <button onClick={handleReset}
-              className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Convert Another</button>
+              className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{ct("convertAnother")}</button>
           </div>
         </div>
       )}
@@ -235,42 +237,27 @@ export default function PdfToPptPage() {
       )}
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a PDF file by clicking the upload area or dragging it onto the drop zone.</li>
-          <li>Review the file details and click <strong>Convert to Editable PowerPoint</strong>.</li>
-          <li>Wait for the progress bar to complete &mdash; the tool extracts text from each page.</li>
-          <li>Download the resulting PPTX file once processing finishes.</li>
-          <li>Open the file in Microsoft PowerPoint, Google Slides, or LibreOffice.</li>
-          <li>Edit the text, adjust formatting, and add your own styling as needed.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Text-heavy PDFs with simple layouts produce the best conversion results.</li>
-          <li>Each PDF page becomes a separate slide in the PowerPoint presentation.</li>
-          <li>Embedded fonts are mapped to commonly available alternatives such as Calibri or Consolas.</li>
-          <li>Complex layouts with tables, columns, or overlapping elements may need manual adjustment after conversion.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Does the conversion preserve images?</h3>
-            <p>This tool primarily extracts and recreates text content as editable text boxes. Complex graphics and embedded images may not transfer perfectly.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I convert a scanned PDF?</h3>
-            <p>This tool extracts text content from the PDF directly. For scanned documents (image-based PDFs), use our OCR tool first to extract the text, then paste it into PowerPoint.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What PowerPoint format is used?</h3>
-            <p>The output is PPTX format, compatible with Microsoft PowerPoint 2007 and later, plus Google Slides and LibreOffice.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Will my formatting be preserved?</h3>
-            <p>Text positioning, font faces, and bold/italic styling are preserved. Complex layouts may require some manual adjustment in PowerPoint.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

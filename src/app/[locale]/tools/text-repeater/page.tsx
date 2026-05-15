@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type Delimiter = 'space' | 'comma' | 'newline' | 'none'
 
 export default function TextRepeaterPage() {
+  const t = useTranslations('tools.text-repeater')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [count, setCount] = useState(5)
   const [delimiter, setDelimiter] = useState<Delimiter>('space')
@@ -26,8 +30,8 @@ export default function TextRepeaterPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Text Repeater</h1>
-      <p className="text-gray-500 mb-6">Repeat any text multiple times with custom separators.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -50,8 +54,8 @@ export default function TextRepeaterPage() {
             <label className="block text-sm font-medium mb-1">Delimiter</label>
             <select value={delimiter} onChange={e => setDelimiter(e.target.value as Delimiter)}
               className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option value="space">Space</option>
-              <option value="comma">Comma</option>
+              <option value="space">{ct("separatorSpace")}</option>
+              <option value="comma">{ct("separatorComma")}</option>
               <option value="newline">New Line</option>
               <option value="none">None (no separator)</option>
             </select>
@@ -72,38 +76,29 @@ export default function TextRepeaterPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter the text you want to repeat in the input field.</li>
-          <li>Set the <strong>Repeat Count</strong> (1 to 10,000) to control how many times the text appears.</li>
-          <li>Choose a <strong>Delimiter</strong> to separate repetitions: Space, Comma, New Line, or None.</li>
-          <li>The repeated text appears instantly in the result box.</li>
-          <li>Click <strong>Copy</strong> to copy the output to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the <strong>New Line</strong> delimiter to generate lists or fill template placeholders.</li>
-          <li>Keep the count under 1,000 for large blocks of text to avoid browser slowdowns.</li>
-          <li>The character count shown helps ensure the output fits within text limits of your target application.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What is the maximum repeat count?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">The maximum repeat count is 10,000. For very large text blocks, we recommend staying under 1,000 to maintain performance.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I repeat multi-line text?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. You can enter multi-line text and it will be repeated exactly as entered, including line breaks.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is this processing done on my device?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. Everything runs locally in your browser. No data is sent to any server.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n'
 
 interface ToolData {
   title: string
@@ -17,6 +18,7 @@ interface ToolSearchProps {
 }
 
 export default function ToolSearch({ tools }: ToolSearchProps) {
+  const t = useTranslations()
   const [query, setQuery] = useState('')
 
   const results = useMemo(() => {
@@ -37,7 +39,7 @@ export default function ToolSearch({ tools }: ToolSearchProps) {
           type="text"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          placeholder="Search tools..."
+          placeholder={t('common.searchTools') || 'Search tools...'}
           className="w-full pl-10 pr-4 py-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700"
         />
         {query && (
@@ -62,7 +64,7 @@ export default function ToolSearch({ tools }: ToolSearchProps) {
                     <p className="font-medium text-sm truncate">
                       {tool.title}
                       {tool.isNew && (
-                        <span className="ml-1.5 text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded font-medium">NEW</span>
+                        <span className="ml-1.5 text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded font-medium">{t('common.new')}</span>
                       )}
                     </p>
                     <p className="text-xs text-gray-400 truncate">{tool.description}</p>
@@ -72,8 +74,8 @@ export default function ToolSearch({ tools }: ToolSearchProps) {
             </div>
           ) : (
             <div className="text-center py-10 text-gray-400">
-              <p className="text-lg mb-1">No tools found for &ldquo;{query}&rdquo;</p>
-              <p className="text-sm">Try a different keyword</p>
+              <p className="text-lg mb-1">{t('common.noToolsFor', { query })}</p>
+              <p className="text-sm">{t('common.tryDifferentKeyword')}</p>
             </div>
           )}
         </div>

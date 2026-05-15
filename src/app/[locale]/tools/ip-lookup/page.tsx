@@ -1,4 +1,6 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState, useEffect, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -17,6 +19,9 @@ interface IpData {
 }
 
 export default function IpLookupPage() {
+  const t = useTranslations('tools.ip-lookup')
+  const ct = useTranslations('common')
+
   const [myIp, setMyIp] = useState('')
   const [myData, setMyData] = useState<IpData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -122,14 +127,14 @@ export default function IpLookupPage() {
           )}
         </div>
       ) : (
-        <p className="text-gray-400 text-sm py-4">No data available.</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       )}
     </div>
   )
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">IP Address Lookup Free Online — Find My IP &amp; Location</h1>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
       <p className="text-gray-600 dark:text-gray-400 mb-6">
         Free IP address lookup tool. Find your public IP address, location, ISP, and more details. Look
         up any IP address for geolocation information.
@@ -183,47 +188,29 @@ export default function IpLookupPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Open the page to automatically see your own public IP address and geolocation data.</li>
-          <li>Enter any IP address in the lookup field and click &ldquo;Lookup&rdquo; to find its location and ISP details.</li>
-          <li>Press Enter while typing in the lookup field for a quicker search.</li>
-          <li>Click &ldquo;View on Google Maps&rdquo; to see the approximate location on a map.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Your IP address reveals your approximate location (city/region), but not your exact street address.</li>
-          <li>Use a VPN or proxy if you need to hide your public IP address from websites you visit.</li>
-          <li>ISP-provided IP data is often more accurate than third-party databases for geolocation.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>How accurate is the IP geolocation data?</h3>
-          <p>
-            IP geolocation is generally accurate at the city level but not at the street level. The
-            accuracy depends on the IP database used. Mobile IPs and VPNs can show locations far from
-            your actual position. Typically, country-level accuracy is over 99%, while city-level
-            accuracy is around 80-90%.
-          </p>
-
-          <h3>Can someone find my exact address from my IP?</h3>
-          <p>
-            No. Your public IP address reveals your approximate geographical location (usually city or
-            region), but not your street address. Internet Service Providers (ISPs) know the exact
-            address associated with an IP, but this information is not publicly accessible through
-            IP lookup APIs.
-          </p>
-
-          <h3>Why does my IP show a different location than where I am?</h3>
-          <p>
-            This can happen if your ISP routes traffic through a central hub in another city, if you
-            are using a VPN or proxy, or if the IP geolocation database has outdated information. Some
-            mobile networks also route traffic through regional gateways far from your actual location.
-          </p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

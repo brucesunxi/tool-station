@@ -1,8 +1,13 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useEffect } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function HtmlPreviewPage() {
+  const t = useTranslations('tools.html-preview')
+  const ct = useTranslations('common')
+
   const [html, setHtml] = useState(`<!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +18,7 @@ export default function HtmlPreviewPage() {
   </style>
 </head>
 <body>
-  <h1>Hello, World!</h1>
+  <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
   <div class="card">
     <p>This is a live HTML preview. Edit the code on the left to see changes instantly.</p>
     <button onclick="alert('Hello!')">Click Me</button>
@@ -42,10 +47,7 @@ export default function HtmlPreviewPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">HTML Previewer Free Online — Live HTML Editor &amp; Viewer</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        Free online HTML previewer. Write HTML code and see the rendered result in real-time. Perfect for
-        testing HTML snippets, learning web development, and debugging layouts.
-      </p>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
 
       <AdBanner className="mb-8 h-20" />
 
@@ -75,7 +77,7 @@ export default function HtmlPreviewPage() {
 
           {/* Preview */}
           <div>
-            <label className="block text-sm font-medium mb-2">Preview</label>
+            <label className="block text-sm font-medium mb-2">{ct("preview")}</label>
             <div className="w-full h-[500px] border rounded-lg overflow-hidden bg-white">
               {error ? (
                 <div className="p-4 text-red-500 text-sm">{error}</div>
@@ -93,48 +95,29 @@ export default function HtmlPreviewPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste your HTML code into the editor panel on the left.</li>
-          <li>The preview panel on the right updates automatically in real-time as you type.</li>
-          <li>Use the &ldquo;Copy HTML&rdquo; button to copy your code to the clipboard when finished.</li>
-          <li>Edit existing HTML snippets to test changes before deploying them to your website.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Include a <code>&lt;style&gt;</code> tag in the head for CSS or a <code>&lt;script&gt;</code> tag for JavaScript to test interactive elements.</li>
-          <li>Use the sandboxed iframe for safe previewing — it prevents scripts from accessing the parent page.</li>
-          <li>Start with a complete HTML document template for accurate rendering, including <code>&lt;!DOCTYPE html&gt;</code>.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>Why does my JavaScript not work in the preview?</h3>
-          <p>
-            The preview iframe uses the <code>sandbox</code> attribute with <code>allow-scripts</code>
-            and <code>allow-same-origin</code>. Most scripts will work, but some advanced APIs (like
-            accessing browser storage or opening popups) may be restricted. Try removing
-            <code>sandbox</code> attributes if you need full access, but be aware of security
-            implications.
-          </p>
-
-          <h3>Is the HTML I type saved anywhere?</h3>
-          <p>
-            No. All HTML processing happens entirely in your browser. Your code is never sent to any
-            server. However, the content may persist in your browser&apos;s session storage until you
-            close the tab. Clear the editor or close the page to remove it completely.
-          </p>
-
-          <h3>Can I preview external resources like images or fonts?</h3>
-          <p>
-            Yes, but they must be hosted on an accessible URL using absolute paths (e.g.,
-            <code>https://example.com/image.jpg</code>). Relative paths will not work because the
-            preview iframe does not have a real file system. Use CDN-hosted libraries by linking to
-            their full URLs.
-          </p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

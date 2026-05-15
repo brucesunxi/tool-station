@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -19,6 +20,9 @@ function generateUuidV7(): string {
 }
 
 export default function UuidGeneratorPage() {
+  const t = useTranslations('tools.uuid-generator')
+  const ct = useTranslations('common')
+
   const [version, setVersion] = useState<'v4' | 'v7'>('v4')
   const [count, setCount] = useState(5)
   const [caseUpper, setCaseUpper] = useState(false)
@@ -45,8 +49,8 @@ export default function UuidGeneratorPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">UUID Generator</h1>
-        <p className="text-gray-500">Generate UUID v4 (random) and v7 (time-based) identifiers.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -83,7 +87,7 @@ export default function UuidGeneratorPage() {
               <span className="text-gray-400 w-6">{i + 1}.</span>
               <span className="flex-1">{uuid}</span>
               <button onClick={() => copyOne(uuid)}
-                className="text-xs px-2 py-1 border rounded opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">Copy</button>
+                className="text-xs px-2 py-1 border rounded opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">{ct("copy")}</button>
             </div>
           ))}
         </div>
@@ -91,40 +95,27 @@ export default function UuidGeneratorPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select UUID v4 (random) or UUID v7 (time-based) using the toggle buttons at the top of the page.</li>
-          <li>Set the number of UUIDs to generate using the Count input, up to 100 at once.</li>
-          <li>Optionally enable "Uppercase" to generate UUIDs in uppercase format instead of the default lowercase.</li>
-          <li>Click the "Generate" button to create the requested number of UUID identifiers.</li>
-          <li>Hover over any UUID and click its "Copy" button, or click "Copy All" to copy all generated UUIDs to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use UUID v7 for database primary keys when you want time-ordered identifiers that improve B-tree index performance.</li>
-          <li>Use UUID v4 when you need purely random identifiers with no discernible ordering or timestamp information.</li>
-          <li>Generate UUIDs in lowercase by default, as that is the conventional format specified in RFC 4122.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">What is the difference between UUID v4 and UUID v7?</h3>
-            <p>UUID v4 is randomly generated. UUID v7 includes a timestamp prefix, making them sortable by creation time, which improves database index performance.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are the UUIDs cryptographically secure?</h3>
-            <p>They use JavaScript's random number generator. For most applications this is sufficient, but for cryptographic contexts consider using the Web Crypto API.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I generate UUIDs for use in a database?</h3>
-            <p>Yes. UUIDs are commonly used as primary keys. UUID v7 is particularly well-suited for databases because time-ordered values reduce index fragmentation.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is there a limit on how many UUIDs I can generate?</h3>
-            <p>You can generate up to 100 UUIDs at once. You can click the Generate button repeatedly to create additional batches.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

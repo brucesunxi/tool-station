@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function ImageSplitterPage() {
+  const t = useTranslations('tools.image-splitter')
+  const ct = useTranslations('common')
+
   const [image, setImage] = useState<string | null>(null)
   const [rows, setRows] = useState(3)
   const [cols, setCols] = useState(3)
@@ -86,10 +90,8 @@ export default function ImageSplitterPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Image Splitter</h1>
-      <p className="text-gray-500 mb-6">
-        Split images into equal rows and columns. Great for creating Instagram grids and puzzles.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -183,43 +185,29 @@ export default function ImageSplitterPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload an image using the file picker — supports all common formats.</li>
-          <li>Set the number of <strong>Rows</strong> and <strong>Columns</strong> for the grid (1 to 20).</li>
-          <li>Click <strong>Split Image</strong> to divide the image into equal pieces.</li>
-          <li>Preview each piece, download individually, or click <strong>Download All</strong> to save all pieces at once.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>For Instagram grids, use 3x3 for a classic 9-square layout or 2x2 for a simple 4-piece grid.</li>
-          <li>Larger images produce better quality pieces — use high-resolution source images for best results.</li>
-          <li>All processing happens locally in your browser. Your images are never uploaded to any server.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What image formats are supported?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Any image format your browser supports — JPG, PNG, GIF, WebP, BMP, and SVG. The tool works entirely in the browser using the HTML5 Canvas API.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What happens if the dimensions don&apos;t divide evenly?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              The tool uses <code>Math.floor</code> for piece dimensions, so pieces are as equal as possible. If the image is 100px wide with 3 columns, each piece is 33px wide and the remaining pixels are excluded.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I split images larger than 10MB?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Yes — performance depends on your device. Very large images may take a moment to process, but there is no file size limit since everything runs locally.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

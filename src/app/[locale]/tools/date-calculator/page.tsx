@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -17,6 +18,9 @@ function daysBetween(a: Date, b: Date) {
 }
 
 export default function DateCalculatorPage() {
+  const t = useTranslations('tools.date-calculator')
+  const ct = useTranslations('common')
+
   const [mode, setMode] = useState<Mode>('difference')
   const [startDate, setStartDate] = useState('2025-01-01')
   const [endDate, setEndDate] = useState('2025-12-31')
@@ -57,15 +61,15 @@ export default function DateCalculatorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Date Calculator Free Online — Date Difference &amp; Add Days</h1>
-      <p className="text-gray-500 mb-6">Free online date calculator. Calculate days between dates or add/subtract days from any date. Get results in years, months, and days.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
         <div className="flex gap-2 mb-6">
           {[
-            { value: 'difference' as Mode, label: 'Days Between Dates' },
-            { value: 'add-subtract' as Mode, label: 'Add / Subtract Days' },
+            { value: 'difference' as Mode, label: ct('daysBetweenDates') },
+            { value: 'add-subtract' as Mode, label: ct('addSubtractDays') },
           ].map(m => (
             <button key={m.value} onClick={() => { setMode(m.value); setDiffResult(null); setAddResult(null) }}
               className={`flex-1 p-2.5 rounded-lg border text-sm font-medium transition-all ${
@@ -78,35 +82,33 @@ export default function DateCalculatorPage() {
           <>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div>
-                <label className="block text-sm font-medium mb-1">Start Date</label>
+                <label className="block text-sm font-medium mb-1">{ct("startDate")}</label>
                 <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)}
                   className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">End Date</label>
+                <label className="block text-sm font-medium mb-1">{ct("endDate")}</label>
                 <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}
                   className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" />
               </div>
             </div>
             <button onClick={calcDifference}
-              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-              Calculate Difference
-            </button>
+              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculateDifference")}</button>
             {diffResult && (
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-center">
                   <div className="text-2xl font-bold text-blue-600">{diffResult.days}</div>
-                  <div className="text-sm text-gray-500">Total Days</div>
+                  <div className="text-sm text-gray-500">{ct("totalDays")}</div>
                 </div>
                 <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-xl text-center">
                   <div className="text-2xl font-bold text-green-600">
                     {diffResult.years}y {diffResult.months}m {diffResult.remainingDays}d
                   </div>
-                  <div className="text-sm text-gray-500">Years / Months / Days</div>
+                  <div className="text-sm text-gray-500">{ct("yearsMonthsDays")}</div>
                 </div>
                 <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl text-center">
                   <div className="text-2xl font-bold text-purple-600">{Math.floor(diffResult.days / 7)}</div>
-                  <div className="text-sm text-gray-500">Weeks</div>
+                  <div className="text-sm text-gray-500">{ct("weeks")}</div>
                 </div>
               </div>
             )}
@@ -115,12 +117,12 @@ export default function DateCalculatorPage() {
           <>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div>
-                <label className="block text-sm font-medium mb-1">Base Date</label>
+                <label className="block text-sm font-medium mb-1">{ct("baseDate")}</label>
                 <input type="date" value={baseDate} onChange={e => setBaseDate(e.target.value)}
                   className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Days</label>
+                <label className="block text-sm font-medium mb-1">{ct("days")}</label>
                 <input type="number" value={daysInput} onChange={e => setDaysInput(e.target.value)}
                   className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" />
               </div>
@@ -129,16 +131,14 @@ export default function DateCalculatorPage() {
               <button onClick={() => { setOperation('add'); setAddResult(null) }}
                 className={`flex-1 p-2.5 rounded-lg border text-sm font-medium transition-all ${
                   operation === 'add' ? 'bg-blue-600 text-white border-blue-600' : 'hover:border-blue-300'
-                }`}>Add Days</button>
+                }`}>{ct("addDays")}</button>
               <button onClick={() => { setOperation('subtract'); setAddResult(null) }}
                 className={`flex-1 p-2.5 rounded-lg border text-sm font-medium transition-all ${
                   operation === 'subtract' ? 'bg-blue-600 text-white border-blue-600' : 'hover:border-blue-300'
-                }`}>Subtract Days</button>
+                }`}>{ct("subtractDays")}</button>
             </div>
             <button onClick={calcAddSubtract}
-              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-              Calculate
-            </button>
+              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculate")}</button>
             {addResult && (
               <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl text-center">
                 <p className="text-sm text-gray-500 mb-1">
@@ -152,31 +152,29 @@ export default function DateCalculatorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Choose between &ldquo;Days Between Dates&rdquo; or &ldquo;Add / Subtract Days&rdquo; mode.</li>
-          <li>Enter the start and end dates, or a base date and number of days.</li>
-          <li>Click the calculate button to see the result instantly.</li>
-          <li>View the difference in total days, years/months/days, and weeks.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the &ldquo;Add Days&rdquo; mode to calculate project deadlines and delivery dates.</li>
-          <li>For precise month calculations, remember that months have varying lengths (28&ndash;31 days).</li>
-          <li>The calculator uses calendar days, not business days. For workday calculations, exclude weekends separately.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>Does the calculator include both start and end dates?</h3>
-          <p>No, it calculates the difference between the two dates. For example, Jan 1 to Jan 2 is 1 day.</p>
-          <h3>Can I calculate business days?</h3>
-          <p>This calculator counts all calendar days. To calculate business days, you would need to exclude weekends and holidays manually.</p>
-          <h3>What date format is used?</h3>
-          <p>The calculator uses the YYYY-MM-DD format (ISO 8601), which is the standard date input format supported by all modern browsers.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

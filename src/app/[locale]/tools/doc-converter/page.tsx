@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import { formatFileSize } from '@/lib/utils'
 import AdBanner from '@/components/AdBanner'
@@ -21,6 +22,9 @@ interface PdfToWordResult {
 }
 
 export default function DocConverterPage() {
+  const t = useTranslations('tools.doc-converter')
+  const ct = useTranslations('common')
+
   const [direction, setDirection] = useState<Direction>('word-to-pdf')
   const [file, setFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
@@ -35,7 +39,7 @@ export default function DocConverterPage() {
     const ext = selectedFile.name.split('.').pop()?.toLowerCase()
     if (direction === 'word-to-pdf' && ext !== 'docx') { setError('Please upload a .docx file'); return }
     if (direction === 'pdf-to-word' && ext !== 'pdf') { setError('Please upload a PDF file'); return }
-    if (selectedFile.size > 30 * 1024 * 1024) { setError('File size must be under 30MB'); return }
+    if (selectedFile.size > 30 * 1024 * 1024) { setError(ct("fileMustBeUnder", { size: "30MB" })); return }
     setFile(selectedFile)
   }, [direction])
 
@@ -57,10 +61,10 @@ export default function DocConverterPage() {
       formData.append('direction', 'word-to-pdf')
       const res = await fetch('/api/doc-convert', { method: 'POST', body: formData })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Conversion failed')
+      if (!res.ok) throw new Error(data.error || ct("conversionFailed"))
       setResult({ htmlContent: data.htmlContent, pdfDataUrl: data.pdfDataUrl, pdfSize: data.pdfSize, pageCount: data.pageCount, fileName: data.fileName })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(err instanceof Error ? err.message : ct("somethingWentWrong"))
     } finally { setLoading(false) }
   }
 
@@ -74,7 +78,7 @@ export default function DocConverterPage() {
 
       const res = await fetch('/api/doc-convert-images', { method: 'POST', body: formData })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Conversion failed')
+      if (!res.ok) throw new Error(data.error || ct("conversionFailed"))
 
       setResult({ docxDataUrl: data.docxDataUrl, docxSize: data.size, pages: data.imagesFound || 1 })
     } catch (err) {
@@ -90,8 +94,8 @@ export default function DocConverterPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Document Converter</h1>
-        <p className="text-gray-500">Convert Word to PDF and PDF to Word with images and formatting preserved.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -114,7 +118,7 @@ export default function DocConverterPage() {
           <input ref={inputRef} type="file" accept={direction === 'word-to-pdf' ? '.docx' : '.pdf'} className="hidden" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
           <div className="text-5xl mb-4">{direction === 'word-to-pdf' ? '📝' : '📕'}</div>
           <p className="text-lg font-medium mb-2">Drop {direction === 'word-to-pdf' ? 'a Word file' : 'a PDF file'} here</p>
-          <p className="text-sm text-gray-400">{direction === 'word-to-pdf' ? '.docx → PDF' : 'PDF → .docx with images & text'} &bull; Max 30MB</p>
+          <p className="text-sm text-gray-400">{direction === 'word-to-pdf' ? '.docx → PDF' : 'PDF → .docx with images & text'} &bull; {ct("maxFileSize", { size: "30MB" })}</p>
         </div>
       )}
 
@@ -154,7 +158,7 @@ export default function DocConverterPage() {
             <p className="text-sm text-gray-500">{w2pResult.pageCount} page{w2pResult.pageCount > 1 ? 's' : ''}</p>
           </div>
           <div className="border rounded-xl overflow-hidden">
-            <div className="p-2 bg-gray-50 dark:bg-gray-800 text-xs font-medium text-gray-500 uppercase border-b">Preview</div>
+            <div className="p-2 bg-gray-50 dark:bg-gray-800 text-xs font-medium text-gray-500 uppercase border-b">{ct("preview")}</div>
             <div className="p-6 max-h-80 overflow-auto" dangerouslySetInnerHTML={{ __html: w2pResult.htmlContent }} />
           </div>
           <div className="flex gap-3">
@@ -162,7 +166,7 @@ export default function DocConverterPage() {
               className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 text-center transition-colors">
               Download PDF ({formatFileSize(w2pResult.pdfSize)})
             </a>
-            <button onClick={handleReset} className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Convert Another</button>
+            <button onClick={handleReset} className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{ct("convertAnother")}</button>
           </div>
         </div>
       )}
@@ -180,7 +184,7 @@ export default function DocConverterPage() {
               className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 text-center transition-colors">
               Download Word ({formatFileSize(p2wResult.docxSize)})
             </a>
-            <button onClick={handleReset} className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Convert Another</button>
+            <button onClick={handleReset} className="px-6 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{ct("convertAnother")}</button>
           </div>
         </div>
       )}
@@ -190,42 +194,27 @@ export default function DocConverterPage() {
       )}
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Choose your conversion direction: <strong>Word to PDF</strong> or <strong>PDF to Word</strong> using the toggle buttons at the top.</li>
-          <li>Upload your file &mdash; a .docx file for Word to PDF, or a .pdf file for PDF to Word.</li>
-          <li>Click the <strong>Convert</strong> button to start processing.</li>
-          <li>For Word to PDF: preview the result HTML and download the PDF.</li>
-          <li>For PDF to Word: download the generated .docx file directly.</li>
-          <li>Use <strong>Convert Another</strong> to process additional files.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Word to PDF conversion produces a true PDF with selectable, searchable text &mdash; not scanned images.</li>
-          <li>PDF to Word conversion renders each PDF page as an image embedded in the Word document for visual fidelity.</li>
-          <li>For best results, ensure your source document has clean, well-structured formatting.</li>
-          <li>Each file must be 30MB or smaller.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Is the PDF to Word conversion editable?</h3>
-            <p>PDF to Word creates a document with rendered page images. Text is not directly editable, but the visual layout is preserved.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What Word format is supported for Word to PDF?</h3>
-            <p>Only .docx files are accepted for Word to PDF conversion. Older .doc format is not supported.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are my documents stored on your servers?</h3>
-            <p>No, all processing is done in memory and files are never permanently stored.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I convert scanned PDFs to Word?</h3>
-            <p>Yes, scanned PDFs are supported &mdash; each page is rendered as an image in the resulting Word document.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

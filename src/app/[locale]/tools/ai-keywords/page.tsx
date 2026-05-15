@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function AiKeywordsPage() {
+  const t = useTranslations('tools.ai-keywords')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState('')
@@ -33,8 +37,8 @@ export default function AiKeywordsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Keyword Extractor</h1>
-        <p className="text-gray-500">Extract key topics, keywords, and phrases from any text. Perfect for SEO and content planning.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -53,7 +57,7 @@ export default function AiKeywordsPage() {
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium">Extracted Keywords</label>
             {result && (
-              <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+              <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
             )}
           </div>
           <div className={`min-h-[370px] p-4 border rounded-xl text-sm whitespace-pre-wrap ${
@@ -75,29 +79,29 @@ export default function AiKeywordsPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Keyword Extractor</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Paste your article, blog post, product description, or any content into the text input area.</li>
-          <li>Click &quot;Extract Keywords&quot; to start the AI analysis of your content.</li>
-          <li>Review the extracted keywords, which include primary terms, secondary keywords, and long-tail phrases.</li>
-          <li>Copy the keyword list with one click for use in your SEO strategy, content planning, or ad targeting.</li>
-          <li>Refine your input text and re-extract to discover different keyword angles for the same topic.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for SEO Keyword Extraction</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use longer content (300+ words) for more comprehensive and accurate keyword extraction results.</li>
-          <li>Review the extracted keywords against your target audience&apos;s search intent — prioritize terms that match what users actually search for.</li>
-          <li>Combine extracted keywords into topic clusters to build a more effective content strategy.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What types of keywords does the AI extract?</h3><p>The AI extracts primary keywords (main topics), secondary keywords (supporting terms), and long-tail phrases (specific multi-word queries) from your content.</p></div>
-          <div><h3 className="font-semibold">Can I use these keywords for SEO optimization?</h3><p>Yes, the extracted keywords are ideal for SEO. Use them in meta descriptions, heading tags, image alt text, and throughout your content to improve search rankings.</p></div>
-          <div><h3 className="font-semibold">How accurate is the keyword extraction?</h3><p>The AI uses advanced natural language processing to identify the most relevant terms and phrases. Accuracy improves with well-written, focused content on a specific topic.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

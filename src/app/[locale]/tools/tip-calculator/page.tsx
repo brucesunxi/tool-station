@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -10,6 +11,9 @@ function toCurrency(n: number) {
 }
 
 export default function TipCalculatorPage() {
+  const t = useTranslations('tools.tip-calculator')
+  const ct = useTranslations('common')
+
   const [bill, setBill] = useState<string>('75.50')
   const [tipPercent, setTipPercent] = useState<number>(15)
   const [customTip, setCustomTip] = useState<string>('')
@@ -42,8 +46,8 @@ export default function TipCalculatorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Tip Calculator Free Online — Calculate Restaurant Tips &amp; Split Bills</h1>
-      <p className="text-gray-500 mb-6">Free online tip calculator. Calculate tip amounts, total bill, and split between multiple people. Choose from common tip percentages or set your own.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -87,9 +91,7 @@ export default function TipCalculatorPage() {
           </div>
 
           <button onClick={calculate}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Calculate
-          </button>
+            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculate")}</button>
         </div>
 
         {result && (
@@ -120,31 +122,29 @@ export default function TipCalculatorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter the bill amount in the input field (e.g., $75.50).</li>
-          <li>Select a tip percentage from the presets (10%, 15%, 18%, 20%) or enter a custom percentage.</li>
-          <li>Adjust the number of people splitting the bill using the +/- buttons.</li>
-          <li>Click &ldquo;Calculate&rdquo; to see the tip amount, total bill, and per-person amounts.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>A 15%&ndash;20% tip is standard for good restaurant service in the United States.</li>
-          <li>Check your bill for an included gratuity (auto-grat) before adding an additional tip.</li>
-          <li>When splitting a bill, consider using the &ldquo;Total / Person&rdquo; amount to ensure everyone pays their fair share including tax and tip.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is a standard tip percentage?</h3>
-          <p>Standard restaurant tipping in the US ranges from 15% to 20% of the pretax bill amount. Some restaurants include a service charge for large parties.</p>
-          <h3>Should I tip on the pre-tax or post-tax amount?</h3>
-          <p>Most tipping guidelines recommend tipping on the pre-tax amount, though many people tip on the total bill including tax.</p>
-          <h3>How do I split the tip unevenly among people?</h3>
-          <p>This calculator splits the tip evenly. For uneven splits, calculate each person&rsquo;s tip separately based on their individual bill amount.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

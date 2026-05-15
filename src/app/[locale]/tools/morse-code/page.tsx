@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo, useCallback, useRef } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -25,6 +26,9 @@ for (const [char, code] of Object.entries(MORSE_MAP)) {
 type MorseMode = 'encode' | 'decode'
 
 export default function MorseCodePage() {
+  const t = useTranslations('tools.morse-code')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<MorseMode>('encode')
   const [copied, setCopied] = useState(false)
@@ -114,8 +118,8 @@ export default function MorseCodePage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Morse Code Converter</h1>
-      <p className="text-gray-500 mb-6">Convert text to Morse code and decode Morse to text with sound playback.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -174,38 +178,29 @@ export default function MorseCodePage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select the conversion direction: <strong>Text to Morse</strong> or <strong>Morse to Text</strong>.</li>
-          <li>Type your text or Morse code (using dots and dashes separated by spaces).</li>
-          <li>Use <strong>/</strong> (forward slash) as a word separator when decoding Morse.</li>
-          <li>The converted result updates instantly in the output panel.</li>
-          <li>Click <strong>Play Sound</strong> to hear the Morse code as audio tones.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>When encoding, spaces between words are represented by a forward slash (<code>/</code>) in Morse code.</li>
-          <li>The sound playback uses standard Morse timing: dits (dots) are one unit and dahs (dashes) are three units.</li>
-          <li>Unsupported characters in the input are silently skipped when encoding to Morse.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What characters are supported by the Morse code converter?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">The converter supports all 26 letters (A-Z), digits (0-9), and common punctuation including periods, commas, question marks, exclamation points, and more.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why use a forward slash for word spacing in Morse?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">In standard Morse code prosigns, a forward slash (<code>/</code>) is commonly used to separate words when writing Morse code as text, making it easier to read than just spaces.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I control the playback speed?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">The current playback uses a fixed speed of approximately 15 words per minute. This provides a clear, moderate pace suitable for beginners learning Morse code.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -392,6 +393,9 @@ async function removePdfPassword(pdfBytes: Uint8Array, password: string): Promis
 // ---------------------------------------------------------------------------
 
 export default function PdfPasswordPage() {
+  const t = useTranslations('tools.pdf-password')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [mode, setMode] = useState<Mode>('lock')
   const [password, setPassword] = useState('')
@@ -403,7 +407,7 @@ export default function PdfPasswordPage() {
   const handleUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0]
     if (!f || f.type !== 'application/pdf') {
-      setError('Please select a valid PDF file.')
+      setError(ct("selectValidPdf"))
       return
     }
     setError('')
@@ -472,8 +476,8 @@ export default function PdfPasswordPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">PDF Password Protector</h1>
-      <p className="text-gray-500 mb-6">Add password protection to your PDF files or remove existing passwords.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -533,43 +537,29 @@ export default function PdfPasswordPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Choose between <strong>Protect PDF</strong> (add password) or <strong>Unlock PDF</strong> (remove password) mode.</li>
-          <li>Upload a PDF file using the file picker.</li>
-          <li>Enter the password — a new password for protecting, or the existing password for unlocking.</li>
-          <li>Click the action button to download the processed PDF with or without password protection.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use a strong password with a mix of letters, numbers, and symbols for better security.</li>
-          <li>Passwords are case-sensitive — make sure to remember the exact capitalization.</li>
-          <li>The unlock mode works with standard PDF password protection using RC4 encryption (PDF 1.7 spec).</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">Is the password encryption secure?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              The tool uses RC4 encryption with a 40-bit key, derived from your password and a random file identifier, following the PDF 1.7 standard. RC4-based PDF encryption provides reasonable protection for everyday use but is not unbreakable against determined attackers.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What types of PDF passwords can this tool remove?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              This tool can remove user-level open passwords from PDFs using standard RC4 encryption (algorithm revision 2). It cannot handle AES-based encryption (PDF 2.0), certificate-based encryption, digital signatures, or PDFs with owner-only restrictions.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Will the processed PDF look exactly the same?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Yes. All pages, content, images, and formatting are preserved. The tool only modifies the encryption settings. The visual appearance of the document remains unchanged.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

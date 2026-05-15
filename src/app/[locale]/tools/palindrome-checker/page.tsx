@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function PalindromeCheckerPage() {
+  const t = useTranslations('tools.palindrome-checker')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [caseSensitive, setCaseSensitive] = useState(false)
 
@@ -60,8 +64,8 @@ export default function PalindromeCheckerPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Palindrome Checker</h1>
-      <p className="text-gray-500 mb-6">Check if any word, phrase, or sentence reads the same forwards and backwards.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -114,38 +118,29 @@ export default function PalindromeCheckerPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste any word, phrase, or sentence into the text box.</li>
-          <li>The tool automatically analyzes the text and tells you if it is a palindrome.</li>
-          <li>Toggle <strong>Case sensitive</strong> if you want to distinguish uppercase and lowercase.</li>
-          <li>View the forward and backward character comparison with color-coded matching.</li>
-          <li>Non-alphanumeric characters (spaces, punctuation) are ignored during the check.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Try famous palindromes like &quot;racecar&quot;, &quot;madam&quot;, or &quot;A man, a plan, a canal: Panama&quot;.</li>
-          <li>Enable case sensitivity to check for exact character-by-character palindromes.</li>
-          <li>The color-coded view shows exactly which characters match (green) and which do not (red).</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What is a palindrome?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">A palindrome is a word, phrase, or sequence that reads the same forwards and backwards, ignoring spaces, punctuation, and capitalization. Examples: &quot;racecar&quot;, &quot;level&quot;, &quot;A man, a plan, a canal: Panama&quot;.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does the checker ignore spaces and punctuation?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. By default, only alphanumeric characters are compared. Spaces, punctuation, and special characters are ignored to focus on the actual word or phrase.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What does case-sensitive mode do?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">When case-sensitive mode is off (default), &quot;A&quot; matches &quot;a&quot;. When on, the characters must be exactly the same case — so &quot;Racecar&quot; would not match &quot;racecaR&quot;.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

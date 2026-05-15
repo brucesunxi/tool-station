@@ -1,8 +1,13 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function CodeExplainerPage() {
+  const t = useTranslations('tools.ai-code-explainer')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -28,8 +33,8 @@ export default function CodeExplainerPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">AI Code Explainer Free Online — Code Explanation Tool</h1>
-      <p className="text-gray-500 mb-6">Free AI code explainer. Get plain-English explanations of any code. Understand complex programming concepts with simple breakdowns.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
         <textarea value={input} onChange={e => setInput(e.target.value)} placeholder="Paste your code here..." className="w-full p-4 border rounded-xl text-sm min-h-[120px] dark:bg-gray-700 dark:border-gray-600 font-mono mb-4" />
@@ -42,18 +47,32 @@ export default function CodeExplainerPage() {
         {output && (
           <div className="mt-4">
             <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-xl whitespace-pre-wrap text-sm">{output}</div>
-            <button onClick={() => navigator.clipboard.writeText(output)} className="mt-2 text-xs text-blue-600">Copy to clipboard</button>
+            <button onClick={() => navigator.clipboard.writeText(output)} className="mt-2 text-xs text-blue-600">{ct("copyToClipboard")}</button>
           </div>
         )}
       </div>
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2><ol><li>Paste your code snippet</li><li>Optionally specify the programming language</li><li>Click Explain Code</li><li>Read the plain-English explanation</li></ol>
-        <h2>Tips</h2><ul><li>Include enough context for better explanations</li><li>Specify the language for more accurate results</li></ul>
-        <h2>FAQ</h2>
-        <div><strong>What is an AI code explainer?</strong><p>An AI code explainer analyzes code and generates plain-English explanations of what it does, how it works, and key concepts involved.</p></div>
-        <div><strong>What languages are supported?</strong><p>Most popular programming languages are supported including Python, JavaScript, TypeScript, Java, C++, Go, Rust, and more.</p></div>
-        <div><strong>Is my code stored?</strong><p>No, your code is processed in real-time and not stored on our servers.</p></div>
-      </section>
+        <h2>{t('howto.heading')}</h2>
+        <ol>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
+        </ol>
+        <h2>{t('tips.heading')}</h2>
+        <ul>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
+        </ul>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

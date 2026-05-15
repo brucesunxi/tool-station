@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -18,6 +19,9 @@ const tools = [
 type ToolId = (typeof tools)[number]['id']
 
 export default function RandomToolsPage() {
+  const t = useTranslations('tools.random-tools')
+  const ct = useTranslations('common')
+
   const [active, setActive] = useState<ToolId>('random')
   const [result, setResult] = useState<string | React.ReactNode>('')
 
@@ -67,8 +71,8 @@ export default function RandomToolsPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Random Tools</h1>
-        <p className="text-gray-500">Random number generator, dice roller, coin flip, lottery picker, and decision maker.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -92,7 +96,7 @@ export default function RandomToolsPage() {
               <div><label className="block text-xs font-medium mb-1">Max</label>
                 <input type="number" value={rMax} onChange={e => setRMax(Number(e.target.value))} className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700" /></div>
             </div>
-            <button onClick={genRandom} className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">Generate</button>
+            <button onClick={genRandom} className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">{ct("generate")}</button>
           </>
         )}
 
@@ -126,7 +130,7 @@ export default function RandomToolsPage() {
                 <input type="number" value={lMin} onChange={e => setLMin(Number(e.target.value))} className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700" /></div>
               <div><label className="block text-xs font-medium mb-1">To</label>
                 <input type="number" value={lMax} onChange={e => setLMax(Number(e.target.value))} className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700" /></div>
-              <div><label className="block text-xs font-medium mb-1">Count</label>
+              <div><label className="block text-xs font-medium mb-1">{ct("count")}</label>
                 <input type="number" value={lCount} onChange={e => setLCount(Number(e.target.value))} min={1} className="w-full p-2.5 border rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700" /></div>
             </div>
             <button onClick={genLottery} className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">Pick Numbers</button>
@@ -151,40 +155,27 @@ export default function RandomToolsPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Click on a tool tab at the top -- Random Number, Dice Roll, Coin Flip, Lottery, or Pick a Choice.</li>
-          <li>For Random Number: set the minimum and maximum range, then click "Generate" to get a random number.</li>
-          <li>For Dice Roll: choose the number of sides (d4 through d100) and how many dice to roll, then click "Roll Dice."</li>
-          <li>For Coin Flip: simply click the coin emoji to flip it -- the result shows Heads or Tails.</li>
-          <li>For Pick a Choice: enter your options (one per line or comma-separated) and click "Pick" to randomly select one.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>The Coin Flip is the quickest way to make a binary decision -- just click the coin once.</li>
-          <li>For Lottery, use realistic ranges like 1 to 49 with 6 picks to simulate popular lottery formats around the world.</li>
-          <li>The Pick a Choice tool is great for deciding where to eat, what movie to watch, or any situation with multiple options.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">How random are the results?</h3>
-            <p>The tool uses JavaScript's random number generator, which provides statistically uniform pseudo-random numbers suitable for games and casual decisions.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I roll dice other than standard six-sided?</h3>
-            <p>Yes. The Dice Roll tool supports d4, d6, d8, d10, d12, d20, and d100 dice -- perfect for tabletop role-playing games like Dungeons and Dragons.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are duplicate numbers possible in the Lottery tool?</h3>
-            <p>No. The lottery tool generates unique, non-repeating numbers within your specified range, similar to real lottery drawings.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is the data I enter saved anywhere?</h3>
-            <p>No. All processing happens locally in your browser. Nothing you enter is stored or transmitted.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

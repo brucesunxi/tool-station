@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -14,6 +15,9 @@ function emptyExp(): Experience { return { company: '', role: '', start: '', end
 function emptyEdu(): Education { return { school: '', degree: '', field: '', start: '', end: '' } }
 
 export default function ResumeBuilderPage() {
+  const t = useTranslations('tools.resume-builder')
+  const ct = useTranslations('common')
+
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [email, setEmail] = useState('')
@@ -55,7 +59,7 @@ export default function ResumeBuilderPage() {
       .skills { font-size: 13px; color: #444; line-height: 1.8; }
       @media print { body { margin: 0; padding: 20px 40px; } }
     </style></head><body>`)
-    pw.document.write(`<h1>${name || 'Your Name'}</h1>`)
+    pw.document.write(`<h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>`)
     if (title) pw.document.write(`<div class="title">${title}</div>`)
     pw.document.write(`<div class="contact">${[email, phone, location].filter(Boolean).join(' | ')}</div>`)
     if (summary) pw.document.write(`<div class="section-title">Professional Summary</div><div class="summary">${summary}</div>`)
@@ -82,7 +86,7 @@ export default function ResumeBuilderPage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">AI Resume Builder</h1>
-        <p className="text-gray-500">Build a professional resume and download as PDF. Print-ready formatting with sections for experience, education, and skills.</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -206,40 +210,27 @@ export default function ResumeBuilderPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Fill in your personal details including name, professional title, email, phone, and location in the Personal Details section.</li>
-          <li>Write a professional summary that highlights your key qualifications, career objectives, and what you bring to a role.</li>
-          <li>Add your work experience entries with company names, roles, employment dates, and descriptions of your responsibilities and achievements.</li>
-          <li>List your education history including schools, degrees, fields of study, and graduation dates.</li>
-          <li>Enter your skills as a comma-separated list, then click Preview and Download to review and export your resume as a print-ready PDF.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Tailor your professional summary to the specific job you are applying for rather than using a generic overview.</li>
-          <li>Use action verbs like "led," "developed," and "implemented" in your experience descriptions to make achievements stand out.</li>
-          <li>Keep your resume to one page if you have less than 10 years of experience -- hiring managers typically spend only seconds scanning each resume.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Can I download my resume as a PDF?</h3>
-            <p>Yes. Click "Preview and Download" to see a print-ready preview, then click "Download PDF" to open your browser's print dialog and save as a PDF.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my data stored or shared with anyone?</h3>
-            <p>No. All data stays in your browser. Nothing is sent to a server or stored online.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I add multiple work experiences and education entries?</h3>
-            <p>Yes. Use the "+ Add" button to add as many entries as you need. You can also remove entries using the "Remove" button on each entry.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What if I don't fill out all sections?</h3>
-            <p>Any empty sections are automatically hidden in the preview. You only need to fill in what is relevant to your resume.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

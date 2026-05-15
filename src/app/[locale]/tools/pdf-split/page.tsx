@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function PdfSplitPage() {
+  const t = useTranslations('tools.pdf-split')
+  const ct = useTranslations('common')
+
   const [file, setFile] = useState<File | null>(null)
   const [pageCount, setPageCount] = useState(0)
   const [pageRanges, setPageRanges] = useState('')
@@ -14,7 +18,7 @@ export default function PdfSplitPage() {
   const handleUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0]
     if (!f || f.type !== 'application/pdf') {
-      setError('Please select a valid PDF file.')
+      setError(ct("selectValidPdf"))
       return
     }
     setError('')
@@ -96,10 +100,8 @@ export default function PdfSplitPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">PDF Splitter</h1>
-      <p className="text-gray-500 mb-6">
-        Extract specific pages from PDF files. Choose individual pages or ranges.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -167,43 +169,29 @@ export default function PdfSplitPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a PDF file using the file picker.</li>
-          <li>The tool displays the total <strong>page count</strong> of your PDF.</li>
-          <li>Enter the <strong>page ranges</strong> you want to extract (e.g., <code>1,3,5-8</code>).</li>
-          <li>Click <strong>Extract Pages</strong> to generate and download the new PDF containing only the selected pages.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use commas to separate individual pages (e.g., <code>1, 4, 7</code>) and hyphens for ranges (e.g., <code>2-6</code>).</li>
-          <li>You can combine both formats in one input: <code>1,3,5-8,10,12-15</code>.</li>
-          <li>Page numbers start at 1 — entering a page number outside the document range will be ignored.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">Does this tool work with scanned PDFs?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Yes — scanned PDFs are supported as long as they are valid PDF files. The tool copies entire pages including all content, images, and text. However, the content of scanned pages is image-based, not text-based.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are there any file size limits?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              There is no artificial file size limit. Very large PDFs may take longer to process depending on your device&apos;s memory and processing power. All processing happens locally in your browser.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I extract pages from a password-protected PDF?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              No. Password-protected PDFs cannot be processed because pdf-lib cannot open encrypted files without a password. You will need to remove the password first using a PDF password tool, then split the unprotected document.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

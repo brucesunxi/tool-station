@@ -1,4 +1,6 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -16,6 +18,9 @@ function hslToString(h: number, s: number, l: number) {
 }
 
 export default function GradientGeneratorPage() {
+  const t = useTranslations('tools.gradient-generator')
+  const ct = useTranslations('common')
+
   const [stops, setStops] = useState<ColorStop[]>(DEFAULT_STOPS)
   const [direction, setDirection] = useState<Direction>('to bottom')
 
@@ -48,11 +53,8 @@ export default function GradientGeneratorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">CSS Gradient Generator Free Online — Beautiful Color Gradients</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        Free online CSS gradient generator. Create beautiful linear and radial gradients with multiple
-        color stops. Preview in real-time and copy CSS code instantly.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
 
       <AdBanner className="mb-8 h-20" />
 
@@ -150,45 +152,29 @@ export default function GradientGeneratorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Choose a gradient direction from the available options (to bottom, to right, diagonal, radial, etc.).</li>
-          <li>Add or remove color stops using the controls. Each stop has a color picker and a position slider.</li>
-          <li>Adjust the position of each color stop by dragging the slider to fine-tune your gradient.</li>
-          <li>Click the &ldquo;Copy&rdquo; button to copy the generated CSS code to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use 2-3 color stops for clean, professional-looking gradients. More stops create complex effects.</li>
-          <li>For radial gradients, position values control how far from the center each color appears.</li>
-          <li>Combine gradients with a solid background-color fallback for browsers that don&rsquo;t support CSS gradients.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is a CSS gradient?</h3>
-          <p>
-            A CSS gradient lets you display smooth transitions between two or more specified colors. CSS
-            supports linear gradients (directional), radial gradients (center-originating), and conic
-            gradients. Gradients are treated as background images in CSS.
-          </p>
-
-          <h3>Can I use gradients with transparent colors?</h3>
-          <p>
-            Yes. You can use rgba() or hsla() color values with an alpha channel (e.g., rgba(255, 0, 0,
-            0.5)) to create fade-out effects. Simply enter a color with transparency in the color picker
-            or edit the CSS directly.
-          </p>
-
-          <h3>How do I create a hard color stop instead of a smooth transition?</h3>
-          <p>
-            Place two color stops at the same position to create a hard edge. For example, setting one
-            color at 50% and a different color also at 50% will create a sharp boundary between the two
-            colors with no blending.
-          </p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

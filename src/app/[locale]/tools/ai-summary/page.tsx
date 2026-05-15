@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -12,6 +13,9 @@ interface SummaryResult {
 }
 
 export default function AiSummaryPage() {
+  const t = useTranslations('tools.ai-summary')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [length, setLength] = useState('medium')
   const [style, setStyle] = useState('paragraph')
@@ -32,15 +36,15 @@ export default function AiSummaryPage() {
         body: JSON.stringify({ text, length, style }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Summarization failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setResult(data)
     } catch (err) {
       const msg = err instanceof Error ? err.message : ''
       // "Failed to fetch" usually means the serverless function timed out
       if (msg === 'Failed to fetch') {
-        setError('Request timed out. The AI service may be slow — please try shorter text or try again.')
+        setError(ct("requestTimedOut"))
       } else {
-        setError(msg || 'Something went wrong')
+        setError(msg || ct("somethingWentWrong"))
       }
     } finally {
       setLoading(false)
@@ -57,10 +61,8 @@ export default function AiSummaryPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Text Summarizer</h1>
-        <p className="text-gray-500">
-          Summarize long articles, documents, and text with AI. Get the key points in seconds.
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -68,18 +70,18 @@ export default function AiSummaryPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Input */}
         <div>
-          <label className="block text-sm font-medium mb-2">Text to Summarize</label>
+          <label className="block text-sm font-medium mb-2">{ct("textToSummarize")}</label>
           <textarea
             value={text}
             onChange={e => setText(e.target.value)}
-            placeholder="Paste the article, document, or text you want to summarize..."
+            placeholder={ct("placeholderSummaryInput")}
             rows={16}
             className="w-full p-4 border rounded-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm dark:bg-gray-800 dark:border-gray-700"
           />
           <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
-            <span>{text.length} characters</span>
+            <span>{ct("characters", { count: text.length })}</span>
             {text.length > 0 && (
-              <span>~{Math.max(1, Math.round(text.trim().split(/\s+/).length))} words</span>
+              <span>{ct("approxWords", { count: Math.max(1, Math.round(text.trim().split(/\s+/).length)) })}</span>
             )}
           </div>
         </div>
@@ -87,10 +89,10 @@ export default function AiSummaryPage() {
         {/* Output */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium">Summary</label>
+            <label className="text-sm font-medium">{ct("summary")}</label>
             {result && (
               <button onClick={handleCopy}
-                className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+                className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
             )}
           </div>
           <div className={`min-h-[400px] p-4 border rounded-xl text-sm ${
@@ -100,16 +102,16 @@ export default function AiSummaryPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-xs text-gray-400">
                   <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-0.5 rounded">
-                    {result.wordCount} words
+                    {ct("words", { count: result.wordCount })}
                   </span>
                   <span className="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
-                    {Math.round((1 - result.summary.length / result.originalLength) * 100)}% reduction
+                    {ct("percentReduction", { percent: Math.round((1 - result.summary.length / result.originalLength) * 100) })}
                   </span>
                 </div>
                 <p className="leading-relaxed whitespace-pre-wrap">{result.summary}</p>
               </div>
             ) : (
-              <p className="text-gray-400">AI summary will appear here...</p>
+              <p className="text-gray-400">{ct("placeholderSummary")}</p>
             )}
           </div>
         </div>
@@ -118,12 +120,12 @@ export default function AiSummaryPage() {
       {/* Options */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Summary Length</label>
+          <label className="block text-sm font-medium mb-2">{ct("summaryLength")}</label>
           <div className="flex gap-2">
             {[
-              { value: 'short', label: 'Short', desc: '2-3 sentences' },
-              { value: 'medium', label: 'Medium', desc: 'Paragraph' },
-              { value: 'long', label: 'Long', desc: 'Detailed' },
+              { value: 'short', label: ct("short"), desc: ct("descShortSummary") },
+              { value: 'medium', label: ct("medium"), desc: ct("paragraph") },
+              { value: 'long', label: ct("long"), desc: ct("descLongSummary") },
             ].map(opt => (
               <button key={opt.value} onClick={() => setLength(opt.value)}
                 className={`flex-1 p-3 rounded-lg border text-center transition-all ${
@@ -138,12 +140,12 @@ export default function AiSummaryPage() {
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Output Style</label>
+          <label className="block text-sm font-medium mb-2">{ct("outputStyle")}</label>
           <div className="flex gap-2">
             {[
-              { value: 'paragraph', label: 'Paragraph', desc: 'Flowing text' },
-              { value: 'bullet', label: 'Bullet Points', desc: 'Key points list' },
-              { value: 'one-sentence', label: 'One Sentence', desc: 'Ultra short' },
+              { value: 'paragraph', label: ct("paragraph"), desc: ct("descFlowingText") },
+              { value: 'bullet', label: ct("bulletPoints"), desc: ct("descKeyPoints") },
+              { value: 'one-sentence', label: ct("oneSentence"), desc: ct("descUltraShort") },
             ].map(opt => (
               <button key={opt.value} onClick={() => setStyle(opt.value)}
                 className={`flex-1 p-3 rounded-lg border text-center transition-all ${
@@ -162,7 +164,7 @@ export default function AiSummaryPage() {
       {/* Submit */}
       <button onClick={handleSummarize} disabled={loading || !text.trim()}
         className="w-full mt-4 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-        {loading ? '🤖 AI is thinking...' : '🤖 Summarize with AI'}
+        {loading ? ct("aiThinking") : ct("summarizeWithAI")}
       </button>
 
       {error && (
@@ -171,30 +173,29 @@ export default function AiSummaryPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Text Summarizer</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Paste or type the article, document, or text you want to summarize into the input field.</li>
-          <li>Choose your preferred summary length &mdash; Short (2-3 sentences), Medium (paragraph), or Long (detailed).</li>
-          <li>Select the output style &mdash; Paragraph, Bullet Points, or One Sentence for a quick TL;DR.</li>
-          <li>Click &quot;Summarize with AI&quot; and wait for the AI to process your text. Copy the result with one click.</li>
-          <li>Review the word count and reduction percentage to gauge how condensed the summary is.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for Better Summaries</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>For the best results, paste the full article or document rather than just a snippet &mdash; context helps the AI produce a more accurate summary.</li>
-          <li>Use Bullet Points style for research papers and reports when you need distinct key takeaways.</li>
-          <li>Start with Medium length and adjust up or down based on how much detail you need.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">Is the AI text summarizer free to use?</h3><p>Yes, this AI text summarizer is completely free to use. There are no usage limits or hidden charges.</p></div>
-          <div><h3 className="font-semibold">How does the AI summarize text?</h3><p>The AI analyzes the full text, identifies the most important sentences and concepts, and generates a concise summary that captures the key points while preserving the original meaning.</p></div>
-          <div><h3 className="font-semibold">Is my text secure when I use the summarizer?</h3><p>Your text is sent securely to the AI API for processing. We do not store or share your content. For sensitive information, avoid including personal or confidential details.</p></div>
-          <div><h3 className="font-semibold">What makes a good text to summarize?</h3><p>Any well-written text works well &mdash; news articles, blog posts, academic papers, reports, or long emails. Clear and structured content produces the most coherent summaries.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

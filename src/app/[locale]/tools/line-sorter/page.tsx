@@ -1,11 +1,15 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 type SortMode = 'az' | 'za' | 'length-asc' | 'length-desc' | 'shuffle' | 'reverse'
 
 export default function LineSorterPage() {
+  const t = useTranslations('tools.line-sorter')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<SortMode>('az')
   const [removeDups, setRemoveDups] = useState(false)
@@ -50,8 +54,8 @@ export default function LineSorterPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Line Sorter</h1>
-      <p className="text-gray-500 mb-6">Sort text lines A-Z, Z-A, by length, or shuffle randomly.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -83,7 +87,7 @@ export default function LineSorterPage() {
           </div>
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium">Output</label>
+              <label className="block text-sm font-medium">{ct("output")}</label>
               {result && (
                 <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{copied ? 'Copied!' : 'Copy'}</button>
               )}
@@ -102,34 +106,29 @@ export default function LineSorterPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste your text with one item per line in the input box.</li>
-          <li>Select a sort method: <strong>A to Z</strong>, <strong>Z to A</strong>, <strong>by Length</strong>, <strong>Shuffle</strong>, or <strong>Reverse</strong>.</li>
-          <li>Toggle <strong>Remove duplicate lines</strong> to eliminate repeated entries.</li>
-          <li>The sorted output appears instantly in the output panel.</li>
-          <li>Click <strong>Copy</strong> to use the sorted list elsewhere.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use <strong>Shuffle</strong> to randomize a list for contests, raffles, or drawing names.</li>
-          <li>Sorting by <strong>Length</strong> helps quickly find the shortest or longest entries in a list.</li>
-          <li>Enable <strong>Remove duplicates</strong> before shuffling to ensure fair randomization without repeats.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">Does the line sorter handle blank lines?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Yes. Blank lines are treated as empty strings and sorted along with the rest. Enable Remove duplicates to clean up blank lines.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What sorting algorithm is used for alphabetical sorting?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">The sorter uses JavaScript&apos;s locale-aware comparison, which handles accented characters and international text correctly.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

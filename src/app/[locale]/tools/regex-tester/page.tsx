@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useMemo, useCallback } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -10,6 +11,9 @@ interface Match {
 }
 
 export default function RegexTesterPage() {
+  const t = useTranslations('tools.regex-tester')
+  const ct = useTranslations('common')
+
   const [pattern, setPattern] = useState('(\\w+)@(\\w+\\.\\w+)')
   const [flags, setFlags] = useState('g')
   const [testText, setTestText] = useState('alice@example.com\nbob@test.org\nhello world')
@@ -73,8 +77,8 @@ export default function RegexTesterPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Regex Tester</h1>
-        <p className="text-gray-500">Test regular expressions in real-time with highlighted matches.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -153,30 +157,27 @@ export default function RegexTesterPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the Regex Tester</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Type or paste your regular expression pattern in the input field between the two slashes. The tool provides a default pattern to get started.</li>
-          <li>Add flags (g for global, i for case-insensitive, m for multiline, s for dotall) by toggling the buttons below the pattern field.</li>
-          <li>Enter your test text in the left text area &mdash; the tool highlights all matches in real time as you type the pattern or change the flags.</li>
-          <li>View the highlighted matches in the right panel, where matched portions are shown with a yellow background.</li>
-          <li>Review the match details table below showing each match&rsquo;s position in the text and any captured groups.</li>
-          <li>Use the common pattern presets (Email, URL, Phone, IP Address, Date, HTML Tag) to load predefined regex patterns for quick testing.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips for Better Results</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use the &ldquo;g&rdquo; (global) flag when you want to find all matches in the text. Without it, the tester stops after the first match.</li>
-          <li>The match details table shows captured groups (text matched by parts of the pattern inside parentheses) &mdash; use groups to extract specific portions of each match.</li>
-          <li>Start with simple patterns and gradually add complexity &mdash; test each addition to isolate which part of the regex causes unexpected behavior.</li>
-          <li>Use the common pattern presets as a starting point and customize them for your specific use case.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What regex engine does this tester use?</h3><p>The tester uses JavaScript&rsquo;s built-in RegExp engine. While most standard patterns work across languages, some features like lookbehinds may behave differently in JavaScript than in PCRE or Python.</p></div>
-          <div><h3 className="font-semibold">What do the flag buttons (g, i, m, s) do?</h3><p>g (global) finds all matches, i (ignore case) makes matching case-insensitive, m (multiline) changes ^ and $ to match line boundaries, and s (dotall) makes the dot match newline characters.</p></div>
-          <div><h3 className="font-semibold">How do I extract part of a match using capture groups?</h3><p>Wrap the portion you want to extract in parentheses in your pattern. For example, (\w+)@(\w+\.\w+) captures the username and domain separately from an email address.</p></div>
-          <div><h3 className="font-semibold">Is my data safe when using this tool?</h3><p>Yes, all regex testing happens entirely in your browser. Your patterns and test text are never sent to any server.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

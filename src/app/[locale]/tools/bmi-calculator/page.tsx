@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -13,6 +14,9 @@ function getCategory(bmi: number): { label: Category; color: string; bg: string 
 }
 
 export default function BmiCalculatorPage() {
+  const t = useTranslations('tools.bmi-calculator')
+  const ct = useTranslations('common')
+
   const [height, setHeight] = useState<string>('170')
   const [weight, setWeight] = useState<string>('70')
   const [bmi, setBmi] = useState<number | null>(null)
@@ -29,27 +33,25 @@ export default function BmiCalculatorPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">BMI Calculator Free Online — Body Mass Index Calculator</h1>
-      <p className="text-gray-500 mb-6">Free online BMI calculator. Calculate your Body Mass Index instantly. Check if you&apos;re underweight, normal, overweight, or obese based on your height and weight.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
         <div className="grid sm:grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="block text-sm font-medium mb-1">Height (cm)</label>
+            <label className="block text-sm font-medium mb-1">{ct("heightCm")}</label>
             <input type="number" value={height} onChange={e => setHeight(e.target.value)}
               className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" min={1} max={300} />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Weight (kg)</label>
+            <label className="block text-sm font-medium mb-1">{ct("weightKg")}</label>
             <input type="number" value={weight} onChange={e => setWeight(e.target.value)}
               className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600" min={1} max={500} />
           </div>
         </div>
         <button onClick={calcBmi}
-          className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-          Calculate BMI
-        </button>
+          className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors">{ct("calculateBmi")}</button>
 
         {bmi !== null && cat && (
           <div className={`mt-6 p-4 rounded-xl text-center ${cat.bg}`}>
@@ -69,31 +71,29 @@ export default function BmiCalculatorPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Enter your height in centimeters (cm) in the Height field.</li>
-          <li>Enter your weight in kilograms (kg) in the Weight field.</li>
-          <li>Click the &ldquo;Calculate BMI&rdquo; button to compute your Body Mass Index.</li>
-          <li>View your BMI value, weight category, and color-coded indicator instantly.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Use accurate measurements for the most reliable BMI result.</li>
-          <li>BMI is a screening tool, not a diagnostic test. Consult a healthcare provider for a full assessment.</li>
-          <li>Track your BMI over time to monitor changes in your body composition.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is a healthy BMI range?</h3>
-          <p>A BMI between 18.5 and 24.9 is considered a healthy weight range for most adults. Below 18.5 is underweight, 25&ndash;29.9 is overweight, and 30 or above is obese.</p>
-          <h3>Is BMI accurate for athletes?</h3>
-          <p>BMI may overestimate body fat in athletes and people with high muscle mass because it does not distinguish between muscle and fat. Additional measurements may be needed.</p>
-          <h3>Can BMI be used for children?</h3>
-          <p>BMI for children and teenagers uses percentiles based on age and sex. This calculator is designed for adults aged 18 and over.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

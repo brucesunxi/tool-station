@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useCallback, useRef } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -10,6 +11,9 @@ declare global {
 }
 
 export default function QrReaderPage() {
+  const t = useTranslations('tools.qr-reader')
+  const ct = useTranslations('common')
+
   const [image, setImage] = useState<string | null>(null)
   const [result, setResult] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -108,10 +112,8 @@ export default function QrReaderPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">QR Code Reader</h1>
-      <p className="text-gray-500 mb-6">
-        Upload a QR code image and instantly decode it. No app needed.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8">
@@ -174,43 +176,29 @@ export default function QrReaderPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload a QR code image (screenshot, photo, or downloaded file) using the file picker.</li>
-          <li>The tool loads the jsQR library from CDN and automatically decodes the QR code.</li>
-          <li>View the decoded text — it may be a URL, text, contact info, or other data.</li>
-          <li>Click <strong>Copy</strong> to copy the decoded content to your clipboard.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>For best results, use clear, well-lit QR code images with high contrast between the code and its background.</li>
-          <li>If the QR code isn&apos;t detected, try cropping the image to focus on just the QR code area.</li>
-          <li>The jsQR library is loaded from a CDN on first use, so an internet connection is required for the initial load.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4 not-prose">
-          <div>
-            <h3 className="font-semibold">What types of QR codes can this reader decode?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              This tool can decode standard QR codes containing URLs, plain text, phone numbers, SMS messages, email addresses, vCard contact data, Wi-Fi network credentials, and calendar events. It uses the jsQR library which supports all common QR code formats.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Why does it need to load a library from the internet?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              QR code decoding requires specialized image processing algorithms. The jsQR library is loaded from a CDN because it is a large library that is only needed when using this specific tool. After the first load, it may be cached by your browser.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does this tool work with damaged or low-quality QR codes?</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              jsQR includes error correction support, so it can often decode QR codes that are partially damaged, rotated, or of lower quality. However, severely damaged codes may not be readable. For best results, use the highest quality image available.
-            </p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

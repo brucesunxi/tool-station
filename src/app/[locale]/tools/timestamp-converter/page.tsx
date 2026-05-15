@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -20,6 +21,9 @@ function toUnix(d: Date) {
 }
 
 export default function TimestampConverterPage() {
+  const t = useTranslations('tools.timestamp-converter')
+  const ct = useTranslations('common')
+
   const [now, setNow] = useState(Math.floor(Date.now() / 1000))
   const [tsInput, setTsInput] = useState<string>('')
   const [tsFormat, setTsFormat] = useState('iso')
@@ -50,8 +54,8 @@ export default function TimestampConverterPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Timestamp Converter Free Online — Unix Timestamp to Date</h1>
-      <p className="text-gray-500 mb-6">Free online timestamp converter. Convert Unix timestamps to human-readable dates and vice versa. Support for seconds, milliseconds, and multiple date formats.</p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       <AdBanner className="mb-8 h-20" />
 
       <div className="bg-white dark:bg-gray-800 border rounded-xl p-6 mb-8 space-y-6">
@@ -108,31 +112,29 @@ export default function TimestampConverterPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>View the current Unix timestamp displayed at the top, updating every second.</li>
-          <li>To convert a timestamp to a date, enter the Unix timestamp and select your preferred format, then click &ldquo;Convert to Date.&rdquo;</li>
-          <li>To convert a date to a timestamp, pick a date and time, then click &ldquo;Convert to Timestamp.&rdquo;</li>
-          <li>Copy the result for use in your application, database, or script.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Unix timestamps are in seconds since January 1, 1970 (epoch). The converter auto-detects millisecond timestamps.</li>
-          <li>Use the ISO 8601 format for maximum compatibility with APIs and databases.</li>
-          <li>The current timestamp display is useful for debugging and setting time-based events.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What is a Unix timestamp?</h3>
-          <p>A Unix timestamp is the number of seconds that have elapsed since January 1, 1970 (midnight UTC), not counting leap seconds.</p>
-          <h3>What is the difference between seconds and milliseconds?</h3>
-          <p>Unix timestamps are typically in seconds (10 digits). JavaScript&rsquo;s Date.now() returns milliseconds (13 digits). The converter automatically handles both.</p>
-          <h3>Does the converter handle time zones?</h3>
-          <p>The Unix timestamp is always UTC. The human-readable date formats respect your local time zone for &ldquo;locale&rdquo; and &ldquo;date&rdquo; formats.</p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

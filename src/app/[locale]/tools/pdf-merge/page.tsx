@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef, useCallback } from 'react'
 import { formatFileSize } from '@/lib/utils'
 import AdBanner from '@/components/AdBanner'
@@ -14,6 +15,9 @@ interface PdfMergeResult {
 }
 
 export default function PdfMergePage() {
+  const t = useTranslations('tools.pdf-merge')
+  const ct = useTranslations('common')
+
   const [files, setFiles] = useState<File[]>([])
   const [previews, setPreviews] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
@@ -90,7 +94,7 @@ export default function PdfMergePage() {
       }
       setResult(await res.json())
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(err instanceof Error ? err.message : ct("somethingWentWrong"))
     } finally {
       setLoading(false)
     }
@@ -106,10 +110,8 @@ export default function PdfMergePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">PDF Merger</h1>
-        <p className="text-gray-500">
-          Combine multiple PDF files into one document. Free and fast.
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
@@ -129,7 +131,7 @@ export default function PdfMergePage() {
             onChange={(e) => e.target.files && addFiles(e.target.files)} />
           <div className="text-4xl mb-4">📑</div>
           <p className="text-lg font-medium mb-2">Drop PDF files here or click to browse</p>
-          <p className="text-sm text-gray-400">Select multiple PDFs to merge them into one &bull; Max 50MB each</p>
+          <p className="text-sm text-gray-400">Select multiple PDFs to merge them into one &bull; {ct("maxFileSize", { size: "50MB" })} each</p>
         </div>
       )}
 
@@ -234,42 +236,27 @@ export default function PdfMergePage() {
 
       {/* SEO */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Click the upload area or drag and drop PDF files into it.</li>
-          <li>Add more files using the <strong>Add More</strong> button if needed.</li>
-          <li>Reorder files with the up and down arrow buttons beside each file entry.</li>
-          <li>Remove unwanted files by clicking the X button.</li>
-          <li>Click <strong>Merge PDFs</strong> once you have selected at least two files.</li>
-          <li>Download the merged PDF document to your device.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Reorder your files before merging &mdash; the final document follows the order shown in the list.</li>
-          <li>Each PDF must be 50MB or smaller. Files exceeding this limit will be rejected.</li>
-          <li>You can merge PDFs with different page sizes &mdash; each page retains its original dimensions.</li>
-          <li>All processing is done in memory; your files are never stored on disk.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Is there a limit on how many PDFs I can merge?</h3>
-            <p>There is no hard limit on the number of files, but each file must be under 50MB and the total request size is subject to server capacity.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Will the merged PDF maintain the quality of the originals?</h3>
-            <p>Yes, merging combines pages without recompressing them, so original quality is fully preserved.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are my files stored on your servers?</h3>
-            <p>No, all processing happens in memory and files are never permanently stored.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I merge PDFs of different page sizes?</h3>
-            <p>Yes, pages retain their original dimensions in the merged document regardless of size differences.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

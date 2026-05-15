@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -92,6 +93,9 @@ const categories: UnitCategory[] = [
 ]
 
 export default function UnitConverterPage() {
+  const t = useTranslations('tools.unit-converter')
+  const ct = useTranslations('common')
+
   const [cat, setCat] = useState(categories[0])
   const [from, setFrom] = useState(cat.units[0].value)
   const [to, setTo] = useState(cat.units[1]?.value || cat.units[0].value)
@@ -139,8 +143,8 @@ export default function UnitConverterPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Unit Converter</h1>
-        <p className="text-gray-500">Convert between units of length, weight, temperature, area, volume, speed, data, and time.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -196,40 +200,27 @@ export default function UnitConverterPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select a category by clicking one of the pill buttons -- Length, Weight, Temperature, Area, Volume, Speed, Data, or Time.</li>
-          <li>Enter the numeric value you want to convert in the "Value" input field.</li>
-          <li>Choose the source unit from the "From" dropdown menu.</li>
-          <li>Choose the target unit from the "To" dropdown menu -- the converted result updates automatically in real time.</li>
-          <li>Click the swap button between the two dropdowns to quickly reverse the conversion direction.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>The converter updates results in real time as you type -- there is no "Convert" button to click for most actions.</li>
-          <li>Use the swap button to quickly invert the conversion, such as switching from miles to kilometers instead of kilometers to miles.</li>
-          <li>For temperature conversions, remember that Celsius and Kelvin use the same step size -- a change of 1 degree Celsius equals a change of 1 Kelvin.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">How many units are supported?</h3>
-            <p>Over 50 units across 8 categories including length, weight, temperature, area, volume, speed, data storage, and time.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Are temperature conversions handled differently from other categories?</h3>
-            <p>Yes. Temperature conversions use offset formulas (F = C x 9/5 + 32) rather than simple multiplication factors used for other unit types.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Does the converter handle large numbers correctly?</h3>
-            <p>Yes. It uses standard JavaScript number precision. Results are displayed with up to 6 decimal places, with trailing zeros removed for readability.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my data sent to any server?</h3>
-            <p>No. All conversions are calculated in your browser. Nothing is uploaded to any server.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

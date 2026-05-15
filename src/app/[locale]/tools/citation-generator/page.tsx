@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -14,6 +15,9 @@ const sourceLabels: Record<SourceType, string> = {
 }
 
 export default function CitationGeneratorPage() {
+  const t = useTranslations('tools.citation-generator')
+  const ct = useTranslations('common')
+
   const [sourceType, setSourceType] = useState<SourceType>('book')
   const [style, setStyle] = useState<Style>('mla')
   const [copied, setCopied] = useState('')
@@ -118,8 +122,8 @@ export default function CitationGeneratorPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Citation Generator</h1>
-        <p className="text-gray-500">Generate citations in MLA, APA, and Chicago style. Supports books, websites, journal articles, and videos.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -246,39 +250,27 @@ export default function CitationGeneratorPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select your citation style -- MLA, APA, or Chicago -- using the toggle buttons at the top of the page.</li>
-          <li>Choose the source type: Book, Website, Journal Article, or Video.</li>
-          <li>Fill in the source details such as author, title, publisher, year, and URL as applicable to your source.</li>
-          <li>Copy the formatted citation using the "Copy Citation" button or copy individual style variants displayed below the main citation.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Always double-check auto-generated citations against your source's title page for accuracy before submitting academic work.</li>
-          <li>For websites, the access date is required in MLA and Chicago styles but optional in APA.</li>
-          <li>Use the DOI (Digital Object Identifier) for journal articles whenever possible -- it is the most reliable and stable identifier.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Which citation style should I use?</h3>
-            <p>MLA is commonly used in humanities, APA in psychology and education, and Chicago in history and some social sciences. Check with your instructor or publisher for their preferred style.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Can I generate citations for sources other than books, websites, articles, and videos?</h3>
-            <p>Currently, the tool supports these four source types. For other sources like conference papers or interviews, consult your style guide for the correct format.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Is my data sent to a server?</h3>
-            <p>No. All citation generation happens entirely in your browser -- no data is uploaded anywhere.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Do I need to include page numbers for book citations?</h3>
-            <p>Page numbers are included if you enter them but are optional in the citation. They are often required for in-text citations and footnotes referencing specific content.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

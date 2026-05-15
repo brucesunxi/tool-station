@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function AiGrammarPage() {
+  const t = useTranslations('tools.ai-grammar')
+  const ct = useTranslations('common')
+
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState('')
@@ -19,10 +23,10 @@ export default function AiGrammarPage() {
         body: JSON.stringify({ text }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Check failed')
+      if (!res.ok) throw new Error(data.error || ct("generationFailed"))
       setResult(data.result)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Check failed')
+      setError(err instanceof Error ? err.message : ct("generationFailed"))
     } finally {
       setLoading(false)
     }
@@ -33,40 +37,40 @@ export default function AiGrammarPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">AI Grammar Checker</h1>
-        <p className="text-gray-500">Check spelling, grammar, punctuation, and style. Get corrected text with explanations.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
 
       <AdBanner className="mb-8 h-20" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Text to Check</label>
+          <label className="block text-sm font-medium mb-2">{ct("textToCheck")}</label>
           <textarea value={text} onChange={e => setText(e.target.value)}
-            placeholder="Paste your text here for grammar checking..."
+            placeholder={ct("placeholderGrammarCheck")}
             rows={14}
             className="w-full p-4 border rounded-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm dark:bg-gray-800 dark:border-gray-700"
           />
-          <div className="mt-1 text-xs text-gray-400 text-right">{text.length} chars</div>
+          <div className="mt-1 text-xs text-gray-400 text-right">{ct("chars", { count: text.length })}</div>
         </div>
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium">Results</label>
+            <label className="text-sm font-medium">{ct("results")}</label>
             {result && (
-              <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>
+              <button onClick={handleCopy} className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>
             )}
           </div>
           <div className={`min-h-[370px] p-4 border rounded-xl text-sm whitespace-pre-wrap ${
             result ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
           }`}>
-            {result || <p className="text-gray-400">{loading ? 'Checking...' : 'Corrections will appear here...'}</p>}
+            {result || <p className="text-gray-400">{loading ? ct("checking") : ct("placeholderGrammarResults")}</p>}
           </div>
         </div>
       </div>
 
       <button onClick={handleCheck} disabled={loading || !text.trim()}
         className="w-full mt-4 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-        {loading ? '🤖 Checking...' : '✓ Check Grammar'}
+        {loading ? ct("checking") : ct("checkGrammar")}
       </button>
 
       {error && (
@@ -75,29 +79,29 @@ export default function AiGrammarPage() {
 
       {/* SEO Content */}
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use the AI Grammar Checker</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Paste or type the English text you want to check into the input text area.</li>
-          <li>Click &quot;Check Grammar&quot; to start the AI analysis of your text.</li>
-          <li>Review the corrected version that appears in the results panel on the right.</li>
-          <li>Read through the explanations provided for each correction to understand the grammar rules.</li>
-          <li>Copy the corrected text with one click and use it in your document or message.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips for Better Grammar Checks</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Write naturally first &mdash; do not worry about perfection. The AI catches mistakes and suggests improvements.</li>
-          <li>Run longer documents through the checker section by section for more thorough analysis.</li>
-          <li>Pay attention to the corrections you see frequently &mdash; these are areas where you can improve your writing skills.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div><h3 className="font-semibold">What types of errors does the AI grammar checker catch?</h3><p>It catches spelling mistakes, punctuation errors, grammatical issues (subject-verb agreement, tense, articles), awkward phrasing, and style improvements.</p></div>
-          <div><h3 className="font-semibold">Does the grammar checker work for non-native English speakers?</h3><p>Yes, it is especially helpful for non-native speakers. The AI provides corrected text along with explanations that help you learn from your mistakes.</p></div>
-          <div><h3 className="font-semibold">Can I check grammar for languages other than English?</h3><p>Currently, the grammar checker is optimized for English text. It may work for other languages, but results are best for English content.</p></div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

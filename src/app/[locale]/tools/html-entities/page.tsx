@@ -1,4 +1,6 @@
 'use client'
+
+import { useTranslations } from 'next-intl'
 import { useState, useMemo } from 'react'
 import AdBanner from '@/components/AdBanner'
 
@@ -101,6 +103,9 @@ const REFERENCE_CHARS = [
 ]
 
 export default function HtmlEntitiesPage() {
+  const t = useTranslations('tools.html-entities')
+  const ct = useTranslations('common')
+
   const [input, setInput] = useState('<div class="hello">Hello & welcome</div>')
   const [mode, setMode] = useState<'encode' | 'decode'>('encode')
 
@@ -134,11 +139,8 @@ export default function HtmlEntitiesPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">HTML Entity Encoder Free Online — Encode &amp; Decode HTML Entities</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        Free online HTML entity encoder and decoder. Safely encode special characters to HTML entities
-        and decode them back. Includes a reference chart of common entities.
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
 
       <AdBanner className="mb-8 h-20" />
 
@@ -172,7 +174,7 @@ export default function HtmlEntitiesPage() {
 
         {/* Input */}
         <div>
-          <label className="block text-sm font-medium mb-2">Input</label>
+          <label className="block text-sm font-medium mb-2">{ct("input")}</label>
           <div className="relative">
             <textarea
               value={input}
@@ -259,48 +261,29 @@ export default function HtmlEntitiesPage() {
       </div>
 
       <section className="prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Select <strong>Encode</strong> to convert special characters (&amp;, &lt;, &gt;, quotes) into their HTML entity equivalents.</li>
-          <li>Select <strong>Decode</strong> to convert HTML entities back into their actual characters.</li>
-          <li>Type or paste your text into the input area — the output updates automatically.</li>
-          <li>Use the <strong>Swap</strong> button to exchange input and output for quick round-trip conversion, or copy the result.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
 
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>Always encode user-generated content with <code>&amp;lt;</code> and <code>&amp;amp;</code> before inserting into HTML to prevent XSS attacks.</li>
-          <li>The encoder preserves existing entities by decoding first — this prevents double-encoding.</li>
-          <li>Use the reference table to find the right entity for special characters like copyright (&amp;copy;) or trademark (&amp;trade;).</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
 
-        <h2>FAQ</h2>
-        <div>
-          <h3>What are HTML entities and why are they needed?</h3>
-          <p>
-            HTML entities are special codes that represent reserved characters in HTML. For example,
-            <code>&lt;</code> represents the less-than sign (&lt;). They are needed because characters
-            like &lt;, &gt;, and &amp; have special meanings in HTML markup. Using entities prevents
-            browsers from misinterpreting them as code.
-          </p>
-
-          <h3>Do I need to encode every special character?</h3>
-          <p>
-            Only the five reserved characters must be encoded in HTML content: &amp; (&amp;amp;),
-            &lt; (&amp;lt;), &gt; (&amp;gt;), &quot; (&amp;quot;), and &apos; (&amp;#39;). Other
-            characters like &copy; or &euro; are optional — they can be typed directly in UTF-8
-            documents, but using entities ensures compatibility with older systems.
-          </p>
-
-          <h3>What is the difference between &amp;#39; and &amp;apos;?</h3>
-          <p>
-            Both represent the apostrophe or single quote character (&apos;). &amp;#39; is a numeric
-            entity that works in all HTML versions. &amp;apos; is a named entity that was introduced
-            in XHTML and works in HTML5 documents. &amp;#39; is generally preferred for maximum
-            compatibility.
-          </p>
-        </div>
-      </section>
+        <h2>{t('faq.heading')}</h2>
+        <div className="space-y-4">
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

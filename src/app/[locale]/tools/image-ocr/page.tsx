@@ -1,9 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useRef } from 'react'
 import AdBanner from '@/components/AdBanner'
 
 export default function ImageOcrPage() {
+  const t = useTranslations('tools.image-ocr')
+  const ct = useTranslations('common')
+
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
@@ -47,8 +51,8 @@ export default function ImageOcrPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Image to Text (OCR)</h1>
-        <p className="text-gray-500">Extract text from images using optical character recognition. Supports JPG, PNG, and WebP.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('h1')}</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">{t('description')}</p>
       </div>
       <AdBanner className="mb-8 h-20" />
 
@@ -60,7 +64,7 @@ export default function ImageOcrPage() {
           <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={e => e.target.files?.[0] && handleFile(e.target.files[0])} />
           <p className="text-4xl mb-3">🖼️</p>
           <p className="font-medium">Upload an image to extract text</p>
-          <p className="text-sm text-gray-400 mt-1">Supports JPG, PNG, WebP — Max 10MB</p>
+          <p className="text-sm text-gray-400 mt-1">Supports JPG, PNG, WebP — {ct("maxFileSize", { size: "10MB" })}</p>
         </div>
       )}
 
@@ -87,7 +91,7 @@ export default function ImageOcrPage() {
             <div className="flex items-center justify-between mb-2">
               <label className="text-sm font-medium">Extracted Text</label>
               {result && <button onClick={() => navigator.clipboard.writeText(result).catch(() => {})}
-                className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">Copy</button>}
+                className="text-xs px-2 py-1 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">{ct("copy")}</button>}
             </div>
             <div className={`min-h-[300px] p-4 border rounded-xl text-sm whitespace-pre-wrap ${
               result ? 'border-green-200 bg-green-50/50 dark:bg-green-900/10' : 'bg-gray-50 dark:bg-gray-800/50'
@@ -101,42 +105,27 @@ export default function ImageOcrPage() {
       {error && <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">{error}</div>}
 
       <section className="mt-12 pt-8 border-t prose dark:prose-invert max-w-none">
-        <h2>How to Use</h2>
+        <h2>{t('howto.heading')}</h2>
         <ol>
-          <li>Upload an image containing text by clicking the upload area or dragging a file onto it.</li>
-          <li>Click <strong>Extract Text</strong> to run the OCR engine on your image.</li>
-          <li>Wait for the progress indicator to reach 100% &mdash; processing time depends on image size and content.</li>
-          <li>Review the extracted text in the right panel.</li>
-          <li>Click <strong>Copy</strong> to copy the text to your clipboard for use in other applications.</li>
-          <li>Use <strong>Remove</strong> to clear the current image and start over with a new one.</li>
+          {(t.raw('howto.steps') as string[]).map((step, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
+          ))}
         </ol>
-        <h2>Tips</h2>
+        <h2>{t('tips.heading')}</h2>
         <ul>
-          <li>High-resolution images with clear, well-lit text produce the most accurate results.</li>
-          <li>Printed text (documents, receipts, signs) works significantly better than handwriting.</li>
-          <li>Ensure text is horizontally oriented &mdash; rotated or skewed text reduces recognition accuracy.</li>
-          <li>High contrast between text and background (e.g., black text on white paper) improves OCR quality.</li>
+          {(t.raw('tips.items') as string[]).map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
         </ul>
-        <h2>FAQ</h2>
+        <h2>{t('faq.heading')}</h2>
         <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold">Is my data sent to a server?</h3>
-            <p>No, all OCR processing happens entirely in your browser using Tesseract.js. Nothing is uploaded to any server.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What languages are supported?</h3>
-            <p>Currently English (eng) is supported. Additional languages will be added in future updates.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">What image formats are accepted?</h3>
-            <p>We support JPG, PNG, and WebP images up to 10MB.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">How accurate is the OCR?</h3>
-            <p>Accuracy depends on image quality. Clear, high-resolution images with standard fonts typically achieve 90% or higher accuracy.</p>
-          </div>
-        </div>
-      </section>
+          {(t.raw('faq.items') as { q: string; a: string }[]).map((item, i) => (
+            <div key={i}>
+              <h3 className="font-semibold">{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div></section>
     </div>
   )
 }

@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import { Link } from '@/i18n'
+import { useTranslations } from 'next-intl'
 
 interface ToolCardProps {
   title: string
@@ -19,6 +20,7 @@ const categoryColors: Record<string, { bg: string; text: string }> = {
 }
 
 export default function ToolCard({ title, description, icon, href, isNew, category = 'dev' }: ToolCardProps) {
+  const t = useTranslations('common')
   const colors = categoryColors[category] || categoryColors.dev
 
   return (
@@ -28,7 +30,7 @@ export default function ToolCard({ title, description, icon, href, isNew, catego
     >
       {isNew && (
         <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold shadow-sm z-10">
-          NEW
+          {t('new')}
         </span>
       )}
       <div className={`w-10 h-10 ${colors.bg} rounded-lg flex items-center justify-center text-lg shrink-0 ${colors.text}`}>

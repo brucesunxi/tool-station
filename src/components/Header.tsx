@@ -1,21 +1,33 @@
 'use client'
 
-import Link from 'next/link'
-import { useState } from 'react'
+import { Link } from '@/i18n'
+import { useTranslations } from 'next-intl'
+import { useState, useMemo } from 'react'
 import ThemeToggle from './ThemeToggle'
 import NavDropdown from './NavDropdown'
 import LocaleSwitcher from './LocaleSwitcher'
 import { tools } from '@/lib/tools'
 
-const imageTools = tools.filter(t => t.category === 'image').map(t => ({ label: t.title, href: t.href, icon: t.icon }))
-const pdfTools = tools.filter(t => t.category === 'pdf').map(t => ({ label: t.title, href: t.href, icon: t.icon }))
-const aiTools = tools.filter(t => t.category === 'ai').map(t => ({ label: t.title.replace('AI ', ''), href: t.href, icon: t.icon }))
-const devTools = tools.filter(t => t.category === 'dev').map(t => ({ label: t.title, href: t.href, icon: t.icon }))
-const textTools = tools.filter(t => t.category === 'text').map(t => ({ label: t.title, href: t.href, icon: t.icon }))
-const colorTools = tools.filter(t => t.category === 'color').map(t => ({ label: t.title, href: t.href, icon: t.icon }))
-
 export default function Header() {
+  const t = useTranslations('site')
+  const navT = useTranslations('nav')
+  const toolsT = useTranslations('tools')
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const getToolKey = (href: string) => href.replace('/tools/', '')
+  const buildItems = (category: string) =>
+    tools.filter(t => t.category === category).map(t => ({
+      label: toolsT(`${getToolKey(t.href)}.title`),
+      href: t.href,
+      icon: t.icon,
+    }))
+
+  const imageTools = useMemo(() => buildItems('image'), [toolsT])
+  const pdfTools = useMemo(() => buildItems('pdf'), [toolsT])
+  const aiTools = useMemo(() => buildItems('ai'), [toolsT])
+  const devTools = useMemo(() => buildItems('dev'), [toolsT])
+  const textTools = useMemo(() => buildItems('text'), [toolsT])
+  const colorTools = useMemo(() => buildItems('color'), [toolsT])
 
   return (
     <header className="border-b">
@@ -29,14 +41,14 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-5">
-            <Link href="/search" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Search</Link>
-            <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">All Tools</Link>
-            <NavDropdown label="Image" items={imageTools} />
-            <NavDropdown label="PDF" items={pdfTools} />
-            <NavDropdown label="AI" items={aiTools} />
-            <NavDropdown label="Dev" items={devTools} />
-            <NavDropdown label="Text" items={textTools} />
-            <NavDropdown label="Color" items={colorTools} />
+            <Link href="/search" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">{t('search')}</Link>
+            <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">{t('allTools')}</Link>
+            <NavDropdown label={navT('image')} items={imageTools} />
+            <NavDropdown label={navT('pdf')} items={pdfTools} />
+            <NavDropdown label={navT('ai')} items={aiTools} />
+            <NavDropdown label={navT('dev')} items={devTools} />
+            <NavDropdown label={navT('text')} items={textTools} />
+            <NavDropdown label={navT('color')} items={colorTools} />
             <div className="flex items-center gap-2 pl-2 border-l border-gray-200 dark:border-gray-700">
               <LocaleSwitcher />
               <ThemeToggle />
@@ -64,11 +76,11 @@ export default function Header() {
 
         {menuOpen && (
           <div className="md:hidden pb-4 space-y-1">
-            <Link href="/search" className="block py-2 text-sm font-semibold text-blue-600">Search Tools</Link>
-            <Link href="/" className="block py-2 text-sm font-semibold">All Tools</Link>
+            <Link href="/search" className="block py-2 text-sm font-semibold text-blue-600">{t('search')}</Link>
+            <Link href="/" className="block py-2 text-sm font-semibold">{t('allTools')}</Link>
             <div className="grid grid-cols-2 gap-1">
               {tools.map(t => (
-                <Link key={t.href} href={t.href} className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">{t.icon} {t.title}</Link>
+                <Link key={t.href} href={t.href} className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">{t.icon} {toolsT(`${getToolKey(t.href)}.title`)}</Link>
               ))}
             </div>
           </div>
