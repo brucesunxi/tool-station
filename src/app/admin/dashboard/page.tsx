@@ -3,43 +3,41 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-interface AnalyticsData {
+interface StatsData {
   configured: boolean
   overview?: {
-    activeUsers: number
-    pageViews: number
-    sessions: number
-    avgSessionDuration: number
-    newUsers: number
-    bounceRate: number
+    total: number
+    today: number
+    todayUnique: number
+    todayPages: number
   }
-  topPages?: { dimensions: string[]; metrics: string[] }[]
-  dailyTrend?: { dimensions: string[]; metrics: string[] }[]
-  countries?: { dimensions: string[]; metrics: string[] }[]
-  trafficSources?: { dimensions: string[]; metrics: string[] }[]
-  devices?: { dimensions: string[]; metrics: string[] }[]
+  dailyTrend?: { date: string; visits: number; uniqueIps: number }[]
+  todayPages?: Record<string, string>
+  weeklyPages?: Record<string, number>
+  recentVisits?: { path: string; ip: string; time: number; date: string; ua: string; referrer: string }[]
+  todayRanking?: { name: string; score: number }[]
+  allTimeRanking?: { name: string; score: number }[]
   error?: string
   message?: string
 }
 
-function fmtTime(seconds: number): string {
-  const m = Math.floor(seconds / 60)
-  const s = Math.round(seconds % 60)
-  return m > 0 ? `${m}m ${s}s` : `${s}s`
-}
-
 function fmtDate(dateStr: string): string {
-  const d = new Date(dateStr)
+  const d = new Date(dateStr + 'T00:00:00')
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
-function Bar({ value, max, label }: { value: number; max: number; label?: string }) {
+function fmtTime(ts: number): string {
+  const d = new Date(ts)
+  return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+}
+
+function Bar({ value, max, label, color = 'bg-blue-500' }: { value: number; max: number; label?: string; color?: string }) {
   const pct = max > 0 ? (value / max) * 100 : 0
   return (
     <div className="flex items-center gap-2">
       {label && <span className="text-xs text-gray-500 w-24 truncate shrink-0">{label}</span>}
       <div className="flex-1 h-5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-        <div className="h-full bg-blue-500 rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
+        <div className={`h-full rounded-full transition-all duration-500 ${color}`} style={{ width: `${Math.max(pct, 1)}%` }} />
       </div>
       <span className="text-xs font-medium w-16 text-right shrink-0">{value.toLocaleString()}</span>
     </div>
@@ -48,7 +46,7 @@ function Bar({ value, max, label }: { value: number; max: number; label?: string
 
 export default function AdminDashboard() {
   const router = useRouter()
-  const [data, setData] = useState<AnalyticsData | null>(null)
+  const [data, setData] = useState<StatsData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -60,7 +58,7 @@ export default function AdminDashboard() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/admin/analytics')
+      const res = await fetch('/api/admin/stats')
       if (res.status === 401) {
         router.push('/admin')
         return
@@ -80,6 +78,7 @@ export default function AdminDashboard() {
     router.push('/admin')
   }
 
+  // Loading state
   if (loading) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
@@ -93,43 +92,52 @@ export default function AdminDashboard() {
     )
   }
 
-  if (error) {
+  // Not configured
+  if (data && !data.configured) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="text-center py-16">
-          <p className="text-red-500 mb-2">Failed to load analytics</p>
-          <p className="text-sm text-gray-400 mb-4">{error}</p>
-          <button onClick={fetchData} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">Retry</button>
-          <button onClick={handleLogout} className="px-4 py-2 text-gray-500 text-sm ml-2">Logout</button>
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
+          <button onClick={handleLogout} className="text-sm px-3 py-1.5 border rounded-lg text-gray-500">Logout</button>
+        </div>
+        <div className="text-center py-16 border rounded-xl">
+          <p className="text-lg mb-2">No data yet</p>
+          <p className="text-sm text-gray-400">Start browsing the site to collect data.</p>
         </div>
       </div>
     )
   }
 
-  if (data && !data.configured) {
+  // Error state
+  if (error) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="text-center py-16">
-          <p className="text-xl mb-2">GA4 Not Configured</p>
-          <p className="text-sm text-gray-500 mb-6">{data.message}</p>
-          <button onClick={handleLogout} className="px-4 py-2 text-gray-500 border rounded-lg text-sm">Logout</button>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
+            <p className="text-sm text-red-500">Error: {error}</p>
+          </div>
+          <div className="flex gap-2">
+            <button onClick={fetchData} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">Retry</button>
+            <button onClick={handleLogout} className="px-4 py-2 border rounded-lg text-sm">Logout</button>
+          </div>
         </div>
       </div>
     )
   }
 
   const overview = data?.overview
-  const maxViews = data?.topPages?.length ? Math.max(...data.topPages.map(p => parseInt(p.metrics[0] || '0'))) : 0
-  const maxUsers = data?.dailyTrend?.length ? Math.max(...data.dailyTrend.map(d => parseInt(d.metrics[0] || '0'))) : 0
-  const maxCountry = data?.countries?.length ? Math.max(...data.countries.map(c => parseInt(c.metrics[0] || '0'))) : 0
-  const maxSource = data?.trafficSources?.length ? Math.max(...data.trafficSources.map(s => parseInt(s.metrics[0] || '0'))) : 0
+  const trend = data?.dailyTrend?.slice(-14) || []
+  const maxTrend = Math.max(...trend.map(d => d.visits), 1)
+  const allRanking = data?.allTimeRanking || []
+  const maxAllRank = Math.max(...allRanking.map(r => r.score), 1)
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-          <p className="text-sm text-gray-500">Last 7 days · GA4 data</p>
+          <p className="text-sm text-gray-500">Self-hosted tracking</p>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={fetchData} className="text-sm px-3 py-1.5 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Refresh</button>
@@ -139,22 +147,44 @@ export default function AdminDashboard() {
 
       {/* Overview Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <Card label="Active Users" value={overview?.activeUsers ?? 0} />
-        <Card label="Page Views" value={overview?.pageViews ?? 0} />
-        <Card label="Sessions" value={overview?.sessions ?? 0} />
-        <Card label="Avg. Duration" value={fmtTime(overview?.avgSessionDuration ?? 0)} />
-        <Card label="New Users" value={overview?.newUsers ?? 0} />
-        <Card label="Bounce Rate" value={overview?.bounceRate != null ? `${overview.bounceRate.toFixed(1)}%` : '0%'} />
+        <Card label="Total Visits" value={overview?.total ?? 0} />
+        <Card label="Today Visits" value={overview?.today ?? 0} />
+        <Card label="Today Unique IPs" value={overview?.todayUnique ?? 0} />
+        <Card label="Pages Today" value={overview?.todayPages ?? 0} />
       </div>
 
-      {/* Top Pages */}
+      {/* All-time Popular Tools */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold mb-3">Top Tools & Pages</h2>
+        <h2 className="text-lg font-bold mb-3">Most Visited Tools (All Time)</h2>
         <div className="bg-white dark:bg-gray-800 border rounded-xl p-4">
-          {data?.topPages?.length ? (
+          {allRanking.length > 0 ? (
             <div className="space-y-2">
-              {data.topPages.map((p, i) => (
-                <Bar key={i} value={parseInt(p.metrics[0] || '0')} max={maxViews} label={p.dimensions[1] || p.dimensions[0]} />
+              {allRanking.slice(0, 20).map((r, i) => (
+                <Bar key={i} value={r.score} max={maxAllRank} label={r.name} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-400 text-center py-4">Collecting data...</p>
+          )}
+        </div>
+      </section>
+
+      {/* Daily Trend */}
+      <section className="mb-8">
+        <h2 className="text-lg font-bold mb-3">Daily Visits (14 days)</h2>
+        <div className="bg-white dark:bg-gray-800 border rounded-xl p-4">
+          {trend.length > 0 ? (
+            <div className="space-y-1.5">
+              {trend.map((d, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="text-xs text-gray-500 w-12 shrink-0">{fmtDate(d.date)}</span>
+                  <div className="flex-1 flex gap-1">
+                    <Bar value={d.visits} max={maxTrend} color="bg-blue-500" />
+                  </div>
+                  {d.uniqueIps > 0 && (
+                    <span className="text-[10px] text-gray-400 w-12 text-right">{d.uniqueIps} IPs</span>
+                  )}
+                </div>
               ))}
             </div>
           ) : (
@@ -163,72 +193,40 @@ export default function AdminDashboard() {
         </div>
       </section>
 
-      {/* Daily Trend + Geography */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <section>
-          <h2 className="text-lg font-bold mb-3">Daily Trend (14 days)</h2>
-          <div className="bg-white dark:bg-gray-800 border rounded-xl p-4">
-            {data?.dailyTrend?.length ? (
-              <div className="space-y-1.5">
-                {data.dailyTrend.slice(-7).map((d, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500 w-12 shrink-0">{fmtDate(d.dimensions[0])}</span>
-                    <Bar value={parseInt(d.metrics[0] || '0')} max={maxUsers} />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-gray-400 text-center py-4">No data yet</p>
-            )}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-bold mb-3">Traffic Sources</h2>
-          <div className="bg-white dark:bg-gray-800 border rounded-xl p-4">
-            {data?.trafficSources?.length ? (
-              <div className="space-y-2">
-                {data.trafficSources.map((s, i) => (
-                  <Bar key={i} value={parseInt(s.metrics[0] || '0')} max={maxSource} label={s.dimensions[0] || '(direct)'} />
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-gray-400 text-center py-4">No data yet</p>
-            )}
-          </div>
-        </section>
-      </div>
-
-      {/* Countries + Devices */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <section>
-          <h2 className="text-lg font-bold mb-3">Top Countries</h2>
-          <div className="bg-white dark:bg-gray-800 border rounded-xl p-4">
-            {data?.countries?.length ? (
-              <div className="space-y-2">
-                {data.countries.map((c, i) => (
-                  <Bar key={i} value={parseInt(c.metrics[0] || '0')} max={maxCountry} label={c.dimensions[0]} />
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-gray-400 text-center py-4">No data yet</p>
-            )}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-bold mb-3">Devices</h2>
-          <div className="bg-white dark:bg-gray-800 border rounded-xl p-4">
-            {data?.devices?.length ? (
-              <div className="space-y-2">
-                {(() => { const mx = Math.max(...(data.devices || []).map(x => parseInt(x.metrics[0] || '0'))); return (data.devices || []).map((d, i) => <Bar key={i} value={parseInt(d.metrics[0] || '0')} max={mx} label={d.dimensions[0]} />); })()}
-              </div>
-            ) : (
-              <p className="text-sm text-gray-400 text-center py-4">No data yet</p>
-            )}
-          </div>
-        </section>
-      </div>
+      {/* Recent Visits */}
+      <section className="mb-8">
+        <h2 className="text-lg font-bold mb-3">Recent Visitors</h2>
+        <div className="bg-white dark:bg-gray-800 border rounded-xl overflow-hidden">
+          {data?.recentVisits && data.recentVisits.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b bg-gray-50 dark:bg-gray-700/50">
+                    <th className="text-left px-4 py-2 font-medium">Time</th>
+                    <th className="text-left px-4 py-2 font-medium">IP</th>
+                    <th className="text-left px-4 py-2 font-medium">Page</th>
+                    <th className="text-left px-4 py-2 font-medium hidden sm:table-cell">Referrer</th>
+                    <th className="text-left px-4 py-2 font-medium hidden md:table-cell">Device</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.recentVisits.slice(0, 30).map((v, i) => (
+                    <tr key={i} className="border-b last:border-0 hover:bg-gray-50 dark:hover:bg-gray-700/30">
+                      <td className="px-4 py-2 whitespace-nowrap text-gray-500">{fmtTime(v.time)}</td>
+                      <td className="px-4 py-2 font-mono">{v.ip}</td>
+                      <td className="px-4 py-2 max-w-[120px] truncate">{v.path}</td>
+                      <td className="px-4 py-2 max-w-[150px] truncate text-gray-500 hidden sm:table-cell">{v.referrer || '-'}</td>
+                      <td className="px-4 py-2 text-gray-500 hidden md:table-cell">{v.ua.includes('Mobile') ? '📱' : v.ua.includes('Mac') ? '💻' : '🖥️'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-sm text-gray-400 text-center py-6">No visits recorded yet</p>
+          )}
+        </div>
+      </section>
     </div>
   )
 }
