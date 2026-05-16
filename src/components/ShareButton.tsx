@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 interface ShareButtonProps {
   title: string
@@ -50,7 +50,6 @@ const platforms = [
     icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>,
     bg: 'hover:bg-gray-100 dark:hover:bg-gray-700',
     url: () => '',
-    action: undefined as ((u: string) => Promise<void>) | undefined,
   },
   {
     id: 'email', name: 'Email',
@@ -63,7 +62,25 @@ const platforms = [
 export default function ShareButton({ title, url, description }: ShareButtonProps) {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const btnRef = useRef<HTMLButtonElement>(null)
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
+
+  // Close when clicking outside
+  useEffect(() => {
+    if (!open) return
+    const handleClick = (e: MouseEvent) => {
+      if (
+        panelRef.current && !panelRef.current.contains(e.target as Node) &&
+        btnRef.current && !btnRef.current.contains(e.target as Node)
+      ) {
+        setOpen(false)
+      }
+    }
+    // Use mousedown to catch clicks earlier, add delay to avoid immediate trigger
+    setTimeout(() => document.addEventListener('mousedown', handleClick), 0)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [open])
 
   const handleClick = () => {
     // On mobile, try native Web Share API first
@@ -95,7 +112,7 @@ export default function ShareButton({ title, url, description }: ShareButtonProp
   return (
     <>
       {/* Trigger button */}
-      <button onClick={handleClick}
+      <button ref={btnRef} onClick={handleClick}
         className="flex items-center gap-1.5 px-3 py-2 rounded-lg border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm shrink-0">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -104,11 +121,11 @@ export default function ShareButton({ title, url, description }: ShareButtonProp
         <span className="hidden sm:inline">Share</span>
       </button>
 
-      {/* Desktop dropdown */}
+      {/* Desktop panel */}
       {open && (
         <div className="hidden lg:block">
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="fixed z-50 right-[72px] top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 border rounded-2xl shadow-2xl p-3 w-52">
+          <div ref={panelRef} className="fixed z-50 right-[72px] top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 border rounded-2xl shadow-2xl p-3 w-52">
             <div className="flex items-center justify-between mb-2 px-1">
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Share to</span>
               <button onClick={() => setOpen(false)} className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -134,7 +151,7 @@ export default function ShareButton({ title, url, description }: ShareButtonProp
       {open && (
         <div className="lg:hidden fixed inset-0 z-50 flex items-end">
           <div className="fixed inset-0 bg-black/30" onClick={() => setOpen(false)} />
-          <div className="relative w-full bg-white dark:bg-gray-800 rounded-t-2xl shadow-2xl p-5 pb-8">
+          <div ref={panelRef} className="relative w-full bg-white dark:bg-gray-800 rounded-t-2xl shadow-2xl p-5 pb-8">
             <div className="w-10 h-1 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-4" />
             <h3 className="text-sm font-semibold mb-4 text-center">Share</h3>
             <div className="grid grid-cols-4 gap-3">
