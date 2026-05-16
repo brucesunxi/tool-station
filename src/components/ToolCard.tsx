@@ -1,5 +1,8 @@
+'use client'
+
 import { Link } from '@/i18n'
 import { useTranslations } from 'next-intl'
+import BookmarkButton from './BookmarkButton'
 
 interface ToolCardProps {
   title: string
@@ -24,22 +27,24 @@ export default function ToolCard({ title, description, icon, href, isNew, catego
   const colors = categoryColors[category] || categoryColors.dev
 
   return (
-    <Link
-      href={href}
-      className="group relative flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border hover:border-blue-400 hover:shadow-md transition-all duration-200"
-    >
-      {isNew && (
-        <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold shadow-sm z-10">
-          {t('new')}
-        </span>
-      )}
-      <div className={`w-10 h-10 ${colors.bg} rounded-lg flex items-center justify-center text-lg shrink-0 ${colors.text}`}>
-        {icon}
+    <div className="group relative flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border hover:border-blue-400 hover:shadow-md transition-all duration-200">
+      <Link href={href} className="flex items-start gap-4 flex-1 min-w-0">
+        {isNew && (
+          <span className="absolute -top-2 left-4 bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold shadow-sm z-10">
+            {t('new')}
+          </span>
+        )}
+        <div className={`w-10 h-10 ${colors.bg} rounded-lg flex items-center justify-center text-lg shrink-0 ${colors.text}`}>
+          {icon}
+        </div>
+        <div className="min-w-0">
+          <h3 className="font-semibold text-sm group-hover:text-blue-600 transition-colors">{title}</h3>
+          <p className="text-xs text-gray-400 dark:text-gray-400 mt-0.5 line-clamp-2">{description}</p>
+        </div>
+      </Link>
+      <div className="shrink-0 self-center" onClick={e => e.stopPropagation()}>
+        <BookmarkButton href={href} title={title} icon={icon} category={category} />
       </div>
-      <div className="min-w-0">
-        <h3 className="font-semibold text-sm group-hover:text-blue-600 transition-colors">{title}</h3>
-        <p className="text-xs text-gray-400 dark:text-gray-400 mt-0.5 line-clamp-2">{description}</p>
-      </div>
-    </Link>
+    </div>
   )
 }

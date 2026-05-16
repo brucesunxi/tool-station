@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { ToolData } from '@/lib/tools'
 import ToolCard from '@/components/ToolCard'
 import ToolSearch from '@/components/ToolSearch'
+import ShareButton from '@/components/ShareButton'
 import AdBanner from '@/components/AdBanner'
 import { tools } from '@/lib/tools'
 
@@ -58,7 +59,10 @@ export default function HomePage() {
         </div>
       </section>
       <AdBanner className="mb-10 h-20" />
-      <ToolSearch tools={translatedTools} />
+      <div className="flex items-center justify-between gap-4 mb-6">
+        <div className="flex-1"><ToolSearch tools={translatedTools} /></div>
+        <ShareButton title="ToolStation - Free Online Tools" description={t('heroText')} />
+      </div>
       <div className="space-y-8">
         {categories.filter(c => c.tools.length > 0).map(cat => (
           <section key={cat.key} id={`cat-${cat.key}`}>
