@@ -6,7 +6,8 @@
     "search": "Search",
     "allTools": "All Tools",
     "tools": "tools",
-    "signUp": "No Sign-up Required"
+    "signUp": "No Sign-up Required",
+    "bookmarks": "Bookmarks"
   },
   "home": {
     "title": "Free Online Tools",
@@ -382,7 +383,12 @@
     "placeholderSqlPrompt": "e.g. Find all customers who made a purchase in the last 30 days, Get top 10 products by revenue this year...",
     "sqlDialect": "SQL Dialect",
     "generateSql": "💾 Generate SQL",
-    "sqlQuery": "SQL Query"
+    "sqlQuery": "SQL Query",
+    "bookmarksTitle": "Bookmarks",
+    "bookmarksDesc": "Your saved tools — ready to use anytime",
+    "noBookmarks": "No bookmarks yet",
+    "noBookmarksHint": "Browse tools and click the bookmark icon to save them here.",
+    "removeBookmark": "Remove bookmark"
   },
   "tools": {
     "age-calculator": {

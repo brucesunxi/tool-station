@@ -6,7 +6,8 @@
     "search": "搜索",
     "allTools": "全部工具",
     "tools": "个工具",
-    "signUp": "无需注册"
+    "signUp": "无需注册",
+    "bookmarks": "收藏"
   },
   "home": {
     "title": "免费在线工具",
@@ -350,7 +351,12 @@
     "placeholderSqlPrompt": "例如：查找过去30天内有购买记录的所有客户，按今年收入获取前10名产品...",
     "sqlDialect": "SQL 方言",
     "generateSql": "💾 生成 SQL",
-    "sqlQuery": "SQL 查询"
+    "sqlQuery": "SQL 查询",
+    "bookmarksTitle": "收藏夹",
+    "bookmarksDesc": "你收藏的工具 — 随时可用",
+    "noBookmarks": "还没有收藏",
+    "noBookmarksHint": "浏览工具页面，点击书签图标即可收藏。",
+    "removeBookmark": "移除收藏"
   },
   "tools": {
     "image-compress": {

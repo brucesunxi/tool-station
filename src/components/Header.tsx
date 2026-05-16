@@ -43,6 +43,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-5">
             <Link href="/search" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">{t('search')}</Link>
             <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">{t('allTools')}</Link>
+            <Link href="/bookmarks" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">{t('bookmarks')}</Link>
             <NavDropdown label={navT('image')} items={imageTools} />
             <NavDropdown label={navT('pdf')} items={pdfTools} />
             <NavDropdown label={navT('ai')} items={aiTools} />
@@ -78,6 +79,7 @@ export default function Header() {
           <div className="md:hidden pb-4 space-y-1">
             <Link href="/search" className="block py-2 text-sm font-semibold text-blue-600">{t('search')}</Link>
             <Link href="/" className="block py-2 text-sm font-semibold">{t('allTools')}</Link>
+            <Link href="/bookmarks" className="block py-2 text-sm font-semibold">{t('bookmarks')}</Link>
             <div className="grid grid-cols-2 gap-1">
               {tools.map(t => (
                 <Link key={t.href} href={t.href} className="block py-1.5 text-sm text-gray-600 dark:text-gray-300">{t.icon} {toolsT(`${getToolKey(t.href)}.title`)}</Link>
