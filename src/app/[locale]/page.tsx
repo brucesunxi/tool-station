@@ -59,10 +59,7 @@ export default function HomePage() {
         </div>
       </section>
       <AdBanner className="mb-10 h-20" />
-      <div className="flex items-center justify-between gap-4 mb-6">
-        <div className="flex-1"><ToolSearch tools={translatedTools} /></div>
-        <ShareButton title="ToolStation - Free Online Tools" description={t('heroText')} />
-      </div>
+      <ToolSearch tools={translatedTools} />
       <div className="space-y-8">
         {categories.filter(c => c.tools.length > 0).map(cat => (
           <section key={cat.key} id={`cat-${cat.key}`}>
@@ -112,6 +109,14 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Floating share button */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex flex-col gap-2">
+        <ShareButton title="ToolStation - Free Online Tools" description={t('heroText')} />
+      </div>
+      <div className="lg:hidden flex items-center justify-end gap-2 max-w-7xl mx-auto px-4 pb-4">
+        <ShareButton title="ToolStation - Free Online Tools" description={t('heroText')} />
+      </div>
     </div>
   )
 }
